@@ -1,9 +1,14 @@
 package net.junedev.viridium.blocks;
 
+import java.util.List;
+
 import net.junedev.viridium.Viridium;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockSapling;
 import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 
 import cpw.mods.fml.relauncher.Side;
@@ -33,5 +38,10 @@ public class BaseSaplingBlock extends BlockSapling {
     @SideOnly(Side.CLIENT)
     public IIcon getIcon(int side, int meta) {
         return this.blockIcon;
+    }
+
+    @Override
+    public void getSubBlocks(Item itemIn, CreativeTabs tab, List<ItemStack> list) {
+        list.add(new ItemStack(itemIn, 1, 0));
     }
 }
