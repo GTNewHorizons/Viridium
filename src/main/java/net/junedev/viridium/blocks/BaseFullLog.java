@@ -28,11 +28,13 @@ public class BaseFullLog extends BlockLog {
         "quaking_aspen_stripped", "rainbow_eucalyptus_log", "rainbow_eucalyptus_stripped", "red_alder_log",
         "red_alder_stripped", "red_gum_log", "red_gum_stripped", "red_maple_log", "red_maple_stripped",
         "red_spruce_log", "red_spruce_stripped", "rowan_log", "rowan_stripped", "royal_palm_log", "royal_palm_crown",
-        "rubber_log", "rubber_log_expended", "rowan_log_resinous", "rubber_log_stripped", "scots_pine_log",
+        "rubber_log", "rubber_log_expended", "rubber_log_resinous", "rubber_stripped", "scots_pine_log",
         "scots_pine_stripped", "siberian_larch_log", "siberian_larch_stripped", "sierra_juniper_log",
         "sierra_juniper_stripped", "southern_magnolia_log", "southern_magnolia_stripped", "sweet_cherry_log",
         "sweet_cherry_stripped", "sweetgum_log", "sweetgum_stripped", "tamarack_log", "tamarack_stripped",
-        "weeping_willow_log", "weeping_willow_stripped", "driftwood_log" };
+        "turkish_pine_log", "turkish_pine_stripped", "umbrella_tree_log", "umbrella_tree_stripped",
+        "weeping_willow_log", "weeping_willow_stripped", "white_poplar_log", "white_poplar_stripped", "yew_log",
+        "yew_stripped", "driftwood_log" };
 
     public BaseFullLog() {
         super();

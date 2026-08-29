@@ -27,7 +27,8 @@ public class BaseLeaves extends BlockLeaves {
         "quaking_aspen_leaves", "rainbow_eucalyptus_leaves", "red_alder_leaves", "red_gum_leaves", "red_maple_leaves",
         "red_spruce_leaves", "rowan_leaves", "royal_palm_leaves", "rubber_leaves", "scots_pine_leaves",
         "siberian_larch_leaves", "sierra_juniper_leaves", "southern_magnolia_leaves", "sweet_cherry_leaves",
-        "sweetgum_leaves", "tamarack_leaves", "weeping_willow_leaves" };
+        "sweetgum_leaves", "tamarack_leaves", "turkish_pine_leaves", "umbrella_tree_leaves", "weeping_willow_leaves",
+        "white_poplar_leaves_orange", "white_poplar_leaves_red", "white_poplar_leaves_yellow", "yew_leaves" };
 
     public BaseLeaves() {
         super();
