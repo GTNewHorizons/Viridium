@@ -1,5 +1,11 @@
 itemGroup.VTab=Viridium
 
+tile.amaranth_log.name=Amaranth Wood
+tile.amaranth_stripped=Stripped Amaranth Wood
+tile.amaranth_leaves=Amaranth Leaves
+tile.amaranth_planks=Amaranth Planks
+tile.amaranth_sapling=Amaranth Sapling
+
 tile.american_sycamore_log.name=American Sycamore Wood
 tile.american_sycamore_stripped.name=Stripped American Sycamore Wood
 tile.american_sycamore_leaves.name=American Sycamore Leaves
