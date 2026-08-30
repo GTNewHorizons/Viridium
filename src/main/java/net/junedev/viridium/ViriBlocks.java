@@ -251,6 +251,7 @@ public class ViriBlocks {
         GameRegistry.registerBlock(giantSequoiaLog, "giant_sequoia_log");
         GameRegistry.registerBlock(giantSequoiaLogStripped, "giant_sequoia_stripped");
         GameRegistry.registerBlock(giantSequoiaLeaves, "giant_sequoia_leaves");
+        GameRegistry.registerBlock(giantSequoiaLeavesBurnt, "giant_sequoia_leaves_burnt");
         GameRegistry.registerBlock(giantSequoiaPlanks, "giant_sequoia_planks");
         GameRegistry.registerBlock(giantSequoiaSapling, "giant_sequoia_sapling");
 
