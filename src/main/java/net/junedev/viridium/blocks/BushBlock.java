@@ -17,6 +17,8 @@ import java.util.List;
 public class BushBlock extends Block {
 
     private static final double PLATFORM_HEIGHT = 0.75;
+    private double movementAttenuation = 0.4D;
+    private float fallAttenuation = 0.35f;
 
     @SideOnly(Side.CLIENT)
     private IIcon branchIcon;
@@ -33,6 +35,22 @@ public class BushBlock extends Block {
     }
 
     @Override
+    public void onEntityCollidedWithBlock(World worldIn, int x, int y, int z, Entity entityIn) {
+        entityIn.motionX *= movementAttenuation;
+        entityIn.motionZ *= movementAttenuation;
+        if(entityIn.motionY < 0) {
+            entityIn.motionY *= movementAttenuation;
+        }
+    }
+
+    @Override
+    public void onFallenUpon(World world, int x, int y, int z, Entity entity, float fallDistance) {
+        // Adjust that value before EntityLivingBase reaches its normal fall code.
+        entity.fallDistance *= fallAttenuation;
+    }
+
+    // Rendering
+    @Override
     public int getRenderType() {
         return ViriRenderIds.bushBlockRenderId;
     }
@@ -47,6 +65,7 @@ public class BushBlock extends Block {
         return false;
     }
 
+    // Hitboxes
     @Override
     public AxisAlignedBB getCollisionBoundingBoxFromPool(World worldIn, int x, int y, int z) {
         return null;
@@ -68,13 +87,24 @@ public class BushBlock extends Block {
         }
     }
 
+    // Setters
     @Override
     public Block setBlockName(String name) {
         super.setBlockName(name);
 
         setBlockTextureName(Viridium.MOD_ID + ":bushes/" + name);
 
-        return (Block) this;
+        return this;
+    }
+
+    public Block setMovementAttenuation(double movementAttenuation) {
+        this.movementAttenuation = movementAttenuation;
+        return this;
+    }
+
+    public Block setFallAttenuation(float fallAttenuation) {
+        this.fallAttenuation = fallAttenuation;
+        return this;
     }
 
     // Icon stuff
@@ -100,4 +130,5 @@ public class BushBlock extends Block {
     public IIcon getLeaveIcon() {
         return leaveIcon;
     }
+
 }

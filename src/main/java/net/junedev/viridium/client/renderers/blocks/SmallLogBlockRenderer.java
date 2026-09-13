@@ -3,6 +3,7 @@ package net.junedev.viridium.client.renderers.blocks;
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 import net.junedev.viridium.blocks.SmallLogBlock;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockLeavesBase;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.util.IIcon;
@@ -165,7 +166,7 @@ public class SmallLogBlockRenderer implements ISimpleBlockRenderingHandler {
             renderer.renderFaceZPos(block, x, y, z, axis == ForgeDirection.SOUTH ? topIcon : sideIcon);
         }
     }
-    
+
     private void setFaceRenderBounds(
         RenderBlocks renderer, SmallLogBlock smallLogBlock, ForgeDirection logAxis, ForgeDirection face,
         double minX, double minY, double minZ, double maxX, double maxY, double maxZ) {
