@@ -70,8 +70,6 @@ public class BushBlockRenderer implements ISimpleBlockRenderingHandler {
         double coreMin = 0.5 - HALF_WIDTH * 0.0625;
         double coreMax = 0.5 + HALF_WIDTH * 0.0625;
 
-        boolean hasConnections = false;
-
         for(ForgeDirection direction : ForgeDirection.VALID_DIRECTIONS) {
             if(direction.offsetX < 0 || direction.offsetY < 0 || direction.offsetZ < 0) continue;
 
@@ -101,7 +99,6 @@ public class BushBlockRenderer implements ISimpleBlockRenderingHandler {
                 default:
                     continue;
             }
-            hasConnections = true;
         }
 
     }
