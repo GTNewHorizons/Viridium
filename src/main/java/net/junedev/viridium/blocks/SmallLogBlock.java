@@ -20,8 +20,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SmallLogBlock extends Block {
-    /** Half of the log's square cross-section, in texture/block pixels. */
+    /** Half of the physical log cross-section, in block pixels. */
     private final int halfWidth;
+    /** Half of the quad span on its tangent axes; may exceed halfWidth. */
+    private final int faceHalfWidth;
+    /** If the log should connect to the sides. */
     private final boolean connectSides;
 
     @SideOnly(Side.CLIENT)
@@ -30,18 +33,15 @@ public class SmallLogBlock extends Block {
     @SideOnly(Side.CLIENT)
     private  IIcon sideIcon;
 
-    public SmallLogBlock() {
-        this(4, true);
-    }
-
-    public SmallLogBlock(int halfWidth, boolean connectSides) {
+    public SmallLogBlock(int halfWidth, int faceHalfWidth, boolean connectSides) {
         super(Material.wood);
 
-        if (halfWidth < 1 || halfWidth > 8) {
-            throw new IllegalArgumentException("Small log half width must be between 1 and 8 pixels");
+        if (halfWidth < 1 || halfWidth > 8 || faceHalfWidth < 1 || faceHalfWidth > 8) {
+            throw new IllegalArgumentException("Small log half widths must be between 1 and 8 pixels");
         }
 
         this.halfWidth = halfWidth;
+        this.faceHalfWidth = faceHalfWidth;
         this.connectSides = connectSides;
 
         this.setHardness(1.0F);
@@ -195,6 +195,14 @@ public class SmallLogBlock extends Block {
 
     public double getCoreMax() {
         return 0.5D + halfWidth / 16.0D;
+    }
+
+    public double getFaceMin() {
+        return 0.5D - faceHalfWidth / 16.0D;
+    }
+
+    public double getFaceMax() {
+        return 0.5D + faceHalfWidth / 16.0D;
     }
 
     public boolean doSidesConnect() { return connectSides; }

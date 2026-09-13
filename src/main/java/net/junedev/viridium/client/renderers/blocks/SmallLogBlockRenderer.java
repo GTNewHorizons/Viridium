@@ -28,8 +28,9 @@ public class SmallLogBlockRenderer implements ISimpleBlockRenderingHandler {
         GL11.glRotatef(90.0F, 0.0F, 1.0F, 0.0F);
         GL11.glTranslatef(-0.5F, -0.5F, -0.5F);
 
-        renderer.setRenderBounds(coreMin, 0.0625, coreMin, coreMax, 0.9375, coreMax);
-        renderInventoryCuboid(block, metadata, renderer, null);
+        renderInventoryCuboid(
+            block, metadata, renderer, smallLogBlockRenderer, ForgeDirection.UP,
+            coreMin, 0.0625, coreMin, coreMax, 0.9375, coreMax, null);
 
         renderer.setRenderBoundsFromBlock(block);
         GL11.glPopMatrix();
@@ -133,32 +134,59 @@ public class SmallLogBlockRenderer implements ISimpleBlockRenderingHandler {
         IIcon sideIcon = smallLogBlock.getSideIcon();
         Tessellator tessellator = Tessellator.instance;
 
-        renderer.setRenderBounds(minX, minY, minZ, maxX, maxY, maxZ);
-
         if (renderWest) {
+            setFaceRenderBounds(renderer, smallLogBlock, axis, ForgeDirection.WEST, minX, minY, minZ, maxX, maxY, maxZ);
             setFaceLighting(tessellator, world, x, y, z, block, ForgeDirection.WEST, minX, maxX, minY, maxY, minZ, maxZ);
             renderer.renderFaceXNeg(block, x, y, z, axis == ForgeDirection.EAST ? topIcon : sideIcon);
         }
         if (renderEast) {
+            setFaceRenderBounds(renderer, smallLogBlock, axis, ForgeDirection.EAST, minX, minY, minZ, maxX, maxY, maxZ);
             setFaceLighting(tessellator, world, x, y, z, block, ForgeDirection.EAST, minX, maxX, minY, maxY, minZ, maxZ);
             renderer.renderFaceXPos(block, x, y, z, axis == ForgeDirection.EAST ? topIcon : sideIcon);
         }
         if (renderDown) {
+            setFaceRenderBounds(renderer, smallLogBlock, axis, ForgeDirection.DOWN, minX, minY, minZ, maxX, maxY, maxZ);
             setFaceLighting(tessellator, world, x, y, z, block, ForgeDirection.DOWN, minX, maxX, minY, maxY, minZ, maxZ);
             renderer.renderFaceYNeg(block, x, y, z, axis == ForgeDirection.UP ? topIcon : sideIcon);
         }
         if (renderUp) {
+            setFaceRenderBounds(renderer, smallLogBlock, axis, ForgeDirection.UP, minX, minY, minZ, maxX, maxY, maxZ);
             setFaceLighting(tessellator, world, x, y, z, block, ForgeDirection.UP, minX, maxX, minY, maxY, minZ, maxZ);
             renderer.renderFaceYPos(block, x, y, z, axis == ForgeDirection.UP ? topIcon : sideIcon);
         }
         if (renderNorth) {
+            setFaceRenderBounds(renderer, smallLogBlock, axis, ForgeDirection.NORTH, minX, minY, minZ, maxX, maxY, maxZ);
             setFaceLighting(tessellator, world, x, y, z, block, ForgeDirection.NORTH, minX, maxX, minY, maxY, minZ, maxZ);
             renderer.renderFaceZNeg(block, x, y, z, axis == ForgeDirection.SOUTH ? topIcon : sideIcon);
         }
         if (renderSouth) {
+            setFaceRenderBounds(renderer, smallLogBlock, axis, ForgeDirection.SOUTH, minX, minY, minZ, maxX, maxY, maxZ);
             setFaceLighting(tessellator, world, x, y, z, block, ForgeDirection.SOUTH, minX, maxX, minY, maxY, minZ, maxZ);
             renderer.renderFaceZPos(block, x, y, z, axis == ForgeDirection.SOUTH ? topIcon : sideIcon);
         }
+    }
+    
+    private void setFaceRenderBounds(
+        RenderBlocks renderer, SmallLogBlock smallLogBlock, ForgeDirection logAxis, ForgeDirection face,
+        double minX, double minY, double minZ, double maxX, double maxY, double maxZ) {
+
+        boolean faceX = face.offsetX != 0;
+        boolean faceY = face.offsetY != 0;
+        boolean faceZ = face.offsetZ != 0;
+        boolean axisX = logAxis.offsetX != 0;
+        boolean axisY = logAxis.offsetY != 0;
+        boolean axisZ = logAxis.offsetZ != 0;
+
+        // face || axis => location bounds (min max), and NOT expanded bounds (face min max)
+        // face and axis cross product determine the expanding direction
+        double renderMinX = faceX || axisX ? minX : smallLogBlock.getFaceMin();
+        double renderMaxX = faceX || axisX ? maxX : smallLogBlock.getFaceMax();
+        double renderMinY = faceY || axisY ? minY : smallLogBlock.getFaceMin();
+        double renderMaxY = faceY || axisY ? maxY : smallLogBlock.getFaceMax();
+        double renderMinZ = faceZ || axisZ ? minZ : smallLogBlock.getFaceMin();
+        double renderMaxZ = faceZ || axisZ ? maxZ : smallLogBlock.getFaceMax();
+
+        renderer.setRenderBounds(renderMinX, renderMinY, renderMinZ, renderMaxX, renderMaxY, renderMaxZ);
     }
 
     private void setFaceLighting(
@@ -214,27 +242,36 @@ public class SmallLogBlockRenderer implements ISimpleBlockRenderingHandler {
     }
 
 
-    private void renderInventoryCuboid(Block block, int metadata, RenderBlocks renderer, IIcon overrideIcon) {
+    private void renderInventoryCuboid(
+        Block block, int metadata, RenderBlocks renderer, SmallLogBlock smallLogBlock, ForgeDirection axis,
+        double minX, double minY, double minZ, double maxX, double maxY, double maxZ, IIcon overrideIcon) {
+
         Tessellator tessellator = Tessellator.instance;
 
         tessellator.startDrawingQuads();
 
         tessellator.setNormal(0.0F, -1.0F, 0.0F);
+        setFaceRenderBounds(renderer, smallLogBlock, axis, ForgeDirection.DOWN, minX, minY, minZ, maxX, maxY, maxZ);
         renderer.renderFaceYNeg(block, 0.0, 0.0, 0.0, overrideIcon == null ? block.getIcon(0, 0) : overrideIcon);
 
         tessellator.setNormal(0.0F, 1.0F, 0.0F);
+        setFaceRenderBounds(renderer, smallLogBlock, axis, ForgeDirection.UP, minX, minY, minZ, maxX, maxY, maxZ);
         renderer.renderFaceYPos(block, 0.0, 0.0, 0.0, overrideIcon == null ? block.getIcon(0, 0) : overrideIcon);
 
         tessellator.setNormal(-1.0F, 0.0F, 0.0F);
+        setFaceRenderBounds(renderer, smallLogBlock, axis, ForgeDirection.WEST, minX, minY, minZ, maxX, maxY, maxZ);
         renderer.renderFaceXNeg(block, 0.0, 0.0, 0.0, overrideIcon == null ? block.getIcon(2, 0) : overrideIcon);
 
         tessellator.setNormal(1.0F, 0.0F, 0.0F);
+        setFaceRenderBounds(renderer, smallLogBlock, axis, ForgeDirection.EAST, minX, minY, minZ, maxX, maxY, maxZ);
         renderer.renderFaceXPos(block, 0.0, 0.0, 0.0, overrideIcon == null ? block.getIcon(2, 0) : overrideIcon);
 
         tessellator.setNormal(0.0F, 0.0F, -1.0F);
+        setFaceRenderBounds(renderer, smallLogBlock, axis, ForgeDirection.NORTH, minX, minY, minZ, maxX, maxY, maxZ);
         renderer.renderFaceZNeg(block, 0.0, 0.0, 0.0, overrideIcon == null ? block.getIcon(2, 0) : overrideIcon);
 
         tessellator.setNormal(0.0F, 0.0F, 1.0F);
+        setFaceRenderBounds(renderer, smallLogBlock, axis, ForgeDirection.SOUTH, minX, minY, minZ, maxX, maxY, maxZ);
         renderer.renderFaceZPos(block, 0.0, 0.0, 0.0, overrideIcon == null ? block.getIcon(2, 0) : overrideIcon);
 
         tessellator.draw();
