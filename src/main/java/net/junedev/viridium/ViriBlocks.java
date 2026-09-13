@@ -1,14 +1,14 @@
 package net.junedev.viridium;
 
-import cpw.mods.fml.common.registry.GameRegistry;
 import net.junedev.viridium.blocks.BushBlock;
 import net.junedev.viridium.blocks.SmallLogBlock;
 import net.minecraft.block.Block;
 
+import cpw.mods.fml.common.registry.GameRegistry;
+
 public class ViriBlocks {
 
-    public void preInit()
-    {
+    public void preInit() {
         creosote_bush = registerBush("creosote_bush");
         golden_wattle = registerBush("golden_wattle");
         honeysuckle = registerBush("honeysuckle");
@@ -24,7 +24,6 @@ public class ViriBlocks {
         sandhill_wattle = registerBush("sandhill_wattle");
         silverleaf_hydrangea = registerBush("silverleaf_hydrangea");
         wedding_bush = registerBush("wedding_bush");
-
 
         black_spruce_log = registerSmallLog("black_spruce_log");
         blackthorn_log = registerSmallLog("blackthorn_log");
@@ -83,7 +82,6 @@ public class ViriBlocks {
     public static Block sandhill_wattle;
     public static Block silverleaf_hydrangea;
     public static Block wedding_bush;
-
 
     public static Block black_spruce_log;
     public static Block blackthorn_log;

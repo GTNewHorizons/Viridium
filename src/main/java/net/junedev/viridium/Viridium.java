@@ -1,6 +1,7 @@
 package net.junedev.viridium;
 
 import net.minecraftforge.common.MinecraftForge;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

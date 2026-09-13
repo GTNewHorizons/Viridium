@@ -1,11 +1,11 @@
 package net.junedev.viridium.blocks;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import java.util.ArrayList;
+import java.util.List;
+
 import net.junedev.viridium.Viridium;
 import net.junedev.viridium.client.renderers.ViriRenderIds;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockLeavesBase;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
@@ -17,10 +17,11 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 
-import java.util.ArrayList;
-import java.util.List;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class SmallLogBlock extends Block {
+
     /** Half of the physical log cross-section, in block pixels. */
     private final int halfWidth;
     /** Half of the quad span on its tangent axes; may exceed halfWidth. */
@@ -32,7 +33,7 @@ public class SmallLogBlock extends Block {
     private IIcon topIcon;
 
     @SideOnly(Side.CLIENT)
-    private  IIcon sideIcon;
+    private IIcon sideIcon;
 
     public SmallLogBlock(int halfWidth, int faceHalfWidth, boolean connectSides) {
         super(Material.wood);
@@ -83,14 +84,12 @@ public class SmallLogBlock extends Block {
         double minZ = isConnected(worldIn, x, y, z, ForgeDirection.NORTH) ? 0.0 : coreMin;
         double maxZ = isConnected(worldIn, x, y, z, ForgeDirection.SOUTH) ? 1.0 : coreMax;
 
-        return AxisAlignedBB.getBoundingBox(
-            x + minX, y + minY, z + minZ,
-            x + maxX, y + maxY, z + maxZ);
+        return AxisAlignedBB.getBoundingBox(x + minX, y + minY, z + minZ, x + maxX, y + maxY, z + maxZ);
     }
 
-
     @Override
-    public void addCollisionBoxesToList(World worldIn, int x, int y, int z, AxisAlignedBB mask, List<AxisAlignedBB> list, Entity collider) {
+    public void addCollisionBoxesToList(World worldIn, int x, int y, int z, AxisAlignedBB mask,
+        List<AxisAlignedBB> list, Entity collider) {
 
         List<AxisAlignedBB> logBoxes = getLogBoxes(worldIn, x, y, z);
         for (AxisAlignedBB logBox : logBoxes) {
@@ -128,34 +127,31 @@ public class SmallLogBlock extends Block {
 
         boolean hasConnections = false;
 
-        for(ForgeDirection direction : ForgeDirection.VALID_DIRECTIONS) {
-            if(direction.offsetX < 0 || direction.offsetY < 0 || direction.offsetZ < 0) continue;
+        for (ForgeDirection direction : ForgeDirection.VALID_DIRECTIONS) {
+            if (direction.offsetX < 0 || direction.offsetY < 0 || direction.offsetZ < 0) continue;
 
             double min = coreMin;
             double max = coreMax;
-            if(isConnected(worldIn, x, y, z, direction)) max = 1.0;
-            if(isConnected(worldIn, x, y, z, direction.getOpposite())) min = 0.0;
+            if (isConnected(worldIn, x, y, z, direction)) max = 1.0;
+            if (isConnected(worldIn, x, y, z, direction.getOpposite())) min = 0.0;
 
-            if(max == coreMax && min == coreMin) continue;
+            if (max == coreMax && min == coreMin) continue;
 
             AxisAlignedBB platform;
             switch (direction) {
                 case EAST:
-                    platform = AxisAlignedBB.getBoundingBox(
-                        x + min, y + coreMin, z + coreMin,
-                       x + max, y + coreMax, z + coreMax);
+                    platform = AxisAlignedBB
+                        .getBoundingBox(x + min, y + coreMin, z + coreMin, x + max, y + coreMax, z + coreMax);
                     break;
 
                 case UP:
-                    platform = AxisAlignedBB.getBoundingBox(
-                        x + coreMin, y + min, z + coreMin,
-                        x + coreMax, y + max, z + coreMax);
+                    platform = AxisAlignedBB
+                        .getBoundingBox(x + coreMin, y + min, z + coreMin, x + coreMax, y + max, z + coreMax);
                     break;
 
                 case SOUTH:
-                    platform = AxisAlignedBB.getBoundingBox(
-                        x + coreMin, y + coreMin, z + min,
-                        x + coreMax, y + coreMax, z + max);
+                    platform = AxisAlignedBB
+                        .getBoundingBox(x + coreMin, y + coreMin, z + min, x + coreMax, y + coreMax, z + max);
                     break;
 
                 default:
@@ -167,11 +163,9 @@ public class SmallLogBlock extends Block {
             hasConnections = true;
         }
 
-        if(!hasConnections)
-        {
-            AxisAlignedBB platform = AxisAlignedBB.getBoundingBox(
-                x + coreMin, y + coreMin, z + coreMin,
-                x + coreMax, y + coreMax, z + coreMax);
+        if (!hasConnections) {
+            AxisAlignedBB platform = AxisAlignedBB
+                .getBoundingBox(x + coreMin, y + coreMin, z + coreMin, x + coreMax, y + coreMax, z + coreMax);
 
             logBoxes.add(platform);
         }
@@ -181,7 +175,7 @@ public class SmallLogBlock extends Block {
 
     private boolean isConnected(IBlockAccess world, int x, int y, int z, ForgeDirection direction) {
 
-        if(!doSidesConnect() && !(direction == ForgeDirection.UP || direction == ForgeDirection.DOWN)) return false;
+        if (!doSidesConnect() && !(direction == ForgeDirection.UP || direction == ForgeDirection.DOWN)) return false;
 
         int neighborX = x + direction.offsetX;
         int neighborY = y + direction.offsetY;
@@ -206,7 +200,9 @@ public class SmallLogBlock extends Block {
         return 0.5D + faceHalfWidth / 16.0D;
     }
 
-    public boolean doSidesConnect() { return connectSides; }
+    public boolean doSidesConnect() {
+        return connectSides;
+    }
 
     @Override
     public Block setBlockName(String name) {
@@ -221,7 +217,7 @@ public class SmallLogBlock extends Block {
     @Override
     @SideOnly(Side.CLIENT)
     public void registerBlockIcons(IIconRegister reg) {
-        topIcon = reg.registerIcon(getTextureName()+"_top");
+        topIcon = reg.registerIcon(getTextureName() + "_top");
         sideIcon = reg.registerIcon(getTextureName() + "_side");
     }
 
@@ -229,7 +225,7 @@ public class SmallLogBlock extends Block {
     @SideOnly(Side.CLIENT)
     public IIcon getIcon(int side, int meta) {
 
-        if(side==0 || side==1) return topIcon;
+        if (side == 0 || side == 1) return topIcon;
 
         return sideIcon;
     }

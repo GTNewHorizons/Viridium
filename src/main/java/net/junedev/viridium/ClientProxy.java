@@ -1,7 +1,8 @@
 package net.junedev.viridium;
 
-import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import net.junedev.viridium.client.renderers.ViriRenderers;
+
+import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 
 public class ClientProxy extends CommonProxy {
 

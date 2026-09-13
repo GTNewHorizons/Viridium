@@ -1,7 +1,7 @@
 package net.junedev.viridium.blocks;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import java.util.List;
+
 import net.junedev.viridium.Viridium;
 import net.junedev.viridium.client.renderers.ViriRenderIds;
 import net.minecraft.block.Block;
@@ -12,7 +12,8 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 
-import java.util.List;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class BushBlock extends Block {
 
@@ -24,21 +25,21 @@ public class BushBlock extends Block {
     private IIcon branchIcon;
 
     @SideOnly(Side.CLIENT)
-    private  IIcon leaveIcon;
+    private IIcon leaveIcon;
 
-    public  BushBlock() {
+    public BushBlock() {
         super(Material.leaves);
 
-        this.setHardness(1.0F); // Hardness of vanilla logs?
+        this.setHardness(0.4F);
         this.setCreativeTab(Viridium.VTab);
-        this.setStepSound(soundTypeWood);
+        this.setStepSound(soundTypeGrass);
     }
 
     @Override
     public void onEntityCollidedWithBlock(World worldIn, int x, int y, int z, Entity entityIn) {
         entityIn.motionX *= movementAttenuation;
         entityIn.motionZ *= movementAttenuation;
-        if(entityIn.motionY < 0) {
+        if (entityIn.motionY < 0) {
             entityIn.motionY *= movementAttenuation;
         }
     }
@@ -72,17 +73,14 @@ public class BushBlock extends Block {
     }
 
     @Override
-    public void addCollisionBoxesToList(World worldIn, int x, int y, int z, AxisAlignedBB mask, List<AxisAlignedBB> list, Entity collider) {
-        AxisAlignedBB platform = AxisAlignedBB.getBoundingBox(
-            x, y, z,
-            x + 1.0, y + PLATFORM_HEIGHT, z + 1.0
-        );
+    public void addCollisionBoxesToList(World worldIn, int x, int y, int z, AxisAlignedBB mask,
+        List<AxisAlignedBB> list, Entity collider) {
+        AxisAlignedBB platform = AxisAlignedBB.getBoundingBox(x, y, z, x + 1.0, y + PLATFORM_HEIGHT, z + 1.0);
 
-        boolean isEntintyAbove = collider != null
-            && collider.boundingBox.minY >= platform.maxY - 0.01
+        boolean isEntintyAbove = collider != null && collider.boundingBox.minY >= platform.maxY - 0.01
             && collider.motionY <= 0.0;
 
-        if(isEntintyAbove && mask.intersectsWith(platform)) {
+        if (isEntintyAbove && mask.intersectsWith(platform)) {
             list.add(platform);
         }
     }
@@ -112,7 +110,7 @@ public class BushBlock extends Block {
     @SideOnly(Side.CLIENT)
     public void registerBlockIcons(IIconRegister reg) {
         branchIcon = reg.registerIcon(getTextureName() + "_branches");
-        leaveIcon = reg.registerIcon(getTextureName()+"_leaves");
+        leaveIcon = reg.registerIcon(getTextureName() + "_leaves");
     }
 
     @Override
