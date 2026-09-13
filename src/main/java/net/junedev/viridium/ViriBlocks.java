@@ -48,6 +48,7 @@ public class ViriBlocks {
         red_cinchona_log = registerSmallLog("red_cinchona_log");
         wild_apple_log = registerSmallLog("wild_apple_log");
         witch_hazel_log = registerSmallLog("witch_hazel_log");
+        debug_log = registerSmallLog("debug_log");
 
     }
 
@@ -102,4 +103,5 @@ public class ViriBlocks {
     public static Block red_cinchona_log;
     public static Block wild_apple_log;
     public static Block witch_hazel_log;
+    public static Block debug_log;
 }
