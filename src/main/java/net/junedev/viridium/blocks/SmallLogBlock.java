@@ -20,7 +20,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SmallLogBlock extends Block {
-    private static final int HALF_WIDTH = 4;
+    /** Half of the log's square cross-section, in texture/block pixels. */
+    private final int halfWidth;
+    private final boolean connectSides;
 
     @SideOnly(Side.CLIENT)
     private IIcon topIcon;
@@ -28,8 +30,19 @@ public class SmallLogBlock extends Block {
     @SideOnly(Side.CLIENT)
     private  IIcon sideIcon;
 
-    public  SmallLogBlock() {
+    public SmallLogBlock() {
+        this(4, true);
+    }
+
+    public SmallLogBlock(int halfWidth, boolean connectSides) {
         super(Material.wood);
+
+        if (halfWidth < 1 || halfWidth > 8) {
+            throw new IllegalArgumentException("Small log half width must be between 1 and 8 pixels");
+        }
+
+        this.halfWidth = halfWidth;
+        this.connectSides = connectSides;
 
         this.setHardness(1.0F);
         this.setCreativeTab(Viridium.VTab);
@@ -59,8 +72,8 @@ public class SmallLogBlock extends Block {
     // Selected BB: Must be cubic so it is the smallest containing all the log
     @Override
     public AxisAlignedBB getSelectedBoundingBoxFromPool(World worldIn, int x, int y, int z) {
-        double coreMin = 0.5 - HALF_WIDTH * 0.0625;
-        double coreMax = 0.5 + HALF_WIDTH * 0.0625;
+        double coreMin = getCoreMin();
+        double coreMax = getCoreMax();
 
         double minX = isConnected(worldIn, x, y, z, ForgeDirection.WEST) ? 0.0 : coreMin;
         double maxX = isConnected(worldIn, x, y, z, ForgeDirection.EAST) ? 1.0 : coreMax;
@@ -109,8 +122,8 @@ public class SmallLogBlock extends Block {
     private List<AxisAlignedBB> getLogBoxes(IBlockAccess worldIn, int x, int y, int z) {
         List<AxisAlignedBB> logBoxes = new ArrayList<AxisAlignedBB>();
 
-        double coreMin = 0.5 - HALF_WIDTH * 0.0625;
-        double coreMax = 0.5 + HALF_WIDTH * 0.0625;
+        double coreMin = getCoreMin();
+        double coreMax = getCoreMax();
 
         boolean hasConnections = false;
 
@@ -166,12 +179,25 @@ public class SmallLogBlock extends Block {
     }
 
     private boolean isConnected(IBlockAccess world, int x, int y, int z, ForgeDirection direction) {
+
+        if(!doSidesConnect() && !(direction == ForgeDirection.UP || direction == ForgeDirection.DOWN)) return false;
+
         int neighborX = x + direction.offsetX;
         int neighborY = y + direction.offsetY;
         int neighborZ = z + direction.offsetZ;
         return world.isSideSolid(neighborX, neighborY, neighborZ, direction.getOpposite(), false)
             || world.getBlock(neighborX, neighborY, neighborZ) instanceof SmallLogBlock;
     }
+
+    public double getCoreMin() {
+        return 0.5D - halfWidth / 16.0D;
+    }
+
+    public double getCoreMax() {
+        return 0.5D + halfWidth / 16.0D;
+    }
+
+    public boolean doSidesConnect() { return connectSides; }
 
     @Override
     public Block setBlockName(String name) {

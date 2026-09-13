@@ -33,7 +33,7 @@ public class ViriBlocks {
         crape_myrtle_log = registerSmallLog("crape_myrtle_log");
         desert_bloodwood_log = registerSmallLog("desert_bloodwood_log");
         flowering_dogwood_log = registerSmallLog("flowering_dogwood_log");
-        giant_bamboo_log = registerSmallLog("giant_bamboo_log");
+        giant_bamboo_log = registerSmallLog("giant_bamboo_log", 3, false);
         holly_log = registerSmallLog("holly_log");
         jacaranda_log = registerSmallLog("jacaranda_log");
         joshua_tree_log = registerSmallLog("joshua_tree_log");
@@ -59,7 +59,11 @@ public class ViriBlocks {
     }
 
     private Block registerSmallLog(String name) {
-        Block smallLog = new SmallLogBlock().setBlockName(name);
+        return registerSmallLog(name, 4, true);
+    }
+
+    private Block registerSmallLog(String name, int halfWidth, boolean doSidesConnect) {
+        Block smallLog = new SmallLogBlock(halfWidth, doSidesConnect).setBlockName(name);
         GameRegistry.registerBlock(smallLog, name);
         return smallLog;
     }

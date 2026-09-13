@@ -11,8 +11,6 @@ import net.minecraftforge.common.util.ForgeDirection;
 import org.lwjgl.opengl.GL11;
 
 public class SmallLogBlockRenderer implements ISimpleBlockRenderingHandler {
-    private static final int HALF_WIDTH = 4;
-
     private final int renderId;
 
     public SmallLogBlockRenderer(int renderId) {
@@ -23,8 +21,8 @@ public class SmallLogBlockRenderer implements ISimpleBlockRenderingHandler {
     public void renderInventoryBlock(Block block, int metadata, int modelId, RenderBlocks renderer) {
         SmallLogBlock smallLogBlockRenderer = (SmallLogBlock) block;
 
-        double coreMin = 0.5 - HALF_WIDTH * 0.0625;
-        double coreMax = 0.5 + HALF_WIDTH * 0.0625;
+        double coreMin = smallLogBlockRenderer.getCoreMin();
+        double coreMax = smallLogBlockRenderer.getCoreMax();
 
         GL11.glPushMatrix();
         GL11.glRotatef(90.0F, 0.0F, 1.0F, 0.0F);
@@ -39,9 +37,8 @@ public class SmallLogBlockRenderer implements ISimpleBlockRenderingHandler {
 
     @Override
     public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block block, int modelId, RenderBlocks renderer) {
-        SmallLogBlock smallLogBlock = (SmallLogBlock) block;
 
-        renderBranchesCuboid(world, x, y, z, block, renderer, smallLogBlock);
+        renderBranchesCuboid(world, x, y, z, block, renderer);
 
         renderer.setRenderBoundsFromBlock(block);
 
@@ -49,16 +46,19 @@ public class SmallLogBlockRenderer implements ISimpleBlockRenderingHandler {
     }
 
 
-    private void renderBranchesCuboid(IBlockAccess world, int x, int y, int z, Block block, RenderBlocks renderer, SmallLogBlock smallLogBlock) {
-        double coreMin = 0.5 - HALF_WIDTH * 0.0625;
-        double coreMax = 0.5 + HALF_WIDTH * 0.0625;
+    private void renderBranchesCuboid(IBlockAccess world, int x, int y, int z, Block block, RenderBlocks renderer) {
+        SmallLogBlock smallLogBlock = (SmallLogBlock) block;
 
-        boolean west = isConnected(world, x, y, z, ForgeDirection.WEST);
-        boolean east = isConnected(world, x, y, z, ForgeDirection.EAST);
+        double coreMin = smallLogBlock.getCoreMin();
+        double coreMax = smallLogBlock.getCoreMax();
+
         boolean down = isConnected(world, x, y, z, ForgeDirection.DOWN);
         boolean up = isConnected(world, x, y, z, ForgeDirection.UP);
-        boolean north = isConnected(world, x, y, z, ForgeDirection.NORTH);
-        boolean south = isConnected(world, x, y, z, ForgeDirection.SOUTH);
+
+        boolean west = isConnected(world, x, y, z, ForgeDirection.WEST) && smallLogBlock.doSidesConnect();
+        boolean east = isConnected(world, x, y, z, ForgeDirection.EAST) && smallLogBlock.doSidesConnect();
+        boolean north = isConnected(world, x, y, z, ForgeDirection.NORTH) && smallLogBlock.doSidesConnect();
+        boolean south = isConnected(world, x, y, z, ForgeDirection.SOUTH) && smallLogBlock.doSidesConnect();
         boolean hasHorizontalConnection = west || east || north || south;
 
         // The central, vertical log only renders faces that are not covered by a branch.
@@ -66,6 +66,22 @@ public class SmallLogBlockRenderer implements ISimpleBlockRenderingHandler {
             world, x, y, z, block, renderer, smallLogBlock, ForgeDirection.UP,
             coreMin, coreMin, coreMin, coreMax, coreMax, coreMax,
             !west, !east, !down, !up, !north, !south, !hasHorizontalConnection);
+
+        if (down) {
+            renderLogBox(
+                world, x, y, z, block, renderer, smallLogBlock, ForgeDirection.UP,
+                coreMin, 0.0, coreMin, coreMax, coreMin, coreMax,
+                true, true, false, false, true, true, false);
+        }
+
+        if (up) {
+            renderLogBox(
+                world, x, y, z, block, renderer, smallLogBlock, ForgeDirection.UP,
+                coreMin, coreMax, coreMin, coreMax, 1.0, coreMax,
+                true, true, false, false, true, true, false);
+        }
+
+        if(!smallLogBlock.doSidesConnect()) return;
 
         if (west) {
             renderLogBox(
@@ -81,19 +97,6 @@ public class SmallLogBlockRenderer implements ISimpleBlockRenderingHandler {
                 false, false, true, true, true, true, false);
         }
 
-        if (down) {
-            renderLogBox(
-                world, x, y, z, block, renderer, smallLogBlock, ForgeDirection.UP,
-                coreMin, 0.0, coreMin, coreMax, coreMin, coreMax,
-                true, true, false, false, true, true, false);
-        }
-
-        if (up) {
-            renderLogBox(
-                world, x, y, z, block, renderer, smallLogBlock, ForgeDirection.UP,
-                coreMin, coreMax, coreMin, coreMax, 1.0, coreMax,
-                true, true, false, false, true, true, false);
-        }
 
         if (north) {
             renderLogBox(
