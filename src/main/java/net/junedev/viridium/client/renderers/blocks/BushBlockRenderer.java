@@ -52,17 +52,25 @@ public class BushBlockRenderer implements ISimpleBlockRenderingHandler {
     public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block block, int modelId,
         RenderBlocks renderer) {
         BushBlock bushBlock = (BushBlock) block;
+        // Vanilla renders destroy progress by calling this with a temporary override texture,
+        // so we must be careful when overriding the texture.
+        boolean hasOverrideTexture = renderer.hasOverrideBlockTexture();
 
-        // renderBranches(world, x, y, z, block, renderer, bushBlock);
-        renderBranchesCuboid(world, x, y, z, block, renderer, bushBlock);
+        if (!hasOverrideTexture) {
+            renderBranchesCuboid(world, x, y, z, block, renderer, bushBlock);
+        }
 
         // Leaves
-        renderer.setOverrideBlockTexture(bushBlock.getLeaveIcon());
+        if (!hasOverrideTexture) {
+            renderer.setOverrideBlockTexture(bushBlock.getLeaveIcon());
+        }
 
         renderer.setRenderBounds(0.0, 0.0, 0.0, 1.0, 1.0, 1.0);
         renderer.renderStandardBlock(block, x, y, z);
 
-        renderer.clearOverrideBlockTexture();
+        if (!hasOverrideTexture) {
+            renderer.clearOverrideBlockTexture();
+        }
 
         renderer.setRenderBoundsFromBlock(block);
 
