@@ -1,5 +1,6 @@
 package net.junedev.viridium;
 
+import net.minecraftforge.common.MinecraftForge;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -15,6 +16,7 @@ public class Viridium {
 
     public static final String MOD_ID = "viridium";
     public static final Logger LOGGER = LogManager.getLogger(MOD_ID);
+    public static final ViriTab VTab = new ViriTab("VTab");
 
     @SidedProxy(clientSide = "net.junedev.viridium.ClientProxy", serverSide = "net.junedev.viridium.CommonProxy")
     public static CommonProxy proxy;
@@ -23,6 +25,12 @@ public class Viridium {
     // preInit "Run before anything else. Read your config, create blocks, items, etc, and register them with the
     // GameRegistry." (Remove if not needed)
     public void preInit(FMLPreInitializationEvent event) {
+
+        MinecraftForge.EVENT_BUS.register(this);
+
+        blocks = new ViriBlocks();
+        blocks.preInit();
+
         proxy.preInit(event);
     }
 
@@ -43,4 +51,6 @@ public class Viridium {
     public void serverStarting(FMLServerStartingEvent event) {
         proxy.serverStarting(event);
     }
+
+    ViriBlocks blocks;
 }
