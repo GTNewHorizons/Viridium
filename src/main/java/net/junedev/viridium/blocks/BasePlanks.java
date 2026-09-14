@@ -18,13 +18,4 @@ public class BasePlanks extends Block {
         this.textureName = Viridium.MOD_ID + ":" + texName;
         return this;
     }
-
-    // @Override
-    // public IIcon getIcon(int side, int meta) {
-    // return this.textures[findPlankName(texNames)];
-    // }
-
-    // public int findPlankName(String[] names) {
-    // return ArrayUtils.indexOf(names, getUnlocalizedName().substring(5));
-    // }
 }
