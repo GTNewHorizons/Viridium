@@ -6,6 +6,7 @@ import java.util.List;
 import net.junedev.viridium.Viridium;
 import net.junedev.viridium.client.renderers.ViriRenderIds;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockLeaves;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
@@ -74,15 +75,23 @@ public class SmallLogBlock extends Block {
     // Selected BB: Must be cubic so it is the smallest containing all the log
     @Override
     public AxisAlignedBB getSelectedBoundingBoxFromPool(World worldIn, int x, int y, int z) {
+        int meta = worldIn.getBlockMetadata(x, y, z);
+
         double coreMin = getCoreMin();
         double coreMax = getCoreMax();
 
-        double minX = isConnected(worldIn, x, y, z, ForgeDirection.WEST) ? 0.0 : coreMin;
-        double maxX = isConnected(worldIn, x, y, z, ForgeDirection.EAST) ? 1.0 : coreMax;
-        double minY = isConnected(worldIn, x, y, z, ForgeDirection.DOWN) ? 0.0 : coreMin;
-        double maxY = isConnected(worldIn, x, y, z, ForgeDirection.UP) ? 1.0 : coreMax;
-        double minZ = isConnected(worldIn, x, y, z, ForgeDirection.NORTH) ? 0.0 : coreMin;
-        double maxZ = isConnected(worldIn, x, y, z, ForgeDirection.SOUTH) ? 1.0 : coreMax;
+        double minX = getConnectionType(worldIn, x, y, z, ForgeDirection.WEST, meta) != ConnectionType.NONE ? 0.0
+            : coreMin;
+        double maxX = getConnectionType(worldIn, x, y, z, ForgeDirection.EAST, meta) != ConnectionType.NONE ? 1.0
+            : coreMax;
+        double minY = getConnectionType(worldIn, x, y, z, ForgeDirection.DOWN, meta) != ConnectionType.NONE ? 0.0
+            : coreMin;
+        double maxY = getConnectionType(worldIn, x, y, z, ForgeDirection.UP, meta) != ConnectionType.NONE ? 1.0
+            : coreMax;
+        double minZ = getConnectionType(worldIn, x, y, z, ForgeDirection.NORTH, meta) != ConnectionType.NONE ? 0.0
+            : coreMin;
+        double maxZ = getConnectionType(worldIn, x, y, z, ForgeDirection.SOUTH, meta) != ConnectionType.NONE ? 1.0
+            : coreMax;
 
         return AxisAlignedBB.getBoundingBox(x + minX, y + minY, z + minZ, x + maxX, y + maxY, z + maxZ);
     }
@@ -122,6 +131,8 @@ public class SmallLogBlock extends Block {
     private List<AxisAlignedBB> getLogBoxes(IBlockAccess worldIn, int x, int y, int z) {
         List<AxisAlignedBB> logBoxes = new ArrayList<AxisAlignedBB>();
 
+        int meta = worldIn.getBlockMetadata(x, y, z);
+
         double coreMin = getCoreMin();
         double coreMax = getCoreMax();
 
@@ -132,8 +143,8 @@ public class SmallLogBlock extends Block {
 
             double min = coreMin;
             double max = coreMax;
-            if (isConnected(worldIn, x, y, z, direction)) max = 1.0;
-            if (isConnected(worldIn, x, y, z, direction.getOpposite())) min = 0.0;
+            if (getConnectionType(worldIn, x, y, z, direction, meta) != ConnectionType.NONE) max = 1.0;
+            if (getConnectionType(worldIn, x, y, z, direction.getOpposite(), meta) != ConnectionType.NONE) min = 0.0;
 
             if (max == coreMax && min == coreMin) continue;
 
@@ -173,15 +184,65 @@ public class SmallLogBlock extends Block {
         return logBoxes;
     }
 
-    private boolean isConnected(IBlockAccess world, int x, int y, int z, ForgeDirection direction) {
+    public ConnectionType getConnectionType(IBlockAccess world, int x, int y, int z, ForgeDirection direction,
+        int meta) {
 
-        if (!doSidesConnect() && !(direction == ForgeDirection.UP || direction == ForgeDirection.DOWN)) return false;
+        int j1 = meta & 12;
+
+        boolean isLogEnd = false;
+        switch (j1) {
+            case 0:
+                if (direction == ForgeDirection.UP || direction == ForgeDirection.DOWN) {
+                    isLogEnd = true;
+                } else if (!doSidesConnect()) {
+                    return ConnectionType.NONE;
+                }
+                break;
+            case 4:
+                if (direction == ForgeDirection.WEST || direction == ForgeDirection.EAST) {
+                    isLogEnd = true;
+                } else if (!doSidesConnect()) {
+                    return ConnectionType.NONE;
+                }
+                break;
+            case 8:
+                if (direction == ForgeDirection.NORTH || direction == ForgeDirection.SOUTH) {
+                    isLogEnd = true;
+                } else if (!doSidesConnect()) {
+                    return ConnectionType.NONE;
+                }
+                break;
+        }
 
         int neighborX = x + direction.offsetX;
         int neighborY = y + direction.offsetY;
         int neighborZ = z + direction.offsetZ;
-        return world.isSideSolid(neighborX, neighborY, neighborZ, direction.getOpposite(), false)
-            || world.getBlock(neighborX, neighborY, neighborZ) instanceof SmallLogBlock;
+
+        // If it is the log orientation, connect.
+        if (isLogEnd) {
+            if (world.isSideSolid(neighborX, neighborY, neighborZ, direction.getOpposite(), false))
+                return ConnectionType.SOLID;
+            return ConnectionType.TRANSPARENT;
+        }
+
+        // Connects to all neighbor leaves
+        if (world.getBlock(neighborX, neighborY, neighborZ) instanceof BlockLeaves) return ConnectionType.TRANSPARENT;
+
+        // If neighbor is small log, connect only if it is pointing towards the log.
+        if (world.getBlock(neighborX, neighborY, neighborZ) instanceof SmallLogBlock) {
+            int neighborj1 = world.getBlockMetadata(neighborX, neighborY, neighborZ) & 12;
+            switch (neighborj1) {
+                case 0:
+                    return direction.offsetY != 0 ? ConnectionType.SOLID : ConnectionType.NONE;
+                case 4:
+                    return direction.offsetX != 0 ? ConnectionType.SOLID : ConnectionType.NONE;
+                case 8:
+                    return direction.offsetZ != 0 ? ConnectionType.SOLID : ConnectionType.NONE;
+            }
+        }
+
+        // In any other case, do not connect
+        return ConnectionType.NONE;
     }
 
     public double getCoreMin() {
@@ -213,6 +274,19 @@ public class SmallLogBlock extends Block {
         return (Block) this;
     }
 
+    public int onBlockPlaced(World worldIn, int x, int y, int z, int side, float subX, float subY, float subZ,
+        int meta) {
+        int j1 = meta & 3;
+        byte b0 = switch (side) {
+            case 0, 1 -> 0;
+            case 2, 3 -> 8;
+            case 4, 5 -> 4;
+            default -> 0;
+        };
+
+        return j1 | b0;
+    }
+
     // Icon stuff
     @Override
     @SideOnly(Side.CLIENT)
@@ -224,10 +298,10 @@ public class SmallLogBlock extends Block {
     @Override
     @SideOnly(Side.CLIENT)
     public IIcon getIcon(int side, int meta) {
-
-        if (side == 0 || side == 1) return topIcon;
-
-        return sideIcon;
+        int k = meta & 12;
+        return k == 0 && (side == 1 || side == 0) ? this.getTopIcon()
+            : (k == 4 && (side == 5 || side == 4) ? this.getTopIcon()
+                : (k == 8 && (side == 2 || side == 3) ? this.getTopIcon() : this.getSideIcon()));
     }
 
     @SideOnly(Side.CLIENT)
@@ -240,4 +314,9 @@ public class SmallLogBlock extends Block {
         return sideIcon;
     }
 
+    public enum ConnectionType {
+        NONE,
+        SOLID,
+        TRANSPARENT
+    }
 }

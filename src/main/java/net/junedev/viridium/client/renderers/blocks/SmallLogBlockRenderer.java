@@ -1,6 +1,7 @@
 package net.junedev.viridium.client.renderers.blocks;
 
 import net.junedev.viridium.blocks.SmallLogBlock;
+import net.junedev.viridium.blocks.SmallLogBlock.ConnectionType;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.Tessellator;
@@ -22,28 +23,16 @@ public class SmallLogBlockRenderer implements ISimpleBlockRenderingHandler {
 
     @Override
     public void renderInventoryBlock(Block block, int metadata, int modelId, RenderBlocks renderer) {
-        SmallLogBlock smallLogBlockRenderer = (SmallLogBlock) block;
+        SmallLogBlock log = (SmallLogBlock) block;
 
-        double coreMin = smallLogBlockRenderer.getCoreMin();
-        double coreMax = smallLogBlockRenderer.getCoreMax();
+        double coreMin = log.getCoreMin();
+        double coreMax = log.getCoreMax();
 
         GL11.glPushMatrix();
         GL11.glRotatef(90.0F, 0.0F, 1.0F, 0.0F);
         GL11.glTranslatef(-0.5F, -0.5F, -0.5F);
 
-        renderInventoryCuboid(
-            block,
-            metadata,
-            renderer,
-            smallLogBlockRenderer,
-            ForgeDirection.UP,
-            coreMin,
-            0.0625,
-            coreMin,
-            coreMax,
-            0.9375,
-            coreMax,
-            null);
+        renderInventoryLog(block, renderer, log);
 
         renderer.setRenderBoundsFromBlock(block);
         GL11.glPopMatrix();
@@ -63,17 +52,21 @@ public class SmallLogBlockRenderer implements ISimpleBlockRenderingHandler {
     private void renderBranchesCuboid(IBlockAccess world, int x, int y, int z, Block block, RenderBlocks renderer) {
         SmallLogBlock smallLogBlock = (SmallLogBlock) block;
 
+        int meta = world.getBlockMetadata(x, y, z);
+
         double coreMin = smallLogBlock.getCoreMin();
         double coreMax = smallLogBlock.getCoreMax();
 
-        boolean down = isConnected(world, x, y, z, ForgeDirection.DOWN);
-        boolean up = isConnected(world, x, y, z, ForgeDirection.UP);
+        ConnectionType down = smallLogBlock.getConnectionType(world, x, y, z, ForgeDirection.DOWN, meta);
+        ConnectionType up = smallLogBlock.getConnectionType(world, x, y, z, ForgeDirection.UP, meta);
 
-        boolean west = isConnected(world, x, y, z, ForgeDirection.WEST) && smallLogBlock.doSidesConnect();
-        boolean east = isConnected(world, x, y, z, ForgeDirection.EAST) && smallLogBlock.doSidesConnect();
-        boolean north = isConnected(world, x, y, z, ForgeDirection.NORTH) && smallLogBlock.doSidesConnect();
-        boolean south = isConnected(world, x, y, z, ForgeDirection.SOUTH) && smallLogBlock.doSidesConnect();
-        boolean hasHorizontalConnection = west || east || north || south;
+        ConnectionType west = smallLogBlock.getConnectionType(world, x, y, z, ForgeDirection.WEST, meta);
+        ConnectionType east = smallLogBlock.getConnectionType(world, x, y, z, ForgeDirection.EAST, meta);
+        ConnectionType north = smallLogBlock.getConnectionType(world, x, y, z, ForgeDirection.NORTH, meta);
+        ConnectionType south = smallLogBlock.getConnectionType(world, x, y, z, ForgeDirection.SOUTH, meta);
+        boolean hasHorizontalConnection = west != ConnectionType.NONE || east != ConnectionType.NONE
+            || north != ConnectionType.NONE
+            || south != ConnectionType.NONE;
 
         // The central, vertical log only renders faces that are not covered by a branch.
         renderLogBox(
@@ -91,15 +84,15 @@ public class SmallLogBlockRenderer implements ISimpleBlockRenderingHandler {
             coreMax,
             coreMax,
             coreMax,
-            !west,
-            !east,
-            !down,
-            !up,
-            !north,
-            !south,
+            west != ConnectionType.SOLID,
+            east != ConnectionType.SOLID,
+            down != ConnectionType.SOLID,
+            up != ConnectionType.SOLID,
+            north != ConnectionType.SOLID,
+            south != ConnectionType.SOLID,
             !hasHorizontalConnection);
 
-        if (down) {
+        if (down != ConnectionType.NONE) {
             renderLogBox(
                 world,
                 x,
@@ -117,14 +110,14 @@ public class SmallLogBlockRenderer implements ISimpleBlockRenderingHandler {
                 coreMax,
                 true,
                 true,
-                false,
+                down == ConnectionType.TRANSPARENT,
                 false,
                 true,
                 true,
-                false);
+                down == ConnectionType.TRANSPARENT);
         }
 
-        if (up) {
+        if (up != ConnectionType.NONE) {
             renderLogBox(
                 world,
                 x,
@@ -143,15 +136,15 @@ public class SmallLogBlockRenderer implements ISimpleBlockRenderingHandler {
                 true,
                 true,
                 false,
-                false,
+                up == ConnectionType.TRANSPARENT,
                 true,
                 true,
-                false);
+                up == ConnectionType.TRANSPARENT);
         }
 
         if (!smallLogBlock.doSidesConnect()) return;
 
-        if (west) {
+        if (west != ConnectionType.NONE) {
             renderLogBox(
                 world,
                 x,
@@ -167,16 +160,16 @@ public class SmallLogBlockRenderer implements ISimpleBlockRenderingHandler {
                 coreMin,
                 coreMax,
                 coreMax,
+                west == ConnectionType.TRANSPARENT,
                 false,
-                false,
                 true,
                 true,
                 true,
                 true,
-                false);
+                west == ConnectionType.TRANSPARENT);
         }
 
-        if (east) {
+        if (east != ConnectionType.NONE) {
             renderLogBox(
                 world,
                 x,
@@ -193,15 +186,15 @@ public class SmallLogBlockRenderer implements ISimpleBlockRenderingHandler {
                 coreMax,
                 coreMax,
                 false,
-                false,
+                east == ConnectionType.TRANSPARENT,
                 true,
                 true,
                 true,
                 true,
-                false);
+                east == ConnectionType.TRANSPARENT);
         }
 
-        if (north) {
+        if (north != ConnectionType.NONE) {
             renderLogBox(
                 world,
                 x,
@@ -221,12 +214,12 @@ public class SmallLogBlockRenderer implements ISimpleBlockRenderingHandler {
                 true,
                 true,
                 true,
+                north == ConnectionType.TRANSPARENT,
                 false,
-                false,
-                false);
+                north == ConnectionType.TRANSPARENT);
         }
 
-        if (south) {
+        if (south != ConnectionType.NONE) {
             renderLogBox(
                 world,
                 x,
@@ -247,18 +240,10 @@ public class SmallLogBlockRenderer implements ISimpleBlockRenderingHandler {
                 true,
                 true,
                 false,
-                false,
-                false);
+                south == ConnectionType.TRANSPARENT,
+                south == ConnectionType.TRANSPARENT);
         }
 
-    }
-
-    private boolean isConnected(IBlockAccess world, int x, int y, int z, ForgeDirection direction) {
-        int neighborX = x + direction.offsetX;
-        int neighborY = y + direction.offsetY;
-        int neighborZ = z + direction.offsetZ;
-        return world.isSideSolid(neighborX, neighborY, neighborZ, direction.getOpposite(), false)
-            || world.getBlock(neighborX, neighborY, neighborZ) instanceof SmallLogBlock;
     }
 
     private void renderLogBox(IBlockAccess world, int x, int y, int z, Block block, RenderBlocks renderer,
@@ -460,37 +445,44 @@ public class SmallLogBlockRenderer implements ISimpleBlockRenderingHandler {
         return renderId;
     }
 
-    private void renderInventoryCuboid(Block block, int metadata, RenderBlocks renderer, SmallLogBlock smallLogBlock,
-        ForgeDirection axis, double minX, double minY, double minZ, double maxX, double maxY, double maxZ,
-        IIcon overrideIcon) {
+    private void renderInventoryLog(Block block, RenderBlocks renderer, SmallLogBlock log) {
+
+        ForgeDirection axis = ForgeDirection.UP;
+
+        double minX = log.getCoreMin();
+        double minY = 0.0625D;
+        double minZ = log.getCoreMin();
+        double maxX = log.getCoreMax();
+        double maxY = 0.9375D;
+        double maxZ = log.getCoreMax();
 
         Tessellator tessellator = Tessellator.instance;
 
         tessellator.startDrawingQuads();
 
         tessellator.setNormal(0.0F, -1.0F, 0.0F);
-        setFaceRenderBounds(renderer, smallLogBlock, axis, ForgeDirection.DOWN, minX, minY, minZ, maxX, maxY, maxZ);
-        renderer.renderFaceYNeg(block, 0.0, 0.0, 0.0, overrideIcon == null ? block.getIcon(0, 0) : overrideIcon);
+        setFaceRenderBounds(renderer, log, axis, ForgeDirection.DOWN, minX, minY, minZ, maxX, maxY, maxZ);
+        renderer.renderFaceYNeg(block, 0.0, 0.0, 0.0, block.getIcon(0, 0));
 
         tessellator.setNormal(0.0F, 1.0F, 0.0F);
-        setFaceRenderBounds(renderer, smallLogBlock, axis, ForgeDirection.UP, minX, minY, minZ, maxX, maxY, maxZ);
-        renderer.renderFaceYPos(block, 0.0, 0.0, 0.0, overrideIcon == null ? block.getIcon(0, 0) : overrideIcon);
+        setFaceRenderBounds(renderer, log, axis, ForgeDirection.UP, minX, minY, minZ, maxX, maxY, maxZ);
+        renderer.renderFaceYPos(block, 0.0, 0.0, 0.0, block.getIcon(0, 0));
 
         tessellator.setNormal(-1.0F, 0.0F, 0.0F);
-        setFaceRenderBounds(renderer, smallLogBlock, axis, ForgeDirection.WEST, minX, minY, minZ, maxX, maxY, maxZ);
-        renderer.renderFaceXNeg(block, 0.0, 0.0, 0.0, overrideIcon == null ? block.getIcon(2, 0) : overrideIcon);
+        setFaceRenderBounds(renderer, log, axis, ForgeDirection.WEST, minX, minY, minZ, maxX, maxY, maxZ);
+        renderer.renderFaceXNeg(block, 0.0, 0.0, 0.0, block.getIcon(2, 0));
 
         tessellator.setNormal(1.0F, 0.0F, 0.0F);
-        setFaceRenderBounds(renderer, smallLogBlock, axis, ForgeDirection.EAST, minX, minY, minZ, maxX, maxY, maxZ);
-        renderer.renderFaceXPos(block, 0.0, 0.0, 0.0, overrideIcon == null ? block.getIcon(2, 0) : overrideIcon);
+        setFaceRenderBounds(renderer, log, axis, ForgeDirection.EAST, minX, minY, minZ, maxX, maxY, maxZ);
+        renderer.renderFaceXPos(block, 0.0, 0.0, 0.0, block.getIcon(2, 0));
 
         tessellator.setNormal(0.0F, 0.0F, -1.0F);
-        setFaceRenderBounds(renderer, smallLogBlock, axis, ForgeDirection.NORTH, minX, minY, minZ, maxX, maxY, maxZ);
-        renderer.renderFaceZNeg(block, 0.0, 0.0, 0.0, overrideIcon == null ? block.getIcon(2, 0) : overrideIcon);
+        setFaceRenderBounds(renderer, log, axis, ForgeDirection.NORTH, minX, minY, minZ, maxX, maxY, maxZ);
+        renderer.renderFaceZNeg(block, 0.0, 0.0, 0.0, block.getIcon(2, 0));
 
         tessellator.setNormal(0.0F, 0.0F, 1.0F);
-        setFaceRenderBounds(renderer, smallLogBlock, axis, ForgeDirection.SOUTH, minX, minY, minZ, maxX, maxY, maxZ);
-        renderer.renderFaceZPos(block, 0.0, 0.0, 0.0, overrideIcon == null ? block.getIcon(2, 0) : overrideIcon);
+        setFaceRenderBounds(renderer, log, axis, ForgeDirection.SOUTH, minX, minY, minZ, maxX, maxY, maxZ);
+        renderer.renderFaceZPos(block, 0.0, 0.0, 0.0, block.getIcon(2, 0));
 
         tessellator.draw();
     }
