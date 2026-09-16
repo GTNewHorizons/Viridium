@@ -1,6 +1,9 @@
 Thank you to all programmers and artists who have lended their help for this mod!
 Programmers:
-
+    ElPasteltoGrunon
+    JimmyBobJim
+    SwankyStella
 Artists:
-    Junie | seventh-june
     June | june_username
+    Junie | seventh-june
+
