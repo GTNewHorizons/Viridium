@@ -12,7 +12,7 @@ public class SeedItem extends Item {
 
     @Override
     public Item setTextureName(String texName) {
-        this.iconString = Viridium.MOD_ID + ":" + texName;
+        this.iconString = Viridium.MOD_ID + ":seeds/" + texName;
         return this;
     }
 }

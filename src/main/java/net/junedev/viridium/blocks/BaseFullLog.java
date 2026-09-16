@@ -50,8 +50,8 @@ public class BaseFullLog extends BlockLog {
         this.tops = new IIcon[texNames.length];
 
         for (int i = 0; i < texNames.length; ++i) {
-            this.sides[i] = register.registerIcon(Viridium.MOD_ID + ":" + texNames[i] + "_side");
-            this.tops[i] = register.registerIcon(Viridium.MOD_ID + ":" + texNames[i] + "_top");
+            this.sides[i] = register.registerIcon(Viridium.MOD_ID + ":large_trees/" + texNames[i] + "_side");
+            this.tops[i] = register.registerIcon(Viridium.MOD_ID + ":large_trees/" + texNames[i] + "_top");
         }
     }
 

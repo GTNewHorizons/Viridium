@@ -42,7 +42,7 @@ public class BaseLeaves extends BlockLeaves {
         this.textures = new IIcon[texNames.length];
 
         for (int i = 0; i < texNames.length; ++i) {
-            this.textures[i] = register.registerIcon(Viridium.MOD_ID + ":" + texNames[i]);
+            this.textures[i] = register.registerIcon(Viridium.MOD_ID + ":large_trees/" + texNames[i]);
         }
     }
 
