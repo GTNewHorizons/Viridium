@@ -2,6 +2,7 @@ package net.junedev.viridium;
 
 import net.junedev.viridium.blocks.BushBlock;
 import net.junedev.viridium.blocks.SmallLogBlock;
+import net.junedev.viridium.blocks.TallPlantBlock;
 import net.minecraft.block.Block;
 
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -67,6 +68,11 @@ public class ViriBlocks {
         wisteria_log = registerSmallLog("wisteria_log");
         debug_log = registerSmallLog("debug_log");
 
+        welwitschia_leaf = registerTallPlant("welwitschia_leaf", 3);
+        corpse_flower_inflorescence = registerTallPlant("corpse_flower_inflorescence", 2);
+        corpse_flower_leaf = registerTallPlant("corpse_flower_leaf", 2);
+        monstera_leaf_large = registerTallPlant("monstera_leaf_large", 2);
+
     }
 
     private Block registerBush(String name) {
@@ -83,6 +89,12 @@ public class ViriBlocks {
         Block smallLog = new SmallLogBlock(halfWidth, faceHalfWidth, doSidesConnect).setBlockName(name);
         GameRegistry.registerBlock(smallLog, name);
         return smallLog;
+    }
+
+    private Block registerTallPlant(String name, int size) {
+        Block tallPlant = new TallPlantBlock(size).setBlockName(name);
+        GameRegistry.registerBlock(tallPlant, name);
+        return tallPlant;
     }
 
     public static Block ainselu;
@@ -142,4 +154,9 @@ public class ViriBlocks {
     public static Block witch_hazel_log;
     public static Block wisteria_log;
     public static Block debug_log;
+
+    public static Block welwitschia_leaf;
+    public static Block corpse_flower_leaf;
+    public static Block corpse_flower_inflorescence;
+    public static Block monstera_leaf_large;
 }
