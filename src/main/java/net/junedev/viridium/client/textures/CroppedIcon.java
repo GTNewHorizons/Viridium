@@ -11,14 +11,14 @@ public class CroppedIcon implements IIcon
     private final int height;
     private final int part;
 
-    public CroppedIcon(IIcon parent, int part, int segmentSize)
+    public CroppedIcon(IIcon parent, int part, int segmentWidth, int segmentHeight)
     {
         this.parent = parent;
 
         this.name = parent.getIconName() + "#" + part;
 
-        this.width = segmentSize;
-        this.height = segmentSize;
+        this.width = segmentWidth;
+        this.height = segmentHeight;
 
         this.part = part;
     }

@@ -68,7 +68,8 @@ public class ViriBlocks {
         wisteria_log = registerSmallLog("wisteria_log");
         debug_log = registerSmallLog("debug_log");
 
-        welwitschia_leaf = registerTallPlant("welwitschia_leaf", 3);
+        agave_americana_leaves = registerTallPlant("agave_americana_leaves", 2, 32);
+        welwitschia_leaf = registerTallPlant("welwitschia_leaf", 3, 18);
         corpse_flower_inflorescence = registerTallPlant("corpse_flower_inflorescence", 2);
         corpse_flower_leaf = registerTallPlant("corpse_flower_leaf", 2);
         monstera_leaf_large = registerTallPlant("monstera_leaf_large", 2);
@@ -91,11 +92,16 @@ public class ViriBlocks {
         return smallLog;
     }
 
-    private Block registerTallPlant(String name, int size) {
-        Block tallPlant = new TallPlantBlock(size).setBlockName(name);
+    private Block registerTallPlant(String name, int size, int pixelWidth) {
+        Block tallPlant = new TallPlantBlock(size, pixelWidth).setBlockName(name);
         GameRegistry.registerBlock(tallPlant, name);
         return tallPlant;
     }
+
+    private Block registerTallPlant(String name, int size) {
+        return registerTallPlant(name, size, 16);
+    }
+
 
     public static Block ainselu;
     public static Block bears_breeches;
@@ -159,4 +165,5 @@ public class ViriBlocks {
     public static Block corpse_flower_leaf;
     public static Block corpse_flower_inflorescence;
     public static Block monstera_leaf_large;
+    public static Block agave_americana_leaves;
 }

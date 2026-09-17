@@ -3,6 +3,7 @@ package net.junedev.viridium.blocks;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.junedev.viridium.Viridium;
+import net.junedev.viridium.client.renderers.ViriRenderIds;
 import net.junedev.viridium.client.textures.CroppedIcon;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -14,7 +15,8 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 
 public class TallPlantBlock extends Block {
-    private final int size;
+    private final int verticalBlockSize;
+    private final int pixelWidth;
 
     @SideOnly(Side.CLIENT)
     private IIcon fullIcon;
@@ -22,19 +24,24 @@ public class TallPlantBlock extends Block {
     @SideOnly(Side.CLIENT)
     private IIcon[] croppedIcons;
 
-    public TallPlantBlock(int size) {
+    public TallPlantBlock(int verticalBlockSize, int pixelWidth) {
         super(Material.grass);
 
-        this.size = size;
+        this.verticalBlockSize = verticalBlockSize;
+        this.pixelWidth = pixelWidth;
 
         this.setHardness(0.0F);
         this.setCreativeTab(Viridium.VTab);
         this.setStepSound(soundTypeGrass);
     }
 
+    public TallPlantBlock(int verticalBlockSize) {
+        this(verticalBlockSize, 16);
+    }
+
     @Override
     public void onBlockPlacedBy(World worldIn, int x, int y, int z, EntityLivingBase placer, ItemStack itemIn) {
-        for(int i=1; i<size; i++){
+        for(int i = 1; i< verticalBlockSize; i++){
             worldIn.setBlock(x, y + i, z, this, i, 2);
         }
     }
@@ -45,7 +52,7 @@ public class TallPlantBlock extends Block {
     }
 
     public boolean isTop(int meta){
-        return meta == size - 1;
+        return meta == verticalBlockSize - 1;
     }
 
     public boolean isBottom(int meta) {
@@ -58,7 +65,7 @@ public class TallPlantBlock extends Block {
 
     @Override
     public int getRenderType() {
-        return 1; // X shaped plant
+        return ViriRenderIds.tallPlantBlockRenderId;
     }
 
     @Override
@@ -77,6 +84,15 @@ public class TallPlantBlock extends Block {
     }
 
     @Override
+    public AxisAlignedBB getSelectedBoundingBoxFromPool(World worldIn, int x, int y, int z) {
+
+        double halfWidth = getPixelWidth() / 32D;
+        return AxisAlignedBB.getBoundingBox(
+            x + 0.5D - halfWidth, y, z + 0.5D - halfWidth,
+            x + 0.5D + halfWidth, y + 1, z + 0.5D + halfWidth);
+    }
+
+    @Override
     public Block setBlockName(String name) {
         super.setBlockName(name);
 
@@ -91,9 +107,9 @@ public class TallPlantBlock extends Block {
     public void registerBlockIcons(IIconRegister reg) {
         fullIcon = reg.registerIcon(getTextureName());
 
-        croppedIcons = new IIcon[size];
-        for(int i=0; i<size; i++){
-            croppedIcons[i] = new CroppedIcon(fullIcon, i, 16 );
+        croppedIcons = new IIcon[verticalBlockSize];
+        for(int i = 0; i< verticalBlockSize; i++){
+            croppedIcons[i] = new CroppedIcon(fullIcon, i, getPixelWidth() , 16);
         }
     }
 
@@ -101,5 +117,36 @@ public class TallPlantBlock extends Block {
     @SideOnly(Side.CLIENT)
     public IIcon getIcon(int side, int meta) {
         return croppedIcons[meta];
+    }
+
+    public int getPixelWidth() {
+        return pixelWidth;
+    }
+
+    @SideOnly(Side.CLIENT)
+    public static long positionHash(int x, int z) {
+        final long M1 = 0x5bd1e995;
+        final long M2 = 0x1b873593;
+
+        long h = x * M1;
+        h ^= h >>> 15;
+        h *= M2;
+
+        h ^= z * M2;
+        h ^= h >>> 13;
+        h *= M1;
+
+        h ^= h >>> 16;
+        h *= 0x85ebca6bL;
+        h ^= h >>> 13;
+        h *= 0xc2b2ae35L;
+        h ^= h >>> 16;
+
+        return h;
+    }
+
+    public static double offset(long hash, int shift, double range) {
+        double normalized = ((hash >> shift) & 15L) / 15.0D; // 0..1
+        return (normalized - 0.5D) * range;                  // -range/2..+range/2
     }
 }
