@@ -1,15 +1,12 @@
 package net.junedev.viridium.client.renderers.blocks;
 
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
-import net.junedev.viridium.blocks.BushBlock;
 import net.junedev.viridium.blocks.TallPlantBlock;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
-import net.minecraftforge.common.util.ForgeDirection;
-import org.lwjgl.opengl.GL11;
 
 public class TallPlantBlockRenderer implements ISimpleBlockRenderingHandler {
 
@@ -32,22 +29,24 @@ public class TallPlantBlockRenderer implements ISimpleBlockRenderingHandler {
         TallPlantBlock plantBlock = (TallPlantBlock) block;
         double halfSize = plantBlock.getPixelWidth() / (32D);
 
-        long hash = TallPlantBlock.positionHash(x, z);
+        long hash = TallPlantBlock.getPositionHash(x, z);
 
-        double offsetX = TallPlantBlock.offset(hash, 16, RANDOM_OFFSET);
-        double offsetZ = TallPlantBlock.offset(hash, 24, RANDOM_OFFSET);
+        double offsetX = TallPlantBlock.getRandomOffset(hash, 16, RANDOM_OFFSET);
+        double offsetZ = TallPlantBlock.getRandomOffset(hash, 24, RANDOM_OFFSET);
+
+        double rotation = TallPlantBlock.getRandomRotation(hash);
 
         Tessellator tessellator = Tessellator.instance;
 
-        tessellator.setBrightness(
-            block.getMixedBrightnessForBlock(world, x, y, z)
-        );
+        resetLightAndColor(world, tessellator, block, x, y, z);
 
-        tessellator.setColorOpaque_F(1.0F, 1.0F, 1.0F);
-
-        renderCrossedPlanes(x, y, z, block, plantBlock.getIcon(0, world.getBlockMetadata(x, y, z)),
-            0.5D - halfSize + offsetX, 0, 0.5D - halfSize + offsetZ,
-            0.5D + halfSize + offsetX, 1, 0.5D + halfSize  + offsetZ);
+        renderCrossedPlanes(
+            x, y, z,
+            plantBlock.getIcon(0, world.getBlockMetadata(x, y, z)),
+            0.5D + offsetX,
+            0.5D + offsetZ,
+            halfSize,
+            rotation);
 
         renderer.setRenderBoundsFromBlock(block);
 
@@ -65,27 +64,53 @@ public class TallPlantBlockRenderer implements ISimpleBlockRenderingHandler {
         return renderId;
     }
 
-    private void renderCrossedPlanes(int x, int y, int z, Block block, IIcon icon, double minX,
-                                              double minY, double minZ, double maxX, double maxY, double maxZ) {
+    // Needs to be done every time a block is placed, standard renderer techniques already implement it
+    private void resetLightAndColor(IBlockAccess world, Tessellator tessellator, Block block, int x, int y, int z) {
+        tessellator.setBrightness(
+            block.getMixedBrightnessForBlock(world, x, y, z)
+        );
+
+        tessellator.setColorOpaque_F(1.0F, 1.0F, 1.0F);
+    }
+
+    private void renderCrossedPlanes(int x, int y, int z, IIcon icon, double centerX, double centerZ,
+        double halfSize, double rotation) {
 
         Tessellator tessellator = Tessellator.instance;
         double uMin = icon.getMinU();
         double uMax = icon.getMaxU();
         double vMin = icon.getMinV();
         double vMax = icon.getMaxV();
+        double cos = Math.cos(rotation);
+        double sin = Math.sin(rotation);
+
+        // Rotation matrix
+        // ( c -s )
+        // ( s  c )
+        // Og positions relative to center (-h, -h) -> (h, h), (-h, h) -> (h, -h)
+        double firstMinX = centerX - halfSize * cos + halfSize * sin;
+        double firstMinZ = centerZ - halfSize * sin - halfSize * cos;
+        double firstMaxX = centerX + halfSize * cos - halfSize * sin;
+        double firstMaxZ = centerZ + halfSize * sin + halfSize * cos;
 
         addDoubleSidedQuad(
             tessellator,
-            x + minX, y + minY, z + minZ, uMin, vMax,
-            x + maxX, y + minY, z + maxZ, uMax, vMax,
-            x + maxX, y + maxY, z + maxZ, uMax, vMin,
-            x + minX, y + maxY, z + minZ, uMin, vMin);
+            x + firstMinX, y, z + firstMinZ, uMin, vMax,
+            x + firstMaxX, y, z + firstMaxZ, uMax, vMax,
+            x + firstMaxX, y + 1, z + firstMaxZ, uMax, vMin,
+            x + firstMinX, y + 1, z + firstMinZ, uMin, vMin);
+
+        double secondMinX = centerX - halfSize * cos - halfSize * sin;
+        double secondMinZ = centerZ - halfSize * sin + halfSize * cos;
+        double secondMaxX = centerX + halfSize * cos + halfSize * sin;
+        double secondMaxZ = centerZ + halfSize * sin - halfSize * cos;
+
         addDoubleSidedQuad(
             tessellator,
-            x + maxX, y + minY, z + minZ, uMax, vMax,
-            x + minX, y + minY, z + maxZ, uMin, vMax,
-            x + minX, y + maxY, z + maxZ, uMin, vMin,
-            x + maxX, y + maxY, z + minZ, uMax, vMin);
+            x + secondMaxX, y, z + secondMaxZ, uMax, vMax,
+            x + secondMinX, y, z + secondMinZ, uMin, vMax,
+            x + secondMinX, y + 1, z + secondMinZ, uMin, vMin,
+            x + secondMaxX, y + 1, z + secondMaxZ, uMax, vMin);
     }
 
     private void addDoubleSidedQuad(Tessellator tessellator, double x1, double y1, double z1, double u1, double v1,

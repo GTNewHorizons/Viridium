@@ -124,7 +124,7 @@ public class TallPlantBlock extends Block {
     }
 
     @SideOnly(Side.CLIENT)
-    public static long positionHash(int x, int z) {
+    public static long getPositionHash(int x, int z) {
         final long M1 = 0x5bd1e995;
         final long M2 = 0x1b873593;
 
@@ -145,8 +145,14 @@ public class TallPlantBlock extends Block {
         return h;
     }
 
-    public static double offset(long hash, int shift, double range) {
+    @SideOnly(Side.CLIENT)
+    public static double getRandomOffset(long hash, int shift, double range) {
         double normalized = ((hash >> shift) & 15L) / 15.0D; // 0..1
         return (normalized - 0.5D) * range;                  // -range/2..+range/2
+    }
+
+    @SideOnly(Side.CLIENT)
+    public static double getRandomRotation(long hash) {
+        return ((hash >>> 32) & 0xFFFFL) / 65536.0D * Math.PI / 2.0D;
     }
 }
