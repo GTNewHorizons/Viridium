@@ -32,6 +32,10 @@ public class Viridium {
         blocks = new ViriBlocks();
         blocks.preInit();
 
+        items = new ViriItems();
+        items.preInit();
+
+
         proxy.preInit(event);
     }
 
@@ -54,4 +58,6 @@ public class Viridium {
     }
 
     ViriBlocks blocks;
+    ViriItems items;
+
 }

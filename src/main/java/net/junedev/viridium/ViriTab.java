@@ -1,6 +1,7 @@
 package net.junedev.viridium;
 
 import net.minecraft.creativetab.CreativeTabs;
+
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 
@@ -12,6 +13,6 @@ public class ViriTab extends CreativeTabs {
 
     @Override
     public Item getTabIconItem() {
-        return Items.apple;
+        return Item.getItemFromBlock(ViriBlocks.amaranthSapling);
     }
 }
