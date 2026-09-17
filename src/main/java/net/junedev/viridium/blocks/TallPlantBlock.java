@@ -131,24 +131,8 @@ public class TallPlantBlock extends Block {
 
     @SideOnly(Side.CLIENT)
     public static long getPositionHash(int x, int z) {
-        final long M1 = 0x5bd1e995;
-        final long M2 = 0x1b873593;
-
-        long h = x * M1;
-        h ^= h >>> 15;
-        h *= M2;
-
-        h ^= z * M2;
-        h ^= h >>> 13;
-        h *= M1;
-
-        h ^= h >>> 16;
-        h *= 0x85ebca6bL;
-        h ^= h >>> 13;
-        h *= 0xc2b2ae35L;
-        h ^= h >>> 16;
-
-        return h;
+        long hash = (long) x * 3129871L ^ (long) z * 116129781L;
+        return hash * hash * 42317861L + hash * 11L;
     }
 
     @SideOnly(Side.CLIENT)

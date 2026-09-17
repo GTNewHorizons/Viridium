@@ -10,7 +10,7 @@ import net.minecraft.world.IBlockAccess;
 
 public class TallPlantBlockRenderer implements ISimpleBlockRenderingHandler {
 
-    private static final double RANDOM_OFFSET = 0.4D;
+    private static final double RANDOM_OFFSET = 0.3D;
 
     private final int renderId;
 
