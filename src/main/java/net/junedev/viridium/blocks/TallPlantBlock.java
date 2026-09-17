@@ -17,6 +17,7 @@ import net.minecraft.world.World;
 public class TallPlantBlock extends Block {
     private final int verticalBlockSize;
     private final int pixelWidth;
+    private final int textureX;
 
     @SideOnly(Side.CLIENT)
     private IIcon fullIcon;
@@ -24,15 +25,20 @@ public class TallPlantBlock extends Block {
     @SideOnly(Side.CLIENT)
     private IIcon[] croppedIcons;
 
-    public TallPlantBlock(int verticalBlockSize, int pixelWidth) {
+    public TallPlantBlock(int verticalBlockSize, int pixelWidth, int textureX) {
         super(Material.grass);
 
         this.verticalBlockSize = verticalBlockSize;
         this.pixelWidth = pixelWidth;
+        this.textureX = textureX;
 
         this.setHardness(0.0F);
         this.setCreativeTab(Viridium.VTab);
         this.setStepSound(soundTypeGrass);
+    }
+
+    public TallPlantBlock(int verticalBlockSize, int pixelWidth) {
+        this(verticalBlockSize, pixelWidth, 0);
     }
 
     public TallPlantBlock(int verticalBlockSize) {
@@ -109,7 +115,7 @@ public class TallPlantBlock extends Block {
 
         croppedIcons = new IIcon[verticalBlockSize];
         for(int i = 0; i< verticalBlockSize; i++){
-            croppedIcons[i] = new CroppedIcon(fullIcon, i, getPixelWidth() , 16);
+            croppedIcons[i] = new CroppedIcon(fullIcon, i, textureX, getPixelWidth(), 16);
         }
     }
 

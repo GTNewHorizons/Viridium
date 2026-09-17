@@ -9,16 +9,18 @@ public class CroppedIcon implements IIcon
 
     private final int width;
     private final int height;
+    private final int x;
     private final int part;
 
-    public CroppedIcon(IIcon parent, int part, int segmentWidth, int segmentHeight)
+    public CroppedIcon(IIcon parent, int part, int x, int segmentWidth, int segmentHeight)
     {
         this.parent = parent;
 
-        this.name = parent.getIconName() + "#" + part;
+        this.name = parent.getIconName() + "#" + x + "," + part;
 
         this.width = segmentWidth;
         this.height = segmentHeight;
+        this.x = x;
 
         this.part = part;
     }
@@ -35,7 +37,7 @@ public class CroppedIcon implements IIcon
 
     // All these computations must be done at runtime and not in the constructor due to loading order
     private int getX() {
-        return parent.getIconWidth() / 2 - width / 2;
+        return x;
     }
 
     private int getY() {
