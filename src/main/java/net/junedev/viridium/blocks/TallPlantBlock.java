@@ -8,11 +8,16 @@ import net.junedev.viridium.client.textures.CroppedIcon;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
+
+import java.util.Random;
 
 public class TallPlantBlock extends Block {
     private final int verticalBlockSize;
@@ -45,16 +50,40 @@ public class TallPlantBlock extends Block {
         this(verticalBlockSize, 16);
     }
 
+
+    @Override
+    public boolean canPlaceBlockAt(World worldIn, int x, int y, int z) {
+        for(int i = 1; i < verticalBlockSize; i++){
+            if(!worldIn.isAirBlock(x, y + i, z)) return false;
+        }
+        return super.canPlaceBlockAt(worldIn, x, y, z);
+    }
+
     @Override
     public void onBlockPlacedBy(World worldIn, int x, int y, int z, EntityLivingBase placer, ItemStack itemIn) {
-        for(int i = 1; i< verticalBlockSize; i++){
+        for(int i = 1; i < verticalBlockSize; i++){
             worldIn.setBlock(x, y + i, z, this, i, 2);
         }
     }
 
     @Override
-    public void onBlockPreDestroy(World worldIn, int x, int y, int z, int meta) {
-        super.onBlockPreDestroy(worldIn, x, y, z, meta);
+    public void onBlockHarvested(World worldIn, int x, int y, int z, int meta, EntityPlayer player) {
+
+        for(int i = 0; i < verticalBlockSize; i++) {
+            if(i != meta) worldIn.setBlockToAir(x, y - meta + i, z);
+        }
+
+        super.onBlockHarvested(worldIn, x, y, z, meta, player);
+    }
+
+    public Item getItemDropped(int meta, Random random, int fortune)
+    {
+        if (!isBottom(meta)) {
+            return null;
+        }
+        else {
+            return Item.getItemFromBlock(this);
+        }
     }
 
     public boolean isTop(int meta){
