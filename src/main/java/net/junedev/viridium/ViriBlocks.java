@@ -74,7 +74,6 @@ public class ViriBlocks {
         wild_apple = new SmallTreeBlockSet("wild_apple");
         witch_hazel = new SmallTreeBlockSet("witch_hazel");
         wisteria = new SmallTreeBlockSet("wisteria");
-        debug = new SmallTreeBlockSet("debug");
 
         agave_americana_leaves = registerTallPlant("agave_americana_leaves", 2, 30, 1);
         welwitschia_leaf = registerTallPlant("welwitschia_leaf", 3, 19, 22);
