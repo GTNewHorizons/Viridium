@@ -11,7 +11,7 @@ public class SmallTreeBlockSet {
     private static final String ASSET_DIRECTORY = "small_trees/";
 
     public final Block smallLog;
-    // public final Block smallStrippedLog;
+    public final Block bark;
     public final Block leaves;
     public final Block planks;
     public final Block sapling;
@@ -30,9 +30,15 @@ public class SmallTreeBlockSet {
         sapling = new BaseSaplingBlock().setBlockName(name + "_sapling")
             .setBlockTextureName(ASSET_DIRECTORY + name + "_sapling");
 
+        // TODO: Change to custom block type?
+        bark = new BasePlanks().setBlockName(name + "_bark")
+            .setBlockTextureName(ASSET_DIRECTORY + name + "_bark");
+
+        // TODO: Deffer registry to method
         GameRegistry.registerBlock(smallLog, name + "_log");
         GameRegistry.registerBlock(leaves, name + "_leaves");
         GameRegistry.registerBlock(planks, name + "_planks");
         GameRegistry.registerBlock(sapling, name + "_sapling");
+        GameRegistry.registerBlock(bark, name + "_bark");
     }
 }
