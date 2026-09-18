@@ -53,6 +53,15 @@ public class SmallLogBlock extends Block {
     }
 
     @Override
+    public boolean canSustainLeaves(IBlockAccess world, int x, int y, int z)
+    {
+        return true;
+    }
+
+    @Override
+    public boolean isWood(IBlockAccess world, int x, int y, int z) { return true; }
+
+    @Override
     public int getRenderType() {
         return ViriRenderIds.smallLogBlockRenderId;
     }
