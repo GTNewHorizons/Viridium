@@ -66,11 +66,9 @@ public class BaseLeaves extends BlockLeaves {
         return null;
     }
 
-    // Setters
     @Override
-    public BlockLeaves setBlockName(String name) {
-        super.setBlockName(name);
-        setBlockTextureName(Viridium.MOD_ID + ":large_trees/" + name);
+    public BlockLeaves setBlockTextureName(String textureName) {
+        super.setBlockTextureName(Viridium.MOD_ID + ":" + textureName);
         return this;
     }
 

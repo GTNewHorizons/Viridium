@@ -2,8 +2,8 @@ package net.junedev.viridium;
 
 
 import net.junedev.viridium.blocks.BushBlock;
-import net.junedev.viridium.blocks.SmallLogBlock;
 import net.junedev.viridium.blocks.TallPlantBlock;
+import net.junedev.viridium.blocks.sets.SmallTreeBlockSet;
 
 import net.junedev.viridium.blocks.BaseFullLog;
 import net.junedev.viridium.blocks.BaseLeaves;
@@ -44,37 +44,37 @@ public class ViriBlocks {
         staghorn_sumac = registerBush("staghorn_sumac");
         wedding_bush = registerBush("wedding_bush");
 
-        black_spruce_log = registerSmallLog("black_spruce_log");
-        blackthorn_log = registerSmallLog("blackthorn_log");
-        blue_mahoe_log = registerSmallLog("blue_mahoe_log");
-        box_elder_log = registerSmallLog("box_elder_log");
-        callery_pear_log = registerSmallLog("callery_pear_log");
-        citron_log = registerSmallLog("citron_log");
-        crape_myrtle_log = registerSmallLog("crape_myrtle_log");
-        desert_bloodwood_log = registerSmallLog("desert_bloodwood_log");
-        flowering_dogwood_log = registerSmallLog("flowering_dogwood_log");
-        giant_bamboo_log = registerSmallLog("giant_bamboo_log", 3, 4, false);
-        holly_log = registerSmallLog("holly_log");
-        jacaranda_log = registerSmallLog("jacaranda_log");
-        japanese_maple_log = registerSmallLog("japanese_maple_log");
-        joshua_tree_log = registerSmallLog("joshua_tree_log");
-        koki_o_kea_log = registerSmallLog("koki_o_kea_log");
-        kumquat_log = registerSmallLog("kumquat_log");
-        lemon_myrtle_log = registerSmallLog("lemon_myrtle_log");
-        lilac_log = registerSmallLog("lilac_log");
-        mimosa_log = registerSmallLog("mimosa_log");
-        mulga_log = registerSmallLog("mulga_log");
-        olive_log = registerSmallLog("olive_log");
-        pacific_yew_log = registerSmallLog("pacific_yew_log");
-        paperbark_maple_log = registerSmallLog("paperbark_maple_log");
-        pawpaw_log = registerSmallLog("pawpaw_log");
-        pear_log = registerSmallLog("pear_log");
-        red_cinchona_log = registerSmallLog("red_cinchona_log");
-        redbud_log = registerSmallLog("redbud_log");
-        wild_apple_log = registerSmallLog("wild_apple_log");
-        witch_hazel_log = registerSmallLog("witch_hazel_log");
-        wisteria_log = registerSmallLog("wisteria_log");
-        debug_log = registerSmallLog("debug_log");
+        black_spruce = new SmallTreeBlockSet("black_spruce");
+        blackthorn = new SmallTreeBlockSet("blackthorn");
+        blue_mahoe = new SmallTreeBlockSet("blue_mahoe");
+        box_elder = new SmallTreeBlockSet("box_elder");
+        callery_pear = new SmallTreeBlockSet("callery_pear");
+        citron = new SmallTreeBlockSet("citron");
+        crape_myrtle = new SmallTreeBlockSet("crape_myrtle");
+        desert_bloodwood = new SmallTreeBlockSet("desert_bloodwood");
+        flowering_dogwood = new SmallTreeBlockSet("flowering_dogwood");
+        giant_bamboo = new SmallTreeBlockSet("giant_bamboo", 3, 4, false);
+        holly = new SmallTreeBlockSet("holly");
+        jacaranda = new SmallTreeBlockSet("jacaranda");
+        japanese_maple = new SmallTreeBlockSet("japanese_maple");
+        joshua_tree = new SmallTreeBlockSet("joshua_tree");
+        koki_o_kea = new SmallTreeBlockSet("koki_o_kea");
+        kumquat = new SmallTreeBlockSet("kumquat");
+        lemon_myrtle = new SmallTreeBlockSet("lemon_myrtle");
+        lilac = new SmallTreeBlockSet("lilac");
+        mimosa = new SmallTreeBlockSet("mimosa");
+        mulga = new SmallTreeBlockSet("mulga");
+        olive = new SmallTreeBlockSet("olive");
+        pacific_yew = new SmallTreeBlockSet("pacific_yew");
+        paperbark_maple = new SmallTreeBlockSet("paperbark_maple");
+        pawpaw = new SmallTreeBlockSet("pawpaw");
+        pear = new SmallTreeBlockSet("pear");
+        red_cinchona = new SmallTreeBlockSet("red_cinchona");
+        redbud = new SmallTreeBlockSet("redbud");
+        wild_apple = new SmallTreeBlockSet("wild_apple");
+        witch_hazel = new SmallTreeBlockSet("witch_hazel");
+        wisteria = new SmallTreeBlockSet("wisteria");
+        debug = new SmallTreeBlockSet("debug");
 
         agave_americana_leaves = registerTallPlant("agave_americana_leaves", 2, 30, 1);
         welwitschia_leaf = registerTallPlant("welwitschia_leaf", 3, 19, 22);
@@ -425,45 +425,32 @@ public class ViriBlocks {
 
     // Full Trees
     private Block registerLargeLog(String name) {
-        Block log = new BaseFullLog().setBlockName(name);
+        Block log = new BaseFullLog().setBlockName(name)
+            .setBlockTextureName("large_trees/" + name);
         GameRegistry.registerBlock(log, name);
         return log;
     }
 
     private Block registerLeaves(String name) {
-        Block leaves = new BaseLeaves().setBlockName(name);
+        Block leaves = new BaseLeaves().setBlockName(name)
+            .setBlockTextureName("large_trees/" + name);
         GameRegistry.registerBlock(leaves, name);
         return leaves;
     }
 
     private Block registerPlanks(String name) {
         Block planks = new BasePlanks().setBlockName(name)
-            .setBlockTextureName(name);
+            .setBlockTextureName("large_trees/" + name);
         GameRegistry.registerBlock(planks, name);
         return planks;
     }
 
     private Block registerLargeSapling(String name) {
         Block sapling = new BaseSaplingBlock().setBlockName(name)
-            .setBlockTextureName(name);
+            .setBlockTextureName("large_trees/" + name);
         GameRegistry.registerBlock(sapling, name);
         return sapling;
     }
-
-    private Block registerSmallLog(String name) {
-        return registerSmallLog(name, 4, 4, true);
-    }
-
-    private Block registerSmallLog(String name, int halfWidth, int faceHalfWidth, boolean doSidesConnect) {
-        Block smallLog = new SmallLogBlock(halfWidth, faceHalfWidth, doSidesConnect).setBlockName(name);
-        GameRegistry.registerBlock(smallLog, name);
-        return smallLog;
-    }
-
-
-
-
-
 
     public static Block ainselu;
     public static Block bears_breeches;
@@ -491,37 +478,37 @@ public class ViriBlocks {
     public static Block staghorn_sumac;
     public static Block wedding_bush;
 
-    public static Block black_spruce_log;
-    public static Block blackthorn_log;
-    public static Block blue_mahoe_log;
-    public static Block box_elder_log;
-    public static Block callery_pear_log;
-    public static Block citron_log;
-    public static Block crape_myrtle_log;
-    public static Block desert_bloodwood_log;
-    public static Block flowering_dogwood_log;
-    public static Block giant_bamboo_log;
-    public static Block holly_log;
-    public static Block jacaranda_log;
-    public static Block japanese_maple_log;
-    public static Block joshua_tree_log;
-    public static Block koki_o_kea_log;
-    public static Block kumquat_log;
-    public static Block lemon_myrtle_log;
-    public static Block lilac_log;
-    public static Block mimosa_log;
-    public static Block mulga_log;
-    public static Block olive_log;
-    public static Block pacific_yew_log;
-    public static Block paperbark_maple_log;
-    public static Block pawpaw_log;
-    public static Block pear_log;
-    public static Block red_cinchona_log;
-    public static Block redbud_log;
-    public static Block wild_apple_log;
-    public static Block witch_hazel_log;
-    public static Block wisteria_log;
-    public static Block debug_log;
+    public static SmallTreeBlockSet black_spruce;
+    public static SmallTreeBlockSet blackthorn;
+    public static SmallTreeBlockSet blue_mahoe;
+    public static SmallTreeBlockSet box_elder;
+    public static SmallTreeBlockSet callery_pear;
+    public static SmallTreeBlockSet citron;
+    public static SmallTreeBlockSet crape_myrtle;
+    public static SmallTreeBlockSet desert_bloodwood;
+    public static SmallTreeBlockSet flowering_dogwood;
+    public static SmallTreeBlockSet giant_bamboo;
+    public static SmallTreeBlockSet holly;
+    public static SmallTreeBlockSet jacaranda;
+    public static SmallTreeBlockSet japanese_maple;
+    public static SmallTreeBlockSet joshua_tree;
+    public static SmallTreeBlockSet koki_o_kea;
+    public static SmallTreeBlockSet kumquat;
+    public static SmallTreeBlockSet lemon_myrtle;
+    public static SmallTreeBlockSet lilac;
+    public static SmallTreeBlockSet mimosa;
+    public static SmallTreeBlockSet mulga;
+    public static SmallTreeBlockSet olive;
+    public static SmallTreeBlockSet pacific_yew;
+    public static SmallTreeBlockSet paperbark_maple;
+    public static SmallTreeBlockSet pawpaw;
+    public static SmallTreeBlockSet pear;
+    public static SmallTreeBlockSet red_cinchona;
+    public static SmallTreeBlockSet redbud;
+    public static SmallTreeBlockSet wild_apple;
+    public static SmallTreeBlockSet witch_hazel;
+    public static SmallTreeBlockSet wisteria;
+    public static SmallTreeBlockSet debug;
 
     public static Block welwitschia_leaf;
     public static Block corpse_flower_leaf;

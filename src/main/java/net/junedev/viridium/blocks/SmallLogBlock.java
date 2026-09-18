@@ -266,12 +266,8 @@ public class SmallLogBlock extends Block {
     }
 
     @Override
-    public Block setBlockName(String name) {
-        super.setBlockName(name);
-
-        setBlockTextureName(Viridium.MOD_ID + ":small_trees/" + name);
-
-        return (Block) this;
+    public Block setBlockTextureName(String textureName) {
+        return super.setBlockTextureName(Viridium.MOD_ID + ":" + textureName);
     }
 
     public int onBlockPlaced(World worldIn, int x, int y, int z, int side, float subX, float subY, float subZ,
