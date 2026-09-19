@@ -33,16 +33,13 @@ public class BushBlockRenderer implements ISimpleBlockRenderingHandler {
         GL11.glRotatef(90.0F, 0.0F, 1.0F, 0.0F);
         GL11.glTranslatef(-0.5F, -0.5F, -0.5F);
 
-        // renderInventoryCrossedBranch(
-        // bushBlock.getBranchIcon(),
-        // coreMin, 0.0, coreMin,
-        // coreMax, 1.0, coreMax);
-
-        renderer.setRenderBounds(coreMin, 0.0625, coreMin, coreMax, 0.9375, coreMax);
-        renderInventoryCuboid(block, metadata, renderer, bushBlock.getBranchIcon());
+        if(!bushBlock.isOpaqueCube()) {
+            renderer.setRenderBounds(coreMin, 0.0625, coreMin, coreMax, 0.9375, coreMax);
+            renderInventoryCuboid(block, metadata, renderer, bushBlock.getBranchIcon());
+        }
 
         renderer.setRenderBounds(0.0, 0.0, 0.0, 1.0, 1.0, 1.0);
-        renderInventoryCuboid(block, metadata, renderer, bushBlock.getLeaveIcon());
+        renderInventoryCuboid(block, metadata, renderer, bushBlock.isOpaqueCube() ? bushBlock.getFastLeaveIcon() : bushBlock.getLeaveIcon());
 
         renderer.setRenderBoundsFromBlock(block);
         GL11.glPopMatrix();
@@ -57,12 +54,13 @@ public class BushBlockRenderer implements ISimpleBlockRenderingHandler {
         boolean hasOverrideTexture = renderer.hasOverrideBlockTexture();
 
         if (!hasOverrideTexture) {
-            renderBranchesCuboid(world, x, y, z, block, renderer, bushBlock);
+            if(!bushBlock.isOpaqueCube())
+                renderBranchesCuboid(world, x, y, z, block, renderer, bushBlock);
         }
 
         // Leaves
         if (!hasOverrideTexture) {
-            renderer.setOverrideBlockTexture(bushBlock.getLeaveIcon());
+            renderer.setOverrideBlockTexture(bushBlock.isOpaqueCube() ? bushBlock.getFastLeaveIcon() : bushBlock.getLeaveIcon());
         }
 
         renderer.setRenderBounds(0.0, 0.0, 0.0, 1.0, 1.0, 1.0);

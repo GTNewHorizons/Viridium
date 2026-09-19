@@ -8,6 +8,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
+import net.minecraft.init.Blocks;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
@@ -26,6 +27,9 @@ public class BushBlock extends Block {
 
     @SideOnly(Side.CLIENT)
     private IIcon leaveIcon;
+
+    @SideOnly(Side.CLIENT)
+    private IIcon fastLeaveIcon;
 
     public BushBlock() {
         super(Material.leaves);
@@ -58,7 +62,7 @@ public class BushBlock extends Block {
 
     @Override
     public boolean isOpaqueCube() {
-        return false;
+        return Blocks.leaves.isOpaqueCube();
     }
 
     @Override
@@ -111,6 +115,7 @@ public class BushBlock extends Block {
     public void registerBlockIcons(IIconRegister reg) {
         branchIcon = reg.registerIcon(getTextureName() + "_branches");
         leaveIcon = reg.registerIcon(getTextureName() + "_leaves");
+        fastLeaveIcon = reg.registerIcon(getTextureName() + "_leaves_fast");
     }
 
     @Override
@@ -127,6 +132,11 @@ public class BushBlock extends Block {
     @SideOnly(Side.CLIENT)
     public IIcon getLeaveIcon() {
         return leaveIcon;
+    }
+
+    @SideOnly(Side.CLIENT)
+    public IIcon getFastLeaveIcon() {
+        return fastLeaveIcon;
     }
 
 }
