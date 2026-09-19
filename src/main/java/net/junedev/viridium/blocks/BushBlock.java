@@ -34,6 +34,7 @@ public class BushBlock extends Block {
     public BushBlock() {
         super(Material.leaves);
 
+        this.setLightOpacity(1);
         this.setHardness(0.4F);
         this.setCreativeTab(Viridium.VTab);
         this.setStepSound(soundTypeGrass);
@@ -68,6 +69,12 @@ public class BushBlock extends Block {
     @Override
     public boolean renderAsNormalBlock() {
         return false;
+    }
+
+    @Override
+    @SideOnly(Side.CLIENT)
+    public float getAmbientOcclusionLightValue() {
+        return 0.2F;
     }
 
     // Hitboxes
