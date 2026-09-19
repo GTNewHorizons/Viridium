@@ -14,6 +14,7 @@ public class CommonProxy {
 
         Viridium.LOGGER.info(Config.greeting);
         Viridium.LOGGER.info("I am Viridium at version " + Tags.VERSION);
+
     }
 
     // load "Do your mod setup. Build whatever data structures you care about. Register recipes." (Remove if not needed)

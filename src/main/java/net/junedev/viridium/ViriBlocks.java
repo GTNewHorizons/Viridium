@@ -1,9 +1,15 @@
 package net.junedev.viridium;
 
+
+import net.junedev.viridium.blocks.BushBlock;
+import net.junedev.viridium.blocks.TallPlantBlock;
+import net.junedev.viridium.blocks.sets.SmallTreeBlockSet;
+
 import net.junedev.viridium.blocks.BaseFullLog;
 import net.junedev.viridium.blocks.BaseLeaves;
 import net.junedev.viridium.blocks.BasePlanks;
 import net.junedev.viridium.blocks.BaseSaplingBlock;
+
 import net.minecraft.block.Block;
 
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -11,6 +17,71 @@ import cpw.mods.fml.common.registry.GameRegistry;
 public class ViriBlocks {
 
     public void preInit() {
+
+        ainselu = registerBush("ainselu");
+        bears_breeches = registerBush("bears_breeches");
+        blackberry = registerBush("blackberry");
+        creosote_bush = registerBush("creosote_bush");
+        croton = registerBush("croton");
+        elderberry = registerBush("elderberry");
+        false_indigo = registerBush("false_indigo");
+        golden_wattle = registerBush("golden_wattle");
+        honeysuckle = registerBush("honeysuckle");
+        japanese_andromeda = registerBush("japanese_andromeda");
+        koki_o_ono = registerBush("koki_o_ono");
+        kudzu = registerBush("kudzu");
+        kutjera = registerBush("kutjera");
+        ma_o_hau_hele = registerBush("ma_o_hau_hele");
+        oldman_saltbush = registerBush("oldman_saltbush");
+        poinsettia = registerBush("poinsettia");
+        quandong = registerBush("quandong");
+        raspberry = registerBush("raspberry");
+        rhododendron = registerBush("rhododendron");
+        rose_shrub = registerBush("rose_shrub");
+        sandhill_wattle = registerBush("sandhill_wattle");
+        satsuki_azalea = registerBush("satsuki_azalea");
+        silverleaf_hydrangea = registerBush("silverleaf_hydrangea");
+        staghorn_sumac = registerBush("staghorn_sumac");
+        wedding_bush = registerBush("wedding_bush");
+
+        black_spruce = new SmallTreeBlockSet("black_spruce");
+        blackthorn = new SmallTreeBlockSet("blackthorn");
+        blue_mahoe = new SmallTreeBlockSet("blue_mahoe");
+        box_elder = new SmallTreeBlockSet("box_elder");
+        callery_pear = new SmallTreeBlockSet("callery_pear");
+        citron = new SmallTreeBlockSet("citron");
+        crape_myrtle = new SmallTreeBlockSet("crape_myrtle");
+        desert_bloodwood = new SmallTreeBlockSet("desert_bloodwood");
+        flowering_dogwood = new SmallTreeBlockSet("flowering_dogwood");
+        giant_bamboo = new SmallTreeBlockSet("giant_bamboo", 3, 4, false);
+        holly = new SmallTreeBlockSet("holly");
+        jacaranda = new SmallTreeBlockSet("jacaranda");
+        japanese_maple = new SmallTreeBlockSet("japanese_maple");
+        joshua_tree = new SmallTreeBlockSet("joshua_tree");
+        koki_o_kea = new SmallTreeBlockSet("koki_o_kea");
+        kumquat = new SmallTreeBlockSet("kumquat");
+        lemon_myrtle = new SmallTreeBlockSet("lemon_myrtle");
+        lilac = new SmallTreeBlockSet("lilac");
+        mimosa = new SmallTreeBlockSet("mimosa");
+        mulga = new SmallTreeBlockSet("mulga");
+        olive = new SmallTreeBlockSet("olive");
+        pacific_yew = new SmallTreeBlockSet("pacific_yew");
+        paperbark_maple = new SmallTreeBlockSet("paperbark_maple");
+        pawpaw = new SmallTreeBlockSet("pawpaw");
+        pear = new SmallTreeBlockSet("pear");
+        red_cinchona = new SmallTreeBlockSet("red_cinchona");
+        redbud = new SmallTreeBlockSet("redbud");
+        wild_apple = new SmallTreeBlockSet("wild_apple");
+        witch_hazel = new SmallTreeBlockSet("witch_hazel");
+        wisteria = new SmallTreeBlockSet("wisteria");
+
+        agave_americana_leaves = registerTallPlant("agave_americana_leaves", 2, 30, 1);
+        welwitschia_leaf = registerTallPlant("welwitschia_leaf", 3, 19, 22);
+        corpse_flower_inflorescence = registerTallPlant("corpse_flower_inflorescence", 2, 24, 4);
+        corpse_flower_leaf = registerTallPlant("corpse_flower_leaf", 2, 21, 6);
+        hemp_leaf = registerTallPlant("hemp_leaf", 2, 21, 5);
+        monstera_leaf_large = registerTallPlant("monstera_leaf_large", 2, 13, 9);
+
         // Bushes
 
         // Standalone Grasses
@@ -318,9 +389,30 @@ public class ViriBlocks {
         yewSapling = registerLargeSapling("yew_sapling");
     }
 
+
     // Bushes
+    private Block registerBush(String name) {
+        Block bush = new BushBlock().setBlockName(name);
+        GameRegistry.registerBlock(bush, name);
+        return bush;
+    }
 
     // Standalone Grasses
+    private Block registerTallPlant(String name, int size, int pixelWidth) {
+        Block tallPlant = new TallPlantBlock(size, pixelWidth).setBlockName(name);
+        GameRegistry.registerBlock(tallPlant, name);
+        return tallPlant;
+    }
+
+    private Block registerTallPlant(String name, int size, int pixelWidth, int textureX) {
+        Block tallPlant = new TallPlantBlock(size, pixelWidth, textureX).setBlockName(name);
+        GameRegistry.registerBlock(tallPlant, name);
+        return tallPlant;
+    }
+
+    private Block registerTallPlant(String name, int size) {
+        return registerTallPlant(name, size, 16);
+    }
 
     // Standalone Flora
 
@@ -332,30 +424,97 @@ public class ViriBlocks {
 
     // Full Trees
     private Block registerLargeLog(String name) {
-        Block log = new BaseFullLog().setBlockName(name);
+        Block log = new BaseFullLog().setBlockName(name)
+            .setBlockTextureName("large_trees/" + name);
         GameRegistry.registerBlock(log, name);
         return log;
     }
 
     private Block registerLeaves(String name) {
-        Block leaves = new BaseLeaves().setBlockName(name);
+        Block leaves = new BaseLeaves().setBlockName(name)
+            .setBlockTextureName("large_trees/" + name);
         GameRegistry.registerBlock(leaves, name);
         return leaves;
     }
 
     private Block registerPlanks(String name) {
         Block planks = new BasePlanks().setBlockName(name)
-            .setBlockTextureName(name);
+            .setBlockTextureName("large_trees/" + name);
         GameRegistry.registerBlock(planks, name);
         return planks;
     }
 
     private Block registerLargeSapling(String name) {
         Block sapling = new BaseSaplingBlock().setBlockName(name)
-            .setBlockTextureName(name);
+            .setBlockTextureName("large_trees/" + name);
         GameRegistry.registerBlock(sapling, name);
         return sapling;
     }
+
+    public static Block ainselu;
+    public static Block bears_breeches;
+    public static Block blackberry;
+    public static Block creosote_bush;
+    public static Block croton;
+    public static Block elderberry;
+    public static Block false_indigo;
+    public static Block golden_wattle;
+    public static Block honeysuckle;
+    public static Block japanese_andromeda;
+    public static Block koki_o_ono;
+    public static Block kudzu;
+    public static Block kutjera;
+    public static Block ma_o_hau_hele;
+    public static Block oldman_saltbush;
+    public static Block poinsettia;
+    public static Block quandong;
+    public static Block raspberry;
+    public static Block rhododendron;
+    public static Block rose_shrub;
+    public static Block sandhill_wattle;
+    public static Block satsuki_azalea;
+    public static Block silverleaf_hydrangea;
+    public static Block staghorn_sumac;
+    public static Block wedding_bush;
+
+    public static SmallTreeBlockSet black_spruce;
+    public static SmallTreeBlockSet blackthorn;
+    public static SmallTreeBlockSet blue_mahoe;
+    public static SmallTreeBlockSet box_elder;
+    public static SmallTreeBlockSet callery_pear;
+    public static SmallTreeBlockSet citron;
+    public static SmallTreeBlockSet crape_myrtle;
+    public static SmallTreeBlockSet desert_bloodwood;
+    public static SmallTreeBlockSet flowering_dogwood;
+    public static SmallTreeBlockSet giant_bamboo;
+    public static SmallTreeBlockSet holly;
+    public static SmallTreeBlockSet jacaranda;
+    public static SmallTreeBlockSet japanese_maple;
+    public static SmallTreeBlockSet joshua_tree;
+    public static SmallTreeBlockSet koki_o_kea;
+    public static SmallTreeBlockSet kumquat;
+    public static SmallTreeBlockSet lemon_myrtle;
+    public static SmallTreeBlockSet lilac;
+    public static SmallTreeBlockSet mimosa;
+    public static SmallTreeBlockSet mulga;
+    public static SmallTreeBlockSet olive;
+    public static SmallTreeBlockSet pacific_yew;
+    public static SmallTreeBlockSet paperbark_maple;
+    public static SmallTreeBlockSet pawpaw;
+    public static SmallTreeBlockSet pear;
+    public static SmallTreeBlockSet red_cinchona;
+    public static SmallTreeBlockSet redbud;
+    public static SmallTreeBlockSet wild_apple;
+    public static SmallTreeBlockSet witch_hazel;
+    public static SmallTreeBlockSet wisteria;
+    public static SmallTreeBlockSet debug;
+
+    public static Block welwitschia_leaf;
+    public static Block corpse_flower_leaf;
+    public static Block corpse_flower_inflorescence;
+    public static Block hemp_leaf;
+    public static Block monstera_leaf_large;
+    public static Block agave_americana_leaves;
 
     public static Block amaranthLog;
     public static Block amaranthLogStripped;

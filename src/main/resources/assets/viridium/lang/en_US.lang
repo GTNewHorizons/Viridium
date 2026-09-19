@@ -1,5 +1,34 @@
 itemGroup.VTab=Viridium
 
+# BUSHES
+tile.ainselu.name=Ainselu
+tile.bears_breeches.name=Bears Breeches
+tile.blackberry.name=Blackberry
+tile.creosote_bush.name=Creosote Bush
+tile.croton.name=Croton
+tile.elderberry.name=Elderberry Bush
+tile.false_indigo.name=False Indigo
+tile.golden_wattle.name=Golden Wattle
+tile.honeysuckle.name=Honeysuckle
+tile.japanese_andromeda.name=Japanese Andromeda
+tile.koki_o_ono.name=Koki O Ono
+tile.kudzu.name=Kudzu
+tile.kutjera.name=Kutjera
+tile.ma_o_hau_hele.name=Ma'o Hau Hele
+tile.oldman_saltbush.name=Oldman Saltbush
+tile.poinsettia.name=Poinsettia
+tile.quandong.name=Quandong Bush
+tile.raspberry.name=Raspberry Bush
+tile.rhododendron.name=Rhododendron
+tile.rose_shrub.name=Rose Shrub
+tile.sandhill_wattle.name=Sandhill Wattle
+tile.satsuki_azalea.name=Satsuki Azalea
+tile.silverleaf_hydrangea.name=Silverleaf Hydrangea
+tile.staghorn_sumac.name=Staghorn Sumac
+tile.wedding_bush.name=Wedding Bush
+
+
+# LARGE TREES
 tile.amaranth_log.name=Amaranth Wood
 tile.amaranth_stripped.name=Stripped Amaranth Wood
 tile.amaranth_leaves.name=Amaranth Leaves
@@ -330,3 +359,194 @@ tile.yew_leaves.name=Yew Leaves
 tile.yew_planks.name=Yew Planks
 tile.yew_sapling.name=Yew Sapling
 # TODO: Seeds
+
+
+# SMALL TREES
+tile.black_spruce_log.name=Black Spruce Wood
+tile.black_spruce_bark.name=Black Spruce Bark
+tile.black_spruce_leaves.name=Black Spruce Leaves
+tile.black_spruce_planks.name=Black Spruce Planks
+tile.black_spruce_sapling.name=Black Spruce Sapling
+
+tile.blackthorn_log.name=Blackthorn Wood
+tile.blackthorn_bark.name=Blackthorn Bark
+tile.blackthorn_leaves.name=Blackthorn Leaves
+tile.blackthorn_planks.name=Blackthorn Planks
+tile.blackthorn_sapling.name=Blackthorn Sapling
+
+tile.blue_mahoe_log.name=Blue Mahoe Wood
+tile.blue_mahoe_bark.name=Blue Mahoe Bark
+tile.blue_mahoe_leaves.name=Blue Mahoe Leaves
+tile.blue_mahoe_planks.name=Blue Mahoe Planks
+tile.blue_mahoe_sapling.name=Blue Mahoe Sapling
+
+tile.box_elder_log.name=Box Elder Wood
+tile.box_elder_bark.name=Box Elder Bark
+tile.box_elder_leaves.name=Box Elder Leaves
+tile.box_elder_planks.name=Box Elder Planks
+tile.box_elder_sapling.name=Box Elder Sapling
+
+tile.callery_pear_log.name=Callery Pear Wood
+tile.callery_pear_bark.name=Callery Pear Bark
+tile.callery_pear_leaves.name=Callery Pear Leaves
+tile.callery_pear_planks.name=Callery Pear Planks
+tile.callery_pear_sapling.name=Callery Pear Sapling
+
+tile.citron_log.name=Citron Wood
+tile.citron_bark.name=Citron Bark
+tile.citron_leaves.name=Citron Leaves
+tile.citron_planks.name=Citron Planks
+tile.citron_sapling.name=Citron Sapling
+
+tile.crape_myrtle_log.name=Crape Myrtle Wood
+tile.crape_myrtle_bark.name=Crape Myrtle Bark
+tile.crape_myrtle_leaves.name=Crape Myrtle Leaves
+tile.crape_myrtle_planks.name=Crape Myrtle Planks
+tile.crape_myrtle_sapling.name=Crape Myrtle Sapling
+
+tile.desert_bloodwood_log.name=Desert Bloodwood Wood
+tile.desert_bloodwood_bark.name=Desert Bloodwood Bark
+tile.desert_bloodwood_leaves.name=Desert Bloodwood Leaves
+tile.desert_bloodwood_planks.name=Desert Bloodwood Planks
+tile.desert_bloodwood_sapling.name=Desert Bloodwood Sapling
+
+tile.flowering_dogwood_log.name=Flowering Dogwood Wood
+tile.flowering_dogwood_bark.name=Flowering Dogwood Bark
+tile.flowering_dogwood_leaves.name=Flowering Dogwood Leaves
+tile.flowering_dogwood_planks.name=Flowering Dogwood Planks
+tile.flowering_dogwood_sapling.name=Flowering Dogwood Sapling
+
+tile.giant_bamboo_log.name=Giant Bamboo
+tile.giant_bamboo_bark.name=Giant Bamboo Bark
+tile.giant_bamboo_leaves.name=Giant Bamboo Leaves
+tile.giant_bamboo_planks.name=Giant Bamboo Planks
+tile.giant_bamboo_sapling.name=Giant Bamboo Sapling
+
+tile.holly_log.name=Holly Wood
+tile.holly_bark.name=Holly Bark
+tile.holly_leaves.name=Holly Leaves
+tile.holly_planks.name=Holly Planks
+tile.holly_sapling.name=Holly Sapling
+
+tile.jacaranda_log.name=Jacaranda Wood
+tile.jacaranda_bark.name=Jacaranda Bark
+tile.jacaranda_leaves.name=Jacaranda Leaves
+tile.jacaranda_planks.name=Jacaranda Planks
+tile.jacaranda_sapling.name=Jacaranda Sapling
+
+tile.japanese_maple_log.name=Japanese Maple Wood
+tile.japanese_maple_bark.name=Japanese Maple Bark
+tile.japanese_maple_leaves.name=Japanese Maple Leaves
+tile.japanese_maple_planks.name=Japanese Maple Planks
+tile.japanese_maple_sapling.name=Japanese Maple Sapling
+
+tile.joshua_tree_log.name=Joshua Tree Wood
+tile.joshua_tree_bark.name=Joshua Tree Bark
+tile.joshua_tree_leaves.name=Joshua Tree Leaves
+tile.joshua_tree_planks.name=Joshua Tree Planks
+tile.joshua_tree_sapling.name=Joshua Tree Sapling
+
+tile.koki_o_kea_log.name=Koki'o Kea Wood
+tile.koki_o_kea_bark.name=Koki'o Kea Bark
+tile.koki_o_kea_leaves.name=Koki'o Kea Leaves
+tile.koki_o_kea_planks.name=Koki'o Kea Planks
+tile.koki_o_kea_sapling.name=Koki'o Kea Sapling
+
+tile.kumquat_log.name=Kumquat Wood
+tile.kumquat_bark.name=Kumquat Bark
+tile.kumquat_leaves.name=Kumquat Leaves
+tile.kumquat_planks.name=Kumquat Planks
+tile.kumquat_sapling.name=Kumquat Sapling
+
+tile.lemon_myrtle_log.name=Lemon Myrtle Wood
+tile.lemon_myrtle_bark.name=Lemon Myrtle Bark
+tile.lemon_myrtle_leaves.name=Lemon Myrtle Leaves
+tile.lemon_myrtle_planks.name=Lemon Myrtle Planks
+tile.lemon_myrtle_sapling.name=Lemon Myrtle Sapling
+
+tile.lilac_log.name=Lilac Wood
+tile.lilac_bark.name=Lilac Bark
+tile.lilac_leaves.name=Lilac Leaves
+tile.lilac_planks.name=Lilac Planks
+tile.lilac_sapling.name=Lilac Sapling
+
+tile.mimosa_log.name=Mimosa Wood
+tile.mimosa_bark.name=Mimosa Bark
+tile.mimosa_leaves.name=Mimosa Leaves
+tile.mimosa_planks.name=Mimosa Planks
+tile.mimosa_sapling.name=Mimosa Sapling
+
+tile.mulga_log.name=Mulga Wood
+tile.mulga_bark.name=Mulga Bark
+tile.mulga_leaves.name=Mulga Leaves
+tile.mulga_planks.name=Mulga Planks
+tile.mulga_sapling.name=Mulga Sapling
+
+tile.olive_log.name=Olive Wood
+tile.olive_bark.name=Olive Bark
+tile.olive_leaves.name=Olive Leaves
+tile.olive_planks.name=Olive Planks
+tile.olive_sapling.name=Olive Sapling
+
+tile.pacific_yew_log.name=Pacific Yew Wood
+tile.pacific_yew_bark.name=Pacific Yew Bark
+tile.pacific_yew_leaves.name=Pacific Yew Leaves
+tile.pacific_yew_planks.name=Pacific Yew Planks
+tile.pacific_yew_sapling.name=Pacific Yew Sapling
+
+tile.paperbark_maple_log.name=Paperbark Maple Wood
+tile.paperbark_maple_bark.name=Paperbark Maple Bark
+tile.paperbark_maple_leaves.name=Paperbark Maple Leaves
+tile.paperbark_maple_planks.name=Paperbark Maple Planks
+tile.paperbark_maple_sapling.name=Paperbark Maple Sapling
+
+tile.pawpaw_log.name=Pawpaw Wood
+tile.pawpaw_bark.name=Pawpaw Bark
+tile.pawpaw_leaves.name=Pawpaw Leaves
+tile.pawpaw_planks.name=Pawpaw Planks
+tile.pawpaw_sapling.name=Pawpaw Sapling
+
+tile.pear_log.name=Pear Wood
+tile.pear_bark.name=Pear Bark
+tile.pear_leaves.name=Pear Leaves
+tile.pear_planks.name=Pear Planks
+tile.pear_sapling.name=Pear Sapling
+
+tile.red_cinchona_log.name=Red Cinchona Wood
+tile.red_cinchona_bark.name=Red Cinchona Bark
+tile.red_cinchona_leaves.name=Red Cinchona Leaves
+tile.red_cinchona_planks.name=Red Cinchona Planks
+tile.red_cinchona_sapling.name=Red Cinchona Sapling
+
+tile.redbud_log.name=Redbud Wood
+tile.redbud_bark.name=Redbud Bark
+tile.redbud_leaves.name=Redbud Leaves
+tile.redbud_planks.name=Redbud Planks
+tile.redbud_sapling.name=Redbud Sapling
+
+tile.wild_apple_log.name=Wild Apple Wood
+tile.wild_apple_bark.name=Wild Apple Bark
+tile.wild_apple_leaves.name=Wild Apple Leaves
+tile.wild_apple_planks.name=Wild Apple Planks
+tile.wild_apple_sapling.name=Wild Apple Sapling
+
+tile.witch_hazel_log.name=Witch Hazel Wood
+tile.witch_hazel_bark.name=Witch Hazel Bark
+tile.witch_hazel_leaves.name=Witch Hazel Leaves
+tile.witch_hazel_planks.name=Witch Hazel Planks
+tile.witch_hazel_sapling.name=Witch Hazel Sapling
+
+tile.wisteria_log.name=Wisteria Wood
+tile.wisteria_bark.name=Wisteria Bark
+tile.wisteria_leaves.name=Wisteria Leaves
+tile.wisteria_planks.name=Wisteria Planks
+tile.wisteria_sapling.name=Wisteria Sapling
+
+
+# Tall Plants
+tile.agave_americana_leaves.name=Agave Americana Leaves
+tile.welwitschia_leaf.name=Welwitschia Leaf
+tile.corpse_flower_inflorescence.name=Corpse Flower Inflorescence
+tile.corpse_flower_leaf.name=Corpse Flower Leaf
+tile.hemp_leaf.name=Hemp Leaf
+tile.monstera_leaf_large.name=Monstera Large Leaf
