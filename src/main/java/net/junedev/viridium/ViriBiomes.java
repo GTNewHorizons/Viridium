@@ -24,10 +24,13 @@ public class ViriBiomes {
     }
 
     BiomeGenBase registerBiomeFromFile(String path) {
+        if (path == null) return null;
+
         ViridiumBiomeDefinition definition = ViridiumBiomeDefinitionLoader.loadBuiltin(path);
 
-        if (definition == null) return null;
-        // Should the game crash?
+        // I made the game crash to be sure that the dev knows that there is a biome which was not correctly registered.
+        if (definition == null) throw new RuntimeException(
+            "Biome in path " + path + " was not correctly registered. Check logs to see what failed.");
 
         return registerBiome(definition);
     }

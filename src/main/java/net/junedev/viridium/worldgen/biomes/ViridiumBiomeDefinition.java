@@ -74,14 +74,14 @@ public class ViridiumBiomeDefinition {
 
         public String blockId;
         public int radius;
-        public int frequency;
+        public int frequency = 5;
     }
 
     public static final class Blob {
 
         public String blockId;
         public int radius;
-        public int frequency;
+        public int frequency = 5;
     }
 
     /// Appearance
