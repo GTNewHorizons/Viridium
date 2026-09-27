@@ -4,6 +4,7 @@ import net.junedev.viridium.blocks.BaseFullLog;
 import net.junedev.viridium.blocks.BaseLeaves;
 import net.junedev.viridium.blocks.BasePlanks;
 import net.junedev.viridium.blocks.BaseSaplingBlock;
+import net.junedev.viridium.blocks.WillowVineBlock;
 import net.minecraft.block.Block;
 
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -300,6 +301,9 @@ public class ViriBlocks {
         weepingWillowLeaves = registerLeaves("weeping_willow_leaves");
         weepingWillowPlanks = registerPlanks("weeping_willow_planks");
         weepingWillowSapling = registerLargeSapling("weeping_willow_sapling");
+
+        Block weepingWillowVines = new WillowVineBlock().setBlockName("weeping_willow_vines");
+        GameRegistry.registerBlock(weepingWillowVines, "weeping_willow_vines");
 
         whitePoplarLog = registerLargeLog("white_poplar_log");
         whitePoplarLogStripped = registerLargeLog("white_poplar_stripped");
@@ -633,6 +637,7 @@ public class ViriBlocks {
     public static Block weepingWillowLeaves;
     public static Block weepingWillowPlanks;
     public static Block weepingWillowSapling;
+    public static Block weepingWillowVines;
 
     public static Block whitePoplarLog;
     public static Block whitePoplarLogStripped;
