@@ -15,7 +15,7 @@ public class BasePlanks extends Block {
 
     @Override
     public Block setBlockTextureName(String texName) {
-        this.textureName = Viridium.MOD_ID + ":large_trees/" + texName;
+        this.textureName = Viridium.MOD_ID + ":" + texName;
         return this;
     }
 }

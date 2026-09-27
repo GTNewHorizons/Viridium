@@ -49,11 +49,9 @@ public class BaseFullLog extends BlockLog {
         return this.getSideIcon();
     }
 
-    // Setters
     @Override
-    public BlockLog setBlockName(String name) {
-        super.setBlockName(name);
-        setBlockTextureName(Viridium.MOD_ID + ":large_trees/" + name);
+    public BlockLog setBlockTextureName(String textureName) {
+        super.setBlockTextureName(Viridium.MOD_ID + ":" + textureName);
         return this;
     }
 
