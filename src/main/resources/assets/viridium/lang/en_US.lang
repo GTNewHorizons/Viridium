@@ -10,14 +10,14 @@ tile.american_sycamore_log.name=American Sycamore Wood
 tile.american_sycamore_stripped.name=Stripped American Sycamore Wood
 tile.american_sycamore_leaves.name=American Sycamore Leaves
 tile.american_sycamore_planks.name=American Sycamore Planks
-tile.american_sycamore_sapling.name=American Sycamore Planks
+tile.american_sycamore_sapling.name=American Sycamore Sapling
 item.american_sycamore_seeds.name=American Sycamore Seeds
 
 tile.ash_log.name=Ash Wood
 tile.ash_stripped.name=Stripped Ash Wood
 tile.ash_leaves.name=Ash Leaves
 tile.ash_planks.name=Ash Planks
-tile.ash_sapling.name=Ash Planks
+tile.ash_sapling.name=Ash Sapling
 # TODO: Seeds
 
 tile.bald_cypress_log.name=Bald Cypress Wood
