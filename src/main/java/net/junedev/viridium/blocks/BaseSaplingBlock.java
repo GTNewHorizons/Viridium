@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Random;
 
 import net.junedev.viridium.Viridium;
-import net.junedev.viridium.worldgen.AshTreeGen;
+import net.junedev.viridium.worldgen.LargeDeciduousTreeGen;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockSapling;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -21,10 +21,12 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class BaseSaplingBlock extends BlockSapling {
 
-    public BaseSaplingBlock() {
+    public BaseSaplingBlock(Block trunkWoodBlock, Block leafBlock) {
         super();
         this.setCreativeTab(Viridium.VTab);
         this.setStepSound(soundTypeGrass);
+        this.trunkWoodBlock = trunkWoodBlock;
+        this.leafBlock = leafBlock;
     }
 
     @Override
@@ -55,9 +57,35 @@ public class BaseSaplingBlock extends BlockSapling {
         if (!net.minecraftforge.event.terraingen.TerrainGen.saplingGrowTree(world, rand, x, y, z)) return;
         String treeName = world.getBlock(x, y, z)
             .getUnlocalizedName();
-        System.out.println(treeName);
+        System.out.println(treeName); // TODO: Remove
         world.setBlock(x, y, z, Blocks.air);
-        WorldGenerator obj = new AshTreeGen(true);
+
+        // TODO: Currently does not support any non-deciduous, non-large trees
+        WorldGenerator obj = new LargeDeciduousTreeGen(true, this.leafBlock, this.trunkWoodBlock);
+        if (!(obj.generate(world, rand, x, y, z))) world.setBlock(x, y, z, this);
 
     }
+
+    // Setters
+
+    public void setTrunkWoodBlock(Block block) {
+        this.trunkWoodBlock = block;
+    }
+
+    public void setLeafBlock(Block block) {
+        this.leafBlock = block;
+    }
+
+    // Getters
+
+    public Block getTrunkWoodBlock(Block block) {
+        return this.trunkWoodBlock;
+    }
+
+    public Block getLeafBlock(Block block) {
+        return this.leafBlock;
+    }
+
+    public Block trunkWoodBlock;
+    public Block leafBlock;
 }
