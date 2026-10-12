@@ -3,6 +3,7 @@ package net.junedev.viridium.worldgen.biomes;
 import java.util.Random;
 
 import net.junedev.viridium.utils.parser.BlockParser;
+import net.junedev.viridium.worldgen.features.WorldGenBush;
 import net.junedev.viridium.worldgen.features.WorldGenSmallPatch;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
@@ -26,6 +27,7 @@ public class ViridiumBiomeGen extends BiomeGenBase {
     private ViridiumBiomeDefinition.SurfacePatch[] patches = new ViridiumBiomeDefinition.SurfacePatch[0];
     private ViridiumBiomeDefinition.SmallPatch[] smallPatches = new ViridiumBiomeDefinition.SmallPatch[0];
     private ViridiumBiomeDefinition.Blob[] blobs = new ViridiumBiomeDefinition.Blob[0];
+    private ViridiumBiomeDefinition.Blob[] bushes = new ViridiumBiomeDefinition.Blob[0];
     private WeightedSelector<WorldGenAbstractTree> treeSelector;
     private ViridiumBiomeDefinition.VegetationEntry[] grass = new ViridiumBiomeDefinition.VegetationEntry[0];
     private ViridiumBiomeDefinition.VegetationEntry[] flowers = new ViridiumBiomeDefinition.VegetationEntry[0];
@@ -139,6 +141,17 @@ public class ViridiumBiomeGen extends BiomeGenBase {
             }
         }
 
+        for (ViridiumBiomeDefinition.Blob bush : bushes) {
+            if (random.nextInt(bush.frequency) == 0) {
+                int x = chunkX + random.nextInt(16) + 8;
+                int z = chunkZ + random.nextInt(16) + 8;
+                int y = world.getHeightValue(x, z);
+
+                new WorldGenBush(BlockParser.getBlock(bush.blockId, Blocks.brick_block), bush.radius)
+                    .generate(world, random, x, y, z);
+            }
+        }
+
     }
 
     @Override
@@ -154,6 +167,7 @@ public class ViridiumBiomeGen extends BiomeGenBase {
     public void setBlobs(ViridiumBiomeDefinition.Blob[] blobs) {
         this.blobs = blobs;
     }
+    public void setBushes(ViridiumBiomeDefinition.Blob[] bushes) { this.bushes = bushes; }
 
     public void setTreeSelector(WeightedSelector<WorldGenAbstractTree> treeSelector) {
         this.treeSelector = treeSelector;

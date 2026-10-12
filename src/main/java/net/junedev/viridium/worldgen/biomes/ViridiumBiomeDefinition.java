@@ -70,6 +70,7 @@ public class ViridiumBiomeDefinition {
     public static final class Features {
 
         public Blob[] blobs = new Blob[0];
+        public Blob[] bushes = new Blob[0];
         public SmallPatch[] smallPatches = new SmallPatch[0];
     }
 

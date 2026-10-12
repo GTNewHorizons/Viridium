@@ -57,6 +57,13 @@
           "radius": 1,
           "frequency": 6
         }
+      ],
+      "bushes": [
+        {
+          "blockId": "viridium:creosote_bush",
+          "radius": 1,
+          "frequency": 5
+        }
       ]
     }
   }

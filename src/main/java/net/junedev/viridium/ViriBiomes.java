@@ -111,6 +111,7 @@ public class ViriBiomes {
         biome.setSurfacePatches(definition.terrain.surface.patches);
         biome.setSmallPatches(definition.decoration.features.smallPatches);
         biome.setBlobs(definition.decoration.features.blobs);
+        biome.setBushes(definition.decoration.features.bushes);
         biome.setTreeSelector(createTreeSelector(definition.decoration.trees));
         biome.setGrass(definition.decoration.grass);
         biome.setFlowers(definition.decoration.flowers);
