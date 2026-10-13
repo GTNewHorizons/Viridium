@@ -1,7 +1,7 @@
 {
   "name": "Chaparral",
   "generation": {
-    "weight": 10,
+    "weight": 100,
     "climateType": "WARM",
     "dictionaryTypes": ["PLAINS", "SPARSE", "SAVANNA"]
   },
@@ -37,6 +37,11 @@
       { "id": "minecraft:acacia", "weight": 5 }
     ],
     "grassPerChunk": 20,
+    "grass": [
+      {"blockId": "minecraft:tallgrass", "meta": 0, "weight": 1},
+      {"blockId": "minecraft:tallgrass", "meta": 1, "weight": 30},
+      {"blockId": "minecraft:tallgrass", "meta": 2, "weight": 4}
+    ],
     "flowersPerChunk": 4,
     "features": {
       "smallPatches": [
@@ -62,7 +67,12 @@
         {
           "blockId": "viridium:creosote_bush",
           "radius": 1,
-          "frequency": 5
+          "frequency": 3
+        },
+        {
+          "blockId": "viridium:creosote_bush",
+          "radius": 0,
+          "frequency": 1
         }
       ]
     }

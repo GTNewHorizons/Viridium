@@ -11,6 +11,8 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraft.world.gen.feature.WorldGenBlockBlob;
+import net.minecraft.world.gen.feature.WorldGenTallGrass;
+import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.event.terraingen.DecorateBiomeEvent;
 import net.minecraftforge.event.terraingen.TerrainGen;
 
@@ -29,7 +31,7 @@ public class ViridiumBiomeGen extends BiomeGenBase {
     private ViridiumBiomeDefinition.Blob[] blobs = new ViridiumBiomeDefinition.Blob[0];
     private ViridiumBiomeDefinition.Blob[] bushes = new ViridiumBiomeDefinition.Blob[0];
     private WeightedSelector<WorldGenAbstractTree> treeSelector;
-    private ViridiumBiomeDefinition.VegetationEntry[] grass = new ViridiumBiomeDefinition.VegetationEntry[0];
+    private WeightedSelector<PlantVariant> grassSelector;
     private ViridiumBiomeDefinition.VegetationEntry[] flowers = new ViridiumBiomeDefinition.VegetationEntry[0];
 
     public ViridiumBiomeGen(int id) {
@@ -160,6 +162,14 @@ public class ViridiumBiomeGen extends BiomeGenBase {
             : treeSelector.select(random);
     }
 
+    @Override
+    public WorldGenerator getRandomWorldGenForGrass(Random random) {
+        if(grassSelector == null || grassSelector.isEmpty()) return super.getRandomWorldGenForGrass(random);
+
+        PlantVariant selectedGrass = grassSelector.select(random);
+        return new WorldGenTallGrass(selectedGrass.block, selectedGrass.meta);
+    }
+
     public void setSmallPatches(ViridiumBiomeDefinition.SmallPatch[] smallPatches) {
         this.smallPatches = smallPatches;
     }
@@ -173,8 +183,8 @@ public class ViridiumBiomeGen extends BiomeGenBase {
         this.treeSelector = treeSelector;
     }
 
-    public void setGrass(ViridiumBiomeDefinition.VegetationEntry[] grass) {
-        this.grass = grass;
+    public void setGrassSelector(WeightedSelector<PlantVariant> grassSelector) {
+        this.grassSelector = grassSelector;
     }
 
     public void setFlowers(ViridiumBiomeDefinition.VegetationEntry[] flowers) {

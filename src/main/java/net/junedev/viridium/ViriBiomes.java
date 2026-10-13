@@ -5,6 +5,7 @@ import java.util.Map;
 
 import net.junedev.viridium.utils.parser.BlockParser;
 import net.junedev.viridium.utils.parser.ColorParser;
+import net.junedev.viridium.worldgen.biomes.PlantVariant;
 import net.junedev.viridium.worldgen.biomes.ViridiumBiomeDefinition;
 import net.junedev.viridium.worldgen.biomes.ViridiumBiomeDefinitionLoader;
 import net.junedev.viridium.worldgen.biomes.ViridiumBiomeGen;
@@ -113,7 +114,7 @@ public class ViriBiomes {
         biome.setBlobs(definition.decoration.features.blobs);
         biome.setBushes(definition.decoration.features.bushes);
         biome.setTreeSelector(createTreeSelector(definition.decoration.trees));
-        biome.setGrass(definition.decoration.grass);
+        biome.setGrassSelector(createGrassSelector(definition.decoration.grass));
         biome.setFlowers(definition.decoration.flowers);
 
         biome.theBiomeDecorator.treesPerChunk = definition.decoration.treesPerChunk;
@@ -140,6 +141,22 @@ public class ViriBiomes {
             }
             WorldGenAbstractTree generator = treeGenerators.get(entry.id);
             if (generator == null) throw new IllegalArgumentException("Unknown tree generator: " + entry.id);
+            selector.add(generator, entry.weight);
+        }
+
+        return selector;
+    }
+
+    private WeightedSelector<PlantVariant> createGrassSelector(ViridiumBiomeDefinition.VegetationEntry[] entries) {
+        WeightedSelector<PlantVariant> selector = new WeightedSelector<>();
+        if (entries == null) return selector;
+
+        for (ViridiumBiomeDefinition.VegetationEntry entry : entries) {
+            if (entry == null || entry.blockId == null) {
+                throw new IllegalArgumentException("Vegetation entries need an id and a positive weight");
+            }
+            PlantVariant generator = PlantVariant.create(entry.blockId, entry.meta);
+            if (generator == null) throw new IllegalArgumentException("Unknown vegetation block: " + entry.blockId);
             selector.add(generator, entry.weight);
         }
 
