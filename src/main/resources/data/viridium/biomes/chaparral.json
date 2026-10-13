@@ -1,0 +1,59 @@
+{
+  "name": "Chaparral",
+  "generation": {
+    "weight": 10,
+    "climateType": "WARM",
+    "dictionaryTypes": ["PLAINS", "SPARSE", "SAVANNA"]
+  },
+  "climate": {
+    "temperature": 1.2,
+    "rainfall": 0.0,
+    "rain": true
+  },
+  "terrain": {
+    "height": {
+      "baseHeight": 0.2,
+      "heightVariation": 0.2
+    },
+    "surface": {
+      "patches":[
+        {
+          "minNoise": 2.0,
+          "topBlockId": "minecraft:sand",
+          "fillerBlockId": "minecraft:sand"
+        },
+        {
+          "minNoise": 2.5,
+          "topBlockId": "minecraft:stone",
+          "fillerBlockId": "minecraft:stone"
+        }
+      ]
+    }
+  },
+  "decoration": {
+    "treesPerChunk": 0,
+    "grassPerChunk": 20,
+    "flowersPerChunk": 4,
+    "features": {
+      "smallPatches": [
+        {
+          "blockId": "minecraft:sand",
+          "radius": 7,
+          "frequency": 5
+        },
+        {
+          "blockId": "minecraft:stone",
+          "radius": 10,
+          "frequency": 10
+        }
+      ],
+      "blobs": [
+        {
+          "blockId": "minecraft:mossy_cobblestone",
+          "radius": 1,
+          "frequency": 6
+        }
+      ]
+    }
+  }
+}

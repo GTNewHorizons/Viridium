@@ -1,0 +1,37 @@
+{
+  "name": "Fen",
+  "generation": {
+    "weight": 10,
+    "climateType": "WARM",
+    "dictionaryTypes": ["WET", "PLAINS", "SPARSE"]
+  },
+  "climate": {
+    "temperature": 0.9,
+    "rainfall": 0.4,
+    "rain": true
+  },
+  "terrain": {
+    "height": {
+      "baseHeight": 0.05,
+      "heightVariation": 0.05
+    }
+  },
+  "decoration": {
+    "treesPerChunk": -1,
+    "grassPerChunk": 5,
+    "flowersPerChunk": 0,
+    "features": {
+      "blobs": [
+        {
+          "blockId": "minecraft:cobblestone",
+          "radius": 1,
+          "frequency": 6
+        }
+      ]
+    }
+  },
+  "appearance": {
+    "grassColor": "#A4BE94",
+    "foliageColor": "#99B687"
+  }
+}

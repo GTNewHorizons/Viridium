@@ -1,0 +1,28 @@
+{
+  "name": "Deciduous Forest",
+  "generation": {
+    "weight": 10,
+    "climateType": "COOL",
+    "dictionaryTypes": ["WET", "FOREST", "DENSE"]
+  },
+  "climate": {
+    "temperature": 0.4,
+    "rainfall": 0.8,
+    "rain": true
+  },
+  "terrain": {
+    "height": {
+      "baseHeight": 0.1,
+      "heightVariation": 0.15
+    }
+  },
+  "decoration": {
+    "treesPerChunk": 4,
+    "grassPerChunk": 4,
+    "flowersPerChunk": 4
+  },
+  "appearance": {
+    "grassColor": "#DB6926",
+    "foliageColor": "#CF5829"
+  }
+}
