@@ -1,7 +1,7 @@
 {
   "name": "Chaparral",
   "generation": {
-    "weight": 100,
+    "weight": 10,
     "climateType": "WARM",
     "dictionaryTypes": ["PLAINS", "SPARSE", "SAVANNA"]
   },

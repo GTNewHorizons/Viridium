@@ -14,6 +14,15 @@
     "height": {
       "baseHeight": 0.1,
       "heightVariation": 0.05
+    },
+    "surface": {
+      "patches":[
+        {
+          "minNoise": 2.5,
+          "topBlockId": "minecraft:mycelium",
+          "fillerBlockId": "minecraft:dirt"
+        }
+      ]
     }
   },
   "decoration": {
@@ -23,7 +32,32 @@
       { "id": "minecraft:birch", "weight": 3 }
     ],
     "grassPerChunk": 4,
-    "flowersPerChunk": 0
+    "grass": [
+      {"blockId": "minecraft:tallgrass", "meta": 1, "weight": 30},
+      {"blockId": "minecraft:tallgrass", "meta": 2, "weight": 10}
+    ],
+    "flowersPerChunk": 0,
+    "features": {
+      "smallPatches": [
+        {
+          "blockId": "minecraft:mycelium",
+          "radius": 7,
+          "frequency": 5
+        }
+      ],
+      "bushes": [
+        {
+          "blockId": "viridium:kudzu",
+          "radius": 1,
+          "frequency": 3
+        },
+        {
+          "blockId": "viridium:kudzu",
+          "radius": 0,
+          "frequency": 1
+        }
+      ]
+    }
   },
   "appearance": {
     "grassColor": "#52CE4E",
