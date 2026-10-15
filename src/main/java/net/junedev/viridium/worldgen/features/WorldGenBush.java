@@ -38,33 +38,30 @@ public class WorldGenBush extends WorldGenerator {
                 return false;
             }
 
-            int k2 = this.radius;
+            int r = this.radius;
+            int verDelta = random.nextInt(2);
+            int horDelta = verDelta + random.nextInt(2);
 
-            for (int l = 0; k2 >= 0 && l < 3; ++l) {
-                int i1 = k2 + random.nextInt(2);
-                int j1 = k2 + random.nextInt(2);
-                int k1 = k2 + random.nextInt(2);
-                float f = (float) (i1 + j1 + k1) * 0.333F + 0.5F;
+            int j1 = r + verDelta;
 
-                for (int l1 = x - i1; l1 <= x + i1; ++l1) {
-                    for (int i2 = z - k1; i2 <= z + k1; ++i2) {
-                        for (int j2 = y - j1; j2 <= y + j1; ++j2) {
-                            float f1 = (float) (l1 - x);
-                            float f2 = (float) (i2 - z);
-                            float f3 = (float) (j2 - y);
+            int i1 = r + horDelta;
+            int k1 = r + horDelta;
 
-                            if (f1 * f1 + f2 * f2 + f3 * f3 <= f * f && world.getBlock(l1, j2, i2)
-                                .isReplaceable(world, x, y, z)) {
-                                world.setBlock(l1, j2, i2, this.block, 0, 4);
-                            }
+            for (int i2 = x - i1; i2 <= x + i1; ++i2) {
+                for (int k2 = z - k1; k2 <= z + k1; ++k2) {
+                    for (int j2 = y - j1; j2 <= y + j1; ++j2) {
+                        float f1 = (float) (i2 - x) / i1;
+                        float f2 = (float) (k2 - z) / k1;
+                        float f3 = (float) (j2 - y) / j1;
+
+                        if (f1 * f1 + f2 * f2 + f3 * f3 <= 1.0 && world.getBlock(i2, j2, k2)
+                            .isReplaceable(world, x, y, z)) {
+                            world.setBlock(i2, j2, k2, this.block, 0, 4);
                         }
                     }
                 }
-
-                x += -(k2 + 1) + random.nextInt(2 + k2 * 2);
-                z += -(k2 + 1) + random.nextInt(2 + k2 * 2);
-                y += 0 - random.nextInt(2);
             }
+
 
             return true;
         }
