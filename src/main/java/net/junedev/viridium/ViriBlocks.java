@@ -5,6 +5,7 @@ import net.junedev.viridium.blocks.BaseLeaves;
 import net.junedev.viridium.blocks.BasePlanks;
 import net.junedev.viridium.blocks.BaseSaplingBlock;
 import net.junedev.viridium.blocks.BushBlock;
+import net.junedev.viridium.blocks.FernBlock;
 import net.junedev.viridium.blocks.TallPlantBlock;
 import net.junedev.viridium.blocks.sets.SmallTreeBlockSet;
 import net.minecraft.block.Block;
@@ -82,6 +83,18 @@ public class ViriBlocks {
         // Bushes
 
         // Standalone Grasses
+        autumn_fern_frond = registerFern("autumn_fern_frond", 8);
+        bracken_frond = registerFern("bracken_frond", 16, 40);
+        christmas_fern = registerFern("christmas_fern", 16, 40);
+        cinnamon_fern_frond = registerFern("cinnamon_fern_frond", 16, 30);
+        deer_fern_frond = registerFern("deer_fern_frond", 8);
+        harts_tongue_fern_frond = registerFern("harts_tongue_fern_frond", 8);
+        horsetail = registerFern("horsetail", 16, 40);
+        mt_kaala_cyanea_frond = registerFern("mt_kaala_cyanea_frond", 16, 40);
+        oem_frond = registerFern("oem_frond", 32, 20);
+        silver_fern_frond = registerFern("silver_fern_frond", 16, 40);
+        silver_fern_koru = registerFern("silver_fern_koru", 8);
+        sword_fern = registerFern("sword_fern", 8);
 
         // Standalone Flora
 
@@ -410,6 +423,16 @@ public class ViriBlocks {
         return registerTallPlant(name, size, 16);
     }
 
+    private Block registerFern(String name, int halfSize) {
+        return registerFern(name, halfSize, 45);
+    }
+
+    private Block registerFern(String name, int halfSize, double openingAngle) {
+        Block fern = new FernBlock(halfSize, openingAngle).setBlockName(name);
+        GameRegistry.registerBlock(fern, name);
+        return fern;
+    }
+
     // Standalone Flora
 
     // Mushrooms
@@ -503,7 +526,19 @@ public class ViriBlocks {
     public static SmallTreeBlockSet wild_apple;
     public static SmallTreeBlockSet witch_hazel;
     public static SmallTreeBlockSet wisteria;
-    public static SmallTreeBlockSet debug;
+
+    public static Block autumn_fern_frond;
+    public static Block bracken_frond;
+    public static Block christmas_fern;
+    public static Block cinnamon_fern_frond;
+    public static Block deer_fern_frond;
+    public static Block harts_tongue_fern_frond;
+    public static Block horsetail;
+    public static Block mt_kaala_cyanea_frond;
+    public static Block oem_frond;
+    public static Block silver_fern_frond;
+    public static Block silver_fern_koru;
+    public static Block sword_fern;
 
     public static Block welwitschia_leaf;
     public static Block corpse_flower_leaf;
