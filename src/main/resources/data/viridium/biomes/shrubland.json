@@ -1,0 +1,31 @@
+{
+  "name": "Shrubland",
+  "generation": {
+    "weight": 10,
+    "climateType": "COOL",
+    "dictionaryTypes": []
+  },
+  "climate": {
+    "temperature": 0.4,
+    "rainfall": 0.05,
+    "rain": true
+  },
+  "terrain": {
+    "height": {
+      "baseHeight": 0.05,
+      "heightVariation": 0.05
+    }
+  },
+  "decoration": {
+    "treesPerChunk": 0,
+    "trees": [
+      { "id": "minecraft:oak", "weight": 1 }
+    ],
+    "grassPerChunk": 6,
+    "flowersPerChunk": 0
+  },
+  "appearance": {
+    "grassColor": "#AFC9AD",
+    "foliageColor": "#AFC9AD"
+  }
+}

@@ -37,7 +37,7 @@ public class ViridiumBiomeDefinition {
 
     public static final class Height {
 
-        public float baseWeight = 0.2f;
+        public float baseHeight = 0.2f;
         public float heightVariation = 0.2f;
     }
 
@@ -61,12 +61,16 @@ public class ViridiumBiomeDefinition {
         public int treesPerChunk = 0;
         public int grassPerChunk = 4;
         public int flowersPerChunk = 1;
+        public TreeEntry[] trees = { new TreeEntry("minecraft:oak", 1) };
+        public VegetationEntry[] grass = { new VegetationEntry("minecraft:tallgrass", 1, 1) };
+        public VegetationEntry[] flowers = { new VegetationEntry("minecraft:red_flower", 0, 1) };
         public Features features = new Features();
     }
 
     public static final class Features {
 
         public Blob[] blobs = new Blob[0];
+        public Blob[] bushes = new Blob[0];
         public SmallPatch[] smallPatches = new SmallPatch[0];
     }
 
@@ -82,6 +86,30 @@ public class ViridiumBiomeDefinition {
         public String blockId;
         public int radius;
         public int frequency = 5;
+    }
+
+    public static final class TreeEntry {
+
+        public String id;
+        public int weight;
+
+        public TreeEntry(String id, int weight) {
+            this.id = id;
+            this.weight = weight;
+        }
+    }
+
+    public static final class VegetationEntry {
+
+        public String blockId;
+        public int meta;
+        public int weight;
+
+        public VegetationEntry(String blockId, int meta, int weight) {
+            this.blockId = blockId;
+            this.meta = meta;
+            this.weight = weight;
+        }
     }
 
     /// Appearance

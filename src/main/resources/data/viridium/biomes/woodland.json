@@ -1,0 +1,33 @@
+{
+  "name": "Woodland",
+  "generation": {
+    "weight": 10,
+    "climateType": "COOL",
+    "dictionaryTypes": []
+  },
+  "climate": {
+    "temperature": 0.4,
+    "rainfall": 0.4,
+    "rain": true
+  },
+  "terrain": {
+    "height": {
+      "baseHeight": 0.05,
+      "heightVariation": 0.05
+    }
+  },
+  "decoration": {
+    "treesPerChunk": 6,
+    "trees": [
+      { "id": "minecraft:oak", "weight": 15 },
+      { "id": "minecraft:tall_oak", "weight": 1 },
+      { "id": "minecraft:dark_oak", "weight": 3 }
+    ],
+    "grassPerChunk": 3,
+    "flowersPerChunk": 0
+  },
+  "appearance": {
+    "grassColor": "#94CE49",
+    "foliageColor": "#94CE49"
+  }
+}

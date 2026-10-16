@@ -1,0 +1,32 @@
+{
+  "name": "Dead Forest",
+  "generation": {
+    "weight": 10,
+    "climateType": "COOL",
+    "dictionaryTypes": ["FOREST", "DENSE"]
+  },
+  "climate": {
+    "temperature": 0.3,
+    "rainfall": 0.3,
+    "rain": true
+  },
+  "terrain": {
+    "height": {
+      "baseHeight": 0.0,
+      "heightVariation": 0.1
+    }
+  },
+  "decoration": {
+    "treesPerChunk": 1,
+    "trees": [
+      { "id": "minecraft:oak", "weight": 8 },
+      { "id": "minecraft:birch", "weight": 3 }
+    ],
+    "grassPerChunk": 5,
+    "flowersPerChunk": 0
+  },
+  "appearance": {
+    "grassColor": "#B1A261",
+    "foliageColor": "#B1A261"
+  }
+}

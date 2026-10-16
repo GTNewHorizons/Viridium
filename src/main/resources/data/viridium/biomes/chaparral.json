@@ -32,7 +32,16 @@
   },
   "decoration": {
     "treesPerChunk": 0,
+    "trees": [
+      { "id": "minecraft:oak", "weight": 1 },
+      { "id": "minecraft:acacia", "weight": 5 }
+    ],
     "grassPerChunk": 20,
+    "grass": [
+      {"blockId": "minecraft:tallgrass", "meta": 0, "weight": 1},
+      {"blockId": "minecraft:tallgrass", "meta": 1, "weight": 30},
+      {"blockId": "minecraft:tallgrass", "meta": 2, "weight": 4}
+    ],
     "flowersPerChunk": 4,
     "features": {
       "smallPatches": [
@@ -52,6 +61,18 @@
           "blockId": "minecraft:mossy_cobblestone",
           "radius": 1,
           "frequency": 6
+        }
+      ],
+      "bushes": [
+        {
+          "blockId": "viridium:creosote_bush",
+          "radius": 1,
+          "frequency": 3
+        },
+        {
+          "blockId": "viridium:creosote_bush",
+          "radius": 0,
+          "frequency": 1
         }
       ]
     }

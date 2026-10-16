@@ -1,0 +1,32 @@
+{
+  "name": "Jade Cliffs",
+  "generation": {
+    "weight": 10,
+    "climateType": "WARM",
+    "dictionaryTypes": []
+  },
+  "climate": {
+    "temperature": 0.5,
+    "rainfall": 0.9,
+    "rain": true
+  },
+  "terrain": {
+    "height": {
+      "baseHeight": 0.25,
+      "heightVariation": 0.15
+    }
+  },
+  "decoration": {
+    "treesPerChunk": 2,
+    "trees": [
+      { "id": "minecraft:spruce", "weight": 10 },
+      { "id": "minecraft:oak", "weight": 1 }
+    ],
+    "grassPerChunk": 3,
+    "flowersPerChunk": 0
+  },
+  "appearance": {
+    "grassColor": "#68B161",
+    "foliageColor": "#68B161"
+  }
+}
