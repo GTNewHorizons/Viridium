@@ -5,6 +5,8 @@ import net.junedev.viridium.blocks.BaseLeaves;
 import net.junedev.viridium.blocks.BasePlanks;
 import net.junedev.viridium.blocks.BaseSaplingBlock;
 import net.junedev.viridium.blocks.BushBlock;
+import net.junedev.viridium.blocks.FernBlock;
+import net.junedev.viridium.blocks.GroundPlaneBlock;
 import net.junedev.viridium.blocks.TallPlantBlock;
 import net.junedev.viridium.blocks.sets.SmallTreeBlockSet;
 import net.minecraft.block.Block;
@@ -82,12 +84,30 @@ public class ViriBlocks {
         // Bushes
 
         // Standalone Grasses
+        autumn_fern_frond = registerFern("autumn_fern_frond", 8);
+        bracken_frond = registerFern("bracken_frond", 16, 40);
+        christmas_fern = registerFern("christmas_fern", 16, 40);
+        cinnamon_fern_frond = registerFern("cinnamon_fern_frond", 16, 30);
+        deer_fern_frond = registerFern("deer_fern_frond", 8);
+        harts_tongue_fern_frond = registerFern("harts_tongue_fern_frond", 8);
+        horsetail = registerFern("horsetail", 16, 40);
+        mt_kaala_cyanea_frond = registerFern("mt_kaala_cyanea_frond", 16, 40);
+        oem_frond = registerFern("oem_frond", 32, -20, 0.2D);
+        silver_fern_frond = registerFern("silver_fern_frond", 16, 40, 0.2D);
+        silver_fern_koru = registerFern("silver_fern_koru", 8, 45, 0.1D);
+        sword_fern = registerFern("sword_fern", 8);
 
         // Standalone Flora
 
         // Mushrooms
 
         // Grass Decorators
+        autumn_leaf_pile = registerGroundPlane("autumn_leaf_pile");
+        clover_patch = registerGroundPlane("clover_patch_top");
+        dead_leaf_pile = registerGroundPlane("dead_leaf_pile");
+        leaf_pile = registerGroundPlane("leaf_pile");
+        pinestraw = registerGroundPlane("pinestraw");
+        snorkelwort = registerGroundPlane("snorkelwort");
 
         // Vines
 
@@ -388,7 +408,8 @@ public class ViriBlocks {
 
     // Bushes
     private Block registerBush(String name) {
-        Block bush = new BushBlock().setBlockName(name);
+        Block bush = new BushBlock().setBlockName(name)
+            .setBlockTextureName("bushes/" + name);
         GameRegistry.registerBlock(bush, name);
         return bush;
     }
@@ -401,7 +422,8 @@ public class ViriBlocks {
     }
 
     private Block registerTallPlant(String name, int size, int pixelWidth, int textureX) {
-        Block tallPlant = new TallPlantBlock(size, pixelWidth, textureX).setBlockName(name);
+        Block tallPlant = new TallPlantBlock(size, pixelWidth, textureX).setBlockName(name)
+            .setBlockTextureName("complex_plants/" + name);
         GameRegistry.registerBlock(tallPlant, name);
         return tallPlant;
     }
@@ -410,11 +432,32 @@ public class ViriBlocks {
         return registerTallPlant(name, size, 16);
     }
 
+    private Block registerFern(String name, int halfSize) {
+        return registerFern(name, halfSize, 45, 0.0);
+    }
+
+    private Block registerFern(String name, int halfSize, double openingAngle) {
+        return registerFern(name, halfSize, openingAngle, 0.0);
+    }
+
+    private Block registerFern(String name, int halfSize, double openingAngle, double minimumRadius) {
+        Block fern = new FernBlock(halfSize, openingAngle, minimumRadius).setBlockName(name)
+            .setBlockTextureName("ferns/" + name);
+        GameRegistry.registerBlock(fern, name);
+        return fern;
+    }
+
     // Standalone Flora
 
     // Mushrooms
 
     // Grass Decorators
+    private Block registerGroundPlane(String name) {
+        Block groundPlane = new GroundPlaneBlock().setBlockName(name)
+            .setBlockTextureName("ground/" + name);
+        GameRegistry.registerBlock(groundPlane, name);
+        return groundPlane;
+    }
 
     // Vines
 
@@ -447,6 +490,7 @@ public class ViriBlocks {
         return sapling;
     }
 
+    // Bushes
     public static Block ainselu;
     public static Block bears_breeches;
     public static Block blackberry;
@@ -503,7 +547,19 @@ public class ViriBlocks {
     public static SmallTreeBlockSet wild_apple;
     public static SmallTreeBlockSet witch_hazel;
     public static SmallTreeBlockSet wisteria;
-    public static SmallTreeBlockSet debug;
+
+    public static Block autumn_fern_frond;
+    public static Block bracken_frond;
+    public static Block christmas_fern;
+    public static Block cinnamon_fern_frond;
+    public static Block deer_fern_frond;
+    public static Block harts_tongue_fern_frond;
+    public static Block horsetail;
+    public static Block mt_kaala_cyanea_frond;
+    public static Block oem_frond;
+    public static Block silver_fern_frond;
+    public static Block silver_fern_koru;
+    public static Block sword_fern;
 
     public static Block welwitschia_leaf;
     public static Block corpse_flower_leaf;
@@ -512,6 +568,15 @@ public class ViriBlocks {
     public static Block monstera_leaf_large;
     public static Block agave_americana_leaves;
 
+    // Grass Decorators
+    public static Block autumn_leaf_pile;
+    public static Block clover_patch;
+    public static Block dead_leaf_pile;
+    public static Block leaf_pile;
+    public static Block pinestraw;
+    public static Block snorkelwort;
+
+    // Large Trees
     public static Block amaranthLog;
     public static Block amaranthLogStripped;
     public static Block amaranthLeaves;
