@@ -3,8 +3,6 @@ package net.junedev.viridium.client.renderers.world;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import net.junedev.viridium.Viridium;
-
 public final class SkyProfileHandler {
 
     public static final SkyProfile DEFAULT = new SkyProfile();
@@ -15,8 +13,7 @@ public final class SkyProfileHandler {
         PROFILES.put(
             "Desert",
             new SkyProfile().base(0.55F, 0.50F, 0.35F)
-                .mie(0.85F)
-        );
+                .mie(0.85F));
 
         PROFILES.put(
             "Swampland",
@@ -28,7 +25,7 @@ public final class SkyProfileHandler {
         SkyProfile profile = PROFILES.get(biomeName);
 
         if (profile == null) {
-            Viridium.LOGGER.warn("SkyProfile for Biome {} not found", biomeName);
+            // Viridium.LOGGER.warn("SkyProfile for Biome {} not found", biomeName);
             return DEFAULT;
         } else {
             return profile;

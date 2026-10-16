@@ -1,6 +1,7 @@
-#version 120
+#version 330 core
 
-varying vec3 vDir;
+in vec3 vDir;
+out vec4 fragColor;
 
 uniform vec3  uSunDir;
 uniform float uRain;
@@ -14,7 +15,6 @@ uniform float uDayBias;
 uniform float uHorizonBase;
 uniform float uRainDarkening;
 uniform float uRayleighScale;
-uniform float uHorizonSlope;
 
 float hash(vec2 p) {
     return fract(sin(dot(p, vec2(12.9898, 78.233))) * 43758.5453);
@@ -35,7 +35,7 @@ void main() {
     float sunsetDir = 0.5 + 0.5 * cosTheta;
 
     float dayFactor = clamp(sunHeight * 2.0 + uDayBias, 0.0, 1.0);
-    float horizon = clamp(uHorizonBase + dir.y * uHorizonSlope, 0.0, 1.0);
+    float horizon = clamp(uHorizonBase + dir.y * 1.2, 0.0, 1.0);
 
     vec3 col = uBase * rayleigh * dayFactor * horizon
     + uSunsetColor * sunsetFactor * sunsetDir
@@ -45,5 +45,5 @@ void main() {
 
     col += (hash(gl_FragCoord.xy) - 0.5) / 255.0;
 
-    gl_FragColor = vec4(clamp(col, 0.0, 1.0), 1.0);
+    fragColor = vec4(clamp(col, 0.0, 1.0), 1.0);
 }

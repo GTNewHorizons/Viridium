@@ -4,12 +4,15 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.nio.FloatBuffer;
+import java.util.Locale;
 
 import net.junedev.viridium.Viridium;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.OpenGlHelper;
 import net.minecraft.util.ResourceLocation;
 
+import org.lwjgl.BufferUtils;
 import org.lwjgl.opengl.GL11;
 import org.lwjgl.opengl.GL20;
 
@@ -25,6 +28,9 @@ public class SkyShader {
     private final int uBase, uMieG, uHaloColor, uSunsetColor;
     private final int uSunsetWidth, uDayBias, uHorizonBase, uRainDarkening, uRayleighScale, uHorizonSlope;
 
+    private final int uModelView, uProjection;
+    private final FloatBuffer matrixBuffer = BufferUtils.createFloatBuffer(16);
+
     private SkyShader(int program) {
         this.program = program;
         uSunDir = loc("uSunDir");
@@ -39,6 +45,9 @@ public class SkyShader {
         uRainDarkening = loc("uRainDarkening");
         uRayleighScale = loc("uRayleighScale");
         uHorizonSlope = loc("uHorizonSlope");
+
+        uModelView = loc("uModelView");
+        uProjection = loc("uProjection");
     }
 
     public static SkyShader create() {
@@ -116,6 +125,8 @@ public class SkyShader {
     public void bind(SkyProfile p, float sunX, float sunY, float sunZ, float rain) {
         previousProgram = GL11.glGetInteger(GL20.GL_CURRENT_PROGRAM);
         GL20.glUseProgram(program);
+        uploadMatrix(uModelView, GL11.GL_MODELVIEW_MATRIX);
+        uploadMatrix(uProjection, GL11.GL_PROJECTION_MATRIX);
         GL20.glUniform3f(uSunDir, sunX, sunY, sunZ);
         GL20.glUniform1f(uRain, rain);
 
@@ -145,5 +156,23 @@ public class SkyShader {
             Viridium.LOGGER.warn("Uniform '{}' not found", name);
         }
         return location;
+    }
+
+    private int debugFrame = 0;
+
+    private void uploadMatrix(int location, int matrixEnum) {
+        matrixBuffer.clear();
+        GL11.glGetFloat(matrixEnum, matrixBuffer);
+        matrixBuffer.rewind();
+
+        if (matrixEnum == GL11.GL_MODELVIEW_MATRIX && debugFrame++ % 120 == 0) {
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < 16; i++) {
+                sb.append(String.format(Locale.ROOT, "%.3f ", matrixBuffer.get(i)));
+            }
+            Viridium.LOGGER.info("ModelView: {}", sb);
+        }
+
+        GL20.glUniformMatrix4(location, false, matrixBuffer);
     }
 }

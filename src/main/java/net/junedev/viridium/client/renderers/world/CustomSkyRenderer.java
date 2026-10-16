@@ -59,7 +59,7 @@ public class CustomSkyRenderer extends IRenderHandler {
 
     private int appliedGeneration = -1;
     private SkyShader skyShader;
-    private int domeList = -1;
+    private SkyDome dome;
 
     private static boolean irisLookedUp = false;
     private static Object irisInstance;
@@ -77,12 +77,12 @@ public class CustomSkyRenderer extends IRenderHandler {
             releaseGlResources();
             skyShader = SkyShader.create();
             if (skyShader != null) {
-                domeList = buildDomeList();
+                dome = new SkyDome(16, 24);
             }
             appliedGeneration = generation;
         }
 
-        if (skyShader == null || domeList == -1 || isShaderPackActive()) {
+        if (skyShader == null || dome == null || isShaderPackActive()) {
             renderVanillaSky(partialTicks, world, mc);
             return;
         }
@@ -107,7 +107,7 @@ public class CustomSkyRenderer extends IRenderHandler {
         OpenGlHelper.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA, 1, 0);
 
         skyShader.bind(currentSkyProfile, sunX, sunY, sunZ, rain);
-        GL11.glCallList(domeList);
+        dome.draw();
         skyShader.unbind();
 
         renderSunAndMoon(world, mc, rain, celestialAngle);
@@ -178,47 +178,10 @@ public class CustomSkyRenderer extends IRenderHandler {
             skyShader.delete();
             skyShader = null;
         }
-        if (domeList != -1) {
-            GL11.glDeleteLists(domeList, 1);
-            domeList = -1;
+        if (dome != null) {
+            dome.delete();
+            dome = null;
         }
-    }
-
-    private int buildDomeList() {
-        int list = GL11.glGenLists(1);
-        GL11.glNewList(list, GL11.GL_COMPILE);
-
-        Tessellator t = Tessellator.instance;
-        t.startDrawingQuads();
-
-        for (int i = 0; i < DOME_LAT; i++) {
-            double lat0 = Math.PI * (-0.5 + (double) i / DOME_LAT);
-            double y0 = Math.sin(lat0);
-            double r0 = Math.cos(lat0);
-
-            double lat1 = Math.PI * (-0.5 + (double) (i + 1) / DOME_LAT);
-            double y1 = Math.sin(lat1);
-            double r1 = Math.cos(lat1);
-
-            for (int j = 0; j < DOME_LONG; j++) {
-                double long0 = 2 * Math.PI * (double) j / DOME_LONG;
-                double x0 = Math.cos(long0);
-                double z0 = Math.sin(long0);
-
-                double long1 = 2 * Math.PI * (double) (j + 1) / DOME_LONG;
-                double x1 = Math.cos(long1);
-                double z1 = Math.sin(long1);
-
-                t.addVertex(x0 * r0 * DOME_RADIUS, y0 * DOME_RADIUS, z0 * r0 * DOME_RADIUS);
-                t.addVertex(x1 * r0 * DOME_RADIUS, y0 * DOME_RADIUS, z1 * r0 * DOME_RADIUS);
-                t.addVertex(x1 * r1 * DOME_RADIUS, y1 * DOME_RADIUS, z1 * r1 * DOME_RADIUS);
-                t.addVertex(x0 * r1 * DOME_RADIUS, y1 * DOME_RADIUS, z0 * r1 * DOME_RADIUS);
-            }
-        }
-
-        t.draw();
-        GL11.glEndList();
-        return list;
     }
 
     private float getSkyAngle(WorldClient world, float partialTicks) {

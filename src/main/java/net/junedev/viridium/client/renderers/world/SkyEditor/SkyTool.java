@@ -1,14 +1,17 @@
 package net.junedev.viridium.client.renderers.world.SkyEditor;
 
+import net.junedev.viridium.client.renderers.world.CustomSkyRenderer;
+import net.junedev.viridium.client.renderers.world.SkyProfile;
+import net.minecraft.client.settings.KeyBinding;
+
+import org.lwjgl.input.Keyboard;
+
 import com.cleanroommc.modularui.factory.ClientGUI;
+
 import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.InputEvent;
-import net.junedev.viridium.client.renderers.world.CustomSkyRenderer;
-import net.junedev.viridium.client.renderers.world.SkyProfile;
-import net.minecraft.client.settings.KeyBinding;
-import org.lwjgl.input.Keyboard;
 
 public final class SkyTool implements SkyDebugHook {
 
@@ -16,8 +19,10 @@ public final class SkyTool implements SkyDebugHook {
 
     static final SkyTool INSTANCE = new SkyTool();
 
-    private static final KeyBinding KEY =
-        new KeyBinding("key.viridium.skytool", Keyboard.KEY_F8, "key.categories.misc");
+    private static final KeyBinding KEY = new KeyBinding(
+        "key.viridium.skytool",
+        Keyboard.KEY_F8,
+        "key.categories.misc");
 
     final SkyProfile theme = new SkyProfile();
 
@@ -28,8 +33,7 @@ public final class SkyTool implements SkyDebugHook {
 
     private long lastNanos = 0L;
 
-    private SkyTool() {
-    }
+    private SkyTool() {}
 
     public static void init() {
         if (!ENABLED) {
@@ -37,7 +41,9 @@ public final class SkyTool implements SkyDebugHook {
         }
         CustomSkyRenderer.debugHook = INSTANCE;
         ClientRegistry.registerKeyBinding(KEY);
-        FMLCommonHandler.instance().bus().register(INSTANCE);
+        FMLCommonHandler.instance()
+            .bus()
+            .register(INSTANCE);
     }
 
     @SubscribeEvent
