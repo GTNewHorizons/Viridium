@@ -3,6 +3,7 @@ package net.junedev.viridium.blocks;
 import net.junedev.viridium.Viridium;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.init.Blocks;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
@@ -33,6 +34,17 @@ public class BaseVegetation extends Block {
         return false;
     }
 
+    // Placing and breaking
+    @Override
+    public boolean canPlaceBlockAt(World worldIn, int x, int y, int z) {
+        Block blockBelow = worldIn.getBlock(x, y - 1, z);
+        if (blockBelow == Blocks.grass || blockBelow == Blocks.dirt || blockBelow == Blocks.farmland) {
+            return super.canPlaceBlockAt(worldIn, x, y, z);
+        }
+        return false;
+    }
+
+    // Hitboxes
     @Override
     public AxisAlignedBB getCollisionBoundingBoxFromPool(World worldIn, int x, int y, int z) {
         return null;

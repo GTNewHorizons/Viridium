@@ -5,7 +5,6 @@ import java.util.Random;
 import net.junedev.viridium.Viridium;
 import net.junedev.viridium.client.renderers.ViriRenderIds;
 import net.junedev.viridium.client.textures.CroppedIcon;
-import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
