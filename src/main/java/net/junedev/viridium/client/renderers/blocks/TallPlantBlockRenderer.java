@@ -67,8 +67,6 @@ public class TallPlantBlockRenderer implements ISimpleBlockRenderingHandler {
         return renderId;
     }
 
-
-
     private void renderCrossedPlanes(int x, int y, int z, IIcon icon, double centerX, double centerZ, double halfSize,
         double rotation) {
 

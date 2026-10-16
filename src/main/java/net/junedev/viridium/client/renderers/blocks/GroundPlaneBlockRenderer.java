@@ -1,12 +1,13 @@
 package net.junedev.viridium.client.renderers.blocks;
 
-import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 import net.junedev.viridium.client.renderers.utils.RenderingUtils;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
+
+import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 
 public class GroundPlaneBlockRenderer implements ISimpleBlockRenderingHandler {
 
@@ -22,15 +23,16 @@ public class GroundPlaneBlockRenderer implements ISimpleBlockRenderingHandler {
     }
 
     @Override
-    public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block block, int modelId, RenderBlocks renderer) {
+    public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block block, int modelId,
+        RenderBlocks renderer) {
         Tessellator tessellator = Tessellator.instance;
         int i1 = world.getBlockMetadata(x, y, z);
         IIcon iicon = block.getIcon(0, i1);
 
-//        if (renderer.hasOverrideBlockTexture())
-//        {
-//            iicon = this.overrideBlockTexture;
-//        }
+        // if (renderer.hasOverrideBlockTexture())
+        // {
+        // iicon = this.overrideBlockTexture;
+        // }
 
         RenderingUtils.resetLightAndColor(world, tessellator, block, x, y, z);
 
@@ -40,12 +42,28 @@ public class GroundPlaneBlockRenderer implements ISimpleBlockRenderingHandler {
         double d1 = iicon.getMaxV();
         double d2 = 0.05000000074505806D;
 
-        RenderingUtils.addSingleQuad(tessellator,
-            x, y + d2, z, d0, d4,
-            x, y + d2, z + 1, d0, d1,
-             x + 1, y + d2, z + 1, d3, d1,
-            x + 1, y + d2, z, d3, d4
-        );
+        RenderingUtils.addSingleQuad(
+            tessellator,
+            x,
+            y + d2,
+            z,
+            d0,
+            d4,
+            x,
+            y + d2,
+            z + 1,
+            d0,
+            d1,
+            x + 1,
+            y + d2,
+            z + 1,
+            d3,
+            d1,
+            x + 1,
+            y + d2,
+            z,
+            d3,
+            d4);
 
         return true;
     }

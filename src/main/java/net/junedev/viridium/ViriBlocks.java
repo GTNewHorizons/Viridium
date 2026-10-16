@@ -572,7 +572,6 @@ public class ViriBlocks {
     public static Block pinestraw;
     public static Block snorkelwort;
 
-
     // Large Trees
     public static Block amaranthLog;
     public static Block amaranthLogStripped;

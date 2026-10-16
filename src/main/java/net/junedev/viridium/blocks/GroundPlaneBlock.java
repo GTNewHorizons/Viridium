@@ -9,8 +9,8 @@ import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 
-
 public class GroundPlaneBlock extends Block {
+
     public GroundPlaneBlock() {
         super(Material.grass);
 
@@ -51,13 +51,7 @@ public class GroundPlaneBlock extends Block {
     @Override
     public AxisAlignedBB getSelectedBoundingBoxFromPool(World worldIn, int x, int y, int z) {
 
-        return AxisAlignedBB.getBoundingBox(
-            x,
-            y,
-            z,
-            x + 1,
-            y + 0.05D,
-            z + 1);
+        return AxisAlignedBB.getBoundingBox(x, y, z, x + 1, y + 0.05D, z + 1);
     }
 
     @Override
