@@ -91,9 +91,9 @@ public class ViriBlocks {
         harts_tongue_fern_frond = registerFern("harts_tongue_fern_frond", 8);
         horsetail = registerFern("horsetail", 16, 40);
         mt_kaala_cyanea_frond = registerFern("mt_kaala_cyanea_frond", 16, 40);
-        oem_frond = registerFern("oem_frond", 32, 20);
-        silver_fern_frond = registerFern("silver_fern_frond", 16, 40);
-        silver_fern_koru = registerFern("silver_fern_koru", 8);
+        oem_frond = registerFern("oem_frond", 32, -20, 0.2D);
+        silver_fern_frond = registerFern("silver_fern_frond", 16, 40, 0.2D);
+        silver_fern_koru = registerFern("silver_fern_koru", 8, 45, 0.1D);
         sword_fern = registerFern("sword_fern", 8);
 
         // Standalone Flora
@@ -424,11 +424,15 @@ public class ViriBlocks {
     }
 
     private Block registerFern(String name, int halfSize) {
-        return registerFern(name, halfSize, 45);
+        return registerFern(name, halfSize, 45, 0.0);
     }
 
     private Block registerFern(String name, int halfSize, double openingAngle) {
-        Block fern = new FernBlock(halfSize, openingAngle).setBlockName(name);
+        return registerFern(name, halfSize, openingAngle, 0.0);
+    }
+
+    private Block registerFern(String name, int halfSize, double openingAngle, double minimumRadius) {
+        Block fern = new FernBlock(halfSize, openingAngle, minimumRadius).setBlockName(name);
         GameRegistry.registerBlock(fern, name);
         return fern;
     }

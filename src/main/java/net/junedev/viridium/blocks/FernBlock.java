@@ -1,22 +1,14 @@
 package net.junedev.viridium.blocks;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.junedev.viridium.Viridium;
 import net.junedev.viridium.client.renderers.ViriRenderIds;
-import net.junedev.viridium.client.textures.CroppedIcon;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
-import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 
-import java.util.Random;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class FernBlock extends Block {
 
@@ -24,6 +16,8 @@ public class FernBlock extends Block {
     private int halfSize = 8;
     @SideOnly(Side.CLIENT)
     private double openingAngle = 60;
+    @SideOnly(Side.CLIENT)
+    private double minimumRadius = 0.0D;
 
     public FernBlock() {
         super(Material.grass);
@@ -33,13 +27,13 @@ public class FernBlock extends Block {
         this.setStepSound(soundTypeGrass);
     }
 
-    public FernBlock(int halfSize, double openingAngle){
+    public FernBlock(int halfSize, double openingAngle, double minimumRadius) {
         this();
 
         this.halfSize = halfSize;
         this.openingAngle = openingAngle;
+        this.minimumRadius = minimumRadius;
     }
-
 
     @Override
     public int getRenderType() {
@@ -60,7 +54,6 @@ public class FernBlock extends Block {
     public AxisAlignedBB getCollisionBoundingBoxFromPool(World worldIn, int x, int y, int z) {
         return null;
     }
-
 
     @Override
     public Block setBlockName(String name) {
@@ -89,12 +82,18 @@ public class FernBlock extends Block {
     }
 
     @SideOnly(Side.CLIENT)
-    public int getHalfSize(){
+    public int getHalfSize() {
         return halfSize;
     }
 
     @SideOnly(Side.CLIENT)
-    public double getOpeningAngle(){
+    public double getOpeningAngle() {
         return openingAngle;
     }
+
+    @SideOnly(Side.CLIENT)
+    public double getMinimumRadius() {
+        return minimumRadius;
+    }
+
 }

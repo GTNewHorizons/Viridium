@@ -1,6 +1,5 @@
 package net.junedev.viridium.client.renderers.blocks;
 
-import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 import net.junedev.viridium.blocks.FernBlock;
 import net.junedev.viridium.blocks.TallPlantBlock;
 import net.minecraft.block.Block;
@@ -9,7 +8,10 @@ import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 
+import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
+
 public class FernBlockRenderer implements ISimpleBlockRenderingHandler {
+
     private static final double RANDOM_OFFSET = 0.4D;
 
     private final int renderId;
@@ -25,7 +27,7 @@ public class FernBlockRenderer implements ISimpleBlockRenderingHandler {
 
     @Override
     public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block block, int modelId,
-                                    RenderBlocks renderer) {
+        RenderBlocks renderer) {
         FernBlock plantBlock = (FernBlock) block;
 
         long hash = TallPlantBlock.getPositionHash(x, z);
@@ -48,6 +50,7 @@ public class FernBlockRenderer implements ISimpleBlockRenderingHandler {
             0.5D + offsetZ + z,
             (double) plantBlock.getHalfSize() / 16,
             Math.toRadians(plantBlock.getOpeningAngle()),
+            plantBlock.getMinimumRadius(),
             rotation);
 
         renderer.setRenderBoundsFromBlock(block);
@@ -73,7 +76,7 @@ public class FernBlockRenderer implements ISimpleBlockRenderingHandler {
     }
 
     private void renderOpeningPlanes(int x, int y, int z, IIcon icon, double centerX, double centerZ, double halfSize,
-                                     double openingAngle, double rotation) {
+        double openingAngle, double minimumRadius, double rotation) {
 
         Tessellator tessellator = Tessellator.instance;
         double uMin = icon.getMinU();
@@ -86,112 +89,116 @@ public class FernBlockRenderer implements ISimpleBlockRenderingHandler {
 
         // Angle above the ground: keep the frond length constant while tilting it.
         double length = halfSize * 2;
+        // Normalized plane area
         double height = Math.sin(openingAngle) * length;
         double reach = Math.cos(openingAngle) * length;
-        double outwardCos = Math.cos(rotation) * reach;
-        double outwardSin = Math.sin(rotation) * reach;
+        // Sine and Cosine taking into account their actual radius
+        double innerOutwardCos = Math.cos(rotation) * minimumRadius;
+        double innerOutwardSin = Math.sin(rotation) * minimumRadius;
+        double outerOutwardCos = Math.cos(rotation) * (reach + minimumRadius);
+        double outerOutwardSin = Math.sin(rotation) * (reach + minimumRadius);
 
         // Rotation matrix
-        // (  c s )
+        // ( c s )
         // ( -s c )
 
         addDoubleSidedQuad(
             tessellator,
-            centerX - cos,
+            centerX - cos + innerOutwardSin,
             y,
-             centerZ + sin,
+            centerZ + sin + innerOutwardCos,
             uMin,
             vMax,
-            centerX + cos,
+            centerX + cos + innerOutwardSin,
             y,
-             centerZ - sin,
+            centerZ - sin + innerOutwardCos,
             uMax,
             vMax,
-            centerX + cos + outwardSin,
+            centerX + cos + outerOutwardSin,
             y + height,
-             centerZ - sin + outwardCos,
+            centerZ - sin + outerOutwardCos,
             uMax,
             vMin,
-            centerX - cos + outwardSin,
+            centerX - cos + outerOutwardSin,
             y + height,
-             centerZ + sin + outwardCos,
+            centerZ + sin + outerOutwardCos,
             uMin,
             vMin);
 
         addDoubleSidedQuad(
             tessellator,
-            centerX + sin,
+            centerX + sin + innerOutwardCos,
             y,
-             centerZ + cos,
+            centerZ + cos - innerOutwardSin,
             uMin,
             vMax,
-            centerX - sin,
+            centerX - sin + innerOutwardCos,
             y,
-             centerZ - cos,
+            centerZ - cos - innerOutwardSin,
             uMax,
             vMax,
-            centerX - sin + outwardCos,
+            centerX - sin + outerOutwardCos,
             y + height,
-             centerZ - cos - outwardSin,
+            centerZ - cos - outerOutwardSin,
             uMax,
             vMin,
-            centerX + sin + outwardCos,
+            centerX + sin + outerOutwardCos,
             y + height,
-             centerZ + cos - outwardSin,
+            centerZ + cos - outerOutwardSin,
             uMin,
             vMin);
 
         addDoubleSidedQuad(
             tessellator,
-            centerX + cos,
+            centerX + cos - innerOutwardSin,
             y,
-             centerZ - sin,
+            centerZ - sin - innerOutwardCos,
             uMin,
             vMax,
-            centerX - cos,
+            centerX - cos - innerOutwardSin,
             y,
-             centerZ + sin,
+            centerZ + sin - innerOutwardCos,
             uMax,
             vMax,
-            centerX - cos - outwardSin,
+            centerX - cos - outerOutwardSin,
             y + height,
-             centerZ + sin - outwardCos,
+            centerZ + sin - outerOutwardCos,
             uMax,
             vMin,
-            centerX + cos - outwardSin,
+            centerX + cos - outerOutwardSin,
             y + height,
-             centerZ - sin - outwardCos,
+            centerZ - sin - outerOutwardCos,
             uMin,
             vMin);
 
         addDoubleSidedQuad(
             tessellator,
-            centerX - sin,
+            centerX - sin - innerOutwardCos,
             y,
-             centerZ - cos,
+            centerZ - cos + innerOutwardSin,
             uMin,
             vMax,
-            centerX + sin,
+            centerX + sin - innerOutwardCos,
             y,
-             centerZ + cos,
+            centerZ + cos + innerOutwardSin,
             uMax,
             vMax,
-            centerX + sin - outwardCos,
+            centerX + sin - outerOutwardCos,
             y + height,
-             centerZ + cos + outwardSin,
+            centerZ + cos + outerOutwardSin,
             uMax,
             vMin,
-            centerX - sin - outwardCos,
+            centerX - sin - outerOutwardCos,
             y + height,
-             centerZ - cos + outwardSin,
+            centerZ - cos + outerOutwardSin,
             uMin,
             vMin);
 
     }
 
     private void addDoubleSidedQuad(Tessellator tessellator, double x1, double y1, double z1, double u1, double v1,
-                                    double x2, double y2, double z2, double u2, double v2, double x3, double y3, double z3, double u3, double v3,
-                                    double x4, double y4, double z4, double u4, double v4) {
+        double x2, double y2, double z2, double u2, double v2, double x3, double y3, double z3, double u3, double v3,
+        double x4, double y4, double z4, double u4, double v4) {
 
         tessellator.addVertexWithUV(x1, y1, z1, u1, v1);
         tessellator.addVertexWithUV(x2, y2, z2, u2, v2);
