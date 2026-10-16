@@ -408,7 +408,8 @@ public class ViriBlocks {
 
     // Bushes
     private Block registerBush(String name) {
-        Block bush = new BushBlock().setBlockName(name);
+        Block bush = new BushBlock().setBlockName(name)
+            .setBlockTextureName("bushes/" + name);
         GameRegistry.registerBlock(bush, name);
         return bush;
     }
@@ -421,7 +422,8 @@ public class ViriBlocks {
     }
 
     private Block registerTallPlant(String name, int size, int pixelWidth, int textureX) {
-        Block tallPlant = new TallPlantBlock(size, pixelWidth, textureX).setBlockName(name);
+        Block tallPlant = new TallPlantBlock(size, pixelWidth, textureX).setBlockName(name)
+            .setBlockTextureName("complex_plants/" + name);
         GameRegistry.registerBlock(tallPlant, name);
         return tallPlant;
     }
@@ -439,7 +441,8 @@ public class ViriBlocks {
     }
 
     private Block registerFern(String name, int halfSize, double openingAngle, double minimumRadius) {
-        Block fern = new FernBlock(halfSize, openingAngle, minimumRadius).setBlockName(name);
+        Block fern = new FernBlock(halfSize, openingAngle, minimumRadius).setBlockName(name)
+            .setBlockTextureName("ferns/" + name);
         GameRegistry.registerBlock(fern, name);
         return fern;
     }
@@ -450,7 +453,8 @@ public class ViriBlocks {
 
     // Grass Decorators
     private Block registerGroundPlane(String name) {
-        Block groundPlane = new GroundPlaneBlock().setBlockName(name);
+        Block groundPlane = new GroundPlaneBlock().setBlockName(name)
+            .setBlockTextureName("ground/" + name);
         GameRegistry.registerBlock(groundPlane, name);
         return groundPlane;
     }

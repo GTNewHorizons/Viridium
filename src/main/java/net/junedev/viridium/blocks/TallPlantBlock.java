@@ -6,7 +6,6 @@ import net.junedev.viridium.Viridium;
 import net.junedev.viridium.client.renderers.ViriRenderIds;
 import net.junedev.viridium.client.textures.CroppedIcon;
 import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -19,7 +18,7 @@ import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class TallPlantBlock extends Block {
+public class TallPlantBlock extends BaseVegetation {
 
     private final int verticalBlockSize;
     private final int pixelWidth;
@@ -32,7 +31,7 @@ public class TallPlantBlock extends Block {
     private IIcon[] croppedIcons;
 
     public TallPlantBlock(int verticalBlockSize, int pixelWidth, int textureX) {
-        super(Material.grass);
+        super();
 
         if (verticalBlockSize <= 0) {
             Viridium.LOGGER.warn("Tall Plant: Vertical block size must be strictly positive. Falling back to default.");
@@ -43,10 +42,6 @@ public class TallPlantBlock extends Block {
 
         this.pixelWidth = pixelWidth;
         this.textureX = textureX;
-
-        this.setHardness(0.0F);
-        this.setCreativeTab(Viridium.VTab);
-        this.setStepSound(soundTypeGrass);
     }
 
     public TallPlantBlock(int verticalBlockSize, int pixelWidth) {
@@ -108,21 +103,6 @@ public class TallPlantBlock extends Block {
     }
 
     @Override
-    public boolean isOpaqueCube() {
-        return false;
-    }
-
-    @Override
-    public boolean renderAsNormalBlock() {
-        return false;
-    }
-
-    @Override
-    public AxisAlignedBB getCollisionBoundingBoxFromPool(World worldIn, int x, int y, int z) {
-        return null;
-    }
-
-    @Override
     public AxisAlignedBB getSelectedBoundingBoxFromPool(World worldIn, int x, int y, int z) {
 
         double halfWidth = getPixelWidth() / 32D;
@@ -133,15 +113,6 @@ public class TallPlantBlock extends Block {
             x + 0.5D + halfWidth,
             y + 1,
             z + 0.5D + halfWidth);
-    }
-
-    @Override
-    public Block setBlockName(String name) {
-        super.setBlockName(name);
-
-        setBlockTextureName(Viridium.MOD_ID + ":complex_plants/" + name);
-
-        return this;
     }
 
     // Icon stuff
@@ -170,20 +141,4 @@ public class TallPlantBlock extends Block {
         return pixelWidth;
     }
 
-    @SideOnly(Side.CLIENT)
-    public static long getPositionHash(int x, int z) {
-        long hash = (long) x * 3129871L ^ (long) z * 116129781L;
-        return hash * hash * 42317861L + hash * 11L;
-    }
-
-    @SideOnly(Side.CLIENT)
-    public static double getRandomOffset(long hash, int shift, double range) {
-        double normalized = ((hash >> shift) & 15L) / 15.0D; // 0..1
-        return (normalized - 0.5D) * range; // -range/2..+range/2
-    }
-
-    @SideOnly(Side.CLIENT)
-    public static double getRandomRotation(long hash) {
-        return ((hash >>> 32) & 0xFFFFL) / 65536.0D * Math.PI / 2.0D;
-    }
 }

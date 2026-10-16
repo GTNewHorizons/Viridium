@@ -31,12 +31,12 @@ public class TallPlantBlockRenderer implements ISimpleBlockRenderingHandler {
         TallPlantBlock plantBlock = (TallPlantBlock) block;
         double halfSize = plantBlock.getPixelWidth() / (32D);
 
-        long hash = TallPlantBlock.getPositionHash(x, z);
+        long hash = RenderingUtils.getPositionHash(x, z);
 
-        double offsetX = TallPlantBlock.getRandomOffset(hash, 16, RANDOM_OFFSET);
-        double offsetZ = TallPlantBlock.getRandomOffset(hash, 24, RANDOM_OFFSET);
+        double offsetX = RenderingUtils.getRandomOffset(hash, 16, RANDOM_OFFSET);
+        double offsetZ = RenderingUtils.getRandomOffset(hash, 24, RANDOM_OFFSET);
 
-        double rotation = TallPlantBlock.getRandomRotation(hash);
+        double rotation = RenderingUtils.getRandomRotation(hash);
 
         Tessellator tessellator = Tessellator.instance;
 

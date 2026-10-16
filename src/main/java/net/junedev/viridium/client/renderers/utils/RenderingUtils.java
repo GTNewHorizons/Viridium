@@ -32,4 +32,19 @@ public final class RenderingUtils {
 
         tessellator.setColorOpaque_F(1.0F, 1.0F, 1.0F);
     }
+
+    // Randomized hashed positions and rotations
+    public static long getPositionHash(int x, int z) {
+        long hash = (long) x * 3129871L ^ (long) z * 116129781L;
+        return hash * hash * 42317861L + hash * 11L;
+    }
+
+    public static double getRandomOffset(long hash, int shift, double range) {
+        double normalized = ((hash >> shift) & 15L) / 15.0D; // 0..1
+        return (normalized - 0.5D) * range; // -range/2..+range/2
+    }
+
+    public static double getRandomRotation(long hash) {
+        return ((hash >>> 32) & 0xFFFFL) / 65536.0D * Math.PI / 2.0D;
+    }
 }

@@ -1,7 +1,6 @@
 package net.junedev.viridium.client.renderers.blocks;
 
 import net.junedev.viridium.blocks.FernBlock;
-import net.junedev.viridium.blocks.TallPlantBlock;
 import net.junedev.viridium.client.renderers.utils.RenderingUtils;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
@@ -31,12 +30,12 @@ public class FernBlockRenderer implements ISimpleBlockRenderingHandler {
         RenderBlocks renderer) {
         FernBlock plantBlock = (FernBlock) block;
 
-        long hash = TallPlantBlock.getPositionHash(x, z);
+        long hash = RenderingUtils.getPositionHash(x, z);
 
-        double offsetX = TallPlantBlock.getRandomOffset(hash, 16, RANDOM_OFFSET);
-        double offsetZ = TallPlantBlock.getRandomOffset(hash, 24, RANDOM_OFFSET);
+        double offsetX = RenderingUtils.getRandomOffset(hash, 16, RANDOM_OFFSET);
+        double offsetZ = RenderingUtils.getRandomOffset(hash, 24, RANDOM_OFFSET);
 
-        double rotation = TallPlantBlock.getRandomRotation(hash);
+        double rotation = RenderingUtils.getRandomRotation(hash);
 
         Tessellator tessellator = Tessellator.instance;
 
