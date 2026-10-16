@@ -6,6 +6,7 @@ import net.junedev.viridium.blocks.BasePlanks;
 import net.junedev.viridium.blocks.BaseSaplingBlock;
 import net.junedev.viridium.blocks.BushBlock;
 import net.junedev.viridium.blocks.FernBlock;
+import net.junedev.viridium.blocks.GroundPlaneBlock;
 import net.junedev.viridium.blocks.TallPlantBlock;
 import net.junedev.viridium.blocks.sets.SmallTreeBlockSet;
 import net.minecraft.block.Block;
@@ -101,6 +102,12 @@ public class ViriBlocks {
         // Mushrooms
 
         // Grass Decorators
+        autumn_leaf_pile = registerGroundPlane("autumn_leaf_pile");
+        clover_patch = registerGroundPlane("clover_patch_top");
+        dead_leaf_pile = registerGroundPlane("dead_leaf_pile");
+        leaf_pile = registerGroundPlane("leaf_pile");
+        pinestraw = registerGroundPlane("pinestraw");
+        snorkelwort = registerGroundPlane("snorkelwort");
 
         // Vines
 
@@ -442,6 +449,11 @@ public class ViriBlocks {
     // Mushrooms
 
     // Grass Decorators
+    private Block registerGroundPlane(String name) {
+        Block groundPlane = new GroundPlaneBlock().setBlockName(name);
+        GameRegistry.registerBlock(groundPlane, name);
+        return groundPlane;
+    }
 
     // Vines
 
@@ -474,6 +486,7 @@ public class ViriBlocks {
         return sapling;
     }
 
+    // Bushes
     public static Block ainselu;
     public static Block bears_breeches;
     public static Block blackberry;
@@ -551,6 +564,16 @@ public class ViriBlocks {
     public static Block monstera_leaf_large;
     public static Block agave_americana_leaves;
 
+    // Grass Decorators
+    public static Block autumn_leaf_pile;
+    public static Block clover_patch;
+    public static Block dead_leaf_pile;
+    public static Block leaf_pile;
+    public static Block pinestraw;
+    public static Block snorkelwort;
+
+
+    // Large Trees
     public static Block amaranthLog;
     public static Block amaranthLogStripped;
     public static Block amaranthLeaves;

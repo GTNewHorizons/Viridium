@@ -2,6 +2,7 @@ package net.junedev.viridium.client.renderers.blocks;
 
 import net.junedev.viridium.blocks.FernBlock;
 import net.junedev.viridium.blocks.TallPlantBlock;
+import net.junedev.viridium.client.renderers.utils.RenderingUtils;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.Tessellator;
@@ -102,7 +103,7 @@ public class FernBlockRenderer implements ISimpleBlockRenderingHandler {
         // ( c s )
         // ( -s c )
 
-        addDoubleSidedQuad(
+        RenderingUtils.addDoubleSidedQuad(
             tessellator,
             centerX - cos + innerOutwardSin,
             y,
@@ -125,7 +126,7 @@ public class FernBlockRenderer implements ISimpleBlockRenderingHandler {
             uMin,
             vMin);
 
-        addDoubleSidedQuad(
+        RenderingUtils.addDoubleSidedQuad(
             tessellator,
             centerX + sin + innerOutwardCos,
             y,
@@ -148,7 +149,7 @@ public class FernBlockRenderer implements ISimpleBlockRenderingHandler {
             uMin,
             vMin);
 
-        addDoubleSidedQuad(
+        RenderingUtils.addDoubleSidedQuad(
             tessellator,
             centerX + cos - innerOutwardSin,
             y,
@@ -171,7 +172,7 @@ public class FernBlockRenderer implements ISimpleBlockRenderingHandler {
             uMin,
             vMin);
 
-        addDoubleSidedQuad(
+        RenderingUtils.addDoubleSidedQuad(
             tessellator,
             centerX - sin - innerOutwardCos,
             y,
