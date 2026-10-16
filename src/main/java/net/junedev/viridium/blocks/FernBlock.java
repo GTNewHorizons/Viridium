@@ -7,11 +7,8 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class FernBlock extends BaseVegetation {
 
-    @SideOnly(Side.CLIENT)
     private int halfSize = 8;
-    @SideOnly(Side.CLIENT)
     private double openingAngle = 60;
-    @SideOnly(Side.CLIENT)
     private double minimumRadius = 0.0D;
 
     public FernBlock() {
