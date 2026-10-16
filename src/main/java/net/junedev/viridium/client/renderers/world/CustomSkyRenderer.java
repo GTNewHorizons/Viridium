@@ -28,16 +28,15 @@ public class CustomSkyRenderer extends IRenderHandler {
     private static final ResourceLocation SUN_TEXTURE = new ResourceLocation("textures/environment/sun.png");
     private static final ResourceLocation MOON_TEXTURE = new ResourceLocation("textures/environment/moon_phases.png");
 
-    private static final double DOME_RADIUS = 100.0;
-    private static final int DOME_LAT = 32;
-    private static final int DOME_LONG = 64;
-
     private static boolean listenerRegistered = false;
     private static final AtomicInteger reloadGeneration = new AtomicInteger(0);
 
     private static SkyProfile currentSkyProfile = new SkyProfile();
 
     public static volatile SkyDebugHook debugHook = null;
+
+    private static boolean isShaderPackActiveCached = false;
+    private static long lastIrisCheckTime = 0;
 
     private static synchronized void registerReloadListenerOnce() {
         if (listenerRegistered) {
@@ -198,27 +197,29 @@ public class CustomSkyRenderer extends IRenderHandler {
         return angle;
     }
 
-    // TODO: Test and rework this
     private static boolean isShaderPackActive() {
-        if (!irisLookedUp) {
-            irisLookedUp = true;
-            try {
-                Class<?> api = Class.forName("net.irisshaders.iris.api.v0.IrisApi");
-                irisInstance = api.getMethod("getInstance")
-                    .invoke(null);
-                irisInUse = api.getMethod("isShaderPackInUse");
-            } catch (Throwable t) {
-                irisInUse = null;
+        long currentTime = System.currentTimeMillis();
+        if (currentTime - lastIrisCheckTime > 1000) {
+            lastIrisCheckTime = currentTime;
+            if (!irisLookedUp) {
+                irisLookedUp = true;
+                try {
+                    Class<?> api = Class.forName("net.irisshaders.iris.api.v0.IrisApi");
+                    irisInstance = api.getMethod("getInstance").invoke(null);
+                    irisInUse = api.getMethod("isShaderPackInUse");
+                } catch (Throwable t) {
+                    irisInUse = null;
+                }
+            }
+            if (irisInUse != null) {
+                try {
+                    isShaderPackActiveCached = (Boolean) irisInUse.invoke(irisInstance);
+                } catch (Throwable t) {
+                    isShaderPackActiveCached = false;
+                }
             }
         }
-        if (irisInUse == null) {
-            return false;
-        }
-        try {
-            return (Boolean) irisInUse.invoke(irisInstance);
-        } catch (Throwable t) {
-            return false;
-        }
+        return isShaderPackActiveCached;
     }
 
     private void getSkyParameters(World world, Minecraft mc) {
