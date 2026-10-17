@@ -67,5 +67,9 @@ public enum SoilTypeRegistry {
         return genericSoil.contains(soil);
     }
 
+    public static boolean isValidSand(Block soil) {
+        return sand.contains(soil);
+    }
+
     // TODO: When soils have been added, make sure to add functions for checking generic validity and type
 }

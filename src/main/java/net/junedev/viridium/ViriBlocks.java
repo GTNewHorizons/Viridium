@@ -5,6 +5,7 @@ import net.junedev.viridium.blocks.BaseLeaves;
 import net.junedev.viridium.blocks.BasePlanks;
 import net.junedev.viridium.blocks.BaseSaplingBlock;
 import net.junedev.viridium.blocks.BushBlock;
+import net.junedev.viridium.blocks.CoconutPalmSaplingBlock;
 import net.junedev.viridium.blocks.TallPlantBlock;
 import net.junedev.viridium.blocks.WillowVineBlock;
 import net.junedev.viridium.blocks.sets.SmallTreeBlockSet;
@@ -167,7 +168,7 @@ public class ViriBlocks {
         coconutPalmLogStripped = registerLargeLog("coconut_palm_stripped");
         coconutPalmLeaves = registerLeaves("coconut_palm_leaves");
         coconutPalmPlanks = registerPlanks("coconut_palm_planks");
-        coconutPalmSapling = registerLargeSapling("coconut_palm_sapling", coconutPalmLog, coconutPalmLeaves);
+        coconutPalmSapling = registerCoconutPalmSapling("coconut_palm_sapling", coconutPalmLog, coconutPalmLeaves);
 
         coolibahLog = registerLargeLog("coolibah_log");
         coolibahLogStripped = registerLargeLog("coolibah_stripped");
@@ -468,6 +469,13 @@ public class ViriBlocks {
 
     private Block registerLargeSapling(String name, Block trunkWoodBlock, Block leafBlock) {
         Block sapling = new BaseSaplingBlock(trunkWoodBlock, leafBlock).setBlockName(name)
+            .setBlockTextureName("large_trees/" + name);
+        GameRegistry.registerBlock(sapling, name);
+        return sapling;
+    }
+
+    private Block registerCoconutPalmSapling(String name, Block trunkWoodBlock, Block leafBlock) {
+        Block sapling = new CoconutPalmSaplingBlock(trunkWoodBlock, leafBlock).setBlockName(name)
             .setBlockTextureName("large_trees/" + name);
         GameRegistry.registerBlock(sapling, name);
         return sapling;

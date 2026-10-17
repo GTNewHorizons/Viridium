@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Random;
 
 import net.junedev.viridium.Viridium;
+import net.junedev.viridium.worldgen.CoconutPalmTreeGen;
 import net.junedev.viridium.worldgen.LargeDeciduousTreeGen;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockSapling;
@@ -57,13 +58,14 @@ public class BaseSaplingBlock extends BlockSapling {
         if (!net.minecraftforge.event.terraingen.TerrainGen.saplingGrowTree(world, rand, x, y, z)) return;
         String treeName = world.getBlock(x, y, z)
             .getUnlocalizedName();
-        System.out.println(treeName); // TODO: Remove
         world.setBlock(x, y, z, Blocks.air);
-
-        // TODO: Currently does not support any non-deciduous, non-large trees
-        WorldGenerator obj = new LargeDeciduousTreeGen(true, this.leafBlock, this.trunkWoodBlock);
+        WorldGenerator obj;
+        if (treeName.matches("tile.coconut_palm_sapling")) {
+            obj = new CoconutPalmTreeGen(true, this.leafBlock, this.trunkWoodBlock);
+        } else {
+            obj = new LargeDeciduousTreeGen(true, this.leafBlock, this.trunkWoodBlock);
+        }
         if (!(obj.generate(world, rand, x, y, z))) world.setBlock(x, y, z, this);
-
     }
 
     // Setters
