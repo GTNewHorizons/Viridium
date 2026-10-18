@@ -35,16 +35,6 @@ public class LargeDeciduousTreeGen extends LargeTreeWorldGenBase {
         return generateTree(world, new Random(lastSeed), x, y, z);
     }
 
-    public boolean generate(World world, long seed, int x, int y, int z) {
-        // Store the seed
-        lastSeed = seed;
-
-        // Make sure the tree can generate
-        if (!checkTree(world, new Random(lastSeed), x, y, z)) return false;
-
-        return generateTree(world, new Random(seed), x, y, z);
-    }
-
     // Variables to control the generation
     public static final int baseTrunkHeight = 8; // The base height for trees
     public static final int trunkHeightVariance = 4; // The Max extra branches that a tree can have

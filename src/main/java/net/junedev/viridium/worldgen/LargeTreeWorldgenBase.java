@@ -33,19 +33,18 @@ abstract class LargeTreeWorldGenBase extends WorldGenAbstractTree {
         return true;
     }
 
-    public boolean place2x2Trunk(int x, int y, int z, int height, ItemStack logs, World world) {
-        Block logBlock = Block.getBlockFromItem(logs.getItem());
+    public boolean place2x2Trunk(int x, int y, int z, int height, Block log, World world) {
         for (int y1 = y; y1 < y + height; y1++) {
-            setBlockAndNotifyAdequately(world, x, y1, z, logBlock, 0);
-            setBlockAndNotifyAdequately(world, x + 1, y1, z, logBlock, 1);
-            setBlockAndNotifyAdequately(world, x, y1, z + 1, logBlock, 3);
-            setBlockAndNotifyAdequately(world, x + 1, y1, z + 1, logBlock, 2);
+            setBlockAndNotifyAdequately(world, x, y1, z, log, 0);
+            setBlockAndNotifyAdequately(world, x + 1, y1, z, log, 1);
+            setBlockAndNotifyAdequately(world, x, y1, z + 1, log, 3);
+            setBlockAndNotifyAdequately(world, x + 1, y1, z + 1, log, 2);
         }
 
         return true;
     }
 
-    public boolean check2x2Trunk(int x, int y, int z, int height, ItemStack logs, World world, boolean inWater) {
+    public boolean check2x2Trunk(int x, int y, int z, int height, Block log, World world, boolean inWater) {
         if (inWater) {
             for (int y1 = y + 1; y1 < y + height; y1++) {
                 Block b00 = world.getBlock(x, y1, z);
