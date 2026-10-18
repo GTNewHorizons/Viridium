@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Random;
 
 import net.junedev.viridium.Viridium;
-import net.junedev.viridium.worldgen.CoconutPalmTreeGen;
+import net.junedev.viridium.worldgen.AmericanChestnutTreeGen;
 import net.junedev.viridium.worldgen.LargeDeciduousTreeGen;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockSapling;
@@ -60,8 +60,8 @@ public class BaseSaplingBlock extends BlockSapling {
             .getUnlocalizedName();
         world.setBlock(x, y, z, Blocks.air);
         WorldGenerator obj;
-        if (treeName.matches("tile.coconut_palm_sapling")) {
-            obj = new CoconutPalmTreeGen(true, this.leafBlock, this.trunkWoodBlock);
+        if (treeName.matches("tile.american_chestnut_sapling")) {
+            obj = new AmericanChestnutTreeGen(true, this.leafBlock, this.trunkWoodBlock);
         } else {
             obj = new LargeDeciduousTreeGen(true, this.leafBlock, this.trunkWoodBlock);
         }

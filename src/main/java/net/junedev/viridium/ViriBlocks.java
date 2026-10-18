@@ -100,6 +100,16 @@ public class ViriBlocks {
         amaranthPlanks = registerPlanks("amaranth_planks");
         amaranthSapling = registerLargeSapling("amaranth_sapling", amaranthLog, amaranthLeaves);
 
+        americanChestnutLog = registerLargeLog("american_chestnut_log");
+        americanChestnutLogStripped = registerLargeLog("american_chestnut_stripped");
+        americanChestnutLeaves = registerLeaves("american_chestnut_leaves");
+        americanChestnutPlanks = registerPlanks("american_chestnut_planks");
+        americanChestnutPlanksWormy = registerPlanks("american_chestnut_planks_wormy");
+        americanChestnutSapling = registerLargeSapling(
+            "american_chestnut_sapling",
+            americanChestnutLog,
+            americanChestnutLeaves);
+
         americanSycamoreLog = registerLargeLog("american_sycamore_log");
         americanSycamoreLogStripped = registerLargeLog("american_sycamore_stripped");
         americanSycamoreLeaves = registerLeaves("american_sycamore_leaves");
@@ -551,6 +561,13 @@ public class ViriBlocks {
     public static Block amaranthLeaves;
     public static Block amaranthPlanks;
     public static Block amaranthSapling;
+
+    public static Block americanChestnutLog;
+    public static Block americanChestnutLogStripped;
+    public static Block americanChestnutLeaves;
+    public static Block americanChestnutPlanks;
+    public static Block americanChestnutPlanksWormy;
+    public static Block americanChestnutSapling;
 
     public static Block americanSycamoreLog;
     public static Block americanSycamoreLogStripped;
