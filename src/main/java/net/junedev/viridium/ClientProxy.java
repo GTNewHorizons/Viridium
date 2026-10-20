@@ -1,8 +1,8 @@
 package net.junedev.viridium;
 
 import net.junedev.viridium.client.renderers.ViriRenderers;
-import net.junedev.viridium.client.renderers.world.CustomSkyRenderer;
-import net.junedev.viridium.client.renderers.world.SkyEditor.SkyTool;
+import net.junedev.viridium.client.renderers.world.sky.CustomSkyRenderer;
+import net.junedev.viridium.client.renderers.world.sky.SkyEditor.SkyTool;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.world.WorldEvent;
 

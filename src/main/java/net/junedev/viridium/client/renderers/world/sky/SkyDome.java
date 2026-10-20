@@ -1,4 +1,4 @@
-package net.junedev.viridium.client.renderers.world;
+package net.junedev.viridium.client.renderers.world.sky;
 
 import java.nio.FloatBuffer;
 import java.nio.ShortBuffer;

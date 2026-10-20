@@ -1,9 +1,9 @@
-package net.junedev.viridium.client.renderers.world;
+package net.junedev.viridium.client.renderers.world.sky;
 
-import java.lang.reflect.Method;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import net.junedev.viridium.client.renderers.world.SkyEditor.SkyDebugHook;
+import net.irisshaders.iris.api.v0.IrisApi;
+import net.junedev.viridium.client.renderers.world.sky.SkyEditor.SkyDebugHook;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.client.renderer.OpenGlHelper;
@@ -35,9 +35,6 @@ public class CustomSkyRenderer extends IRenderHandler {
 
     public static volatile SkyDebugHook debugHook = null;
 
-    private static boolean isShaderPackActiveCached = false;
-    private static long lastIrisCheckTime = 0;
-
     private static synchronized void registerReloadListenerOnce() {
         if (listenerRegistered) {
             return;
@@ -59,13 +56,6 @@ public class CustomSkyRenderer extends IRenderHandler {
     private int appliedGeneration = -1;
     private SkyShader skyShader;
     private SkyDome dome;
-
-    private static boolean irisLookedUp = false;
-    private static Object irisInstance;
-    private static Method irisInUse;
-
-    private static final boolean FAST_DAY = true;
-    private static final double FAST_DAY_SECONDS = 30.0;
 
     @Override
     public void render(float partialTicks, WorldClient world, Minecraft mc) {
@@ -198,28 +188,8 @@ public class CustomSkyRenderer extends IRenderHandler {
     }
 
     private static boolean isShaderPackActive() {
-        long currentTime = System.currentTimeMillis();
-        if (currentTime - lastIrisCheckTime > 1000) {
-            lastIrisCheckTime = currentTime;
-            if (!irisLookedUp) {
-                irisLookedUp = true;
-                try {
-                    Class<?> api = Class.forName("net.irisshaders.iris.api.v0.IrisApi");
-                    irisInstance = api.getMethod("getInstance").invoke(null);
-                    irisInUse = api.getMethod("isShaderPackInUse");
-                } catch (Throwable t) {
-                    irisInUse = null;
-                }
-            }
-            if (irisInUse != null) {
-                try {
-                    isShaderPackActiveCached = (Boolean) irisInUse.invoke(irisInstance);
-                } catch (Throwable t) {
-                    isShaderPackActiveCached = false;
-                }
-            }
-        }
-        return isShaderPackActiveCached;
+        return IrisApi.getInstance()
+            .isShaderPackInUse();
     }
 
     private void getSkyParameters(World world, Minecraft mc) {

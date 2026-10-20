@@ -1,8 +1,8 @@
-package net.junedev.viridium.client.renderers.world.SkyEditor;
+package net.junedev.viridium.client.renderers.world.sky.SkyEditor;
 
 import java.util.Locale;
 
-import net.junedev.viridium.client.renderers.world.SkyProfile;
+import net.junedev.viridium.client.renderers.world.sky.SkyProfile;
 import net.minecraft.client.gui.GuiScreen;
 
 import com.cleanroommc.modularui.api.GuiAxis;

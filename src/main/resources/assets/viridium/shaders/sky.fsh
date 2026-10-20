@@ -16,12 +16,39 @@ uniform float uHorizonBase;
 uniform float uRainDarkening;
 uniform float uRayleighScale;
 
+const float STAR_SCALE = 120.0;
+const float STAR_THRESHOLD = 0.97;
+
 float hash(vec2 p) {
     return fract(sin(dot(p, vec2(12.9898, 78.233))) * 43758.5453);
 }
 
+float hash13(vec3 p) {
+    return fract(sin(dot(p, vec3(12.9898, 78.233, 37.719))) * 43758.5453);
+}
+
+vec3 starField(vec3 d, float px) {
+    vec3 p = d * STAR_SCALE;
+    vec3 cell = floor(p);
+
+    float h = hash13(cell);
+    if (h < STAR_THRESHOLD) {
+        return vec3(0.0);
+    }
+
+    vec3 pos = vec3(hash13(cell + 1.7), hash13(cell + 3.1), hash13(cell + 5.3)) * 0.6 + 0.2;
+    float dist = length(fract(p) - pos);
+
+    float r = max(0.18, px * 0.75);
+    float s = 1.0 - smoothstep(r * 0.4, r, dist);
+
+    float brightness = 0.4 + 0.6 * fract(h * 97.0);
+    return vec3(0.85, 0.92, 1.0) * s * brightness;
+}
+
 void main() {
     vec3 dir = normalize(vDir);
+    float px = length(fwidth(dir)) * STAR_SCALE;
     float cosTheta = dot(dir, uSunDir);
     float sunHeight = uSunDir.y;
 
@@ -40,6 +67,17 @@ void main() {
     vec3 col = uBase * rayleigh * dayFactor * horizon
     + uSunsetColor * sunsetFactor * sunsetDir
     + mie * uHaloColor * dayFactor;
+
+    float lum = dot(col, vec3(0.299, 0.587, 0.114));
+    float visibility = 1.0 - smoothstep(0.02, 0.22, lum);
+
+    if (visibility > 0.0) {
+        vec3 sd = vec3(dir.x * uSunDir.y - dir.y * uSunDir.x,
+            dir.x * uSunDir.x + dir.y * uSunDir.y,
+            dir.z);
+        float elev = mix(0.4, 1.0, smoothstep(0.0, 0.3, dir.y));
+        col += starField(sd, px) * visibility * (1.0 - uRain) * elev;
+    }
 
     col *= 1.0 - uRain * uRainDarkening;
 

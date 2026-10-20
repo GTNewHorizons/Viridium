@@ -1,4 +1,4 @@
-package net.junedev.viridium.client.renderers.world;
+package net.junedev.viridium.client.renderers.world.sky;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -104,8 +104,10 @@ public class SkyShader {
     }
 
     private static String readShader(ResourceLocation location) {
-        try (InputStream in = Minecraft.getMinecraft().getResourceManager().getResource(location).getInputStream();
-             BufferedReader reader = new BufferedReader(new InputStreamReader(in, "UTF-8"))) {
+        try (InputStream in = Minecraft.getMinecraft()
+            .getResourceManager()
+            .getResource(location)
+            .getInputStream(); BufferedReader reader = new BufferedReader(new InputStreamReader(in, "UTF-8"))) {
             StringBuilder sb = new StringBuilder();
             String line;
             while ((line = reader.readLine()) != null) {
