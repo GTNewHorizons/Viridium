@@ -37,4 +37,5 @@ dependencies {
     //runtimeOnlyNonPublishable("com.github.GTNewHorizons:NotEnoughItems:2.7.69-GTNH:dev")
 
     api("com.cardinalstar.cubicchunks:CubicChunks1710:$cubicChunksVersion:dev")
+    api("com.github.GTNewHorizons:NotEnoughItems:2.8.163-GTNH:dev")
 }
