@@ -3,6 +3,7 @@ package net.junedev.viridium.client.renderers.world.sky;
 import net.minecraft.world.World;
 
 public final class SkyBiomeBlender {
+
     private static final int CELL = 32;
     private static final long REFRESH_NANOS = 1_000_000_000L;
 
@@ -24,8 +25,7 @@ public final class SkyBiomeBlender {
         int cellZ = Math.floorDiv(blockZ, CELL);
 
         long now = System.nanoTime();
-        if (world != cachedWorld || cellX != cachedCellX || cellZ != cachedCellZ
-            || now - lastRefresh > REFRESH_NANOS) {
+        if (world != cachedWorld || cellX != cachedCellX || cellZ != cachedCellZ || now - lastRefresh > REFRESH_NANOS) {
 
             SkyProfile here = SkyProfileHandler.get(world.getBiomeGenForCoords(blockX, blockZ).biomeName);
 
