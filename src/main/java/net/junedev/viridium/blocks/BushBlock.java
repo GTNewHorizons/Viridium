@@ -98,12 +98,8 @@ public class BushBlock extends Block {
 
     // Setters
     @Override
-    public Block setBlockName(String name) {
-        super.setBlockName(name);
-
-        setBlockTextureName(Viridium.MOD_ID + ":bushes/" + name);
-
-        return this;
+    public Block setBlockTextureName(String textureName) {
+        return super.setBlockTextureName(Viridium.MOD_ID + ":" + textureName);
     }
 
     public Block setMovementAttenuation(double movementAttenuation) {
