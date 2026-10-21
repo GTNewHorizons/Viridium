@@ -10,3 +10,4 @@ Artists:
     June | june_username
     Juniper | seventh-june
     Terra
+    PiperPaperRose | studio518
