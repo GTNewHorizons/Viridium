@@ -169,7 +169,6 @@ public class SkyShader {
             for (int i = 0; i < 16; i++) {
                 sb.append(String.format(Locale.ROOT, "%.3f ", matrixBuffer.get(i)));
             }
-            Viridium.LOGGER.info("ModelView: {}", sb);
         }
 
         GL20.glUniformMatrix4(location, false, matrixBuffer);

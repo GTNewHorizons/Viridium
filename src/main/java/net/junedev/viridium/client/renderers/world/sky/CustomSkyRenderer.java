@@ -34,6 +34,7 @@ public class CustomSkyRenderer extends IRenderHandler {
     private static SkyProfile currentSkyProfile = new SkyProfile();
 
     public static volatile SkyDebugHook debugHook = null;
+    private final SkyBiomeBlender blender = new SkyBiomeBlender();
 
     private static synchronized void registerReloadListenerOnce() {
         if (listenerRegistered) {
@@ -193,11 +194,7 @@ public class CustomSkyRenderer extends IRenderHandler {
     }
 
     private void getSkyParameters(World world, Minecraft mc) {
-        int playerX = (int) mc.renderViewEntity.posX;
-        int playerZ = (int) mc.renderViewEntity.posZ;
-        BiomeGenBase biome = world.getBiomeGenForCoords(playerX, playerZ);
-
-        SkyProfile target = SkyProfileHandler.get(biome.biomeName);
+        SkyProfile target = blender.blend(world, mc.renderViewEntity.posX, mc.renderViewEntity.posZ);
         float k = 0.02F;
 
         SkyDebugHook hook = debugHook;
