@@ -46,6 +46,7 @@ vec3 starField(vec3 d, float px) {
     return vec3(0.85, 0.92, 1.0) * s * brightness;
 }
 
+// When changing this, consider also changing skyColor in net.junedev.viridium.client.renderers.world.fog -> SkyMath.java
 void main() {
     vec3 dir = normalize(vDir);
     float px = length(fwidth(dir)) * STAR_SCALE;
