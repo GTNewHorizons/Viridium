@@ -3,6 +3,7 @@ package net.junedev.viridium.client.renderers.world.sky;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import net.irisshaders.iris.api.v0.IrisApi;
+import net.junedev.viridium.client.renderers.world.fog.SkyState;
 import net.junedev.viridium.client.renderers.world.sky.SkyEditor.SkyDebugHook;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.WorldClient;
@@ -73,6 +74,7 @@ public class CustomSkyRenderer extends IRenderHandler {
 
         if (skyShader == null || dome == null || isShaderPackActive()) {
             renderVanillaSky(partialTicks, world, mc);
+            SkyState.invalidate();
             return;
         }
 
@@ -86,6 +88,8 @@ public class CustomSkyRenderer extends IRenderHandler {
         float sunX = (float) -Math.sin(sunAngleRad);
         float sunY = (float) Math.cos(sunAngleRad);
         float sunZ = 0.0F;
+
+        SkyState.update(currentSkyProfile, sunX, sunY, sunZ, rain);
 
         GL11.glDisable(GL11.GL_TEXTURE_2D);
         GL11.glDisable(GL11.GL_LIGHTING);

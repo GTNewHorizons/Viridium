@@ -1,6 +1,7 @@
 package net.junedev.viridium;
 
 import net.junedev.viridium.client.renderers.ViriRenderers;
+import net.junedev.viridium.client.renderers.world.fog.CustomFogRenderer;
 import net.junedev.viridium.client.renderers.world.sky.CustomSkyRenderer;
 import net.junedev.viridium.client.renderers.world.sky.SkyEditor.SkyTool;
 import net.minecraftforge.common.MinecraftForge;
@@ -27,6 +28,7 @@ public class ClientProxy extends CommonProxy {
     @Override
     public void init(FMLInitializationEvent event) {
         MinecraftForge.EVENT_BUS.register(this);
+        MinecraftForge.EVENT_BUS.register(new CustomFogRenderer());
     }
 
     @SubscribeEvent
