@@ -37,7 +37,7 @@ public final class SkyMath {
         float azimuth = 0.25F + 0.75F * (t * t);
 
         float dayFactor = clamp(sunY * 2.0F + p.dayBias);
-        float horizon = clamp(p.horizonBase + dy * 1.2F);
+        float horizon = clamp(p.horizonBase + dy * p.horizonSlope);
 
         float base = rayleigh * dayFactor * horizon;
         float sunset = sunsetFactor * band * azimuth;
@@ -75,7 +75,7 @@ public final class SkyMath {
     }
 
     private static float smoothstep(float x) {
-        float t = clamp((x - (float) 0.0) / ((float) 0.35 - (float) 0.0));
+        float t = clamp((x - (float) 0.0) / 0.35F);
         return t * t * (3.0F - 2.0F * t);
     }
 

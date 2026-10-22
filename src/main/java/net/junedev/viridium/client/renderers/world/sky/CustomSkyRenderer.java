@@ -4,7 +4,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 import net.irisshaders.iris.api.v0.IrisApi;
 import net.junedev.viridium.client.renderers.world.fog.SkyState;
-import net.junedev.viridium.client.renderers.world.sky.SkyEditor.SkyDebugHook;
+import net.junedev.viridium.client.renderers.world.sky.skyeditor.SkyDebugHook;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.client.renderer.OpenGlHelper;

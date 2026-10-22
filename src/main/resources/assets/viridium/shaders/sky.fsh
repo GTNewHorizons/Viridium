@@ -13,6 +13,7 @@ uniform vec3  uSunsetColor;
 uniform float uSunsetWidth;
 uniform float uDayBias;
 uniform float uHorizonBase;
+uniform float uHorizonSlope;
 uniform float uRainDarkening;
 uniform float uRayleighScale;
 
@@ -46,27 +47,35 @@ vec3 starField(vec3 d, float px) {
     return vec3(0.85, 0.92, 1.0) * s * brightness;
 }
 
-// When changing this, consider also changing skyColor in net.junedev.viridium.client.renderers.world.fog -> SkyMath.java
+// When changing the sky color math, keep skyColor in net.junedev.viridium.client.renderers.world.fog.SkyMath in sync (stars are shader-only).
 void main() {
     vec3 dir = normalize(vDir);
     float px = length(fwidth(dir)) * STAR_SCALE;
     float cosTheta = dot(dir, uSunDir);
     float sunHeight = uSunDir.y;
 
+    // Rayleigh scattering (overall sky brightness)
     float rayleigh = uRayleighScale * (1.0 + cosTheta * cosTheta);
 
+    // Mie scattering (Henyey-Greenstein): halo around the sun
     float g2 = uMieG * uMieG;
     float d = max(1.0 + g2 - 2.0 * uMieG * cosTheta, 0.0001);
     float mie = (1.0 - g2) / (4.0 * 3.14159265 * d * sqrt(d));
 
+    // sunsetFactor = how close the sun is to the horizon, band = height mask, azimuth = side of the sun
     float sunsetFactor = max(0.0, 1.0 - abs(sunHeight) * uSunsetWidth);
-    float sunsetDir = 0.5 + 0.5 * cosTheta;
+    float band = 1.0 - smoothstep(0.0, 0.35, abs(dir.y));
+    vec2 h = normalize(dir.xz + vec2(1e-5));
+    vec2 s = normalize(uSunDir.xz + vec2(1e-5));
+    float cosAz = dot(h, s);
+    float az = max(0.5 + 0.5 * cosAz, 0.0);
+    float azimuth = 0.25 + 0.75 * az * az;
 
     float dayFactor = clamp(sunHeight * 2.0 + uDayBias, 0.0, 1.0);
-    float horizon = clamp(uHorizonBase + dir.y * 1.2, 0.0, 1.0);
+    float horizon = clamp(uHorizonBase + dir.y * uHorizonSlope, 0.0, 1.0);
 
     vec3 col = uBase * rayleigh * dayFactor * horizon
-    + uSunsetColor * sunsetFactor * sunsetDir
+    + uSunsetColor * sunsetFactor * band * azimuth
     + mie * uHaloColor * dayFactor;
 
     float lum = dot(col, vec3(0.299, 0.587, 0.114));

@@ -157,20 +157,10 @@ public class SkyShader {
         return location;
     }
 
-    private int debugFrame = 0;
-
     private void uploadMatrix(int location, int matrixEnum) {
         matrixBuffer.clear();
         GL11.glGetFloat(matrixEnum, matrixBuffer);
         matrixBuffer.rewind();
-
-        if (matrixEnum == GL11.GL_MODELVIEW_MATRIX && debugFrame++ % 120 == 0) {
-            StringBuilder sb = new StringBuilder();
-            for (int i = 0; i < 16; i++) {
-                sb.append(String.format(Locale.ROOT, "%.3f ", matrixBuffer.get(i)));
-            }
-        }
-
         GL20.glUniformMatrix4(location, false, matrixBuffer);
     }
 }

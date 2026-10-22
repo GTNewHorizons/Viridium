@@ -1,4 +1,4 @@
-package net.junedev.viridium.client.renderers.world.sky.SkyEditor;
+package net.junedev.viridium.client.renderers.world.sky.skyeditor;
 
 import java.util.Locale;
 
@@ -85,14 +85,34 @@ final class SkyToolGui {
         return b ? "ON" : "OFF";
     }
 
-    private static String toJavaCode(SkyProfile p) {
+    static ModularScreen createScreen() {
+        ModularPanel root = ModularPanel.defaultPanel("viridium_sky_tool_root", 160, 40);
+
+        final IPanelHandler editor = IPanelHandler.simple(root, (parent, player) -> buildEditorPanel(), true);
+
+        root.child(
+            new ButtonWidget<>().size(140, 18)
+                .pos(10, 11)
+                .overlay(IKey.str("Open sky editor"))
+                .onMousePressed(mouseButton -> {
+                    editor.openPanel();
+                    return true;
+                }));
+
+        return new ModularScreen("viridium", root);
+    }
+
+    static String toJavaCode(SkyProfile p) {
         return String.format(
             Locale.ROOT,
-            "PROFILES.put(\"BIOMNAME\", new SkyProfile()\n" + "        .base(%.3fF, %.3fF, %.3fF)\n"
+            "PROFILES.put(\"%s\", new SkyProfile()\n" + "        .base(%.3fF, %.3fF, %.3fF)\n"
                 + "        .mie(%.3fF)\n"
                 + "        .halo(%.3fF, %.3fF, %.3fF)\n"
                 + "        .sunset(%.3fF, %.3fF, %.3fF, %.3fF)\n"
-                + "        .light(%.3fF, %.3fF, %.3fF)\n"
+                + "        .dayBias(%.3fF)\n"
+                + "        .horizonBase(%.3fF)\n"
+                + "        .horizonSlope(%.3fF)\n"
+                + "        .rayleighScale(%.3fF)\n"
                 + "        .rain(%.3fF));",
             p.baseR,
             p.baseG,
@@ -109,23 +129,6 @@ final class SkyToolGui {
             p.horizonBase,
             p.rayleighScale,
             p.rainDarkening);
-    }
-
-    static ModularScreen createScreen() {
-        ModularPanel root = ModularPanel.defaultPanel("viridium_sky_tool_root", 160, 40);
-
-        final IPanelHandler editor = IPanelHandler.simple(root, (parent, player) -> buildEditorPanel(), true);
-
-        root.child(
-            new ButtonWidget<>().size(140, 18)
-                .pos(10, 11)
-                .overlay(IKey.str("Open sky editor"))
-                .onMousePressed(mouseButton -> {
-                    editor.openPanel();
-                    return true;
-                }));
-
-        return new ModularScreen("viridium", root);
     }
 
     private static ModularPanel buildEditorPanel() {

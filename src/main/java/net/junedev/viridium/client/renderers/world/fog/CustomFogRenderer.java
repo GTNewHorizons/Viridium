@@ -1,5 +1,6 @@
 package net.junedev.viridium.client.renderers.world.fog;
 
+import net.junedev.viridium.client.renderers.world.sky.CustomSkyRenderer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.potion.Potion;
 import net.minecraftforge.client.event.EntityViewRenderEvent;
@@ -21,6 +22,10 @@ public final class CustomFogRenderer {
 
         Minecraft mc = Minecraft.getMinecraft();
         if (mc.theWorld == null) {
+            return;
+        }
+
+        if (!(mc.theWorld.provider.getSkyRenderer() instanceof CustomSkyRenderer)) {
             return;
         }
 

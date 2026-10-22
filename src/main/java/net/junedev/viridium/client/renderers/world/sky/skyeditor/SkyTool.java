@@ -1,4 +1,4 @@
-package net.junedev.viridium.client.renderers.world.sky.SkyEditor;
+package net.junedev.viridium.client.renderers.world.sky.skyeditor;
 
 import net.junedev.viridium.client.renderers.world.sky.CustomSkyRenderer;
 import net.junedev.viridium.client.renderers.world.sky.SkyProfile;
@@ -15,7 +15,13 @@ import cpw.mods.fml.common.gameevent.InputEvent;
 
 public final class SkyTool implements SkyDebugHook {
 
-    private static final boolean ENABLED = false;
+    //
+    // ENABLE/DISABLE HERE
+    // |
+    // |
+    // |
+    // \|/
+    private static final boolean ENABLED = true;
 
     static final SkyTool INSTANCE = new SkyTool();
 

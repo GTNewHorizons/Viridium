@@ -1,4 +1,4 @@
-package net.junedev.viridium.client.renderers.world.sky.SkyEditor;
+package net.junedev.viridium.client.renderers.world.sky.skyeditor;
 
 import net.junedev.viridium.client.renderers.world.sky.SkyProfile;
 

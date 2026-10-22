@@ -43,7 +43,5 @@ dependencies {
     implementation('com.github.GTNewHorizons:GTNHLib:0.11.54:dev')
     implementation('com.github.GTNewHorizons:Angelica:2.2.33:dev')
 
-    // implementation("com.cardinalstar.cubicchunks:CubicChunks1710:$cubicChunksVersion:dev")
-    api("com.cardinalstar.cubicchunks:CubicChunks1710:$cubicChunksVersion:dev")
     api("com.github.GTNewHorizons:NotEnoughItems:2.8.163-GTNH:dev")
 }
