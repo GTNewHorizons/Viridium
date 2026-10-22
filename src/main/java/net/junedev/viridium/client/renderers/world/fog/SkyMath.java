@@ -75,11 +75,11 @@ public final class SkyMath {
     }
 
     private static float smoothstep(float x) {
-        float t = clamp((x - (float) 0.0) / 0.35F);
+        float t = clamp(x / 0.35F);
         return t * t * (3.0F - 2.0F * t);
     }
 
     private static float clamp(float v) {
-        return Math.min((float) 1.0, Math.max((float) 0.0, v));
+        return Math.min(1.0F, Math.max(0.0F, v));
     }
 }

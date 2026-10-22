@@ -105,7 +105,7 @@ final class SkyToolGui {
     static String toJavaCode(SkyProfile p) {
         return String.format(
             Locale.ROOT,
-            "PROFILES.put(\"%s\", new SkyProfile()\n" + "        .base(%.3fF, %.3fF, %.3fF)\n"
+            "PROFILES.put(\"BIOMNAME\", new SkyProfile()\n" + "        .base(%.3fF, %.3fF, %.3fF)\n"
                 + "        .mie(%.3fF)\n"
                 + "        .halo(%.3fF, %.3fF, %.3fF)\n"
                 + "        .sunset(%.3fF, %.3fF, %.3fF, %.3fF)\n"
@@ -127,6 +127,7 @@ final class SkyToolGui {
             p.sunsetWidth,
             p.dayBias,
             p.horizonBase,
+            p.horizonSlope,
             p.rayleighScale,
             p.rainDarkening);
     }
