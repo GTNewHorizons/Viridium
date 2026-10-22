@@ -12,7 +12,7 @@ import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
 
-@Mod(modid = Viridium.MOD_ID, version = Tags.VERSION, name = "Viridium", acceptedMinecraftVersions = "[1.7.10]")
+@Mod(modid = Viridium.MOD_ID, version = Tags.VERSION, name = "Viridium", acceptedMinecraftVersions = "[1.7.10]", dependencies = "required-after:angelica")
 public class Viridium {
 
     public static final String MOD_ID = "viridium";
