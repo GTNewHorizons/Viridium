@@ -9,6 +9,8 @@ import net.junedev.viridium.blocks.BaseLeaves;
 import net.junedev.viridium.blocks.BasePlanks;
 import net.junedev.viridium.blocks.BaseSaplingBlock;
 import net.junedev.viridium.blocks.BushBlock;
+import net.junedev.viridium.blocks.FernBlock;
+import net.junedev.viridium.blocks.GroundPlaneBlock;
 import net.junedev.viridium.blocks.SmallLogBlock;
 import net.junedev.viridium.blocks.TallPlantBlock;
 import net.minecraft.block.Block;
@@ -84,6 +86,8 @@ public class ViriTab extends CreativeTabs {
             if (block instanceof BasePlanks) return 50;
             if (block instanceof BaseSaplingBlock) return 60;
             if (block instanceof TallPlantBlock) return 70;
+            if (block instanceof FernBlock) return 80;
+            if (block instanceof GroundPlaneBlock) return 90;
 
             return 0;
         }
