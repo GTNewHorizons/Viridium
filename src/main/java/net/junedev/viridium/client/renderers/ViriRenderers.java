@@ -1,6 +1,8 @@
 package net.junedev.viridium.client.renderers;
 
 import net.junedev.viridium.client.renderers.blocks.BushBlockRenderer;
+import net.junedev.viridium.client.renderers.blocks.FernBlockRenderer;
+import net.junedev.viridium.client.renderers.blocks.GroundPlaneBlockRenderer;
 import net.junedev.viridium.client.renderers.blocks.SmallLogBlockRenderer;
 import net.junedev.viridium.client.renderers.blocks.TallPlantBlockRenderer;
 
@@ -18,6 +20,12 @@ public class ViriRenderers {
 
         ViriRenderIds.tallPlantBlockRenderId = RenderingRegistry.getNextAvailableRenderId();
         RenderingRegistry.registerBlockHandler(new TallPlantBlockRenderer(ViriRenderIds.tallPlantBlockRenderId));
+
+        ViriRenderIds.fernBlockRenderId = RenderingRegistry.getNextAvailableRenderId();
+        RenderingRegistry.registerBlockHandler(new FernBlockRenderer(ViriRenderIds.fernBlockRenderId));
+
+        ViriRenderIds.groundPlaneBlockRenderId = RenderingRegistry.getNextAvailableRenderId();
+        RenderingRegistry.registerBlockHandler(new GroundPlaneBlockRenderer(ViriRenderIds.groundPlaneBlockRenderId));
     }
 
 }
