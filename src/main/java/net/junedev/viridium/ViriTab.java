@@ -4,10 +4,12 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import net.junedev.viridium.blocks.BaseFence;
 import net.junedev.viridium.blocks.BaseFullLog;
 import net.junedev.viridium.blocks.BaseLeaves;
 import net.junedev.viridium.blocks.BasePlanks;
 import net.junedev.viridium.blocks.BaseSaplingBlock;
+import net.junedev.viridium.blocks.BaseStairs;
 import net.junedev.viridium.blocks.BushBlock;
 import net.junedev.viridium.blocks.FernBlock;
 import net.junedev.viridium.blocks.GroundPlaneBlock;
@@ -29,7 +31,7 @@ public class ViriTab extends CreativeTabs {
 
     @Override
     public Item getTabIconItem() {
-        return Item.getItemFromBlock(ViriBlocks.amaranthSapling);
+        return Item.getItemFromBlock(ViriBlocks.amaranth.sapling);
     }
 
     @Override
@@ -84,6 +86,8 @@ public class ViriTab extends CreativeTabs {
             if (block instanceof SmallLogBlock) return 30;
             if (block instanceof BaseLeaves) return 40;
             if (block instanceof BasePlanks) return 50;
+            if (block instanceof BaseStairs) return 51;
+            if (block instanceof BaseFence) return 52;
             if (block instanceof BaseSaplingBlock) return 60;
             if (block instanceof TallPlantBlock) return 70;
             if (block instanceof FernBlock) return 80;
