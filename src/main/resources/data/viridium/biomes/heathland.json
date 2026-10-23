@@ -1,0 +1,32 @@
+{
+  "name": "Heathland",
+  "generation": {
+    "weight": 10,
+    "climateType": "COOL",
+    "dictionaryTypes": ["FOREST", "DENSE"]
+  },
+  "climate": {
+    "temperature": 0.3,
+    "rainfall": 0.3,
+    "rain": true
+  },
+  "terrain": {
+    "height": {
+      "baseHeight": 0.1,
+      "heightVariation": 0.05
+    }
+  },
+  "decoration": {
+    "treesPerChunk": 0,
+    "trees": [
+      { "id": "minecraft:oak", "weight": 1 },
+      { "id": "minecraft:birch", "weight": 5 }
+    ],
+    "grassPerChunk": 6,
+    "flowersPerChunk": 0
+  },
+  "appearance": {
+    "grassColor": "#B1A261",
+    "foliageColor": "#B1A261"
+  }
+}

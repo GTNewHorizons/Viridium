@@ -3,14 +3,14 @@ package net.junedev.viridium.worldgen.biomes;
 import java.util.Random;
 
 import net.junedev.viridium.utils.parser.BlockParser;
-import net.junedev.viridium.worldgen.features.WorldGenSmallPatch;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.BiomeDecorator;
 import net.minecraft.world.biome.BiomeGenBase;
-import net.minecraft.world.gen.feature.WorldGenBlockBlob;
-import net.minecraftforge.event.terraingen.DecorateBiomeEvent;
-import net.minecraftforge.event.terraingen.TerrainGen;
+import net.minecraft.world.gen.feature.WorldGenAbstractTree;
+import net.minecraft.world.gen.feature.WorldGenTallGrass;
+import net.minecraft.world.gen.feature.WorldGenerator;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -23,8 +23,11 @@ public class ViridiumBiomeGen extends BiomeGenBase {
     public Block baseTopBlock = Blocks.grass;
     public Block baseFillerBlock = Blocks.dirt;
     private ViridiumBiomeDefinition.SurfacePatch[] patches = new ViridiumBiomeDefinition.SurfacePatch[0];
-    private ViridiumBiomeDefinition.SmallPatch[] smallPatches = new ViridiumBiomeDefinition.SmallPatch[0];
-    private ViridiumBiomeDefinition.Blob[] blobs = new ViridiumBiomeDefinition.Blob[0];
+    private WeightedSelector<WorldGenAbstractTree> treeSelector;
+    private WeightedSelector<PlantVariant> grassSelector;
+    private ViridiumBiomeDefinition.VegetationEntry[] flowers = new ViridiumBiomeDefinition.VegetationEntry[0];
+
+    private ViridiumBiomeDecorator viridiumDecorator;
 
     public ViridiumBiomeGen(int id) {
         super(id);
@@ -105,44 +108,47 @@ public class ViridiumBiomeGen extends BiomeGenBase {
 
     // Decoration
     @Override
-    public void decorate(World world, Random random, int chunkX, int chunkZ) {
+    public BiomeDecorator createBiomeDecorator() {
+        viridiumDecorator = new ViridiumBiomeDecorator();
+        return getModdedBiomeDecorator(viridiumDecorator);
+    }
 
-        super.decorate(world, random, chunkX, chunkZ);
+    @Override
+    public WorldGenAbstractTree func_150567_a(Random random) {
+        return treeSelector == null || treeSelector.isEmpty() ? super.func_150567_a(random)
+            : treeSelector.select(random);
+    }
 
-        if (!TerrainGen.decorate(world, random, chunkX, chunkZ, DecorateBiomeEvent.Decorate.EventType.CUSTOM)) {
-            return;
-        }
+    @Override
+    public WorldGenerator getRandomWorldGenForGrass(Random random) {
+        if (grassSelector == null || grassSelector.isEmpty()) return super.getRandomWorldGenForGrass(random);
 
-        for (ViridiumBiomeDefinition.SmallPatch patch : smallPatches) {
-            if (random.nextInt(patch.frequency) == 0) {
-                int x = chunkX + random.nextInt(16) + 8;
-                int z = chunkZ + random.nextInt(16) + 8;
-                int y = world.getHeightValue(x, z);
-
-                new WorldGenSmallPatch(BlockParser.getBlock(patch.blockId, Blocks.beacon), patch.radius)
-                    .generate(world, random, x, y, z);
-            }
-        }
-
-        for (ViridiumBiomeDefinition.Blob blob : blobs) {
-            if (random.nextInt(blob.frequency) == 0) {
-                int x = chunkX + random.nextInt(16) + 8;
-                int z = chunkZ + random.nextInt(16) + 8;
-                int y = world.getHeightValue(x, z);
-
-                new WorldGenBlockBlob(BlockParser.getBlock(blob.blockId, Blocks.diamond_block), blob.radius)
-                    .generate(world, random, x, y, z);
-            }
-        }
-
+        PlantVariant selectedGrass = grassSelector.select(random);
+        return new WorldGenTallGrass(selectedGrass.block, selectedGrass.meta);
     }
 
     public void setSmallPatches(ViridiumBiomeDefinition.SmallPatch[] smallPatches) {
-        this.smallPatches = smallPatches;
+        viridiumDecorator.smallPatches = smallPatches;
     }
 
     public void setBlobs(ViridiumBiomeDefinition.Blob[] blobs) {
-        this.blobs = blobs;
+        viridiumDecorator.blobs = blobs;
+    }
+
+    public void setBushes(ViridiumBiomeDefinition.Blob[] bushes) {
+        viridiumDecorator.bushes = bushes;
+    }
+
+    public void setTreeSelector(WeightedSelector<WorldGenAbstractTree> treeSelector) {
+        this.treeSelector = treeSelector;
+    }
+
+    public void setGrassSelector(WeightedSelector<PlantVariant> grassSelector) {
+        this.grassSelector = grassSelector;
+    }
+
+    public void setFlowers(ViridiumBiomeDefinition.VegetationEntry[] flowers) {
+        this.flowers = flowers;
     }
 
 }

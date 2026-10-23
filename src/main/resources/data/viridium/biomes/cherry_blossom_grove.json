@@ -1,0 +1,33 @@
+{
+  "name": "Cherry Blossom Grove",
+  "generation": {
+    "weight": 10,
+    "climateType": "COOL",
+    "dictionaryTypes": ["WET", "FOREST", "DENSE"]
+  },
+  "climate": {
+    "temperature": 0.4,
+    "rainfall": 0.8,
+    "rain": true
+  },
+  "terrain": {
+    "height": {
+      "baseHeight": 0.2,
+      "heightVariation": 0.05
+    }
+  },
+  "decoration": {
+    "treesPerChunk": 2,
+    "trees": [
+      { "id": "minecraft:oak", "weight": 8 },
+      { "id": "minecraft:birch", "weight": 3 },
+      { "id": "minecraft:dark_oak", "weight": 1 }
+    ],
+    "grassPerChunk": 4,
+    "flowersPerChunk": 4
+  },
+  "appearance": {
+    "grassColor": "#7AB88A",
+    "foliageColor": "#7AB88A"
+  }
+}

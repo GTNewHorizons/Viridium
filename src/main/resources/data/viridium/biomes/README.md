@@ -55,8 +55,26 @@ Surface patches replace the surface blocks when the terrain noise is above the s
 Properties related to the world-generation decoration phase.
 
 - `treesPerChunk`: Number of trees per chunk. Default: `0`.
+- `trees`: Weighted tree generator IDs (listed below). Each entry has an `id` and a positive `weight`; weights set the relative chance for each tree attempt. An empty array uses Minecraft's default tree choice.
 - `grassPerChunk`: Number of grass features per chunk. Default: `4`.
 - `flowersPerChunk`: Number of flower features per chunk. Default: `1`.
+
+### Tree generator IDs
+
+| ID | Generator |
+| --- | --- |
+| `minecraft:oak` | Regular oak. |
+| `minecraft:tall_oak` | Large, branched oak. |
+| `minecraft:birch` | Regular birch. |
+| `minecraft:tall_birch` | Tall birch. |
+| `minecraft:acacia` | Regular acacia. |
+| `minecraft:dark_oak` | Dark oak with a 2x2 trunk. |
+| `minecraft:spruce` | Regular spruce with a 1x1 trunk. |
+| `minecraft:tall_spruce` | Giant spruce with a 2x2 trunk and a deep leaf crown. |
+| `minecraft:jungle` | Small jungle tree with vines and a 1x1 trunk. |
+| `minecraft:tall_jungle` | Giant jungle tree with vines and a 2x2 trunk. |
+
+These IDs belong to Viridium's tree generator registry and select vanilla Minecraft 1.7.10 generators.
 
 ### `features`
 
@@ -85,7 +103,3 @@ Optional color overrides. Grass and foliage colors are calculated by Minecraft f
 - `mapColor`: Map color. Optional; if omitted, the Minecraft default is used.
 - `grassColor`: Grass color. Optional; if omitted, Minecraft calculates it from the climate values.
 - `foliageColor`: Foliage color. Optional; if omitted, Minecraft calculates it from the climate values.
-
-
-
-

@@ -1,0 +1,32 @@
+{
+  "name": "Prairie",
+  "generation": {
+    "weight": 10,
+    "climateType": "WARM",
+    "dictionaryTypes": []
+  },
+  "climate": {
+    "temperature": 0.5,
+    "rainfall": 0.3,
+    "rain": true
+  },
+  "terrain": {
+    "height": {
+      "baseHeight": 0.05,
+      "heightVariation": 0.05
+    }
+  },
+  "decoration": {
+    "treesPerChunk": 0,
+    "trees": [
+      { "id": "minecraft:spruce", "weight": 5 },
+      { "id": "minecraft:oak", "weight": 5 }
+    ],
+    "grassPerChunk": 6,
+    "flowersPerChunk": 0
+  },
+  "appearance": {
+    "grassColor": "#87CA84",
+    "foliageColor": "#87CA84"
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "name": "Meadow",
+  "generation": {
+    "weight": 10,
+    "climateType": "COOL",
+    "dictionaryTypes": []
+  },
+  "climate": {
+    "temperature": 0.4,
+    "rainfall": 0.7,
+    "rain": true
+  },
+  "terrain": {
+    "height": {
+      "baseHeight": 0.35,
+      "heightVariation": 0.05
+    }
+  },
+  "decoration": {
+    "treesPerChunk": 1,
+    "trees": [
+      { "id": "minecraft:spruce", "weight": 1 },
+      { "id": "minecraft:oak", "weight": 10 }
+    ],
+    "grassPerChunk": 5,
+    "flowersPerChunk": 5
+  },
+  "appearance": {
+    "grassColor": "#61B16C",
+    "foliageColor": "#61B16C"
+  }
+}

@@ -17,12 +17,16 @@
     }
   },
   "decoration": {
-    "treesPerChunk": 4,
+    "treesPerChunk": 6,
+    "trees": [
+      { "id": "minecraft:oak", "weight": 16 },
+      { "id": "minecraft:birch", "weight": 1 }
+    ],
     "grassPerChunk": 4,
-    "flowersPerChunk": 4
+    "flowersPerChunk": 1
   },
   "appearance": {
-    "grassColor": "#DB6926",
-    "foliageColor": "#CF5829"
+    "grassColor": "#A0AF5E",
+    "foliageColor": "#A0AF5E"
   }
 }
