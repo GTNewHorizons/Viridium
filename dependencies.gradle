@@ -35,7 +35,13 @@
  */
 dependencies {
     //runtimeOnlyNonPublishable("com.github.GTNewHorizons:NotEnoughItems:2.7.69-GTNH:dev")
+    //runtimeOnlyNonPublishable('com.gtnewhorizons.retrofuturabootstrap:RetroFuturaBootstrap:1.1.2@jar')
 
-    api("com.cardinalstar.cubicchunks:CubicChunks1710:$cubicChunksVersion:dev")
+    implementation('com.github.GTNewHorizons:ModularUI2:2.3.92-1.7.10:dev')
+    implementation('com.github.GTNewHorizons:Baubles-Expanded:2.2.25-GTNH:api')
+    implementation('io.github.legacymoddingmc:unimixins:0.3.1:dev')
+    implementation('com.github.GTNewHorizons:GTNHLib:0.11.54:dev')
+    implementation('com.github.GTNewHorizons:Angelica:2.2.33:dev')
+
     api("com.github.GTNewHorizons:NotEnoughItems:2.8.163-GTNH:dev")
 }
