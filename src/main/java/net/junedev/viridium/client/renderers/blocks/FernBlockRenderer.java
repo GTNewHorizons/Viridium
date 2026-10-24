@@ -30,7 +30,7 @@ public class FernBlockRenderer implements ISimpleBlockRenderingHandler {
         RenderBlocks renderer) {
         FernBlock plantBlock = (FernBlock) block;
 
-        long hash = RenderingUtils.getPositionHash(x, z);
+        long hash = RenderingUtils.positionHash(x, z);
 
         double offsetX = RenderingUtils.getRandomOffset(hash, 16, RANDOM_OFFSET);
         double offsetZ = RenderingUtils.getRandomOffset(hash, 24, RANDOM_OFFSET);

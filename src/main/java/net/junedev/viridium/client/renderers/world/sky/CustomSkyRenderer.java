@@ -3,8 +3,8 @@ package net.junedev.viridium.client.renderers.world.sky;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import net.irisshaders.iris.api.v0.IrisApi;
+import net.junedev.viridium.client.renderers.world.designer_tools.DesignerRegistry;
 import net.junedev.viridium.client.renderers.world.fog.SkyState;
-import net.junedev.viridium.client.renderers.world.sky.skyeditor.SkyDebugHook;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.client.renderer.OpenGlHelper;
@@ -33,7 +33,6 @@ public class CustomSkyRenderer extends IRenderHandler {
 
     private static SkyProfile currentSkyProfile = new SkyProfile();
 
-    public static volatile SkyDebugHook debugHook = null;
     private final SkyBiomeBlender blender = new SkyBiomeBlender();
 
     private static synchronized void registerReloadListenerOnce() {
@@ -180,14 +179,6 @@ public class CustomSkyRenderer extends IRenderHandler {
     private float getSkyAngle(WorldClient world, float partialTicks) {
         float angle = world.getCelestialAngle(partialTicks);
 
-        SkyDebugHook hook = debugHook;
-        if (hook != null) {
-            float ticks = hook.overrideTimeTicks();
-            if (ticks >= 0.0F) {
-                long whole = (long) ticks;
-                angle = world.provider.calculateCelestialAngle(whole, ticks - whole);
-            }
-        }
         return angle;
     }
 
@@ -200,15 +191,9 @@ public class CustomSkyRenderer extends IRenderHandler {
         SkyProfile target = blender.blend(world, mc.renderViewEntity.posX, mc.renderViewEntity.posZ);
         float k = 0.02F;
 
-        SkyDebugHook hook = debugHook;
-        if (hook != null) {
-            SkyProfile override = hook.overrideProfile();
-            if (override != null) {
-                target = override;
-                k = 1.0F;
-            }
+        if (DesignerRegistry.active) currentSkyProfile.lerpTo(SkyProfileHandler.DEFAULT, k);
+        else {
+            currentSkyProfile.lerpTo(target, k);
         }
-
-        currentSkyProfile.lerpTo(target, k);
     }
 }

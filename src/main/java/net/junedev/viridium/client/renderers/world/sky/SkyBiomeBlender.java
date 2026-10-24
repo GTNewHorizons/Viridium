@@ -1,5 +1,7 @@
 package net.junedev.viridium.client.renderers.world.sky;
 
+import static net.junedev.viridium.client.renderers.utils.RenderingUtils.smoothstep01;
+
 import net.minecraft.world.World;
 
 public final class SkyBiomeBlender {
@@ -40,8 +42,8 @@ public final class SkyBiomeBlender {
             lastRefresh = now;
         }
 
-        float fx = smooth((float) ((x - (double) cellX * CELL) / CELL));
-        float fz = smooth((float) ((z - (double) cellZ * CELL) / CELL));
+        float fx = smoothstep01((float) ((x - (double) cellX * CELL) / CELL));
+        float fz = smoothstep01((float) ((z - (double) cellZ * CELL) / CELL));
 
         rowA.copyFrom(nodes[0]);
         rowA.lerpTo(nodes[1], fx);
@@ -58,9 +60,5 @@ public final class SkyBiomeBlender {
             return fallback;
         }
         return SkyProfileHandler.get(world.getBiomeGenForCoords(blockX, blockZ).biomeName);
-    }
-
-    private static float smooth(float t) {
-        return t * t * (3.0F - 2.0F * t);
     }
 }
