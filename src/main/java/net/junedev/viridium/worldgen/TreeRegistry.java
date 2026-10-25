@@ -43,7 +43,7 @@ public final class TreeRegistry {
     }
 
     public static WorldGenerator createGenerator(String treeId, WoodBlockSet blockSet, String leafVariant) {
-        // Generators hold mutable state, so each growth attempt needs a new instance.
+        // Create a fresh generator for each tree to avoid reusing state from previous generations.
         return TREES.getOrDefault(treeId, DEFAULT).generatorFactory.apply(blockSet, leafVariant);
     }
 
