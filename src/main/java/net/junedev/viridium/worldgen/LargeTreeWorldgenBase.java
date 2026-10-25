@@ -69,6 +69,50 @@ abstract class LargeTreeWorldGenBase extends WorldGenAbstractTree {
         return true;
     }
 
+    public boolean place4x4PlusSignTrunk(int x, int y, int z, int height, Block log, World world) {
+        for (int y1 = y; y1 < y + height; y1++) {
+            setBlockAndNotifyAdequately(world, x, y1, z, log, 0);
+            setBlockAndNotifyAdequately(world, x - 1, y1, z, log, 1);
+            setBlockAndNotifyAdequately(world, x + 1, y1, z, log, 1);
+            setBlockAndNotifyAdequately(world, x + 2, y1, z, log, 1);
+            setBlockAndNotifyAdequately(world, x, y1, z - 1, log, 3);
+            setBlockAndNotifyAdequately(world, x, y1, z + 1, log, 3);
+            setBlockAndNotifyAdequately(world, x, y1, z + 2, log, 3);
+            setBlockAndNotifyAdequately(world, x - 1, y1, z + 1, log, 2);
+            setBlockAndNotifyAdequately(world, x + 1, y1, z - 1, log, 2);
+            setBlockAndNotifyAdequately(world, x + 1, y1, z + 1, log, 2);
+            setBlockAndNotifyAdequately(world, x + 2, y1, z + 1, log, 2);
+            setBlockAndNotifyAdequately(world, x + 1, y1, z + 2, log, 2);
+        }
+
+        return true;
+    }
+
+    public boolean check4x4PlusSignTrunk(int x, int y, int z, int height, Block log, World world, boolean inWater) {
+        if (inWater) {
+            for (int y1 = y + 1; y1 < y + height; y1++) {
+                Block b00 = world.getBlock(x, y1, z);
+                Block b10 = world.getBlock(x + 1, y1, z);
+                Block b01 = world.getBlock(x, y1, z + 1);
+                Block b11 = world.getBlock(x + 1, y1, z + 1);
+                if (b00 != null && !b00.equals(Blocks.water) && !b00.isReplaceable(world, x, y1, z)) return false;
+                if (b01 != null && !b01.equals(Blocks.water) && !b01.isReplaceable(world, x + 1, y1, z)) return false;
+                if (b10 != null && !b10.equals(Blocks.water) && !b10.isReplaceable(world, x, y1, z + 1)) return false;
+                if (b11 != null && !b11.equals(Blocks.water) && !b11.isReplaceable(world, x + 1, y1, z + 1))
+                    return false;
+            }
+        } else {
+            for (int y1 = y + 1; y1 < y + height; y1++) {
+                if (!world.isAirBlock(x, y1, z)) return false;
+                if (!world.isAirBlock(x + 1, y1, z)) return false;
+                if (!world.isAirBlock(x, y1, z + 1)) return false;
+                if (!world.isAirBlock(x + 1, y1, z + 1)) return false;
+            }
+        }
+
+        return true;
+    }
+
     public boolean placeKnee(int x, int y, int z, int height, int direction, ItemStack logs, ItemStack knees,
         World world) {
         Block logBlock = Block.getBlockFromItem(logs.getItem());
@@ -185,18 +229,16 @@ abstract class LargeTreeWorldGenBase extends WorldGenAbstractTree {
                     double m = (z - start[2]) / (double) direction[2];
                     int x = (int) (start[0] + (direction[0] * m));
                     int y = (int) (start[1] + (direction[1] * m));
-                    if (world.isAirBlock(x, y, z)) setBlockAndNotifyAdequately(world, x, y, z, logBlock, 1 | 8); // TODO:
-                                                                                                                 // Placeholder
-                                                                                                                 // 1
+                    if (world.isAirBlock(x, y, z)) setBlockAndNotifyAdequately(world, x, y, z, logBlock, 1 | 8);
+                    // TODO: Placeholder 1
                 }
             } else {
                 for (int z = start[2]; z <= end[2]; z++) {
                     double m = (z - start[2]) / (double) direction[2];
                     int x = (int) (start[0] + (direction[0] * m));
                     int y = (int) (start[1] + (direction[1] * m));
-                    if (world.isAirBlock(x, y, z)) setBlockAndNotifyAdequately(world, x, y, z, logBlock, 1 | 8); // TODO:
-                                                                                                                 // Placeholder
-                                                                                                                 // 1
+                    if (world.isAirBlock(x, y, z)) setBlockAndNotifyAdequately(world, x, y, z, logBlock, 1 | 8);
+                    // TODO: Placeholder 1
                 }
             }
         } else if (Math.abs(direction[0]) > Math.abs(direction[1])) {
@@ -206,18 +248,16 @@ abstract class LargeTreeWorldGenBase extends WorldGenAbstractTree {
                     double m = (x - start[0]) / (double) direction[0];
                     int z = (int) (start[2] + (direction[2] * m));
                     int y = (int) (start[1] + (direction[1] * m));
-                    if (world.isAirBlock(x, y, z)) setBlockAndNotifyAdequately(world, x, y, z, logBlock, 1 | 4); // TODO:
-                                                                                                                 // Placeholder
-                                                                                                                 // 1
+                    if (world.isAirBlock(x, y, z)) setBlockAndNotifyAdequately(world, x, y, z, logBlock, 1 | 4);
+                    // TODO: Placeholder 1
                 }
             } else {
                 for (int x = start[0]; x <= end[0]; x++) {
                     double m = (x - start[0]) / (double) direction[0];
                     int z = (int) (start[2] + (direction[2] * m));
                     int y = (int) (start[1] + (direction[1] * m));
-                    if (world.isAirBlock(x, y, z)) setBlockAndNotifyAdequately(world, x, y, z, logBlock, 1 | 4); // TODO:
-                                                                                                                 // Placeholder
-                                                                                                                 // 1
+                    if (world.isAirBlock(x, y, z)) setBlockAndNotifyAdequately(world, x, y, z, logBlock, 1 | 4);
+                    // TODO: Placeholder 1
                 }
             }
         } else {
@@ -227,18 +267,16 @@ abstract class LargeTreeWorldGenBase extends WorldGenAbstractTree {
                     double m = (y - start[1]) / (double) direction[1];
                     int x = (int) (start[0] + (direction[0] * m));
                     int z = (int) (start[2] + (direction[2] * m));
-                    if (world.isAirBlock(x, y, z)) setBlockAndNotifyAdequately(world, x, y, z, logBlock, 1); // TODO:
-                                                                                                             // Placeholder
-                                                                                                             // 1
+                    if (world.isAirBlock(x, y, z)) setBlockAndNotifyAdequately(world, x, y, z, logBlock, 1);
+                    // TODO: Placeholder 1
                 }
             } else {
                 for (int y = start[1]; y <= end[1]; y++) {
                     double m = (y - start[1]) / (double) direction[1];
                     int x = (int) (start[0] + (direction[0] * m));
                     int z = (int) (start[2] + (direction[2] * m));
-                    if (world.isAirBlock(x, y, z)) setBlockAndNotifyAdequately(world, x, y, z, logBlock, 1); // TODO:
-                                                                                                             // Placeholder
-                                                                                                             // 1
+                    if (world.isAirBlock(x, y, z)) setBlockAndNotifyAdequately(world, x, y, z, logBlock, 1);
+                    // TODO: Placeholder 1
                 }
             }
         }
@@ -260,24 +298,26 @@ abstract class LargeTreeWorldGenBase extends WorldGenAbstractTree {
                     double m = (z - start[2]) / (double) direction[2];
                     int x = (int) (start[0] + (direction[0] * m));
                     int y = (int) (start[1] + (direction[1] * m));
-                    if (world.isAirBlock(x, y, z)) setBlockAndNotifyAdequately(world, x, y, z, logBlock, 1 | 8); // TODO:
-                                                                                                                 // Placeholder
-                                                                                                                 // 1
+                    if (world.isAirBlock(x, y, z)) setBlockAndNotifyAdequately(world, x, y, z, logBlock, 1 | 8);
+                    // TODO: Placeholder 1
 
                     // Detect the distance
                     int dist = Math.abs(last[0] - x) + Math.abs(last[1] - y) + Math.abs(last[2] - z);
                     // LogHelper.info("Dist: %d", dist);
                     if (dist == 2) {
-                        setBlockAndNotifyAdequately(world, last[0], last[1], z, logBlock, 1 | 8); // TODO: Placeholder 1
+                        setBlockAndNotifyAdequately(world, last[0], last[1], z, logBlock, 1 | 8);
+                        // TODO: Placeholder 1
                     } else if (dist == 3) {
                         if (direction[0] > 0) {
-                            setBlockAndNotifyAdequately(world, x, last[1], last[2], logBlock, 1 | 8); // TODO:
-                                                                                                      // Placeholder 1
-                            setBlockAndNotifyAdequately(world, x, y, last[2], logBlock, 1 | 8); // TODO: Placeholder 1
+                            setBlockAndNotifyAdequately(world, x, last[1], last[2], logBlock, 1 | 8);
+                            // TODO: Placeholder 1
+                            setBlockAndNotifyAdequately(world, x, y, last[2], logBlock, 1 | 8);
+                            // TODO: Placeholder 1
                         } else {
-                            setBlockAndNotifyAdequately(world, last[0], y, last[2], logBlock, 1 | 8); // TODO:
-                                                                                                      // Placeholder 1
-                            setBlockAndNotifyAdequately(world, x, y, last[2], logBlock, 1 | 8); // TODO: Placeholder 1
+                            setBlockAndNotifyAdequately(world, last[0], y, last[2], logBlock, 1 | 8);
+                            // TODO: Placeholder 1
+                            setBlockAndNotifyAdequately(world, x, y, last[2], logBlock, 1 | 8);
+                            // TODO: Placeholder 1
                         }
                     }
 
@@ -290,26 +330,29 @@ abstract class LargeTreeWorldGenBase extends WorldGenAbstractTree {
                     double m = (z - start[2]) / (double) direction[2];
                     int x = (int) (start[0] + (direction[0] * m));
                     int y = (int) (start[1] + (direction[1] * m));
-                    if (world.isAirBlock(x, y, z)) setBlockAndNotifyAdequately(world, x, y, z, logBlock, 1 | 8); // TODO:
-                                                                                                                 // Placeholder
-                                                                                                                 // 1
+                    if (world.isAirBlock(x, y, z)) setBlockAndNotifyAdequately(world, x, y, z, logBlock, 1 | 8);
+                    // TODO: Placeholder 1
 
                     // Detect the distance
                     int dist = Math.abs(last[0] - x) + Math.abs(last[1] - y) + Math.abs(last[2] - z);
                     // LogHelper.info("Dist: %d", dist);
                     if (dist == 2) {
-                        setBlockAndNotifyAdequately(world, x, y, z, logBlock, 1 | 8); // TODO: Placeholder 1
+                        setBlockAndNotifyAdequately(world, x, y, z, logBlock, 1 | 8);
+                        // TODO: Placeholder 1
                         setBlockAndNotifyAdequately(world, last[0], last[1], z, logBlock, 1 | 8);
                     } else if (dist == 3) {
                         if (direction[0] > 0) {
-                            setBlockAndNotifyAdequately(world, x, y, z, logBlock, 1 | 8); // TODO: Placeholder 1
+                            setBlockAndNotifyAdequately(world, x, y, z, logBlock, 1 | 8);
+                            // TODO: Placeholder 1
                             setBlockAndNotifyAdequately(world, x, last[1], last[2], logBlock, 1 | 8);
-                            setBlockAndNotifyAdequately(world, x, y, z, logBlock, 1 | 8); // TODO: Placeholder 1
+                            setBlockAndNotifyAdequately(world, x, y, z, logBlock, 1 | 8);
+                            // TODO: Placeholder 1
                             setBlockAndNotifyAdequately(world, x, y, last[2], logBlock, 1 | 8);
                         } else {
-                            setBlockAndNotifyAdequately(world, last[0], y, last[2], logBlock, 1 | 8); // TODO:
-                                                                                                      // Placeholder 1
-                            setBlockAndNotifyAdequately(world, x, y, last[2], logBlock, 1 | 8); // TODO: Placeholder 1
+                            setBlockAndNotifyAdequately(world, last[0], y, last[2], logBlock, 1 | 8);
+                            // TODO: Placeholder 1
+                            setBlockAndNotifyAdequately(world, x, y, last[2], logBlock, 1 | 8);
+                            // TODO: Placeholder 1
                         }
                     }
 
@@ -325,9 +368,8 @@ abstract class LargeTreeWorldGenBase extends WorldGenAbstractTree {
                     double m = (x - start[0]) / (double) direction[0];
                     int z = (int) (start[2] + (direction[2] * m));
                     int y = (int) (start[1] + (direction[1] * m));
-                    if (world.isAirBlock(x, y, z)) setBlockAndNotifyAdequately(world, x, y, z, logBlock, 1 | 4); // TODO:
-                                                                                                                 // Placeholder
-                                                                                                                 // 1
+                    if (world.isAirBlock(x, y, z)) setBlockAndNotifyAdequately(world, x, y, z, logBlock, 1 | 4);
+                    // TODO: Placeholder 1
 
                     // Detect the distance
                     int dist = Math.abs(last[0] - x) + Math.abs(last[1] - y) + Math.abs(last[2] - z);
@@ -335,12 +377,12 @@ abstract class LargeTreeWorldGenBase extends WorldGenAbstractTree {
                         setBlockAndNotifyAdequately(world, x, last[1], last[2], logBlock, 1 | 4); // TODO: Placeholder 1
                     } else if (dist == 3) {
                         if (direction[2] > 0) {
-                            setBlockAndNotifyAdequately(world, last[0], last[1], z, logBlock, 1 | 4); // TODO:
-                                                                                                      // Placeholder 1
+                            setBlockAndNotifyAdequately(world, last[0], last[1], z, logBlock, 1 | 4);
+                            // TODO: Placeholder 1
                             setBlockAndNotifyAdequately(world, last[0], y, z, logBlock, 1 | 4); // TODO: Placeholder 1
                         } else {
-                            setBlockAndNotifyAdequately(world, last[0], y, last[2], logBlock, 1 | 4); // TODO:
-                                                                                                      // Placeholder 1
+                            setBlockAndNotifyAdequately(world, last[0], y, last[2], logBlock, 1 | 4);
+                            // TODO: Placeholder 1
                             setBlockAndNotifyAdequately(world, last[0], y, z, logBlock, 1 | 4); // TODO: Placeholder 1
                         }
                     }
@@ -354,9 +396,8 @@ abstract class LargeTreeWorldGenBase extends WorldGenAbstractTree {
                     double m = (x - start[0]) / (double) direction[0];
                     int z = (int) (start[2] + (direction[2] * m));
                     int y = (int) (start[1] + (direction[1] * m));
-                    if (world.isAirBlock(x, y, z)) setBlockAndNotifyAdequately(world, x, y, z, logBlock, 1 | 4); // TODO:
-                                                                                                                 // Placeholder
-                                                                                                                 // 1
+                    if (world.isAirBlock(x, y, z)) setBlockAndNotifyAdequately(world, x, y, z, logBlock, 1 | 4);
+                    // TODO: Placeholder 1
 
                     // Detect the distance
                     int dist = Math.abs(last[0] - x) + Math.abs(last[1] - y) + Math.abs(last[2] - z);
@@ -364,12 +405,12 @@ abstract class LargeTreeWorldGenBase extends WorldGenAbstractTree {
                         setBlockAndNotifyAdequately(world, x, last[1], last[2], logBlock, 1 | 4); // TODO: Placeholder 1
                     } else if (dist == 3) {
                         if (direction[2] > 0) {
-                            setBlockAndNotifyAdequately(world, last[0], last[1], z, logBlock, 1 | 4); // TODO:
-                                                                                                      // Placeholder 1
+                            setBlockAndNotifyAdequately(world, last[0], last[1], z, logBlock, 1 | 4);
+                            // TODO: Placeholder 1
                             setBlockAndNotifyAdequately(world, last[0], y, z, logBlock, 1 | 4); // TODO: Placeholder 1
                         } else {
-                            setBlockAndNotifyAdequately(world, last[0], y, last[2], logBlock, 1 | 4); // TODO:
-                                                                                                      // Placeholder 1
+                            setBlockAndNotifyAdequately(world, last[0], y, last[2], logBlock, 1 | 4);
+                            // TODO: Placeholder 1
                             setBlockAndNotifyAdequately(world, last[0], y, z, logBlock, 1 | 4); // TODO: Placeholder 1
                         }
                     }
@@ -386,9 +427,8 @@ abstract class LargeTreeWorldGenBase extends WorldGenAbstractTree {
                     double m = (y - start[1]) / (double) direction[1];
                     int x = (int) (start[0] + (direction[0] * m));
                     int z = (int) (start[2] + (direction[2] * m));
-                    if (world.isAirBlock(x, y, z)) setBlockAndNotifyAdequately(world, x, y, z, logBlock, 1); // TODO:
-                                                                                                             // Placeholder
-                                                                                                             // 1
+                    if (world.isAirBlock(x, y, z)) setBlockAndNotifyAdequately(world, x, y, z, logBlock, 1);
+                    // TODO: Placeholder 1
 
                     // Detect the distance
                     int dist = Math.abs(last[0] - x) + Math.abs(last[1] - y) + Math.abs(last[2] - z);
@@ -413,9 +453,8 @@ abstract class LargeTreeWorldGenBase extends WorldGenAbstractTree {
                     double m = (y - start[1]) / (double) direction[1];
                     int x = (int) (start[0] + (direction[0] * m));
                     int z = (int) (start[2] + (direction[2] * m));
-                    if (world.isAirBlock(x, y, z)) setBlockAndNotifyAdequately(world, x, y, z, logBlock, 1); // TODO:
-                                                                                                             // Placeholder
-                                                                                                             // 1
+                    if (world.isAirBlock(x, y, z)) setBlockAndNotifyAdequately(world, x, y, z, logBlock, 1);
+                    // TODO: Placeholder 1
 
                     // Detect the distance
                     int dist = Math.abs(last[0] - x) + Math.abs(last[1] - y) + Math.abs(last[2] - z);

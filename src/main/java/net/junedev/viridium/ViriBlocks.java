@@ -5,9 +5,9 @@ import net.junedev.viridium.blocks.BaseLeaves;
 import net.junedev.viridium.blocks.BasePlanks;
 import net.junedev.viridium.blocks.BaseSaplingBlock;
 import net.junedev.viridium.blocks.BushBlock;
+import net.junedev.viridium.blocks.CoconutPalmSaplingBlock;
 import net.junedev.viridium.blocks.FernBlock;
 import net.junedev.viridium.blocks.GroundPlaneBlock;
-import net.junedev.viridium.blocks.CoconutPalmSaplingBlock;
 import net.junedev.viridium.blocks.TallPlantBlock;
 import net.junedev.viridium.blocks.WillowVineBlock;
 import net.junedev.viridium.blocks.sets.SmallTreeBlockSet;
@@ -351,7 +351,8 @@ public class ViriBlocks {
         rubberLogStripped = registerLargeLog("rubber_stripped");
         rubberLeaves = registerLeaves("rubber_leaves");
         rubberPlanks = registerPlanks("rubber_planks");
-        rubberSapling = registerLargeSapling("rubber_sapling", rubberLog, rubberLeaves); // TODO: Replace with custom tree
+        rubberSapling = registerLargeSapling("rubber_sapling", rubberLog, rubberLeaves); // TODO: Replace with custom
+                                                                                         // tree
 
         scotsPineLog = registerLargeLog("scots_pine_log");
         scotsPineLogStripped = registerLargeLog("scots_pine_stripped");

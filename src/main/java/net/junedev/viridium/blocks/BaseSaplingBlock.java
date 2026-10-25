@@ -6,6 +6,7 @@ import java.util.Random;
 import net.junedev.viridium.Viridium;
 import net.junedev.viridium.worldgen.AmericanChestnutTreeGen;
 import net.junedev.viridium.worldgen.LargeDeciduousTreeGen;
+import net.junedev.viridium.worldgen.MediumPedunculateOakTreeGen;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockSapling;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -61,9 +62,11 @@ public class BaseSaplingBlock extends BlockSapling {
         world.setBlock(x, y, z, Blocks.air);
         WorldGenerator obj;
         if (treeName.matches("tile.american_chestnut_sapling")) {
-            obj = new AmericanChestnutTreeGen(true, this.leafBlock, this.trunkWoodBlock);
+            obj = new AmericanChestnutTreeGen(true, this.leafBlock, this.trunkWoodBlock, 17, 4, 0.30D, 5, 2, 12, 3);
+        } else if (treeName.matches("tile.pedunculate_oak_sapling")) {
+            obj = new MediumPedunculateOakTreeGen(true, this.leafBlock, this.trunkWoodBlock, 10, 3, 0.40D, 7, 2, 12, 3);
         } else {
-            obj = new LargeDeciduousTreeGen(true, this.leafBlock, this.trunkWoodBlock);
+            obj = new LargeDeciduousTreeGen(true, this.leafBlock, this.trunkWoodBlock, 8, 4, 0.30D, 2, 4, 8, 6);
         }
         if (!(obj.generate(world, rand, x, y, z))) world.setBlock(x, y, z, this);
     }

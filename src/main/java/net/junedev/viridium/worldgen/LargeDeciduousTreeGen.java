@@ -13,12 +13,27 @@ public class LargeDeciduousTreeGen extends LargeTreeWorldGenBase {
 
     public Block leafBlock;
     public Block trunkBlock;
+    public int baseTrunkHeight; // Original default: 8
+    public int trunkHeightVariance; // Original default: 4
+    public double trunkHeightPercent; // Original default: 0.30D
+    public int baseBranchCount; // Original default: 2
+    public int maxExtraBranches; // Original default: 4
+    public int leafCanopyWidth; // Original default: 8
+    public int leafCanopyWidthVariance; // Original default: 6
 
-    public LargeDeciduousTreeGen(boolean par1, Block leafBlock, Block trunkBlock) {
+    public LargeDeciduousTreeGen(boolean par1, Block leafBlock, Block trunkBlock, int baseTrunkHeight,
+        int trunkHeightVariance, double trunkHeightPercent, int baseBranchCount, int maxExtraBranches,
+        int leafCanopyWidth, int leafCanopyWidthVariance) {
         super(par1);
-        this.leafBlock = leafBlock;
-        this.trunkBlock = trunkBlock;
-
+        this.leafBlock = leafBlock; // Primary leaf block
+        this.trunkBlock = trunkBlock; // Primary trunk log
+        this.baseTrunkHeight = baseTrunkHeight; // The base height for trees
+        this.trunkHeightVariance = trunkHeightVariance; // The max extra height that a tree (via main trunk) can have
+        this.trunkHeightPercent = trunkHeightPercent; // What percent of the total height the main trunk extends
+        this.baseBranchCount = baseBranchCount; // The total number of branches + leaf blobs on the tree
+        this.maxExtraBranches = maxExtraBranches; // The max additional branches that can occur on the tree
+        this.leafCanopyWidth = leafCanopyWidth; // How many blocks will this tree cover
+        this.leafCanopyWidthVariance = leafCanopyWidthVariance; // How many extra blocks can the canopy extend
     }
 
     // Store the last seed that was used to generate a tree
@@ -35,21 +50,13 @@ public class LargeDeciduousTreeGen extends LargeTreeWorldGenBase {
         return generateTree(world, new Random(lastSeed), x, y, z);
     }
 
-    // Variables to control the generation
-    public static final int baseTrunkHeight = 8; // The base height for trees
-    public static final int trunkHeightVariance = 4; // The Max extra branches that a tree can have
-    public static final double trunkHeightPercent = 0.30D; // What percent of the total height the main trunk extends
-    public static final int baseBranchCount = 2; // The total number of branches on the tree
-    public static final int maxExtraBranches = 4; // The how many extra branches can occur on the tree
-    public static final int leafCanopyWidth = 8; // How many blocks will this tree cover
-    public static final int leafCanopyWidthVariance = 6; // How many extra blocks may this tree cover
-
     static int last = 0;
 
-    private boolean checkTree(World world, Random rand, int x, int y, int z) {
-        final int height = rand.nextInt(trunkHeightVariance) + baseTrunkHeight;
-        final double radius = (leafCanopyWidth + rand.nextInt(leafCanopyWidthVariance)) / 2.0D;
+    protected boolean checkTree(World world, Random rand, int x, int y, int z) {
+        final int height = rand.nextInt(this.trunkHeightVariance) + this.baseTrunkHeight;
+        final double radius = (this.leafCanopyWidth + rand.nextInt(this.leafCanopyWidthVariance)) / 2.0D;
         final int chunkCheck = (int) Math.ceil(radius) + 5;
+        final int trunkPercent = (int) (height * this.trunkHeightPercent);
 
         // Make sure that a tree can grow on the soil
         if (!SoilTypeRegistry.isValidGeneric(world.getBlock(x, y - 1, z))) return false;
@@ -70,24 +77,18 @@ public class LargeDeciduousTreeGen extends LargeTreeWorldGenBase {
             z + chunkCheck)) return false;
 
         // Draw the main trunk
-        if (!check1x1Trunk(x, y, z, (int) (height * trunkHeightPercent), this.trunkBlock, world)) return false;
+        if (!check1x1Trunk(x, y, z, trunkPercent, this.trunkBlock, world)) return false;
         // Generate the branches
-        if (!checkBranches(
-            world,
-            rand,
-            x,
-            y + (int) (height * trunkHeightPercent),
-            z,
-            height - (int) (height * trunkHeightPercent) - 2,
-            radius)) return false;
+        if (!checkBranches(world, rand, x, y + trunkPercent, z, height - trunkPercent - 2, radius)) return false;
 
         return true;
     }
 
-    private boolean generateTree(World world, Random rand, int x, int y, int z) {
-        final int height = rand.nextInt(trunkHeightVariance) + baseTrunkHeight;
-        final double radius = (leafCanopyWidth + rand.nextInt(leafCanopyWidthVariance)) / 2.0D;
+    protected boolean generateTree(World world, Random rand, int x, int y, int z) {
+        final int height = rand.nextInt(this.trunkHeightVariance) + this.baseTrunkHeight;
+        final double radius = (this.leafCanopyWidth + rand.nextInt(this.leafCanopyWidthVariance)) / 2.0D;
         final int chunkCheck = (int) Math.ceil(radius) + 1;
+        final int trunkPercent = (int) (height * this.trunkHeightPercent);
 
         // Make sure that a tree can grow on the soil
         if (!SoilTypeRegistry.isValidGeneric(world.getBlock(x, y - 1, z))) return false;
@@ -108,16 +109,9 @@ public class LargeDeciduousTreeGen extends LargeTreeWorldGenBase {
             z + chunkCheck)) return false;
 
         // Draw the main trunk
-        if (place1x1Trunk(x, y, z, (int) (height * trunkHeightPercent), this.trunkBlock, world)) {
+        if (place1x1Trunk(x, y, z, trunkPercent, this.trunkBlock, world)) {
             // Generate the branches
-            generateBranches(
-                world,
-                rand,
-                x,
-                y + (int) (height * trunkHeightPercent),
-                z,
-                height - (int) (height * trunkHeightPercent) - 2,
-                radius);
+            generateBranches(world, rand, x, y + trunkPercent, z, height - trunkPercent - 2, radius);
 
             return true;
         }
@@ -126,7 +120,7 @@ public class LargeDeciduousTreeGen extends LargeTreeWorldGenBase {
     }
 
     public boolean checkBranches(World world, Random rand, int x, int y, int z, int height, double radius) {
-        int branchCount = baseBranchCount + rand.nextInt(maxExtraBranches);
+        int branchCount = this.baseBranchCount + rand.nextInt(this.maxExtraBranches);
         double curAngle = 0.0D;
 
         double[] average = { 0, 0, 0 };
@@ -182,7 +176,7 @@ public class LargeDeciduousTreeGen extends LargeTreeWorldGenBase {
     }
 
     public void generateBranches(World world, Random rand, int x, int y, int z, int height, double radius) {
-        int branchCount = baseBranchCount + rand.nextInt(maxExtraBranches);
+        int branchCount = this.baseBranchCount + rand.nextInt(this.maxExtraBranches);
         double curAngle = 0.0D;
 
         double[] average = { 0, 0, 0 };
@@ -231,7 +225,170 @@ public class LargeDeciduousTreeGen extends LargeTreeWorldGenBase {
         average[2] /= branchCount;
 
         // Generate the canopy
-        generateCanopy(world, rand, average[0] + x, y, average[2] + z, radius, height, this.leafBlock);
+        // generateCanopy(world, rand, average[0] + x, y, average[2] + z, radius, height, this.leafBlock);
+        generateCanopy(world, rand, x, y, z, radius, height, this.leafBlock);
+
+        // Generate the center cone
+        generateVerticalCone(world, x, y, z, height - 1, .75, 2, this.leafBlock);
+
+    }
+
+    public void checkBranches2x2(World world, Random rand, int x, int y, int z, int height, double radius,
+        int startOffset) {
+        int branchCount = this.baseBranchCount + rand.nextInt(this.maxExtraBranches);
+        final int trunkPercent = (int) (height * this.trunkHeightPercent);
+        double curAngle = 0.0D;
+        int width = (int) (2 * radius);
+        width = (width % 2 == 1) ? width + 1 : width;
+        int offset = width / 2;
+
+        double[] average = { 0, 0, 0 };
+        int branchStart = trunkPercent + startOffset;
+        int maxBranchHeight = height - trunkPercent - 3;
+        int[] start = { x, y, z };
+        int[] end = { 0, 0, 0 };
+        Queue<int[]> branches = new LinkedList<int[]>();
+
+        // Generate the branches
+        for (int branch = 0; branch < branchCount; branch++) {
+            double angle = (rand.nextInt(50) + 35) / 90.0D;
+            // double thisHeight = (height + 1) * Math.sin(angle) / 1.3;
+            double thisRadius = radius * Math.cos(angle);
+
+            // Get the branch rotation
+            curAngle += (rand.nextInt(360 / branchCount) + (360 / branchCount)) / 90.0D;
+
+            // The end position
+            end[0] = rand.nextInt(width + 1) - offset + x;
+            end[1] = rand.nextInt(maxBranchHeight) + branchStart + y;
+            end[2] = rand.nextInt(width + 1) - offset + z;
+
+            // Max of tree height
+            // Min of branch start
+            start[1] = Math
+                .max(branchStart + y, Math.min(height, rand.nextInt(Math.max(end[1] - branchStart - y, 1)) + y));
+
+            if (end[0] > x && end[2] > z) {
+                start[0] = x + 1;
+                start[2] = z + 1;
+            } else if (end[0] > x) {
+                start[0] = x + 1;
+                start[2] = z;
+            } else if (end[2] > z) {
+                start[0] = x;
+                start[2] = z + 1;
+            } else {
+                start[0] = x;
+                start[2] = z;
+            }
+
+            // Check the branch
+            checkBlockLine(start, end, this.trunkBlock, world);
+
+            int x1 = (int) ((thisRadius) * Math.cos(curAngle));
+            int z1 = (int) ((thisRadius) * Math.sin(curAngle));
+
+            int[] node = new int[] { end[0] + x1, end[1], end[2] + z1 };
+
+            // Add the branch end for leaf generation
+            branches.add(node);
+        }
+
+        // Place the branch tips
+        Iterator<int[]> itt = branches.iterator();
+        while (itt.hasNext()) {
+            int[] cluster = itt.next();
+            checkLeafCluster(world, cluster[0], cluster[1], cluster[2], 2, 1);
+        }
+
+        // Calculate the center position
+        average[0] /= branchCount;
+        average[1] = (branchCount / average[1]) + 2.3D;
+        average[2] /= branchCount;
+
+        // Generate the canopy
+        // generateCanopy(world, rand, average[0] + x, y, average[2] + z, radius, height, this.leafBlock);
+        checkCanopy(world, x, y, z, radius, height);
+
+    }
+
+    public void generateBranches2x2(World world, Random rand, int x, int y, int z, int height, double radius,
+        int startOffset) {
+        int branchCount = this.baseBranchCount + rand.nextInt(this.maxExtraBranches);
+        final int trunkPercent = (int) (height * this.trunkHeightPercent);
+        double curAngle = 0.0D;
+        int width = ((int) (2 * radius) % 2 == 1) ? (int) (2 * radius) + 1 : (int) (2 * radius);
+        int offset = width / 2;
+
+        double[] average = { 0, 0, 0 };
+        int branchStart = trunkPercent + startOffset;
+        int maxBranchHeight = height - trunkPercent - 1;
+        int[] start = { x, y, z };
+        int[] end = { 0, 0, 0 };
+        Queue<int[]> branches = new LinkedList<int[]>();
+
+        // Generate the branches
+        for (int branch = 0; branch < branchCount; branch++) {
+            curAngle += (rand.nextInt(360 / branchCount) + (360 / branchCount)) / 90.0D;
+            double angle = (rand.nextInt(50) + 35) / 90.0D;
+            double thisRadius = radius * Math.cos(angle);
+
+            // The end position
+            int x1 = (int) ((thisRadius) * Math.cos(curAngle));
+            int z1 = (int) ((thisRadius) * Math.sin(curAngle));
+
+            // end[0] = rand.nextInt(width) - offset + x;
+            end[0] = x1 + x;
+            end[1] = rand.nextInt(maxBranchHeight) + branchStart + y;
+            // end[2] = rand.nextInt(width) - offset + z;
+            end[2] = z1 + z;
+
+            // Max of tree height
+            // Min of branch start
+            start[1] = Math
+                .max(branchStart + y, Math.min(height, rand.nextInt(Math.max(end[1] - branchStart - y, 1)) + y));
+
+            if (end[0] > x && end[2] > z) {
+                start[0] = x + 1;
+                start[2] = z + 1;
+            } else if (end[0] > x) {
+                start[0] = x + 1;
+                start[2] = z;
+            } else if (end[2] > z) {
+                start[0] = x;
+                start[2] = z + 1;
+            } else if (end[2] < z) {
+                start[0] = x;
+                start[2] = z + 1;
+            } else {
+                start[0] = x;
+                start[2] = z;
+            }
+
+            // Place the branch
+            placeBlockLine(start, end, this.trunkBlock, world);
+
+            int[] node = new int[] { end[0], end[1], end[2] };
+
+            // Add the branch end for leaf generation
+            branches.add(node);
+        }
+
+        // Place the branch tips
+        Iterator<int[]> itt = branches.iterator();
+        while (itt.hasNext()) {
+            int[] cluster = itt.next();
+            generateLeafCluster(world, cluster[0], cluster[1], cluster[2], 2, 1, this.leafBlock);
+        }
+
+        // Calculate the center position
+        average[0] /= branchCount;
+        average[1] = (branchCount / average[1]) + 2.3D;
+        average[2] /= branchCount;
+
+        // Generate the canopy
+        // generateCanopy(world, rand, average[0] + x, y, average[2] + z, radius, height, this.leafBlock);
+        generateCanopy(world, rand, x, y, z, radius, height, this.leafBlock);
 
         // Generate the center cone
         generateVerticalCone(world, x, y, z, height - 1, .75, 2, this.leafBlock);
@@ -295,8 +452,6 @@ public class LargeDeciduousTreeGen extends LargeTreeWorldGenBase {
                 try {
                     block = world.getBlock((int) (x1 + x), (int) y, (int) (z1 + z));
                 } catch (Exception e) {
-
-                    // LogHelper.info("Japanese Maple tree tried to generate in an ungenerated chunk.");
                     return false;
                 }
 
