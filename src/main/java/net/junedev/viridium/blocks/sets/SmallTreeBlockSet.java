@@ -1,17 +1,14 @@
 package net.junedev.viridium.blocks.sets;
 
 import net.junedev.viridium.blocks.BaseBark;
-import net.junedev.viridium.blocks.BaseFence;
 import net.junedev.viridium.blocks.BaseLeaves;
-import net.junedev.viridium.blocks.BasePlanks;
 import net.junedev.viridium.blocks.BaseSaplingBlock;
-import net.junedev.viridium.blocks.BaseStairs;
 import net.junedev.viridium.blocks.SmallLogBlock;
 import net.minecraft.block.Block;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 
-public class SmallTreeBlockSet extends WoodBlockSet{
+public class SmallTreeBlockSet extends WoodBlockSet {
 
     public final Block log;
     public final Block bark;
@@ -45,5 +42,7 @@ public class SmallTreeBlockSet extends WoodBlockSet{
     }
 
     @Override
-    public String getAssetDirectory() { return "small_trees/"; }
+    public String getAssetDirectory() {
+        return "small_trees/";
+    }
 }

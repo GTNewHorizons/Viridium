@@ -1,14 +1,14 @@
 package net.junedev.viridium.blocks.sets;
 
-import cpw.mods.fml.common.registry.GameRegistry;
 import net.junedev.viridium.blocks.BaseFence;
 import net.junedev.viridium.blocks.BaseFenceGate;
-import net.junedev.viridium.blocks.BaseFullLog;
 import net.junedev.viridium.blocks.BasePlanks;
 import net.junedev.viridium.blocks.BaseSlab;
 import net.junedev.viridium.blocks.BaseStairs;
 import net.junedev.viridium.items.BaseSlabItem;
 import net.minecraft.block.Block;
+
+import cpw.mods.fml.common.registry.GameRegistry;
 
 public class WoodBlockSet {
 
@@ -43,5 +43,7 @@ public class WoodBlockSet {
         GameRegistry.registerBlock(slab, BaseSlabItem.class, name + "_planks_slab", slab, doubleSlab);
     }
 
-    public String getAssetDirectory(){ return ""; }
+    public String getAssetDirectory() {
+        return "";
+    }
 }

@@ -39,7 +39,7 @@ public class BaseFenceGate extends BlockFenceGate {
 
     @Override
     public float getExplosionResistance(Entity exploder, World world, int x, int y, int z, double explosionX,
-                                        double explosionY, double explosionZ) {
+        double explosionY, double explosionZ) {
         return sourceBlock.getExplosionResistance(exploder, world, x, y, z, explosionX, explosionY, explosionZ);
     }
 

@@ -57,7 +57,7 @@ public class BaseFence extends BlockFence {
         Block block = world.getBlock(x, y, z);
 
         // By default minecraft checks if the block is a vanilla fence gate
-        if(block instanceof BaseFenceGate) return true;
+        if (block instanceof BaseFenceGate) return true;
 
         return super.canConnectFenceTo(world, x, y, z);
     }

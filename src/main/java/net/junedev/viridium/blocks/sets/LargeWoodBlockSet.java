@@ -1,12 +1,7 @@
 package net.junedev.viridium.blocks.sets;
 
 import net.junedev.viridium.blocks.BaseBark;
-import net.junedev.viridium.blocks.BaseFence;
 import net.junedev.viridium.blocks.BaseFullLog;
-import net.junedev.viridium.blocks.BasePlanks;
-import net.junedev.viridium.blocks.BaseSlab;
-import net.junedev.viridium.blocks.BaseStairs;
-import net.junedev.viridium.items.BaseSlabItem;
 import net.minecraft.block.Block;
 
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -36,5 +31,7 @@ public class LargeWoodBlockSet extends WoodBlockSet {
     }
 
     @Override
-    public String getAssetDirectory() { return "large_trees/"; }
+    public String getAssetDirectory() {
+        return "large_trees/";
+    }
 }
