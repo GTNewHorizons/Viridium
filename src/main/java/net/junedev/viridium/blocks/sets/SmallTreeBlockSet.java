@@ -29,7 +29,7 @@ public class SmallTreeBlockSet {
             .setBlockTextureName(ASSET_DIRECTORY + name + "_leaves");
         planks = new BasePlanks().setBlockName(name + "_planks")
             .setBlockTextureName(ASSET_DIRECTORY + name + "_planks");
-        sapling = new BaseSaplingBlock().setBlockName(name + "_sapling")
+        sapling = new BaseSaplingBlock(smallLog, leaves).setBlockName(name + "_sapling")
             .setBlockTextureName(ASSET_DIRECTORY + name + "_sapling");
 
         // TODO: Change to custom block type?
