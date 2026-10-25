@@ -9,6 +9,7 @@ public class BaseStairs extends BlockStairs {
     public BaseStairs(Block fullBlock) {
         super(fullBlock, 0);
 
+        this.useNeighborBrightness = true;
         this.setCreativeTab(Viridium.VTab);
     }
 }

@@ -9,8 +9,6 @@ import cpw.mods.fml.common.registry.GameRegistry;
 
 public class LargeTreeBlockSet extends LargeWoodBlockSet {
 
-    private static final String ASSET_DIRECTORY = "large_trees/";
-
     public final Block leaves;
     public final Block sapling;
 
@@ -18,9 +16,9 @@ public class LargeTreeBlockSet extends LargeWoodBlockSet {
         super(name);
 
         leaves = new BaseLeaves().setBlockName(name + "_leaves")
-            .setBlockTextureName(ASSET_DIRECTORY + name + "_leaves");
+            .setBlockTextureName(getAssetDirectory() + name + "_leaves");
         sapling = new BaseSaplingBlock().setBlockName(name + "_sapling")
-            .setBlockTextureName(ASSET_DIRECTORY + name + "_sapling");
+            .setBlockTextureName(getAssetDirectory() + name + "_sapling");
 
         GameRegistry.registerBlock(leaves, name + "_leaves");
         GameRegistry.registerBlock(sapling, name + "_sapling");

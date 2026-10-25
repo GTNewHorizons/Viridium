@@ -9,8 +9,6 @@ import cpw.mods.fml.common.registry.GameRegistry;
 
 public class WhitePoplarBlockSet extends LargeWoodBlockSet {
 
-    private static final String ASSET_DIRECTORY = "large_trees/";
-
     public final Block leaves_yellow;
     public final Block leaves_orange;
     public final Block leaves_red;
@@ -23,18 +21,18 @@ public class WhitePoplarBlockSet extends LargeWoodBlockSet {
         super(name);
 
         leaves_yellow = new BaseLeaves().setBlockName(name + "_leaves_yellow")
-            .setBlockTextureName(ASSET_DIRECTORY + name + "_leaves_yellow");
+            .setBlockTextureName(getAssetDirectory() + name + "_leaves_yellow");
         leaves_orange = new BaseLeaves().setBlockName(name + "_leaves_orange")
-            .setBlockTextureName(ASSET_DIRECTORY + name + "_leaves_orange");
+            .setBlockTextureName(getAssetDirectory() + name + "_leaves_orange");
         leaves_red = new BaseLeaves().setBlockName(name + "_leaves_red")
-            .setBlockTextureName(ASSET_DIRECTORY + name + "_leaves_red");
+            .setBlockTextureName(getAssetDirectory() + name + "_leaves_red");
 
         sapling_yellow = new BaseSaplingBlock().setBlockName(name + "_sapling_yellow")
-            .setBlockTextureName(ASSET_DIRECTORY + name + "_sapling_yellow");
+            .setBlockTextureName(getAssetDirectory() + name + "_sapling_yellow");
         sapling_orange = new BaseSaplingBlock().setBlockName(name + "_sapling_orange")
-            .setBlockTextureName(ASSET_DIRECTORY + name + "_sapling_orange");
+            .setBlockTextureName(getAssetDirectory() + name + "_sapling_orange");
         sapling_red = new BaseSaplingBlock().setBlockName(name + "_sapling_red")
-            .setBlockTextureName(ASSET_DIRECTORY + name + "_sapling_red");
+            .setBlockTextureName(getAssetDirectory() + name + "_sapling_red");
 
         GameRegistry.registerBlock(leaves_yellow, name + "_leaves_yellow");
         GameRegistry.registerBlock(leaves_orange, name + "_leaves_orange");
