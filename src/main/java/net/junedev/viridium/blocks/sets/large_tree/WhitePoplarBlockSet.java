@@ -1,8 +1,8 @@
 package net.junedev.viridium.blocks.sets.large_tree;
 
+import net.junedev.viridium.blocks.sets.LargeWoodBlockSet;
 import net.junedev.viridium.blocks.vanilike.BaseLeaves;
 import net.junedev.viridium.blocks.vanilike.BaseSaplingBlock;
-import net.junedev.viridium.blocks.sets.LargeWoodBlockSet;
 import net.minecraft.block.Block;
 
 import cpw.mods.fml.common.registry.GameRegistry;

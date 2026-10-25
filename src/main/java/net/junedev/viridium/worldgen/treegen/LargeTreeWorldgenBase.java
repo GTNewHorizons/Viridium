@@ -1,4 +1,4 @@
-package net.junedev.viridium.worldgen;
+package net.junedev.viridium.worldgen.treegen;
 
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;

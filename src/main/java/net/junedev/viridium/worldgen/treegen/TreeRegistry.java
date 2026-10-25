@@ -1,4 +1,4 @@
-package net.junedev.viridium.worldgen;
+package net.junedev.viridium.worldgen.treegen;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -43,7 +43,7 @@ public final class TreeRegistry {
     }
 
     public static WorldGenerator createGenerator(String treeId, WoodBlockSet blockSet, String leafVariant) {
-        // Create a fresh generator for each tree to avoid reusing state from previous generations.
+        // Create a new generator for each tree to avoid reusing state from previous generations
         return TREES.getOrDefault(treeId, DEFAULT).generatorFactory.apply(blockSet, leafVariant);
     }
 

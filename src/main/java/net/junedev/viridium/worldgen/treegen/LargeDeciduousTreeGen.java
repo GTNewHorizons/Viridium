@@ -1,14 +1,13 @@
-package net.junedev.viridium.worldgen;
+package net.junedev.viridium.worldgen.treegen;
 
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Random;
 
-import net.junedev.viridium.blocks.sets.SmallTreeBlockSet;
 import net.junedev.viridium.blocks.sets.WoodBlockSet;
 import net.junedev.viridium.blocks.sets.large_tree.LargeTreeBlockSet;
-import net.junedev.viridium.blocks.sets.large_tree.WhitePoplarBlockSet;
+import net.junedev.viridium.worldgen.SoilTypeRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.world.World;
 
@@ -45,30 +44,11 @@ public class LargeDeciduousTreeGen extends LargeTreeWorldGenBase {
         int trunkHeightVariance, double trunkHeightPercent, int baseBranchCount, int maxExtraBranches,
         int leafCanopyWidth, int leafCanopyWidthVariance) {
         super(par1);
-        if (blockSet instanceof LargeTreeBlockSet) {
-            LargeTreeBlockSet tree = (LargeTreeBlockSet) blockSet;
+
+        // Cast to a valid type and throw exception if blockSet could not be cast
+        if (blockSet instanceof LargeTreeBlockSet tree) {
             this.leafBlock = tree.leaves;
             this.trunkBlock = tree.log;
-        } else if (blockSet instanceof SmallTreeBlockSet) {
-            SmallTreeBlockSet tree = (SmallTreeBlockSet) blockSet;
-            this.leafBlock = tree.leaves;
-            this.trunkBlock = tree.log;
-        } else if (blockSet instanceof WhitePoplarBlockSet) {
-            WhitePoplarBlockSet tree = (WhitePoplarBlockSet) blockSet;
-            this.trunkBlock = tree.log;
-            switch (leafVariant) {
-                case "yellow":
-                    this.leafBlock = tree.leaves_yellow;
-                    break;
-                case "orange":
-                    this.leafBlock = tree.leaves_orange;
-                    break;
-                case "red":
-                    this.leafBlock = tree.leaves_red;
-                    break;
-                default:
-                    throw new IllegalArgumentException("Unknown white poplar leaf variant: " + leafVariant);
-            }
         } else {
             throw new IllegalArgumentException("Tree generation requires a tree block set");
         }

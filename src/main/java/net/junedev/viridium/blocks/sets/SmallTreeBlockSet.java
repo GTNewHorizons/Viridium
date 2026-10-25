@@ -1,9 +1,9 @@
 package net.junedev.viridium.blocks.sets;
 
+import net.junedev.viridium.blocks.SmallLogBlock;
 import net.junedev.viridium.blocks.vanilike.BaseBark;
 import net.junedev.viridium.blocks.vanilike.BaseLeaves;
 import net.junedev.viridium.blocks.vanilike.BaseSaplingBlock;
-import net.junedev.viridium.blocks.SmallLogBlock;
 import net.minecraft.block.Block;
 
 import cpw.mods.fml.common.registry.GameRegistry;

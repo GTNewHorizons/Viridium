@@ -1,8 +1,9 @@
-package net.junedev.viridium.worldgen;
+package net.junedev.viridium.worldgen.treegen;
 
 import java.util.Random;
 
 import net.junedev.viridium.blocks.sets.WoodBlockSet;
+import net.junedev.viridium.worldgen.SoilTypeRegistry;
 import net.minecraft.world.World;
 
 public class MediumPedunculateOakTreeGen extends LargeDeciduousTreeGen {

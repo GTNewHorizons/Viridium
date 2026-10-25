@@ -4,10 +4,10 @@ import net.junedev.viridium.Viridium;
 import net.minecraft.block.BlockVine;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.util.IIcon;
+import net.minecraft.world.IBlockAccess;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.world.IBlockAccess;
 
 public class WillowVineBlock extends BlockVine {
 

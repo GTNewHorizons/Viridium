@@ -6,7 +6,7 @@ import java.util.Random;
 
 import net.junedev.viridium.Viridium;
 import net.junedev.viridium.blocks.sets.WoodBlockSet;
-import net.junedev.viridium.worldgen.TreeRegistry;
+import net.junedev.viridium.worldgen.treegen.TreeRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockSapling;
 import net.minecraft.client.renderer.texture.IIconRegister;
