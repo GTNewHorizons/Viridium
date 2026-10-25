@@ -15,7 +15,7 @@ public final class TreeRegistry {
         (blockSet, leafVariant) -> new LargeDeciduousTreeGen(true, blockSet, leafVariant, 8, 4, 0.30D, 2, 4, 8, 6),
         false);
 
-    static {
+    public static void preInit() {
         register(
             "american_chestnut",
             (blockSet, leafVariant) -> new AmericanChestnutTreeGen(true, blockSet, 17, 4, 0.30D, 5, 2, 12, 3));
@@ -42,11 +42,12 @@ public final class TreeRegistry {
         return createGenerator(treeId, blockSet, "yellow");
     }
 
+    // Create a new generator for each tree to avoid reusing state from previous generations
     public static WorldGenerator createGenerator(String treeId, WoodBlockSet blockSet, String leafVariant) {
-        // Create a new generator for each tree to avoid reusing state from previous generations
         return TREES.getOrDefault(treeId, DEFAULT).generatorFactory.apply(blockSet, leafVariant);
     }
 
+    // TODO: Placeholder while SoilTypeRegistry is introduced
     public static boolean growsOnSand(String treeId) {
         return TREES.getOrDefault(treeId, DEFAULT).growsOnSand;
     }
@@ -54,6 +55,7 @@ public final class TreeRegistry {
     private static final class TreeType {
 
         private final BiFunction<WoodBlockSet, String, WorldGenerator> generatorFactory;
+        // TODO: This should be substituted by a list of soil types (EnumSet<SoilType>)
         private final boolean growsOnSand;
 
         private TreeType(BiFunction<WoodBlockSet, String, WorldGenerator> generatorFactory, boolean growsOnSand) {

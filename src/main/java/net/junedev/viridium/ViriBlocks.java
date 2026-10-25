@@ -4,6 +4,7 @@ import net.junedev.viridium.blocks.BushBlock;
 import net.junedev.viridium.blocks.FernBlock;
 import net.junedev.viridium.blocks.GroundPlaneBlock;
 import net.junedev.viridium.blocks.TallPlantBlock;
+import net.junedev.viridium.blocks.sets.LargeWoodBlockSet;
 import net.junedev.viridium.blocks.sets.SmallTreeBlockSet;
 import net.junedev.viridium.blocks.sets.large_tree.AmericanChestnutBlockSet;
 import net.junedev.viridium.blocks.sets.large_tree.BurntLeavesTreeBlockSet;
@@ -133,7 +134,7 @@ public class ViriBlocks {
         coolibah = new LargeTreeBlockSet("coolibah");
         dahurian_larch = new LargeTreeBlockSet("dahurian_larch");
         dragons_blood = new LargeTreeBlockSet("dragons_blood");
-        driftwood = new LargeTreeBlockSet("driftwood");
+        driftwood = new LargeWoodBlockSet("driftwood");
         ebony = new LargeTreeBlockSet("ebony");
         giant_sequoia = new BurntLeavesTreeBlockSet("giant_sequoia");
         grand_fir = new LargeTreeBlockSet("grand_fir");
@@ -352,7 +353,7 @@ public class ViriBlocks {
     public static LargeTreeBlockSet coolibah;
     public static LargeTreeBlockSet dahurian_larch;
     public static LargeTreeBlockSet dragons_blood;
-    public static LargeTreeBlockSet driftwood;
+    public static LargeWoodBlockSet driftwood;
     public static LargeTreeBlockSet ebony;
     public static BurntLeavesTreeBlockSet giant_sequoia;
     public static LargeTreeBlockSet grand_fir;
