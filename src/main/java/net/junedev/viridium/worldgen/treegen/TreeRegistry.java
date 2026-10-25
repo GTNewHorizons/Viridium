@@ -38,10 +38,6 @@ public final class TreeRegistry {
             new TreeType(Objects.requireNonNull(generatorFactory, "generatorFactory"), growsOnSand));
     }
 
-    public static WorldGenerator createGenerator(String treeId, WoodBlockSet blockSet) {
-        return createGenerator(treeId, blockSet, "yellow");
-    }
-
     // Create a new generator for each tree to avoid reusing state from previous generations
     public static WorldGenerator createGenerator(String treeId, WoodBlockSet blockSet, String leafVariant) {
         return TREES.getOrDefault(treeId, DEFAULT).generatorFactory.apply(blockSet, leafVariant);
