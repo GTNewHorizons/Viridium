@@ -1,16 +1,15 @@
 package net.junedev.viridium;
 
-import net.minecraftforge.common.MinecraftForge;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.event.FMLLoadCompleteEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.event.FMLServerStartingEvent;
+import net.minecraftforge.common.MinecraftForge;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 @Mod(
     modid = Viridium.MOD_ID,
@@ -26,6 +25,8 @@ public class Viridium {
 
     @SidedProxy(clientSide = "net.junedev.viridium.ClientProxy", serverSide = "net.junedev.viridium.CommonProxy")
     public static CommonProxy proxy;
+    ViriBlocks blocks;
+    ViriItems items;
 
     @Mod.EventHandler
     // preInit "Run before anything else. Read your config, create blocks, items, etc, and register them with the
@@ -61,7 +62,10 @@ public class Viridium {
         proxy.serverStarting(event);
     }
 
-    ViriBlocks blocks;
-    ViriItems items;
+    @Mod.EventHandler
+    // loadComplete "All mods are loaded, all registries are final." Used to check things that depend on other mods' content.
+    public void loadComplete(FMLLoadCompleteEvent event) {
+        proxy.loadComplete(event);
+    }
 
 }

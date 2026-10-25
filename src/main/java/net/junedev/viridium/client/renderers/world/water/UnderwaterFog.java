@@ -1,38 +1,42 @@
 package net.junedev.viridium.client.renderers.world.water;
 
-import static net.junedev.viridium.client.renderers.utils.RenderingUtils.lerp;
-
+import cpw.mods.fml.common.eventhandler.EventPriority;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import net.junedev.viridium.client.renderers.world.water.profiles.WaterProfile;
-import net.junedev.viridium.client.renderers.world.water.profiles.WaterProfiles;
+import net.junedev.viridium.client.renderers.world.water.profiles.WaterProfileHandler;
 import net.minecraft.block.material.Material;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.client.event.EntityViewRenderEvent;
-
 import org.lwjgl.opengl.GL11;
 
-import cpw.mods.fml.common.eventhandler.EventPriority;
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import static net.junedev.viridium.client.renderers.utils.RenderingUtils.lerp;
 
 public class UnderwaterFog {
 
+    public static final int MAX_SURFACE_SCAN = 32; // how far up we look for the water surface
+    public static float PROFILE_BLEND = 0.05F; // per frame: how fast the fog profile follows the biome
+    public static float FOG_COLOR_SMOOTHING = 0.15F; // per frame: how fast the final fog color follows
     // Fog profile actually in use, smoothly blended towards the profile at the camera
     public final WaterProfile current = new WaterProfile();
     public boolean profileInitialized = false;
-
     // Camera depth factor (0 = right below the surface, 1 = deep), computed once per frame in onFogColors
     public float depthT = 0.0F;
-
     // Smoothed fog color of the previous frame (smoothR < 0 = not initialized yet)
     public float smoothR = -1.0F, smoothG, smoothB;
     public World smoothWorld;
 
-    public static float PROFILE_BLEND = 0.05F; // per frame: how fast the fog profile follows the biome
-    public static float FOG_COLOR_SMOOTHING = 0.15F; // per frame: how fast the final fog color follows
-
-    public static final int MAX_SURFACE_SCAN = 32; // how far up we look for the water surface
+    private static int findSurface(World world, int x, int y, int z) {
+        for (int i = 0; i < MAX_SURFACE_SCAN; i++) {
+            if (world.getBlock(x, y + i, z)
+                .getMaterial() != Material.water) {
+                return y + i;
+            }
+        }
+        return -1;
+    }
 
     /** Fog color under water. Called once per frame; also updates the depth factor and the blended profile. */
     @SubscribeEvent
@@ -105,7 +109,7 @@ public class UnderwaterFog {
         int by = MathHelper.floor_double(eyeY);
         int bz = MathHelper.floor_double(e.posZ);
 
-        WaterProfile target = WaterProfiles.at(world, bx, by, bz);
+        WaterProfile target = WaterProfileHandler.at(world, bx, by, bz);
         if (!profileInitialized) {
             current.copyFrom(target);
             profileInitialized = true;
@@ -118,15 +122,5 @@ public class UnderwaterFog {
             return 1.0F; // deeper than the scan range: fully deep
         }
         return MathHelper.clamp_float((float) ((surface - eyeY) / current.fogDepthRange), 0.0F, 1.0F);
-    }
-
-    private static int findSurface(World world, int x, int y, int z) {
-        for (int i = 0; i < MAX_SURFACE_SCAN; i++) {
-            if (world.getBlock(x, y + i, z)
-                .getMaterial() != Material.water) {
-                return y + i;
-            }
-        }
-        return -1;
     }
 }

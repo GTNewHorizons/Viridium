@@ -1,11 +1,11 @@
 package net.junedev.viridium.client.renderers.world.water;
 
-import static net.junedev.viridium.client.renderers.utils.RenderingUtils.hash01;
-import static net.junedev.viridium.client.renderers.utils.RenderingUtils.smoothstep;
-
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.junedev.viridium.client.renderers.world.designer_tools.RayLook;
 import net.junedev.viridium.client.renderers.world.water.profiles.WaterProfile;
-import net.junedev.viridium.client.renderers.world.water.profiles.WaterProfiles;
+import net.junedev.viridium.client.renderers.world.water.profiles.WaterProfileHandler;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.Minecraft;
@@ -18,53 +18,42 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.common.MinecraftForge;
-
 import org.lwjgl.opengl.GL11;
 
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import static net.junedev.viridium.client.renderers.utils.RenderingUtils.hash01;
+import static net.junedev.viridium.client.renderers.utils.RenderingUtils.smoothstep;
 
 @SideOnly(Side.CLIENT)
 public final class UnderwaterLightRays {
-
-    public static int cell = 6;
-    public static int cellRadius = 3;
-
-    // Maximum length of a shaft. A shaft is shortened where the light hits a solid block (see clippedLength).
-    public static float shaftLength = 18.0F;
-    public static float shaftStartAbove = 0.0F;
-    public static float fadeDepth = 20.0F;
-
-    // Soft end of a shaft that hit something solid
-    public static float endFadeLength = 3.0F; // blocks over which a shaft fades out before it ends
-    public static float endMargin = 1.0F; // a shaft reaches this far past the blocking block (the ground hides the
-                                          // rest)
-
-    // Brightness ALONG the shaft: rowT = position (0 = top, 1 = bottom), rowAlpha = brightness at that row.
-    public static float[] rowT = { 0.0F, 0.12F, 0.3F, 0.55F, 0.8F, 1.0F };
-    public static float[] rowAlpha = { 0.0F, 0.45F, 0.55F, 0.4F, 0.18F, 0.0F };
-
-    // Brightness ACROSS the shaft: colX = position (-1 = left edge, 0 = center, 1 = right edge),
-    public static float[] colX = { -1.0F, -0.75F, -0.5F, -0.25F, 0.0F, 0.25F, 0.5F, 0.75F, 1.0F };
-    public static float[] colAlpha = { 0.0F, 0.10F, 0.36F, 0.78F, 1.0F, 0.78F, 0.36F, 0.10F, 0.0F };
-
-    // Hiding the shafts where the flat camera-facing sprite would become obvious
-    public static float nearFadeStart = 1.0F;
-    public static float nearFadeEnd = 4.0F;
-
-    // Glow at shaft entry
-    public static double glowOffset = 0.03;
-    public static float[] glowGrid = { -1.0F, -0.5F, 0.0F, 0.5F, 1.0F };
-
-    public static int maxSurfaceScan = 32;
-    public static double surfaceOffset = 0.11;
 
     // Test value: with 1.1 the sun ray is checked for every shaft (the sun height is never above 1).
     // Later something like 0.6, or a per-cell cache.
     private static final float SHADOW_CHECK_BELOW = 1.1F;
     private static final double SUN_RAY_MAX_DISTANCE = 64.0;
-
+    public static int cell = 6;
+    public static int cellRadius = 3;
+    // Maximum length of a shaft. A shaft is shortened where the light hits a solid block (see clippedLength).
+    public static float shaftLength = 18.0F;
+    public static float shaftStartAbove = 0.0F;
+    public static float fadeDepth = 20.0F;
+                                          // rest)
+    // Soft end of a shaft that hit something solid
+    public static float endFadeLength = 3.0F; // blocks over which a shaft fades out before it ends
+    public static float endMargin = 1.0F; // a shaft reaches this far past the blocking block (the ground hides the
+    // Brightness ALONG the shaft: rowT = position (0 = top, 1 = bottom), rowAlpha = brightness at that row.
+    public static float[] rowT = { 0.0F, 0.12F, 0.3F, 0.55F, 0.8F, 1.0F };
+    public static float[] rowAlpha = { 0.0F, 0.45F, 0.55F, 0.4F, 0.18F, 0.0F };
+    // Brightness ACROSS the shaft: colX = position (-1 = left edge, 0 = center, 1 = right edge),
+    public static float[] colX = { -1.0F, -0.75F, -0.5F, -0.25F, 0.0F, 0.25F, 0.5F, 0.75F, 1.0F };
+    public static float[] colAlpha = { 0.0F, 0.10F, 0.36F, 0.78F, 1.0F, 0.78F, 0.36F, 0.10F, 0.0F };
+    // Hiding the shafts where the flat camera-facing sprite would become obvious
+    public static float nearFadeStart = 1.0F;
+    public static float nearFadeEnd = 4.0F;
+    // Glow at shaft entry
+    public static double glowOffset = 0.03;
+    public static float[] glowGrid = { -1.0F, -0.5F, 0.0F, 0.5F, 1.0F };
+    public static int maxSurfaceScan = 32;
+    public static double surfaceOffset = 0.11;
     private final UnderwaterSun sun = new UnderwaterSun();
 
     // Rows of the shaft currently being drawn: distance from the top in blocks, and brightness at that row.
@@ -76,6 +65,84 @@ public final class UnderwaterLightRays {
 
     public static void register() {
         MinecraftForge.EVENT_BUS.register(new UnderwaterLightRays());
+    }
+
+    private static float rowAlphaAt(float along) {
+        for (int i = 0; i < rowT.length - 1; i++) {
+            if (along <= rowT[i + 1]) {
+                float f = (along - rowT[i]) / (rowT[i + 1] - rowT[i]);
+                return rowAlpha[i] + (rowAlpha[i + 1] - rowAlpha[i]) * f;
+            }
+        }
+        return rowAlpha[rowAlpha.length - 1];
+    }
+
+    private static double distanceToOpaque(World world, double originX, double originY, double originZ, double dirX,
+        double dirY, double dirZ, double maxDistance) {
+        int blockX = MathHelper.floor_double(originX);
+        int blockY = MathHelper.floor_double(originY);
+        int blockZ = MathHelper.floor_double(originZ);
+        if (world.getBlock(blockX, blockY, blockZ)
+            .isOpaqueCube()) {
+            return 0.0;
+        }
+
+        int stepX = dirX > 0 ? 1 : -1;
+        int stepY = dirY > 0 ? 1 : -1;
+        int stepZ = dirZ > 0 ? 1 : -1;
+
+        double distancePerBlockX = dirX == 0 ? Double.MAX_VALUE : Math.abs(1.0 / dirX);
+        double distancePerBlockY = dirY == 0 ? Double.MAX_VALUE : Math.abs(1.0 / dirY);
+        double distancePerBlockZ = dirZ == 0 ? Double.MAX_VALUE : Math.abs(1.0 / dirZ);
+
+        double nextBoundaryX = dirX == 0 ? Double.MAX_VALUE
+            : (dirX > 0 ? blockX + 1 - originX : originX - blockX) * distancePerBlockX;
+        double nextBoundaryY = dirY == 0 ? Double.MAX_VALUE
+            : (dirY > 0 ? blockY + 1 - originY : originY - blockY) * distancePerBlockY;
+        double nextBoundaryZ = dirZ == 0 ? Double.MAX_VALUE
+            : (dirZ > 0 ? blockZ + 1 - originZ : originZ - blockZ) * distancePerBlockZ;
+
+        while (true) {
+            double distance;
+            if (nextBoundaryX < nextBoundaryY && nextBoundaryX < nextBoundaryZ) {
+                distance = nextBoundaryX;
+                blockX += stepX;
+                nextBoundaryX += distancePerBlockX;
+            } else if (nextBoundaryY < nextBoundaryZ) {
+                distance = nextBoundaryY;
+                blockY += stepY;
+                nextBoundaryY += distancePerBlockY;
+            } else {
+                distance = nextBoundaryZ;
+                blockZ += stepZ;
+                nextBoundaryZ += distancePerBlockZ;
+            }
+            if (distance >= maxDistance || blockY >= world.getHeight()) {
+                return maxDistance;
+            }
+            if (world.getBlock(blockX, blockY, blockZ)
+                .isOpaqueCube()) {
+                return distance;
+            }
+        }
+    }
+
+    private static void setEnabled(int capability, boolean enabled) {
+        if (enabled) {
+            GL11.glEnable(capability);
+        } else {
+            GL11.glDisable(capability);
+        }
+    }
+
+    private static int findSurface(World world, int x, int y, int z) {
+        for (int i = 0; i < maxSurfaceScan; i++) {
+            if (world.getBlock(x, y + i, z)
+                .getMaterial() != Material.water) {
+                return y + i;
+            }
+        }
+        return -1;
     }
 
     @SubscribeEvent
@@ -108,7 +175,7 @@ public final class UnderwaterLightRays {
 
         sun.update(world, partialTicks);
 
-        WaterProfile profile = WaterProfiles.at(world, camBlockX, camBlockY, camBlockZ);
+        WaterProfile profile = WaterProfileHandler.at(world, camBlockX, camBlockY, camBlockZ);
         float rainFade = 1.0F - world.getRainStrength(partialTicks);
         float depthFade = 1.0F - smoothstep(0.0F, fadeDepth, (float) (surfaceY - camY));
         float strength = profile.godRayStrength * sun.transmissionStrength * rainFade * depthFade;
@@ -333,66 +400,6 @@ public final class UnderwaterLightRays {
         t.addVertex(cx + wx * offset, cy + wy * offset, cz + wz * offset);
     }
 
-    private static float rowAlphaAt(float along) {
-        for (int i = 0; i < rowT.length - 1; i++) {
-            if (along <= rowT[i + 1]) {
-                float f = (along - rowT[i]) / (rowT[i + 1] - rowT[i]);
-                return rowAlpha[i] + (rowAlpha[i + 1] - rowAlpha[i]) * f;
-            }
-        }
-        return rowAlpha[rowAlpha.length - 1];
-    }
-
-    private static double distanceToOpaque(World world, double originX, double originY, double originZ, double dirX,
-        double dirY, double dirZ, double maxDistance) {
-        int blockX = MathHelper.floor_double(originX);
-        int blockY = MathHelper.floor_double(originY);
-        int blockZ = MathHelper.floor_double(originZ);
-        if (world.getBlock(blockX, blockY, blockZ)
-            .isOpaqueCube()) {
-            return 0.0;
-        }
-
-        int stepX = dirX > 0 ? 1 : -1;
-        int stepY = dirY > 0 ? 1 : -1;
-        int stepZ = dirZ > 0 ? 1 : -1;
-
-        double distancePerBlockX = dirX == 0 ? Double.MAX_VALUE : Math.abs(1.0 / dirX);
-        double distancePerBlockY = dirY == 0 ? Double.MAX_VALUE : Math.abs(1.0 / dirY);
-        double distancePerBlockZ = dirZ == 0 ? Double.MAX_VALUE : Math.abs(1.0 / dirZ);
-
-        double nextBoundaryX = dirX == 0 ? Double.MAX_VALUE
-            : (dirX > 0 ? blockX + 1 - originX : originX - blockX) * distancePerBlockX;
-        double nextBoundaryY = dirY == 0 ? Double.MAX_VALUE
-            : (dirY > 0 ? blockY + 1 - originY : originY - blockY) * distancePerBlockY;
-        double nextBoundaryZ = dirZ == 0 ? Double.MAX_VALUE
-            : (dirZ > 0 ? blockZ + 1 - originZ : originZ - blockZ) * distancePerBlockZ;
-
-        while (true) {
-            double distance;
-            if (nextBoundaryX < nextBoundaryY && nextBoundaryX < nextBoundaryZ) {
-                distance = nextBoundaryX;
-                blockX += stepX;
-                nextBoundaryX += distancePerBlockX;
-            } else if (nextBoundaryY < nextBoundaryZ) {
-                distance = nextBoundaryY;
-                blockY += stepY;
-                nextBoundaryY += distancePerBlockY;
-            } else {
-                distance = nextBoundaryZ;
-                blockZ += stepZ;
-                nextBoundaryZ += distancePerBlockZ;
-            }
-            if (distance >= maxDistance || blockY >= world.getHeight()) {
-                return maxDistance;
-            }
-            if (world.getBlock(blockX, blockY, blockZ)
-                .isOpaqueCube()) {
-                return distance;
-            }
-        }
-    }
-
     private void beginDrawing() {
         wasTexture = GL11.glIsEnabled(GL11.GL_TEXTURE_2D);
         wasLighting = GL11.glIsEnabled(GL11.GL_LIGHTING);
@@ -419,22 +426,5 @@ public final class UnderwaterLightRays {
         setEnabled(GL11.GL_TEXTURE_2D, wasTexture);
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
     }
-
-    private static void setEnabled(int capability, boolean enabled) {
-        if (enabled) {
-            GL11.glEnable(capability);
-        } else {
-            GL11.glDisable(capability);
-        }
-    }
-
-    private static int findSurface(World world, int x, int y, int z) {
-        for (int i = 0; i < maxSurfaceScan; i++) {
-            if (world.getBlock(x, y + i, z)
-                .getMaterial() != Material.water) {
-                return y + i;
-            }
-        }
-        return -1;
-    }
 }
+

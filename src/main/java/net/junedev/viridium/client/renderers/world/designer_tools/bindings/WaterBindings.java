@@ -4,7 +4,7 @@ import net.junedev.viridium.client.renderers.world.designer_tools.DesignerRegist
 import net.junedev.viridium.client.renderers.world.designer_tools.DesignerVariable;
 import net.junedev.viridium.client.renderers.world.designer_tools.RayLook;
 import net.junedev.viridium.client.renderers.world.water.profiles.WaterProfile;
-import net.junedev.viridium.client.renderers.world.water.profiles.WaterProfiles;
+import net.junedev.viridium.client.renderers.world.water.profiles.WaterProfileHandler;
 
 public final class WaterBindings {
 
@@ -15,7 +15,7 @@ public final class WaterBindings {
     private WaterBindings() {}
 
     public static void bind() {
-        WaterProfile p = WaterProfiles.defaultProfile();
+        WaterProfile p = WaterProfileHandler.defaultProfile();
 
         rgb(
             TINT,
