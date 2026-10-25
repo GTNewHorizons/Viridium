@@ -34,7 +34,8 @@
  * For more details, see https://docs.gradle.org/8.0.1/userguide/java_library_plugin.html#sec:java_library_configurations_graph
  */
 dependencies {
-    //runtimeOnlyNonPublishable("com.github.GTNewHorizons:NotEnoughItems:2.7.69-GTNH:dev")
+    api("com.cardinalstar.cubicchunks:CubicChunks1710:v0.1.24-alpha:dev")
+
     implementation("com.github.GTNewHorizons:GTNHLib:0.11.54:dev")
 
     devOnlyNonPublishable("com.github.GTNewHorizons:Angelica:2.2.36:dev")
@@ -45,4 +46,7 @@ dependencies {
 
     runtimeOnlyNonPublishable("com.github.GTNewHorizons:NotEnoughItems:2.8.163-GTNH:dev")
     runtimeOnlyNonPublishable(rfg.deobf("com.github.GTNewHorizons:CoreTweaks:0.3.4.7-GTNH"))
+
+    // Profiling (spark is reobfuscated, therefore rfg.deobf). Jar lives in libs/, which is git-ignored. (If there is a better option for this let us know.)
+    // devOnlyNonPublishable(rfg.deobf(project.files("libs/spark-1.10.19-forge1710.jar")))
 }
