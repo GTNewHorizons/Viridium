@@ -16,6 +16,9 @@ public final class TreeRegistry {
         false);
 
     public static void preInit() {
+
+        // The leaf variant is a placeholder, I do not want to assume yet what info will be needed apart from the
+        // blockSet
         register(
             "american_chestnut",
             (blockSet, leafVariant) -> new AmericanChestnutTreeGen(true, blockSet, 17, 4, 0.30D, 5, 2, 12, 3));
