@@ -17,7 +17,7 @@ public class LargeTreeBlockSet extends LargeWoodBlockSet {
 
         leaves = new BaseLeaves().setBlockName(name + "_leaves")
             .setBlockTextureName(getAssetDirectory() + name + "_leaves");
-        sapling = new BaseSaplingBlock().setBlockName(name + "_sapling")
+        sapling = new BaseSaplingBlock(name, this).setBlockName(name + "_sapling")
             .setBlockTextureName(getAssetDirectory() + name + "_sapling");
 
         GameRegistry.registerBlock(leaves, name + "_leaves");

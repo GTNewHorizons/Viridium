@@ -27,11 +27,11 @@ public class WhitePoplarBlockSet extends LargeWoodBlockSet {
         leaves_red = new BaseLeaves().setBlockName(name + "_leaves_red")
             .setBlockTextureName(getAssetDirectory() + name + "_leaves_red");
 
-        sapling_yellow = new BaseSaplingBlock().setBlockName(name + "_sapling_yellow")
+        sapling_yellow = new BaseSaplingBlock(name, this, "yellow").setBlockName(name + "_sapling_yellow")
             .setBlockTextureName(getAssetDirectory() + name + "_sapling_yellow");
-        sapling_orange = new BaseSaplingBlock().setBlockName(name + "_sapling_orange")
+        sapling_orange = new BaseSaplingBlock(name, this, "orange").setBlockName(name + "_sapling_orange")
             .setBlockTextureName(getAssetDirectory() + name + "_sapling_orange");
-        sapling_red = new BaseSaplingBlock().setBlockName(name + "_sapling_red")
+        sapling_red = new BaseSaplingBlock(name, this, "red").setBlockName(name + "_sapling_red")
             .setBlockTextureName(getAssetDirectory() + name + "_sapling_red");
 
         GameRegistry.registerBlock(leaves_yellow, name + "_leaves_yellow");

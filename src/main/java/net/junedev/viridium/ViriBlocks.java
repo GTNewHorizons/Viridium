@@ -3,12 +3,13 @@ package net.junedev.viridium;
 import net.junedev.viridium.blocks.BaseFullLog;
 import net.junedev.viridium.blocks.BaseLeaves;
 import net.junedev.viridium.blocks.BasePlanks;
-import net.junedev.viridium.blocks.BaseSaplingBlock;
 import net.junedev.viridium.blocks.BushBlock;
 import net.junedev.viridium.blocks.FernBlock;
 import net.junedev.viridium.blocks.GroundPlaneBlock;
 import net.junedev.viridium.blocks.TallPlantBlock;
+import net.junedev.viridium.blocks.WillowVineBlock;
 import net.junedev.viridium.blocks.sets.SmallTreeBlockSet;
+import net.junedev.viridium.blocks.sets.large_tree.AmericanChestnutBlockSet;
 import net.junedev.viridium.blocks.sets.large_tree.BurntLeavesTreeBlockSet;
 import net.junedev.viridium.blocks.sets.large_tree.LargeTreeBlockSet;
 import net.junedev.viridium.blocks.sets.large_tree.PalmTreeBlockSet;
@@ -117,6 +118,7 @@ public class ViriBlocks {
 
         // Full Trees
         amaranth = new LargeTreeBlockSet("amaranth");
+        american_chestnut = new AmericanChestnutBlockSet("american_chestnut");
         american_sycamore = new LargeTreeBlockSet("american_sycamore");
         ash = new LargeTreeBlockSet("ash");
         bald_cypress = new LargeTreeBlockSet("bald_cypress");
@@ -164,6 +166,8 @@ public class ViriBlocks {
         turkish_pine = new LargeTreeBlockSet("turkish_pine");
         umbrella_tree = new LargeTreeBlockSet("umbrella_tree");
         weeping_willow = new LargeTreeBlockSet("weeping_willow");
+        Block weepingWillowVines = new WillowVineBlock().setBlockName("weeping_willow_vines");
+        GameRegistry.registerBlock(weepingWillowVines, "weeping_willow_vines");
         white_poplar = new WhitePoplarBlockSet("white_poplar");
         yew = new LargeTreeBlockSet("yew");
     }
@@ -196,13 +200,6 @@ public class ViriBlocks {
             .setBlockTextureName("large_trees/" + name);
         GameRegistry.registerBlock(planks, name);
         return planks;
-    }
-
-    private Block registerLargeSapling(String name) {
-        Block sapling = new BaseSaplingBlock().setBlockName(name)
-            .setBlockTextureName("large_trees/" + name);
-        GameRegistry.registerBlock(sapling, name);
-        return sapling;
     }
 
     // Standalone Grasses
@@ -340,6 +337,7 @@ public class ViriBlocks {
 
     // Large Trees
     public static LargeTreeBlockSet amaranth;
+    public static AmericanChestnutBlockSet american_chestnut;
     public static LargeTreeBlockSet american_sycamore;
     public static LargeTreeBlockSet ash;
     public static LargeTreeBlockSet bald_cypress;
