@@ -1,4 +1,4 @@
-package net.junedev.viridium.blocks;
+package net.junedev.viridium.blocks.vanilike;
 
 import net.junedev.viridium.Viridium;
 import net.minecraft.block.Block;

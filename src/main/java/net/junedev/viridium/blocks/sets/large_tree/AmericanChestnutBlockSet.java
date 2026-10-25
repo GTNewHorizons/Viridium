@@ -1,6 +1,6 @@
 package net.junedev.viridium.blocks.sets.large_tree;
 
-import net.junedev.viridium.blocks.BasePlanks;
+import net.junedev.viridium.blocks.vanilike.BasePlanks;
 import net.minecraft.block.Block;
 
 import cpw.mods.fml.common.registry.GameRegistry;

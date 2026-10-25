@@ -1,6 +1,6 @@
 package net.junedev.viridium.items;
 
-import net.junedev.viridium.blocks.BaseSlab;
+import net.junedev.viridium.blocks.vanilike.BaseSlab;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemSlab;
 

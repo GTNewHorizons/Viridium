@@ -1,8 +1,8 @@
 package net.junedev.viridium.blocks.sets;
 
-import net.junedev.viridium.blocks.BaseBark;
-import net.junedev.viridium.blocks.BaseLeaves;
-import net.junedev.viridium.blocks.BaseSaplingBlock;
+import net.junedev.viridium.blocks.vanilike.BaseBark;
+import net.junedev.viridium.blocks.vanilike.BaseLeaves;
+import net.junedev.viridium.blocks.vanilike.BaseSaplingBlock;
 import net.junedev.viridium.blocks.SmallLogBlock;
 import net.minecraft.block.Block;
 

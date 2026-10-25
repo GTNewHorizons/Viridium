@@ -1,10 +1,10 @@
 package net.junedev.viridium.blocks.sets;
 
-import net.junedev.viridium.blocks.BaseFence;
-import net.junedev.viridium.blocks.BaseFenceGate;
-import net.junedev.viridium.blocks.BasePlanks;
-import net.junedev.viridium.blocks.BaseSlab;
-import net.junedev.viridium.blocks.BaseStairs;
+import net.junedev.viridium.blocks.vanilike.BaseFence;
+import net.junedev.viridium.blocks.vanilike.BaseFenceGate;
+import net.junedev.viridium.blocks.vanilike.BasePlanks;
+import net.junedev.viridium.blocks.vanilike.BaseSlab;
+import net.junedev.viridium.blocks.vanilike.BaseStairs;
 import net.junedev.viridium.items.BaseSlabItem;
 import net.minecraft.block.Block;
 

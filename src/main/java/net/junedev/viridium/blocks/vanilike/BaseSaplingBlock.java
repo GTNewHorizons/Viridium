@@ -1,4 +1,4 @@
-package net.junedev.viridium.blocks;
+package net.junedev.viridium.blocks.vanilike;
 
 import java.util.List;
 import java.util.Objects;

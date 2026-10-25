@@ -1,13 +1,13 @@
 package net.junedev.viridium;
 
-import net.junedev.viridium.blocks.BaseFullLog;
-import net.junedev.viridium.blocks.BaseLeaves;
-import net.junedev.viridium.blocks.BasePlanks;
+import net.junedev.viridium.blocks.vanilike.BaseFullLog;
+import net.junedev.viridium.blocks.vanilike.BaseLeaves;
+import net.junedev.viridium.blocks.vanilike.BasePlanks;
 import net.junedev.viridium.blocks.BushBlock;
 import net.junedev.viridium.blocks.FernBlock;
 import net.junedev.viridium.blocks.GroundPlaneBlock;
 import net.junedev.viridium.blocks.TallPlantBlock;
-import net.junedev.viridium.blocks.WillowVineBlock;
+import net.junedev.viridium.blocks.vanilike.WillowVineBlock;
 import net.junedev.viridium.blocks.sets.SmallTreeBlockSet;
 import net.junedev.viridium.blocks.sets.large_tree.AmericanChestnutBlockSet;
 import net.junedev.viridium.blocks.sets.large_tree.BurntLeavesTreeBlockSet;
