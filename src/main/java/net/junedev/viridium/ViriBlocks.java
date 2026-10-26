@@ -5,9 +5,11 @@ import net.junedev.viridium.blocks.BaseLeaves;
 import net.junedev.viridium.blocks.BasePlanks;
 import net.junedev.viridium.blocks.BaseSaplingBlock;
 import net.junedev.viridium.blocks.BushBlock;
+import net.junedev.viridium.blocks.CoconutPalmSaplingBlock;
 import net.junedev.viridium.blocks.FernBlock;
 import net.junedev.viridium.blocks.GroundPlaneBlock;
 import net.junedev.viridium.blocks.TallPlantBlock;
+import net.junedev.viridium.blocks.WillowVineBlock;
 import net.junedev.viridium.blocks.sets.SmallTreeBlockSet;
 import net.minecraft.block.Block;
 
@@ -116,92 +118,105 @@ public class ViriBlocks {
         amaranthLogStripped = registerLargeLog("amaranth_stripped");
         amaranthLeaves = registerLeaves("amaranth_leaves");
         amaranthPlanks = registerPlanks("amaranth_planks");
-        amaranthSapling = registerLargeSapling("amaranth_sapling");
+        amaranthSapling = registerLargeSapling("amaranth_sapling", amaranthLog, amaranthLeaves);
+
+        americanChestnutLog = registerLargeLog("american_chestnut_log");
+        americanChestnutLogStripped = registerLargeLog("american_chestnut_stripped");
+        americanChestnutLeaves = registerLeaves("american_chestnut_leaves");
+        americanChestnutPlanks = registerPlanks("american_chestnut_planks");
+        americanChestnutPlanksWormy = registerPlanks("american_chestnut_planks_wormy");
+        americanChestnutSapling = registerLargeSapling(
+            "american_chestnut_sapling",
+            americanChestnutLog,
+            americanChestnutLeaves);
 
         americanSycamoreLog = registerLargeLog("american_sycamore_log");
         americanSycamoreLogStripped = registerLargeLog("american_sycamore_stripped");
         americanSycamoreLeaves = registerLeaves("american_sycamore_leaves");
         americanSycamorePlanks = registerPlanks("american_sycamore_planks");
-        americanSycamoreSapling = registerLargeSapling("american_sycamore_sapling");
+        americanSycamoreSapling = registerLargeSapling(
+            "american_sycamore_sapling",
+            americanSycamoreLog,
+            americanSycamoreLeaves);
 
         ashLog = registerLargeLog("ash_log");
         ashLogStripped = registerLargeLog("ash_stripped");
         ashLeaves = registerLeaves("ash_leaves");
         ashPlanks = registerPlanks("ash_planks");
-        ashSapling = registerLargeSapling("ash_sapling");
+        ashSapling = registerLargeSapling("ash_sapling", ashLog, ashLeaves);
 
         baldCypressLog = registerLargeLog("bald_cypress_log");
         baldCypressLogStripped = registerLargeLog("bald_cypress_stripped");
         baldCypressLeaves = registerLeaves("bald_cypress_leaves");
         baldCypressPlanks = registerPlanks("bald_cypress_planks");
-        baldCypressSapling = registerLargeSapling("bald_cypress_sapling");
+        baldCypressSapling = registerLargeSapling("bald_cypress_sapling", baldCypressLog, baldCypressLeaves);
 
         baobabLog = registerLargeLog("baobab_log");
         baobabLogStripped = registerLargeLog("baobab_stripped");
         baobabLeaves = registerLeaves("baobab_leaves");
         baobabPlanks = registerPlanks("baobab_planks");
-        baobabSapling = registerLargeSapling("baobab_sapling");
+        baobabSapling = registerLargeSapling("baobab_sapling", baobabLog, baobabLeaves);
 
         beechLog = registerLargeLog("beech_log");
         beechLogStripped = registerLargeLog("beech_stripped");
         beechLeaves = registerLeaves("beech_leaves");
         beechPlanks = registerPlanks("beech_planks");
-        beechSapling = registerLargeSapling("beech_sapling");
+        beechSapling = registerLargeSapling("beech_sapling", beechLog, beechLeaves);
 
         blackOakLog = registerLargeLog("black_oak_log");
         blackOakLogStripped = registerLargeLog("black_oak_stripped");
         blackOakLeaves = registerLeaves("black_oak_leaves");
         blackOakPlanks = registerPlanks("black_oak_planks");
-        blackOakSapling = registerLargeSapling("black_oak_sapling");
+        blackOakSapling = registerLargeSapling("black_oak_sapling", blackOakLog, blackOakLeaves);
 
         blackPineLog = registerLargeLog("black_pine_log");
         blackPineLogStripped = registerLargeLog("black_pine_stripped");
         blackPineLeaves = registerLeaves("black_pine_leaves");
         blackPinePlanks = registerPlanks("black_pine_planks");
-        blackPineSapling = registerLargeSapling("black_pine_sapling");
+        blackPineSapling = registerLargeSapling("black_pine_sapling", blackPineLog, blackPineLeaves);
 
         cacaoLog = registerLargeLog("cacao_log");
         cacaoLogStripped = registerLargeLog("cacao_stripped");
         cacaoLeaves = registerLeaves("cacao_leaves");
         cacaoPlanks = registerPlanks("cacao_planks");
-        cacaoSapling = registerLargeSapling("cacao_sapling");
+        cacaoSapling = registerLargeSapling("cacao_sapling", cacaoLog, cacaoLeaves);
 
         candlenutLog = registerLargeLog("candlenut_log");
         candlenutLogStripped = registerLargeLog("candlenut_stripped");
         candlenutLeaves = registerLeaves("candlenut_leaves");
         candlenutPlanks = registerPlanks("candlenut_planks");
-        candlenutSapling = registerLargeSapling("candlenut_sapling");
+        candlenutSapling = registerLargeSapling("candlenut_sapling", candlenutLog, candlenutLeaves);
 
         coastRedwoodLog = registerLargeLog("coast_redwood_log");
         coastRedwoodLogStripped = registerLargeLog("coast_redwood_stripped");
         coastRedwoodLeaves = registerLeaves("coast_redwood_leaves");
         coastRedwoodLeavesBurnt = registerLeaves("coast_redwood_leaves_burnt");
         coastRedwoodPlanks = registerPlanks("coast_redwood_planks");
-        coastRedwoodSapling = registerLargeSapling("coast_redwood_sapling");
+        coastRedwoodSapling = registerLargeSapling("coast_redwood_sapling", coastRedwoodLog, coastRedwoodLeaves);
 
         coconutPalmLog = registerLargeLog("coconut_palm_log");
         coconutPalmLogStripped = registerLargeLog("coconut_palm_stripped");
         coconutPalmLeaves = registerLeaves("coconut_palm_leaves");
         coconutPalmPlanks = registerPlanks("coconut_palm_planks");
-        coconutPalmSapling = registerLargeSapling("coconut_palm_sapling");
+        coconutPalmSapling = registerCoconutPalmSapling("coconut_palm_sapling", coconutPalmLog, coconutPalmLeaves);
 
         coolibahLog = registerLargeLog("coolibah_log");
         coolibahLogStripped = registerLargeLog("coolibah_stripped");
         coolibahLeaves = registerLeaves("coolibah_leaves");
         coolibahPlanks = registerPlanks("coolibah_planks");
-        coolibahSapling = registerLargeSapling("coolibah_sapling");
+        coolibahSapling = registerLargeSapling("coolibah_sapling", coolibahLog, coolibahLeaves);
 
         dahurianLarchLog = registerLargeLog("dahurian_larch_log");
         dahurianLarchLogStripped = registerLargeLog("dahurian_larch_stripped");
         dahurianLarchLeaves = registerLeaves("dahurian_larch_leaves");
         dahurianLarchPlanks = registerPlanks("dahurian_larch_planks");
-        dahurianLarchSapling = registerLargeSapling("dahurian_larch_sapling");
+        dahurianLarchSapling = registerLargeSapling("dahurian_larch_sapling", dahurianLarchLog, dahurianLarchLeaves);
 
         dragonsBloodLog = registerLargeLog("dragons_blood_log");
         dragonsBloodLogStripped = registerLargeLog("dragons_blood_stripped");
         dragonsBloodLeaves = registerLeaves("dragons_blood_leaves");
         dragonsBloodPlanks = registerPlanks("dragons_blood_planks");
-        dragonsBloodSapling = registerLargeSapling("dragons_blood_sapling");
+        dragonsBloodSapling = registerLargeSapling("dragons_blood_sapling", dragonsBloodLog, dragonsBloodLeaves);
 
         driftwoodLog = registerLargeLog("driftwood_log");
         driftwoodPlanks = registerPlanks("driftwood_planks");
@@ -210,116 +225,125 @@ public class ViriBlocks {
         ebonyLogStripped = registerLargeLog("ebony_stripped");
         ebonyLeaves = registerLeaves("ebony_leaves");
         ebonyPlanks = registerPlanks("ebony_planks");
-        ebonySapling = registerLargeSapling("ebony_sapling");
+        ebonySapling = registerLargeSapling("ebony_sapling", ebonyLog, ebonyLeaves);
 
         giantSequoiaLog = registerLargeLog("giant_sequoia_log");
         giantSequoiaLogStripped = registerLargeLog("giant_sequoia_stripped");
         giantSequoiaLeaves = registerLeaves("giant_sequoia_leaves");
         giantSequoiaLeavesBurnt = registerLeaves("giant_sequoia_leaves_burnt");
         giantSequoiaPlanks = registerPlanks("giant_sequoia_planks");
-        giantSequoiaSapling = registerLargeSapling("giant_sequoia_sapling");
+        giantSequoiaSapling = registerLargeSapling("giant_sequoia_sapling", giantSequoiaLog, giantSequoiaLeaves);
 
         grandFirLog = registerLargeLog("grand_fir_log");
         grandFirLogStripped = registerLargeLog("grand_fir_stripped");
         grandFirLeaves = registerLeaves("grand_fir_leaves");
         grandFirPlanks = registerPlanks("grand_fir_planks");
-        grandFirSapling = registerLargeSapling("grand_fir_sapling");
+        grandFirSapling = registerLargeSapling("grand_fir_sapling", grandFirLog, grandFirLeaves);
 
         hawthornLog = registerLargeLog("hawthorn_log");
         hawthornLogStripped = registerLargeLog("hawthorn_stripped");
         hawthornLeaves = registerLeaves("hawthorn_leaves");
         hawthornPlanks = registerPlanks("hawthorn_planks");
-        hawthornSapling = registerLargeSapling("hawthorn_sapling");
+        hawthornSapling = registerLargeSapling("hawthorn_sapling", hawthornLog, hawthornLeaves);
 
         kankanLog = registerLargeLog("kankan_log");
         kankanLogStripped = registerLargeLog("kankan_stripped");
         kankanLeaves = registerLeaves("kankan_leaves");
         kankanPlanks = registerPlanks("kankan_planks");
-        kankanSapling = registerLargeSapling("kankan_sapling");
+        kankanSapling = registerLargeSapling("kankan_sapling", kankanLog, kankanLeaves);
 
         koaLog = registerLargeLog("koa_log");
         koaLogStripped = registerLargeLog("koa_stripped");
         koaLeaves = registerLeaves("koa_leaves");
         koaPlanks = registerPlanks("koa_planks");
-        koaSapling = registerLargeSapling("koa_sapling");
+        koaSapling = registerLargeSapling("koa_sapling", koaLog, koaLeaves);
 
         mahoganyLog = registerLargeLog("mahogany_log");
         mahoganyLogStripped = registerLargeLog("mahogany_stripped");
         mahoganyLeaves = registerLeaves("mahogany_leaves");
         mahoganyPlanks = registerPlanks("mahogany_planks");
-        mahoganySapling = registerLargeSapling("mahogany_sapling");
+        mahoganySapling = registerLargeSapling("mahogany_sapling", mahoganyLog, mahoganyLeaves);
 
         mediterraneanCypressLog = registerLargeLog("mediterranean_cypress_log");
         mediterraneanCypressLogStripped = registerLargeLog("mediterranean_cypress_stripped");
         mediterraneanCypressLeaves = registerLeaves("mediterranean_cypress_leaves");
         mediterraneanCypressPlanks = registerPlanks("mediterranean_cypress_planks");
-        mediterraneanCypressSapling = registerLargeSapling("mediterranean_cypress_sapling");
+        mediterraneanCypressSapling = registerLargeSapling(
+            "mediterranean_cypress_sapling",
+            mediterraneanCypressLog,
+            mediterraneanCypressLeaves);
 
         nazarenoLog = registerLargeLog("nazareno_log");
         nazarenoLogStripped = registerLargeLog("nazareno_stripped");
         nazarenoLeaves = registerLeaves("nazareno_leaves");
         nazarenoPlanks = registerPlanks("nazareno_planks");
-        nazarenoSapling = registerLargeSapling("nazareno_sapling");
+        nazarenoSapling = registerLargeSapling("nazareno_sapling", nazarenoLog, nazarenoLeaves);
 
         paperBirchLog = registerLargeLog("paper_birch_log");
         paperBirchLogStripped = registerLargeLog("paper_birch_stripped");
         paperBirchLeaves = registerLeaves("paper_birch_leaves");
         paperBirchPlanks = registerPlanks("paper_birch_planks");
-        paperBirchSapling = registerLargeSapling("paper_birch_sapling");
+        paperBirchSapling = registerLargeSapling("paper_birch_sapling", paperBirchLog, paperBirchLeaves);
 
         pedunculateOakLog = registerLargeLog("pedunculate_oak_log");
         pedunculateOakLogStripped = registerLargeLog("pedunculate_oak_stripped");
         pedunculateOakLeaves = registerLeaves("pedunculate_oak_leaves");
         pedunculateOakPlanks = registerPlanks("pedunculate_oak_planks");
-        pedunculateOakSapling = registerLargeSapling("pedunculate_oak_sapling");
+        pedunculateOakSapling = registerLargeSapling(
+            "pedunculate_oak_sapling",
+            pedunculateOakLog,
+            pedunculateOakLeaves);
 
         quakingAspenLog = registerLargeLog("quaking_aspen_log");
         quakingAspenLogStripped = registerLargeLog("quaking_aspen_stripped");
         quakingAspenLeaves = registerLeaves("quaking_aspen_leaves");
         quakingAspenPlanks = registerPlanks("quaking_aspen_planks");
-        quakingAspenSapling = registerLargeSapling("quaking_aspen_sapling");
+        quakingAspenSapling = registerLargeSapling("quaking_aspen_sapling", quakingAspenLog, quakingAspenLeaves);
 
         rainbowEucalyptusLog = registerLargeLog("rainbow_eucalyptus_log");
         rainbowEucalyptusLogStripped = registerLargeLog("rainbow_eucalyptus_stripped");
         rainbowEucalyptusLeaves = registerLeaves("rainbow_eucalyptus_leaves");
         rainbowEucalyptusPlanks = registerPlanks("rainbow_eucalyptus_planks");
-        rainbowEucalyptusSapling = registerLargeSapling("rainbow_eucalyptus_sapling");
+        rainbowEucalyptusSapling = registerLargeSapling(
+            "rainbow_eucalyptus_sapling",
+            rainbowEucalyptusLog,
+            rainbowEucalyptusLeaves);
 
         redAlderLog = registerLargeLog("red_alder_log");
         redAlderLogStripped = registerLargeLog("red_alder_stripped");
         redAlderLeaves = registerLeaves("red_alder_leaves");
         redAlderPlanks = registerPlanks("red_alder_planks");
-        redAlderSapling = registerLargeSapling("red_alder_sapling");
+        redAlderSapling = registerLargeSapling("red_alder_sapling", redAlderLog, redAlderLeaves);
 
         redGumLog = registerLargeLog("red_gum_log");
         redGumLogStripped = registerLargeLog("red_gum_stripped");
         redGumLeaves = registerLeaves("red_gum_leaves");
         redGumPlanks = registerPlanks("red_gum_planks");
-        redGumSapling = registerLargeSapling("red_gum_sapling");
+        redGumSapling = registerLargeSapling("red_gum_sapling", redGumLog, redGumLeaves);
 
         redMapleLog = registerLargeLog("red_maple_log");
         redMapleLogStripped = registerLargeLog("red_maple_stripped");
         redMapleLeaves = registerLeaves("red_maple_leaves");
         redMaplePlanks = registerPlanks("red_maple_planks");
-        redMapleSapling = registerLargeSapling("red_maple_sapling");
+        redMapleSapling = registerLargeSapling("red_maple_sapling", redMapleLog, redMapleLeaves);
 
         redSpruceLog = registerLargeLog("red_spruce_log");
         redSpruceLogStripped = registerLargeLog("red_spruce_stripped");
         redSpruceLeaves = registerLeaves("red_spruce_leaves");
         redSprucePlanks = registerPlanks("red_spruce_planks");
-        redSpruceSapling = registerLargeSapling("red_spruce_sapling");
+        redSpruceSapling = registerLargeSapling("red_spruce_sapling", redSpruceLog, redSpruceLeaves);
 
         rowanLog = registerLargeLog("rowan_log");
         rowanLogStripped = registerLargeLog("rowan_stripped");
         rowanLeaves = registerLeaves("rowan_leaves");
         rowanPlanks = registerPlanks("rowan_planks");
-        rowanSapling = registerLargeSapling("rowan_sapling");
+        rowanSapling = registerLargeSapling("rowan_sapling", rowanLog, rowanLeaves);
 
         royalPalmLog = registerLargeLog("royal_palm_log");
         royalPalmCrown = registerLargeLog("royal_palm_crown");
         royalPalmLeaves = registerLeaves("royal_palm_leaves");
         royalPalmPlanks = registerPlanks("royal_palm_planks");
-        royalPalmSapling = registerLargeSapling("royal_palm_sapling");
+        royalPalmSapling = registerLargeSapling("royal_palm_sapling", royalPalmLog, royalPalmLeaves);
 
         rubberLog = registerLargeLog("rubber_log");
         rubberLogExpended = registerLargeLog("rubber_log_expended");
@@ -327,67 +351,74 @@ public class ViriBlocks {
         rubberLogStripped = registerLargeLog("rubber_stripped");
         rubberLeaves = registerLeaves("rubber_leaves");
         rubberPlanks = registerPlanks("rubber_planks");
-        rubberSapling = registerLargeSapling("rubber_sapling");
+        rubberSapling = registerLargeSapling("rubber_sapling", rubberLog, rubberLeaves); // TODO: Replace with custom
+                                                                                         // tree
 
         scotsPineLog = registerLargeLog("scots_pine_log");
         scotsPineLogStripped = registerLargeLog("scots_pine_stripped");
         scotsPineLeaves = registerLeaves("scots_pine_leaves");
         scotsPinePlanks = registerPlanks("scots_pine_planks");
-        scotsPineSapling = registerLargeSapling("scots_pine_sapling");
+        scotsPineSapling = registerLargeSapling("scots_pine_sapling", scotsPineLog, scotsPineLeaves);
 
         siberianLarchLog = registerLargeLog("siberian_larch_log");
         siberianLarchLogStripped = registerLargeLog("siberian_larch_stripped");
         siberianLarchLeaves = registerLeaves("siberian_larch_leaves");
         siberianLarchPlanks = registerPlanks("siberian_larch_planks");
-        siberianLarchSapling = registerLargeSapling("siberian_larch_sapling");
+        siberianLarchSapling = registerLargeSapling("siberian_larch_sapling", siberianLarchLog, siberianLarchLeaves);
 
         sierraJuniperLog = registerLargeLog("sierra_juniper_log");
         sierraJuniperLogStripped = registerLargeLog("sierra_juniper_stripped");
         sierraJuniperLeaves = registerLeaves("sierra_juniper_leaves");
         sierraJuniperPlanks = registerPlanks("sierra_juniper_planks");
-        sierraJuniperSapling = registerLargeSapling("sierra_juniper_sapling");
+        sierraJuniperSapling = registerLargeSapling("sierra_juniper_sapling", sierraJuniperLog, sierraJuniperLeaves);
 
         southernMagnoliaLog = registerLargeLog("southern_magnolia_log");
         southernMagnoliaLogStripped = registerLargeLog("southern_magnolia_stripped");
         southernMagnoliaLeaves = registerLeaves("southern_magnolia_leaves");
         southernMagnoliaPlanks = registerPlanks("southern_magnolia_planks");
-        southernMagnoliaSapling = registerLargeSapling("southern_magnolia_sapling");
+        southernMagnoliaSapling = registerLargeSapling(
+            "southern_magnolia_sapling",
+            southernMagnoliaLog,
+            southernMagnoliaLeaves);
 
         sweetCherryLog = registerLargeLog("sweet_cherry_log");
         sweetCherryLogStripped = registerLargeLog("sweet_cherry_stripped");
         sweetCherryLeaves = registerLeaves("sweet_cherry_leaves");
         sweetCherryPlanks = registerPlanks("sweet_cherry_planks");
-        sweetCherrySapling = registerLargeSapling("sweet_cherry_sapling");
+        sweetCherrySapling = registerLargeSapling("sweet_cherry_sapling", sweetCherryLog, sweetCherryLeaves);
 
         sweetgumLog = registerLargeLog("sweetgum_log");
         sweetgumLogStripped = registerLargeLog("sweetgum_stripped");
         sweetgumLeaves = registerLeaves("sweetgum_leaves");
         sweetgumPlanks = registerPlanks("sweetgum_planks");
-        sweetgumSapling = registerLargeSapling("sweetgum_sapling");
+        sweetgumSapling = registerLargeSapling("sweetgum_sapling", sweetgumLog, sweetgumLeaves);
 
         tamarackLog = registerLargeLog("tamarack_log");
         tamarackLogStripped = registerLargeLog("tamarack_stripped");
         tamarackLeaves = registerLeaves("tamarack_leaves");
         tamarackPlanks = registerPlanks("tamarack_planks");
-        tamarackSapling = registerLargeSapling("tamarack_sapling");
+        tamarackSapling = registerLargeSapling("tamarack_sapling", tamarackLog, tamarackLeaves);
 
         turkishPineLog = registerLargeLog("turkish_pine_log");
         turkishPineLogStripped = registerLargeLog("turkish_pine_stripped");
         turkishPineLeaves = registerLeaves("turkish_pine_leaves");
         turkishPinePlanks = registerPlanks("turkish_pine_planks");
-        turkishPineSapling = registerLargeSapling("turkish_pine_sapling");
+        turkishPineSapling = registerLargeSapling("turkish_pine_sapling", turkishPineLog, turkishPineLeaves);
 
         umbrellaTreeLog = registerLargeLog("umbrella_tree_log");
         umbrellaTreeLogStripped = registerLargeLog("umbrella_tree_stripped");
         umbrellaTreeLeaves = registerLeaves("umbrella_tree_leaves");
         umbrellaTreePlanks = registerPlanks("umbrella_tree_planks");
-        umbrellaTreeSapling = registerLargeSapling("umbrella_tree_sapling");
+        umbrellaTreeSapling = registerLargeSapling("umbrella_tree_sapling", umbrellaTreeLog, umbrellaTreeLeaves);
 
         weepingWillowLog = registerLargeLog("weeping_willow_log");
         weepingWillowLogStripped = registerLargeLog("weeping_willow_stripped");
         weepingWillowLeaves = registerLeaves("weeping_willow_leaves");
         weepingWillowPlanks = registerPlanks("weeping_willow_planks");
-        weepingWillowSapling = registerLargeSapling("weeping_willow_sapling");
+        weepingWillowSapling = registerLargeSapling("weeping_willow_sapling", weepingWillowLog, weepingWillowLeaves);
+
+        Block weepingWillowVines = new WillowVineBlock().setBlockName("weeping_willow_vines");
+        GameRegistry.registerBlock(weepingWillowVines, "weeping_willow_vines");
 
         whitePoplarLog = registerLargeLog("white_poplar_log");
         whitePoplarLogStripped = registerLargeLog("white_poplar_stripped");
@@ -395,15 +426,21 @@ public class ViriBlocks {
         whitePoplarLeavesRed = registerLeaves("white_poplar_leaves_red");
         whitePoplarLeavesYellow = registerLeaves("white_poplar_leaves_yellow");
         whitePoplarPlanks = registerPlanks("white_poplar_planks");
-        whitePoplarSaplingOrange = registerLargeSapling("white_poplar_sapling_orange");
-        whitePoplarSaplingRed = registerLargeSapling("white_poplar_sapling_red");
-        whitePoplarSaplingYellow = registerLargeSapling("white_poplar_sapling_yellow");
+        whitePoplarSaplingOrange = registerLargeSapling(
+            "white_poplar_sapling_orange",
+            whitePoplarLog,
+            whitePoplarLeavesOrange);
+        whitePoplarSaplingRed = registerLargeSapling("white_poplar_sapling_red", whitePoplarLog, whitePoplarLeavesRed);
+        whitePoplarSaplingYellow = registerLargeSapling(
+            "white_poplar_sapling_yellow",
+            whitePoplarLog,
+            whitePoplarLeavesYellow);
 
         yewLog = registerLargeLog("yew_log");
         yewLogStripped = registerLargeLog("yew_stripped");
         yewLeaves = registerLeaves("yew_leaves");
         yewPlanks = registerPlanks("yew_planks");
-        yewSapling = registerLargeSapling("yew_sapling");
+        yewSapling = registerLargeSapling("yew_sapling", yewLog, yewLeaves);
     }
 
     // Bushes
@@ -483,8 +520,15 @@ public class ViriBlocks {
         return planks;
     }
 
-    private Block registerLargeSapling(String name) {
-        Block sapling = new BaseSaplingBlock().setBlockName(name)
+    private Block registerLargeSapling(String name, Block trunkWoodBlock, Block leafBlock) {
+        Block sapling = new BaseSaplingBlock(trunkWoodBlock, leafBlock).setBlockName(name)
+            .setBlockTextureName("large_trees/" + name);
+        GameRegistry.registerBlock(sapling, name);
+        return sapling;
+    }
+
+    private Block registerCoconutPalmSapling(String name, Block trunkWoodBlock, Block leafBlock) {
+        Block sapling = new CoconutPalmSaplingBlock(trunkWoodBlock, leafBlock).setBlockName(name)
             .setBlockTextureName("large_trees/" + name);
         GameRegistry.registerBlock(sapling, name);
         return sapling;
@@ -582,6 +626,13 @@ public class ViriBlocks {
     public static Block amaranthLeaves;
     public static Block amaranthPlanks;
     public static Block amaranthSapling;
+
+    public static Block americanChestnutLog;
+    public static Block americanChestnutLogStripped;
+    public static Block americanChestnutLeaves;
+    public static Block americanChestnutPlanks;
+    public static Block americanChestnutPlanksWormy;
+    public static Block americanChestnutSapling;
 
     public static Block americanSycamoreLog;
     public static Block americanSycamoreLogStripped;
