@@ -1,12 +1,12 @@
 package net.junedev.viridium.client.renderers.world.water;
 
-import static net.junedev.viridium.client.renderers.utils.RenderingUtils.lerp;
-import static net.junedev.viridium.client.renderers.utils.RenderingUtils.smoothstep01;
-
 import net.junedev.viridium.client.renderers.world.water.profiles.WaterProfile;
 import net.junedev.viridium.client.renderers.world.water.profiles.WaterProfileHandler;
 import net.minecraft.block.material.Material;
 import net.minecraft.world.IBlockAccess;
+
+import static net.junedev.viridium.client.renderers.utils.RenderingUtils.lerp;
+import static net.junedev.viridium.client.renderers.utils.RenderingUtils.smoothstep01;
 
 /** Depth-dependent water tint and shore brightening. Called during chunk meshing (worker threads!). */
 public final class WaterTint {
@@ -14,11 +14,12 @@ public final class WaterTint {
     private static final int DEPTH_SMOOTH_RADIUS = 2;
     public static int MAX_DEPTH = 8;
     public static boolean DEBUG_SHOW_DEPTH = false;
+    public static int biomeBlendRadius = 4;
 
     public WaterTint() {}
 
     public static int apply(int original, IBlockAccess world, int x, int y, int z) {
-        WaterProfile currentProfile = WaterProfileHandler.at(world, x, y, z);
+        WaterProfile currentProfile = WaterProfileHandler.blendedAt(world, x, y, z, biomeBlendRadius);
         int range = Math.max(2, Math.min(MAX_DEPTH, (int) currentProfile.depthRange));
 
         // Depth

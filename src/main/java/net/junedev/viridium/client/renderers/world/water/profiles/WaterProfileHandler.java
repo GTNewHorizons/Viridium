@@ -1,13 +1,13 @@
 package net.junedev.viridium.client.renderers.world.water.profiles;
 
-import java.util.Map;
-import java.util.Set;
-import java.util.concurrent.ConcurrentHashMap;
-
 import net.junedev.viridium.Viridium;
 import net.junedev.viridium.client.renderers.world.designer_tools.DesignerRegistry;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.biome.BiomeGenBase;
+
+import java.util.Map;
+import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 
 public final class WaterProfileHandler {
 
@@ -16,6 +16,8 @@ public final class WaterProfileHandler {
     private static final WaterProfile FALLBACK_MARKER = new WaterProfile().tint(1.0F, 0.0F, 1.0F, 0.6F, 0.0F, 0.6F);
     private static final Map<String, WaterProfile> PROFILES = new ConcurrentHashMap<>();
     private static final Set<String> reportedFallbacks = ConcurrentHashMap.newKeySet();
+    // Scratch object for blendedAt(): one per thread, because chunk meshing runs on several worker threads
+    private static final ThreadLocal<WaterProfile> blendScratch = ThreadLocal.withInitial(WaterProfile::new);
     public static volatile boolean debugMarkFallback = false;
 
     static {
@@ -45,6 +47,55 @@ public final class WaterProfileHandler {
                 .info("Water: no profile for biome '{}' (id {}), using the default", biome.biomeName, biome.biomeID);
         }
         return debugMarkFallback ? FALLBACK_MARKER : DEFAULT;
+    }
+
+    public static WaterProfile blendedAt(IBlockAccess world, int x, int y, int z, int radius) {
+        WaterProfile centerProfile = at(world, x, y, z);
+        if (radius <= 0 || DesignerRegistry.active) {
+            return centerProfile;
+        }
+
+        float weightSum = 0.0F;
+        float sumShallowR = 0.0F, sumShallowG = 0.0F, sumShallowB = 0.0F;
+        float sumDeepR = 0.0F, sumDeepG = 0.0F, sumDeepB = 0.0F;
+        float sumDepthRange = 0.0F, sumShoreBrightness = 0.0F;
+        boolean allSameAsCenter = true;
+
+        for (int offsetZ = -radius; offsetZ <= radius; offsetZ++) {
+            for (int offsetX = -radius; offsetX <= radius; offsetX++) {
+                WaterProfile neighborProfile = at(world, x + offsetX, y, z + offsetZ);
+                if (neighborProfile != centerProfile) {
+                    allSameAsCenter = false;
+                }
+
+                float weight = radius + 1 - Math.max(Math.abs(offsetX), Math.abs(offsetZ));
+                weightSum += weight;
+                sumShallowR += weight * neighborProfile.shallowR;
+                sumShallowG += weight * neighborProfile.shallowG;
+                sumShallowB += weight * neighborProfile.shallowB;
+                sumDeepR += weight * neighborProfile.deepR;
+                sumDeepG += weight * neighborProfile.deepG;
+                sumDeepB += weight * neighborProfile.deepB;
+                sumDepthRange += weight * neighborProfile.depthRange;
+                sumShoreBrightness += weight * neighborProfile.shoreBrightness;
+            }
+        }
+
+        if (allSameAsCenter) {
+            return centerProfile;
+        }
+
+        WaterProfile blendedProfile = blendScratch.get();
+        blendedProfile.copyFrom(centerProfile);
+        blendedProfile.shallowR = sumShallowR / weightSum;
+        blendedProfile.shallowG = sumShallowG / weightSum;
+        blendedProfile.shallowB = sumShallowB / weightSum;
+        blendedProfile.deepR = sumDeepR / weightSum;
+        blendedProfile.deepG = sumDeepG / weightSum;
+        blendedProfile.deepB = sumDeepB / weightSum;
+        blendedProfile.depthRange = sumDepthRange / weightSum;
+        blendedProfile.shoreBrightness = sumShoreBrightness / weightSum;
+        return blendedProfile;
     }
 
     public static WaterProfile defaultProfile() {

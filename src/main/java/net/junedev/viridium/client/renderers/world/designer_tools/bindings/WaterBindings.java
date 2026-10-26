@@ -3,6 +3,7 @@ package net.junedev.viridium.client.renderers.world.designer_tools.bindings;
 import net.junedev.viridium.client.renderers.world.designer_tools.DesignerRegistry;
 import net.junedev.viridium.client.renderers.world.designer_tools.DesignerVariable;
 import net.junedev.viridium.client.renderers.world.designer_tools.RayLook;
+import net.junedev.viridium.client.renderers.world.water.WaterTint;
 import net.junedev.viridium.client.renderers.world.water.profiles.WaterProfile;
 import net.junedev.viridium.client.renderers.world.water.profiles.WaterProfileHandler;
 
@@ -16,6 +17,8 @@ public final class WaterBindings {
 
     public static void bind() {
         WaterProfile p = WaterProfileHandler.defaultProfile();
+        DesignerRegistry.registerInt(TINT, "biomeBlendRadius", 0, 8,
+            () -> WaterTint.biomeBlendRadius, radius -> WaterTint.biomeBlendRadius = (int) radius);
 
         rgb(
             TINT,
@@ -61,7 +64,6 @@ public final class WaterBindings {
             .register(FOG, "fogDensShallow", 0F, 0.5F, () -> p.fogDensityShallow, v -> p.fogDensityShallow = v);
         DesignerRegistry.register(FOG, "fogDensDeep", 0F, 0.5F, () -> p.fogDensityDeep, v -> p.fogDensityDeep = v);
         DesignerRegistry.register(FOG, "fogDepthRange", 4F, 64F, () -> p.fogDepthRange, v -> p.fogDepthRange = v);
-
         DesignerRegistry.register(RAYS, "godRayStrength", 0F, 1.5F, () -> p.godRayStrength, v -> p.godRayStrength = v);
         DesignerRegistry.register(RAYS, "shaftChance", 0F, 1F, () -> RayLook.shaftChance, v -> RayLook.shaftChance = v);
         DesignerRegistry.register(RAYS, "minWidth", 0.2F, 6F, () -> RayLook.minWidth, v -> RayLook.minWidth = v);
@@ -85,5 +87,6 @@ public final class WaterBindings {
         DesignerRegistry.register(category, label + "R", 0F, 1F, getR, setR);
         DesignerRegistry.register(category, label + "G", 0F, 1F, getG, setG);
         DesignerRegistry.register(category, label + "B", 0F, 1F, getB, setB);
+
     }
 }
