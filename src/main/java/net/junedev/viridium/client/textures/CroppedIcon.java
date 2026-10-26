@@ -1,10 +1,16 @@
 package net.junedev.viridium.client.textures;
 
-import net.minecraft.client.Minecraft;
+import java.lang.reflect.Field;
+
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.util.IIcon;
 
+import cpw.mods.fml.relauncher.ReflectionHelper;
+
 public class CroppedIcon implements IIcon {
+
+    private static final Field USE_ANISOTROPIC_FILTERING = ReflectionHelper
+        .findField(TextureAtlasSprite.class, "useAnisotropicFiltering", "field_147966_k");
 
     private final IIcon parent;
     private final String name;
@@ -13,15 +19,9 @@ public class CroppedIcon implements IIcon {
     private final int height;
     private final int x;
     private final int part;
-    private final int parentPadding;
 
     public CroppedIcon(IIcon parent, int part, int x, int segmentWidth, int segmentHeight) {
         this.parent = parent;
-        // Vanilla adds pixels on each side for Anisotropic Filtering, but its UV bounds already exclude them.
-        // Capture the setting during icon registration, before this atlas is stitched.
-        this.parentPadding = parent instanceof TextureAtlasSprite
-            && Minecraft.getMinecraft().gameSettings.anisotropicFiltering > 1 ? 16 : 0;
-
         this.name = parent.getIconName() + "#" + x + "," + part;
 
         this.width = segmentWidth;
@@ -51,11 +51,23 @@ public class CroppedIcon implements IIcon {
     }
 
     private int getParentWidth() {
-        return parent.getIconWidth() - parentPadding;
+        return parent.getIconWidth() - getParentPadding();
     }
 
     private int getParentHeight() {
-        return parent.getIconHeight() - parentPadding;
+        return parent.getIconHeight() - getParentPadding();
+    }
+
+    private int getParentPadding() {
+        if (!(parent instanceof TextureAtlasSprite)) return 0;
+
+        // Vanilla adds 16 pixels to the sprite dimensions, but excludes them from its UV bounds.
+        // Read the loaded sprite's flag: Angelica disables this padding even when the game setting is enabled.
+        try {
+            return USE_ANISOTROPIC_FILTERING.getBoolean(parent) ? 16 : 0;
+        } catch (IllegalAccessException e) {
+            throw new IllegalStateException("Cannot read texture sprite padding", e);
+        }
     }
 
     // Atlas coordinates

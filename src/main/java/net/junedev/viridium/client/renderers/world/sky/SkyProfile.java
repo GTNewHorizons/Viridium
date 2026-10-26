@@ -1,5 +1,7 @@
 package net.junedev.viridium.client.renderers.world.sky;
 
+import static net.junedev.viridium.client.renderers.utils.RenderingUtils.lerp;
+
 public class SkyProfile {
 
     public float baseR = 0.25F, baseG = 0.5F, baseB = 1.0F;
@@ -112,7 +114,4 @@ public class SkyProfile {
         horizonSlope = lerp(horizonSlope, t.horizonSlope, k);
     }
 
-    private static float lerp(float from, float to, float k) {
-        return from + (to - from) * k;
-    }
 }

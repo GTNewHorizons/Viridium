@@ -3,8 +3,8 @@ package net.junedev.viridium.client.renderers.world.sky;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import net.irisshaders.iris.api.v0.IrisApi;
+import net.junedev.viridium.client.renderers.world.designer_tools.DesignerRegistry;
 import net.junedev.viridium.client.renderers.world.fog.SkyState;
-import net.junedev.viridium.client.renderers.world.sky.skyeditor.SkyDebugHook;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.client.renderer.OpenGlHelper;
@@ -27,14 +27,14 @@ public class CustomSkyRenderer extends IRenderHandler {
 
     private static final ResourceLocation SUN_TEXTURE = new ResourceLocation("textures/environment/sun.png");
     private static final ResourceLocation MOON_TEXTURE = new ResourceLocation("textures/environment/moon_phases.png");
-
-    private static boolean listenerRegistered = false;
     private static final AtomicInteger reloadGeneration = new AtomicInteger(0);
-
+    private static boolean listenerRegistered = false;
     private static SkyProfile currentSkyProfile = new SkyProfile();
 
-    public static volatile SkyDebugHook debugHook = null;
     private final SkyBiomeBlender blender = new SkyBiomeBlender();
+    private int appliedGeneration = -1;
+    private SkyShader skyShader;
+    private SkyDome dome;
 
     private static synchronized void registerReloadListenerOnce() {
         if (listenerRegistered) {
@@ -54,9 +54,54 @@ public class CustomSkyRenderer extends IRenderHandler {
         }
     }
 
-    private int appliedGeneration = -1;
-    private SkyShader skyShader;
-    private SkyDome dome;
+    private static void renderSunAndMoon(WorldClient world, Minecraft mc, float rain, float celestialAngle) {
+        // Sun/Moon Prep
+        Tessellator tessellator = Tessellator.instance;
+        GL11.glEnable(GL11.GL_TEXTURE_2D);
+        OpenGlHelper.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE, 1, 0);
+
+        GL11.glPushMatrix();
+        GL11.glRotatef(-90.0F, 0.0F, 1.0F, 0.0F);
+        GL11.glRotatef(celestialAngle * 360.0F, 1.0F, 0.0F, 0.0F);
+
+        // Sun
+        mc.getTextureManager()
+            .bindTexture(SUN_TEXTURE);
+        double sunSize = 25.0;
+        tessellator.startDrawingQuads();
+        tessellator.setColorRGBA_F(1.0F, 0.9F, 0.7F, 1.0F - rain);
+        tessellator.addVertexWithUV(-sunSize, 99.0, -sunSize, 0.0, 0.0);
+        tessellator.addVertexWithUV(sunSize, 99.0, -sunSize, 1.0, 0.0);
+        tessellator.addVertexWithUV(sunSize, 99.0, sunSize, 1.0, 1.0);
+        tessellator.addVertexWithUV(-sunSize, 99.0, sunSize, 0.0, 1.0);
+        tessellator.draw();
+
+        // Moon
+        mc.getTextureManager()
+            .bindTexture(MOON_TEXTURE);
+        int phase = world.getMoonPhase();
+        double u0 = (phase % 4) / 4.0;
+        double v0 = (phase / 4 % 2) / 2.0;
+        double u1 = u0 + 0.25;
+        double v1 = v0 + 0.5;
+        double moonSize = 20.0;
+        tessellator.startDrawingQuads();
+        tessellator.setColorRGBA_F(0.8F, 0.9F, 1.0F, 1.0F - rain);
+        tessellator.addVertexWithUV(-moonSize, -99.0, moonSize, u0, v0);
+        tessellator.addVertexWithUV(moonSize, -99.0, moonSize, u1, v0);
+        tessellator.addVertexWithUV(moonSize, -99.0, -moonSize, u1, v1);
+        tessellator.addVertexWithUV(-moonSize, -99.0, -moonSize, u0, v1);
+        tessellator.draw();
+
+        GL11.glPopMatrix();
+
+        OpenGlHelper.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA, 1, 0);
+    }
+
+    private static boolean isShaderPackActive() {
+        return IrisApi.getInstance()
+            .isShaderPackInUse();
+    }
 
     @Override
     public void render(float partialTicks, WorldClient world, Minecraft mc) {
@@ -112,50 +157,6 @@ public class CustomSkyRenderer extends IRenderHandler {
         GL11.glDepthMask(true);
     }
 
-    private static void renderSunAndMoon(WorldClient world, Minecraft mc, float rain, float celestialAngle) {
-        // Sun/Moon Prep
-        Tessellator tessellator = Tessellator.instance;
-        GL11.glEnable(GL11.GL_TEXTURE_2D);
-        OpenGlHelper.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE, 1, 0);
-
-        GL11.glPushMatrix();
-        GL11.glRotatef(-90.0F, 0.0F, 1.0F, 0.0F);
-        GL11.glRotatef(celestialAngle * 360.0F, 1.0F, 0.0F, 0.0F);
-
-        // Sun
-        mc.getTextureManager()
-            .bindTexture(SUN_TEXTURE);
-        double sunSize = 25.0;
-        tessellator.startDrawingQuads();
-        tessellator.setColorRGBA_F(1.0F, 0.9F, 0.7F, 1.0F - rain);
-        tessellator.addVertexWithUV(-sunSize, 99.0, -sunSize, 0.0, 0.0);
-        tessellator.addVertexWithUV(sunSize, 99.0, -sunSize, 1.0, 0.0);
-        tessellator.addVertexWithUV(sunSize, 99.0, sunSize, 1.0, 1.0);
-        tessellator.addVertexWithUV(-sunSize, 99.0, sunSize, 0.0, 1.0);
-        tessellator.draw();
-
-        // Moon
-        mc.getTextureManager()
-            .bindTexture(MOON_TEXTURE);
-        int phase = world.getMoonPhase();
-        double u0 = (phase % 4) / 4.0;
-        double v0 = (phase / 4 % 2) / 2.0;
-        double u1 = u0 + 0.25;
-        double v1 = v0 + 0.5;
-        double moonSize = 20.0;
-        tessellator.startDrawingQuads();
-        tessellator.setColorRGBA_F(0.8F, 0.9F, 1.0F, 1.0F - rain);
-        tessellator.addVertexWithUV(-moonSize, -99.0, moonSize, u0, v0);
-        tessellator.addVertexWithUV(moonSize, -99.0, moonSize, u1, v0);
-        tessellator.addVertexWithUV(moonSize, -99.0, -moonSize, u1, v1);
-        tessellator.addVertexWithUV(-moonSize, -99.0, -moonSize, u0, v1);
-        tessellator.draw();
-
-        GL11.glPopMatrix();
-
-        OpenGlHelper.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA, 1, 0);
-    }
-
     private void renderVanillaSky(float partialTicks, WorldClient world, Minecraft mc) {
         IRenderHandler self = world.provider.getSkyRenderer();
         world.provider.setSkyRenderer(null);
@@ -180,35 +181,16 @@ public class CustomSkyRenderer extends IRenderHandler {
     private float getSkyAngle(WorldClient world, float partialTicks) {
         float angle = world.getCelestialAngle(partialTicks);
 
-        SkyDebugHook hook = debugHook;
-        if (hook != null) {
-            float ticks = hook.overrideTimeTicks();
-            if (ticks >= 0.0F) {
-                long whole = (long) ticks;
-                angle = world.provider.calculateCelestialAngle(whole, ticks - whole);
-            }
-        }
         return angle;
-    }
-
-    private static boolean isShaderPackActive() {
-        return IrisApi.getInstance()
-            .isShaderPackInUse();
     }
 
     private void getSkyParameters(World world, Minecraft mc) {
         SkyProfile target = blender.blend(world, mc.renderViewEntity.posX, mc.renderViewEntity.posZ);
         float k = 0.02F;
 
-        SkyDebugHook hook = debugHook;
-        if (hook != null) {
-            SkyProfile override = hook.overrideProfile();
-            if (override != null) {
-                target = override;
-                k = 1.0F;
-            }
+        if (DesignerRegistry.active) currentSkyProfile.lerpTo(SkyProfileHandler.DEFAULT, k);
+        else {
+            currentSkyProfile.lerpTo(target, k);
         }
-
-        currentSkyProfile.lerpTo(target, k);
     }
 }

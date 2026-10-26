@@ -1,12 +1,12 @@
-package net.junedev.viridium.blocks;
+package net.junedev.viridium.blocks.vanilike;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Random;
 
 import net.junedev.viridium.Viridium;
-import net.junedev.viridium.worldgen.AmericanChestnutTreeGen;
-import net.junedev.viridium.worldgen.LargeDeciduousTreeGen;
-import net.junedev.viridium.worldgen.MediumPedunculateOakTreeGen;
+import net.junedev.viridium.blocks.sets.WoodBlockSet;
+import net.junedev.viridium.worldgen.treegen.TreeRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockSapling;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -23,12 +23,21 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class BaseSaplingBlock extends BlockSapling {
 
-    public BaseSaplingBlock(Block trunkWoodBlock, Block leafBlock) {
+    private final String treeId;
+    private final WoodBlockSet blockSet;
+    private final String leafVariant;
+
+    public BaseSaplingBlock(String treeId, WoodBlockSet blockSet) {
+        this(treeId, blockSet, "yellow");
+    }
+
+    public BaseSaplingBlock(String treeId, WoodBlockSet blockSet, String leafVariant) {
         super();
+        this.treeId = Objects.requireNonNull(treeId, "treeId");
+        this.blockSet = Objects.requireNonNull(blockSet, "blockSet");
+        this.leafVariant = Objects.requireNonNull(leafVariant, "leafVariant");
         this.setCreativeTab(Viridium.VTab);
         this.setStepSound(soundTypeGrass);
-        this.trunkWoodBlock = trunkWoodBlock;
-        this.leafBlock = leafBlock;
     }
 
     @Override
@@ -57,40 +66,26 @@ public class BaseSaplingBlock extends BlockSapling {
     @Override
     public void func_149878_d(World world, int x, int y, int z, Random rand) {
         if (!net.minecraftforge.event.terraingen.TerrainGen.saplingGrowTree(world, rand, x, y, z)) return;
-        String treeName = world.getBlock(x, y, z)
-            .getUnlocalizedName();
+        WorldGenerator generator = TreeRegistry.createGenerator(treeId, blockSet);
+        int metadata = world.getBlockMetadata(x, y, z);
         world.setBlock(x, y, z, Blocks.air);
-        WorldGenerator obj;
-        if (treeName.matches("tile.american_chestnut_sapling")) {
-            obj = new AmericanChestnutTreeGen(true, this.leafBlock, this.trunkWoodBlock, 17, 4, 0.30D, 5, 2, 12, 3);
-        } else if (treeName.matches("tile.pedunculate_oak_sapling")) {
-            obj = new MediumPedunculateOakTreeGen(true, this.leafBlock, this.trunkWoodBlock, 10, 3, 0.40D, 7, 2, 12, 3);
-        } else {
-            obj = new LargeDeciduousTreeGen(true, this.leafBlock, this.trunkWoodBlock, 8, 4, 0.30D, 2, 4, 8, 6);
+        if (!generator.generate(world, rand, x, y, z)) {
+            world.setBlock(x, y, z, this, metadata, 3);
         }
-        if (!(obj.generate(world, rand, x, y, z))) world.setBlock(x, y, z, this);
     }
 
-    // Setters
-
-    public void setTrunkWoodBlock(Block block) {
-        this.trunkWoodBlock = block;
-    }
-
-    public void setLeafBlock(Block block) {
-        this.leafBlock = block;
+    @Override
+    protected boolean canPlaceBlockOn(Block ground) {
+        return super.canPlaceBlockOn(ground) || (TreeRegistry.growsOnSand(treeId) && ground == Blocks.sand);
     }
 
     // Getters
 
-    public Block getTrunkWoodBlock(Block block) {
-        return this.trunkWoodBlock;
+    public String getTreeId() {
+        return treeId;
     }
 
-    public Block getLeafBlock(Block block) {
-        return this.leafBlock;
+    public WoodBlockSet getBlockSet() {
+        return blockSet;
     }
-
-    public Block trunkWoodBlock;
-    public Block leafBlock;
 }

@@ -21,14 +21,12 @@ public class SkyShader {
     private static final ResourceLocation FRAGMENT_FILE = new ResourceLocation("viridium", "shaders/sky.fsh");
 
     private final int program;
-    private int previousProgram;
-
     private final int uSunDir, uRain;
     private final int uBase, uMieG, uHaloColor, uSunsetColor;
     private final int uSunsetWidth, uDayBias, uHorizonBase, uRainDarkening, uRayleighScale, uHorizonSlope;
-
     private final int uModelView, uProjection;
     private final FloatBuffer matrixBuffer = BufferUtils.createFloatBuffer(16);
+    private int previousProgram;
 
     private SkyShader(int program) {
         this.program = program;

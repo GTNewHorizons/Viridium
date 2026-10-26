@@ -31,7 +31,7 @@ public class TallPlantBlockRenderer implements ISimpleBlockRenderingHandler {
         TallPlantBlock plantBlock = (TallPlantBlock) block;
         double halfSize = plantBlock.getPixelWidth() / (32D);
 
-        long hash = RenderingUtils.getPositionHash(x, z);
+        long hash = RenderingUtils.positionHash(x, z);
 
         double offsetX = RenderingUtils.getRandomOffset(hash, 16, RANDOM_OFFSET);
         double offsetZ = RenderingUtils.getRandomOffset(hash, 24, RANDOM_OFFSET);

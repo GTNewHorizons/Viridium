@@ -1,5 +1,7 @@
 package net.junedev.viridium.client.renderers.world.sky;
 
+import static net.junedev.viridium.client.renderers.utils.RenderingUtils.smoothstep01;
+
 import net.minecraft.world.World;
 
 public final class SkyBiomeBlender {
@@ -17,6 +19,13 @@ public final class SkyBiomeBlender {
     private int cachedCellX = Integer.MIN_VALUE;
     private int cachedCellZ = Integer.MIN_VALUE;
     private long lastRefresh;
+
+    private static SkyProfile profileAt(World world, int blockX, int blockZ, SkyProfile fallback) {
+        if (!world.blockExists(blockX, 0, blockZ)) {
+            return fallback;
+        }
+        return SkyProfileHandler.get(world.getBiomeGenForCoords(blockX, blockZ).biomeName);
+    }
 
     public SkyProfile blend(World world, double x, double z) {
         int blockX = (int) Math.floor(x);
@@ -40,8 +49,8 @@ public final class SkyBiomeBlender {
             lastRefresh = now;
         }
 
-        float fx = smooth((float) ((x - (double) cellX * CELL) / CELL));
-        float fz = smooth((float) ((z - (double) cellZ * CELL) / CELL));
+        float fx = smoothstep01((float) ((x - (double) cellX * CELL) / CELL));
+        float fz = smoothstep01((float) ((z - (double) cellZ * CELL) / CELL));
 
         rowA.copyFrom(nodes[0]);
         rowA.lerpTo(nodes[1], fx);
@@ -51,16 +60,5 @@ public final class SkyBiomeBlender {
         blended.copyFrom(rowA);
         blended.lerpTo(rowB, fz);
         return blended;
-    }
-
-    private static SkyProfile profileAt(World world, int blockX, int blockZ, SkyProfile fallback) {
-        if (!world.blockExists(blockX, 0, blockZ)) {
-            return fallback;
-        }
-        return SkyProfileHandler.get(world.getBiomeGenForCoords(blockX, blockZ).biomeName);
-    }
-
-    private static float smooth(float t) {
-        return t * t * (3.0F - 2.0F * t);
     }
 }
