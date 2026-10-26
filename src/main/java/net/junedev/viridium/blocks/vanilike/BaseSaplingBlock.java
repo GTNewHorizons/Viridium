@@ -66,7 +66,7 @@ public class BaseSaplingBlock extends BlockSapling {
     @Override
     public void func_149878_d(World world, int x, int y, int z, Random rand) {
         if (!net.minecraftforge.event.terraingen.TerrainGen.saplingGrowTree(world, rand, x, y, z)) return;
-        WorldGenerator generator = TreeRegistry.createGenerator(treeId, blockSet, leafVariant);
+        WorldGenerator generator = TreeRegistry.createGenerator(treeId, blockSet);
         int metadata = world.getBlockMetadata(x, y, z);
         world.setBlock(x, y, z, Blocks.air);
         if (!generator.generate(world, rand, x, y, z)) {
