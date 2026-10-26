@@ -1,12 +1,12 @@
 package net.junedev.viridium.client.renderers.world.water;
 
+import static net.junedev.viridium.client.renderers.utils.RenderingUtils.lerp;
+import static net.junedev.viridium.client.renderers.utils.RenderingUtils.smoothstep01;
+
 import net.junedev.viridium.client.renderers.world.water.profiles.WaterProfile;
 import net.junedev.viridium.client.renderers.world.water.profiles.WaterProfileHandler;
 import net.minecraft.block.material.Material;
 import net.minecraft.world.IBlockAccess;
-
-import static net.junedev.viridium.client.renderers.utils.RenderingUtils.lerp;
-import static net.junedev.viridium.client.renderers.utils.RenderingUtils.smoothstep01;
 
 /** Depth-dependent water tint and shore brightening. Called during chunk meshing (worker threads!). */
 public final class WaterTint {

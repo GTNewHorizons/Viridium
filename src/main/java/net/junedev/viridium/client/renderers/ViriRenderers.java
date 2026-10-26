@@ -1,9 +1,5 @@
 package net.junedev.viridium.client.renderers;
 
-import cpw.mods.fml.client.registry.RenderingRegistry;
-import cpw.mods.fml.common.event.FMLInitializationEvent;
-import cpw.mods.fml.common.event.FMLLoadCompleteEvent;
-import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import net.junedev.viridium.client.renderers.blocks.BushBlockRenderer;
 import net.junedev.viridium.client.renderers.blocks.FernBlockRenderer;
 import net.junedev.viridium.client.renderers.blocks.GroundPlaneBlockRenderer;
@@ -18,6 +14,11 @@ import net.junedev.viridium.client.renderers.world.water.UnderwaterLightRays;
 import net.junedev.viridium.client.renderers.world.water.profiles.WaterProfileHandler;
 import net.minecraftforge.client.ClientCommandHandler;
 import net.minecraftforge.common.MinecraftForge;
+
+import cpw.mods.fml.client.registry.RenderingRegistry;
+import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.event.FMLLoadCompleteEvent;
+import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 
 /** Everything client-side that is registered at startup, in three separate sections. */
 public class ViriRenderers {
