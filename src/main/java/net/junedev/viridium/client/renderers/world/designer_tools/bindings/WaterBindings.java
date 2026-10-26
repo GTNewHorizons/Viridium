@@ -17,8 +17,13 @@ public final class WaterBindings {
 
     public static void bind() {
         WaterProfile p = WaterProfileHandler.defaultProfile();
-        DesignerRegistry.registerInt(TINT, "biomeBlendRadius", 0, 8,
-            () -> WaterTint.biomeBlendRadius, radius -> WaterTint.biomeBlendRadius = (int) radius);
+        DesignerRegistry.registerInt(
+            TINT,
+            "biomeBlendRadius",
+            0,
+            8,
+            () -> WaterTint.biomeBlendRadius,
+            radius -> WaterTint.biomeBlendRadius = (int) radius);
 
         rgb(
             TINT,

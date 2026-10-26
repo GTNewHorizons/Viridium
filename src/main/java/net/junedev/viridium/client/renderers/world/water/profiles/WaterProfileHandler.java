@@ -1,13 +1,13 @@
 package net.junedev.viridium.client.renderers.world.water.profiles;
 
+import java.util.Map;
+import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
+
 import net.junedev.viridium.Viridium;
 import net.junedev.viridium.client.renderers.world.designer_tools.DesignerRegistry;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.biome.BiomeGenBase;
-
-import java.util.Map;
-import java.util.Set;
-import java.util.concurrent.ConcurrentHashMap;
 
 public final class WaterProfileHandler {
 
