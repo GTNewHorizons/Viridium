@@ -1,10 +1,13 @@
-package net.junedev.viridium.worldgen;
+package net.junedev.viridium.worldgen.treegen;
 
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Random;
 
+import net.junedev.viridium.blocks.sets.WoodBlockSet;
+import net.junedev.viridium.blocks.sets.large_tree.LargeTreeBlockSet;
+import net.junedev.viridium.worldgen.SoilTypeRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.world.World;
 
@@ -21,12 +24,34 @@ public class LargeDeciduousTreeGen extends LargeTreeWorldGenBase {
     public int leafCanopyWidth; // Original default: 8
     public int leafCanopyWidthVariance; // Original default: 6
 
-    public LargeDeciduousTreeGen(boolean par1, Block leafBlock, Block trunkBlock, int baseTrunkHeight,
+    public LargeDeciduousTreeGen(boolean par1, WoodBlockSet blockSet, int baseTrunkHeight, int trunkHeightVariance,
+        double trunkHeightPercent, int baseBranchCount, int maxExtraBranches, int leafCanopyWidth,
+        int leafCanopyWidthVariance) {
+        this(
+            par1,
+            blockSet,
+            "yellow",
+            baseTrunkHeight,
+            trunkHeightVariance,
+            trunkHeightPercent,
+            baseBranchCount,
+            maxExtraBranches,
+            leafCanopyWidth,
+            leafCanopyWidthVariance);
+    }
+
+    public LargeDeciduousTreeGen(boolean par1, WoodBlockSet blockSet, String leafVariant, int baseTrunkHeight,
         int trunkHeightVariance, double trunkHeightPercent, int baseBranchCount, int maxExtraBranches,
         int leafCanopyWidth, int leafCanopyWidthVariance) {
         super(par1);
-        this.leafBlock = leafBlock; // Primary leaf block
-        this.trunkBlock = trunkBlock; // Primary trunk log
+
+        // Cast to a valid type and throw exception if blockSet could not be cast
+        if (blockSet instanceof LargeTreeBlockSet tree) {
+            this.leafBlock = tree.leaves;
+            this.trunkBlock = tree.log;
+        } else {
+            throw new IllegalArgumentException("Tree generation requires a tree block set");
+        }
         this.baseTrunkHeight = baseTrunkHeight; // The base height for trees
         this.trunkHeightVariance = trunkHeightVariance; // The max extra height that a tree (via main trunk) can have
         this.trunkHeightPercent = trunkHeightPercent; // What percent of the total height the main trunk extends

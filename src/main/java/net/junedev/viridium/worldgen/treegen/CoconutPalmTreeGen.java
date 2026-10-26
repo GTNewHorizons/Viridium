@@ -1,7 +1,10 @@
-package net.junedev.viridium.worldgen;
+package net.junedev.viridium.worldgen.treegen;
 
 import java.util.Random;
 
+import net.junedev.viridium.blocks.sets.WoodBlockSet;
+import net.junedev.viridium.blocks.sets.large_tree.LargeTreeBlockSet;
+import net.junedev.viridium.worldgen.SoilTypeRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.world.World;
 
@@ -14,10 +17,16 @@ public class CoconutPalmTreeGen extends LargeTreeWorldGenBase {
     public int randX;
     public int randZ;
 
-    public CoconutPalmTreeGen(boolean par1, Block leafBlock, Block trunkBlock) {
+    public CoconutPalmTreeGen(boolean par1, WoodBlockSet blockSet) {
         super(par1);
-        this.leafBlock = leafBlock;
-        this.trunkBlock = trunkBlock;
+
+        // Cast to a valid type and throw exception if blockSet could not be cast
+        if (blockSet instanceof LargeTreeBlockSet tree) {
+            this.leafBlock = tree.leaves;
+            this.trunkBlock = tree.log;
+        } else {
+            throw new IllegalArgumentException("Tree generation requires a tree block set");
+        }
 
         this.dirs = new int[] { -1, 0, 1 };
         this.randX = new Random().nextInt(dirs.length);

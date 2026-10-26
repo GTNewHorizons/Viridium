@@ -1,5 +1,6 @@
 package net.junedev.viridium;
 
+import net.junedev.viridium.worldgen.treegen.TreeRegistry;
 import net.minecraftforge.common.MinecraftForge;
 
 import org.apache.logging.log4j.LogManager;
@@ -42,6 +43,8 @@ public class Viridium {
 
         items = new ViriItems();
         items.preInit();
+
+        TreeRegistry.preInit();
 
         proxy.preInit(event);
     }
