@@ -42,7 +42,6 @@ public class BaseLeaves extends BlockLeaves {
         if (!this.isOpaqueCube()) {
             return this.getFancyIcon();
         } else {
-            System.out.println("kill me now!!!");
             return this.getFastIcon();
         }
     }
