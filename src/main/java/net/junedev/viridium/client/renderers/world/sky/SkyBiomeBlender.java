@@ -20,6 +20,13 @@ public final class SkyBiomeBlender {
     private int cachedCellZ = Integer.MIN_VALUE;
     private long lastRefresh;
 
+    private static SkyProfile profileAt(World world, int blockX, int blockZ, SkyProfile fallback) {
+        if (!world.blockExists(blockX, 0, blockZ)) {
+            return fallback;
+        }
+        return SkyProfileHandler.get(world.getBiomeGenForCoords(blockX, blockZ).biomeName);
+    }
+
     public SkyProfile blend(World world, double x, double z) {
         int blockX = (int) Math.floor(x);
         int blockZ = (int) Math.floor(z);
@@ -53,12 +60,5 @@ public final class SkyBiomeBlender {
         blended.copyFrom(rowA);
         blended.lerpTo(rowB, fz);
         return blended;
-    }
-
-    private static SkyProfile profileAt(World world, int blockX, int blockZ, SkyProfile fallback) {
-        if (!world.blockExists(blockX, 0, blockZ)) {
-            return fallback;
-        }
-        return SkyProfileHandler.get(world.getBiomeGenForCoords(blockX, blockZ).biomeName);
     }
 }

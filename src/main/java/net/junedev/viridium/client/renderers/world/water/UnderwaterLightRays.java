@@ -1,8 +1,8 @@
 package net.junedev.viridium.client.renderers.world.water;
 
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import static net.junedev.viridium.client.renderers.utils.RenderingUtils.hash01;
+import static net.junedev.viridium.client.renderers.utils.RenderingUtils.smoothstep;
+
 import net.junedev.viridium.client.renderers.world.designer_tools.RayLook;
 import net.junedev.viridium.client.renderers.world.water.profiles.WaterProfile;
 import net.junedev.viridium.client.renderers.world.water.profiles.WaterProfileHandler;
@@ -18,10 +18,12 @@ import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.client.event.RenderWorldLastEvent;
 import net.minecraftforge.common.MinecraftForge;
+
 import org.lwjgl.opengl.GL11;
 
-import static net.junedev.viridium.client.renderers.utils.RenderingUtils.hash01;
-import static net.junedev.viridium.client.renderers.utils.RenderingUtils.smoothstep;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 @SideOnly(Side.CLIENT)
 public final class UnderwaterLightRays {
@@ -36,7 +38,7 @@ public final class UnderwaterLightRays {
     public static float shaftLength = 18.0F;
     public static float shaftStartAbove = 0.0F;
     public static float fadeDepth = 20.0F;
-                                          // rest)
+    // rest)
     // Soft end of a shaft that hit something solid
     public static float endFadeLength = 3.0F; // blocks over which a shaft fades out before it ends
     public static float endMargin = 1.0F; // a shaft reaches this far past the blocking block (the ground hides the
@@ -427,4 +429,3 @@ public final class UnderwaterLightRays {
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
     }
 }
-

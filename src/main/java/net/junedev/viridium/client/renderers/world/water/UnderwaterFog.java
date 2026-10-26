@@ -1,7 +1,7 @@
 package net.junedev.viridium.client.renderers.world.water;
 
-import cpw.mods.fml.common.eventhandler.EventPriority;
-import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import static net.junedev.viridium.client.renderers.utils.RenderingUtils.lerp;
+
 import net.junedev.viridium.client.renderers.world.water.profiles.WaterProfile;
 import net.junedev.viridium.client.renderers.world.water.profiles.WaterProfileHandler;
 import net.minecraft.block.material.Material;
@@ -10,9 +10,11 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 import net.minecraftforge.client.event.EntityViewRenderEvent;
+
 import org.lwjgl.opengl.GL11;
 
-import static net.junedev.viridium.client.renderers.utils.RenderingUtils.lerp;
+import cpw.mods.fml.common.eventhandler.EventPriority;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 
 public class UnderwaterFog {
 

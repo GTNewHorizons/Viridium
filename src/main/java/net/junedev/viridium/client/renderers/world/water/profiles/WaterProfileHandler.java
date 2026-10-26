@@ -1,33 +1,26 @@
 package net.junedev.viridium.client.renderers.world.water.profiles;
 
+import java.util.Map;
+import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
+
 import net.junedev.viridium.Viridium;
 import net.junedev.viridium.client.renderers.world.designer_tools.DesignerRegistry;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.biome.BiomeGenBase;
 
-import java.util.Map;
-import java.util.Set;
-import java.util.concurrent.ConcurrentHashMap;
-
 public final class WaterProfileHandler {
 
     private static final WaterProfile DEFAULT = new WaterProfile();
 
-    private static final WaterProfile FALLBACK_MARKER = new WaterProfile()
-        .tint(1.0F, 0.0F, 1.0F, 0.6F, 0.0F, 0.6F);
-    public static volatile boolean debugMarkFallback = false;
-
+    private static final WaterProfile FALLBACK_MARKER = new WaterProfile().tint(1.0F, 0.0F, 1.0F, 0.6F, 0.0F, 0.6F);
     private static final Map<String, WaterProfile> PROFILES = new ConcurrentHashMap<>();
     private static final Set<String> reportedFallbacks = ConcurrentHashMap.newKeySet();
+    public static volatile boolean debugMarkFallback = false;
 
     static {
-        registerAll(
-            new WaterProfile().tint(0.30F, 0.60F, 0.95F, 0.10F, 0.25F, 0.65F),
-            "Ocean",
-            "Deep Ocean");
-        register(
-            "Swampland",
-            new WaterProfile().tint(0.45F, 0.55F, 0.42F, 0.30F, 0.40F, 0.30F));
+        registerAll(new WaterProfile().tint(0.30F, 0.60F, 0.95F, 0.10F, 0.25F, 0.65F), "Ocean", "Deep Ocean");
+        register("Swampland", new WaterProfile().tint(0.45F, 0.55F, 0.42F, 0.30F, 0.40F, 0.30F));
     }
 
     private WaterProfileHandler() {}
@@ -48,7 +41,8 @@ public final class WaterProfileHandler {
         }
 
         if (reportedFallbacks.add(biome.biomeName)) {
-            Viridium.LOGGER.info("Water: no profile for biome '{}' (id {}), using the default", biome.biomeName, biome.biomeID);
+            Viridium.LOGGER
+                .info("Water: no profile for biome '{}' (id {}), using the default", biome.biomeName, biome.biomeID);
         }
         return debugMarkFallback ? FALLBACK_MARKER : DEFAULT;
     }
