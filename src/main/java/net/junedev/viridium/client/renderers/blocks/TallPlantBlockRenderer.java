@@ -4,8 +4,6 @@ import net.junedev.viridium.blocks.TallPlantBlock;
 import net.junedev.viridium.client.renderers.utils.RenderingUtils;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
-import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
@@ -31,7 +29,16 @@ public class TallPlantBlockRenderer implements ISimpleBlockRenderingHandler {
         TallPlantBlock plantBlock = (TallPlantBlock) block;
         double halfSize = plantBlock.getPixelWidth() / (32D);
 
-        return RenderingUtils.renderXShapedPlant(world, x, y, z, block, block.getIcon(0, world.getBlockMetadata(x, y, z)), halfSize, renderer, RANDOM_OFFSET);
+        return RenderingUtils.renderXShapedPlant(
+            world,
+            x,
+            y,
+            z,
+            block,
+            block.getIcon(0, world.getBlockMetadata(x, y, z)),
+            halfSize,
+            renderer,
+            RANDOM_OFFSET);
     }
 
     @Override

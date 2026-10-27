@@ -71,8 +71,8 @@ public final class RenderingUtils {
         return smoothstep01((x - edge0) / (edge1 - edge0));
     }
 
-
-    public static boolean renderXShapedPlant(IBlockAccess world, int x, int y, int z, Block block, IIcon icon, double halfSize, RenderBlocks renderer, double randomOffset){
+    public static boolean renderXShapedPlant(IBlockAccess world, int x, int y, int z, Block block, IIcon icon,
+        double halfSize, RenderBlocks renderer, double randomOffset) {
         long hash = RenderingUtils.positionHash(x, z);
 
         double offsetX = RenderingUtils.getRandomOffset(hash, 16, randomOffset);
@@ -84,23 +84,15 @@ public final class RenderingUtils {
 
         RenderingUtils.resetLightAndColor(world, tessellator, block, x, y, z);
 
-        renderCrossedPlanes(
-            x,
-            y,
-            z,
-            icon,
-            0.5D + offsetX,
-            0.5D + offsetZ,
-            halfSize,
-            rotation);
+        renderCrossedPlanes(x, y, z, icon, 0.5D + offsetX, 0.5D + offsetZ, halfSize, rotation);
 
         renderer.setRenderBoundsFromBlock(block);
 
         return true;
     }
 
-    public static void renderCrossedPlanes(int x, int y, int z, IIcon icon, double centerX, double centerZ, double halfSize,
-                                     double rotation) {
+    public static void renderCrossedPlanes(int x, int y, int z, IIcon icon, double centerX, double centerZ,
+        double halfSize, double rotation) {
 
         Tessellator tessellator = Tessellator.instance;
         double uMin = icon.getMinU();

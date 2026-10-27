@@ -539,7 +539,6 @@ public class ViriBlocks {
     public static Block yarrow;
     public static Block yellow_star_of_bethlehem;
 
-
     // Large Trees
     public static LargeTreeBlockSet amaranth;
     public static AmericanChestnutBlockSet american_chestnut;

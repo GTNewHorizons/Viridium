@@ -1,13 +1,11 @@
 package net.junedev.viridium.client.renderers.blocks;
 
-import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
-import net.junedev.viridium.blocks.TallPlantBlock;
 import net.junedev.viridium.client.renderers.utils.RenderingUtils;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
-import net.minecraft.client.renderer.Tessellator;
-import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
+
+import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 
 public class XShapedPlantBlockRenderer implements ISimpleBlockRenderingHandler {
 
@@ -28,7 +26,16 @@ public class XShapedPlantBlockRenderer implements ISimpleBlockRenderingHandler {
     public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block block, int modelId,
         RenderBlocks renderer) {
 
-        return RenderingUtils.renderXShapedPlant(world, x, y, z, block, block.getIcon(0, world.getBlockMetadata(x, y, z)), 1/2D, renderer, RANDOM_OFFSET);
+        return RenderingUtils.renderXShapedPlant(
+            world,
+            x,
+            y,
+            z,
+            block,
+            block.getIcon(0, world.getBlockMetadata(x, y, z)),
+            1 / 2D,
+            renderer,
+            RANDOM_OFFSET);
     }
 
     @Override
@@ -40,7 +47,5 @@ public class XShapedPlantBlockRenderer implements ISimpleBlockRenderingHandler {
     public int getRenderId() {
         return renderId;
     }
-
-
 
 }
