@@ -34,9 +34,17 @@ public final class RenderingUtils {
     }
 
     // Randomized hashed positions and rotations
-    public static long getPositionHash(int x, int z) {
+    public static long positionHash(int x, int z) {
         long hash = (long) x * 3129871L ^ (long) z * 116129781L;
         return hash * hash * 42317861L + hash * 11L;
+    }
+
+    public static float hash01(int x, int z, int salt) {
+        int h = x * 73856093 ^ z * 19349663 ^ salt * 83492791;
+        h ^= h >>> 13;
+        h *= 0x5bd1e995;
+        h ^= h >>> 15;
+        return (h & 0xFFFFFF) / (float) 0x1000000;
     }
 
     public static double getRandomOffset(long hash, int shift, double range) {
@@ -46,5 +54,18 @@ public final class RenderingUtils {
 
     public static double getRandomRotation(long hash) {
         return ((hash >>> 32) & 0xFFFFL) / 65536.0D * Math.PI / 2.0D;
+    }
+
+    public static float lerp(float a, float b, float t) {
+        return a + (b - a) * t;
+    }
+
+    public static float smoothstep01(float t) {
+        t = t < 0.0F ? 0.0F : (Math.min(t, 1.0F));
+        return t * t * (3.0F - 2.0F * t);
+    }
+
+    public static float smoothstep(float edge0, float edge1, float x) {
+        return smoothstep01((x - edge0) / (edge1 - edge0));
     }
 }

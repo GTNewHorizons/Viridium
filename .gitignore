@@ -35,3 +35,16 @@ addon.local.gradle.kts
 addon.late.local.gradle
 addon.late.local.gradle.kts
 layout.json
+
+# Obsidian
+docs/viridium/.obsidian/workspace.json
+docs/viridium/.obsidian/workspace-mobile.json
+docs/viridium/.obsidian/app.json
+
+docs/viridium/.trash/
+
+docs/viridium/.obsidian/plugins/
+docs/viridium/.obsidian/themes/
+
+docs/viridium/.DS_Store
+docs/viridium/Thumbs.db

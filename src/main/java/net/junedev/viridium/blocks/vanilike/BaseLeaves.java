@@ -1,4 +1,4 @@
-package net.junedev.viridium.blocks;
+package net.junedev.viridium.blocks.vanilike;
 
 import java.util.ArrayList;
 
@@ -42,7 +42,6 @@ public class BaseLeaves extends BlockLeaves {
         if (!this.isOpaqueCube()) {
             return this.getFancyIcon();
         } else {
-            System.out.println("kill me now!!!");
             return this.getFastIcon();
         }
     }

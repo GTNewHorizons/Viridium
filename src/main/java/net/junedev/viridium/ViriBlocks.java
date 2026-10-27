@@ -1,7 +1,20 @@
 package net.junedev.viridium;
 
-import net.junedev.viridium.blocks.*;
+import net.junedev.viridium.blocks.BushBlock;
+import net.junedev.viridium.blocks.FernBlock;
+import net.junedev.viridium.blocks.GroundPlaneBlock;
+import net.junedev.viridium.blocks.TallPlantBlock;
+import net.junedev.viridium.blocks.sets.LargeWoodBlockSet;
 import net.junedev.viridium.blocks.sets.SmallTreeBlockSet;
+import net.junedev.viridium.blocks.sets.large_tree.AmericanChestnutBlockSet;
+import net.junedev.viridium.blocks.sets.large_tree.BurntLeavesTreeBlockSet;
+import net.junedev.viridium.blocks.sets.large_tree.LargeTreeBlockSet;
+import net.junedev.viridium.blocks.sets.large_tree.PalmTreeBlockSet;
+import net.junedev.viridium.blocks.sets.large_tree.WhitePoplarBlockSet;
+import net.junedev.viridium.blocks.vanilike.BaseFullLog;
+import net.junedev.viridium.blocks.vanilike.BaseLeaves;
+import net.junedev.viridium.blocks.vanilike.BasePlanks;
+import net.junedev.viridium.blocks.vanilike.WillowVineBlock;
 import net.minecraft.block.Block;
 
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -67,95 +80,12 @@ public class ViriBlocks {
         witch_hazel = new SmallTreeBlockSet("witch_hazel");
         wisteria = new SmallTreeBlockSet("wisteria");
 
-        // Large Plants
-
         agave_americana_leaves = registerTallPlant("agave_americana_leaves", 2, 30, 1);
         welwitschia_leaf = registerTallPlant("welwitschia_leaf", 3, 19, 22);
         corpse_flower_inflorescence = registerTallPlant("corpse_flower_inflorescence", 2, 24, 4);
         corpse_flower_leaf = registerTallPlant("corpse_flower_leaf", 2, 21, 6);
         hemp_leaf = registerTallPlant("hemp_leaf", 2, 21, 5);
         monstera_leaf_large = registerTallPlant("monstera_leaf_large", 2, 13, 9);
-
-        // Flora / Vegetation
-        african_violet = registerFlower("african_violet");
-        akiohala = registerFlower("akiohala");
-        aloe_vera = registerFlower("aloe_vera");
-        alstroemeria = registerFlower("alstroemeria");
-        alumroot = registerFlower("alumroot");
-        ambrette = registerFlower("ambrette");
-        anise_hyssop = registerFlower("anise_hyssop");
-        asian_bleeding_heart = registerFlower("asian_bleeding_heart");
-        aster = registerFlower("aster");
-        azure_bluet = registerFlower("azure_bluet");
-        beebalm = registerFlower("beebalm");
-        black_eyed_susan = registerFlower("black_eyed_susan");
-        cape_sundew = registerFlower("cape_sundew");
-        carnation = registerFlower("carnation");
-        carolina_cranesbill = registerFlower("carolina_cranesbill");
-        carolina_lily = registerFlower("carolina_lily");
-        catnip = registerFlower("catnip");
-        celadine_poppy = registerFlower("celadine_poppy");
-        chamomile = registerFlower("chamomile");
-        chrysanthemum = registerFlower("chrysanthemum");
-        common_peony = registerFlower("common_peony");
-        coralbells = registerFlower("coralbells");
-        corn_poppy = registerFlower("corn_poppy");
-        cornflower = registerFlower("cornflower");
-        cotton_headed_snow_lotus = registerFlower("cotton_headed_snow_lotus");
-        coyote_mint = registerFlower("coyote_mint");
-        creeping_thistle = registerFlower("creeping_thistle");
-        edelweiss = registerFlower("edelweiss");
-        false_rue_anemone = registerFlower("false_rue_anemone");
-        fawn_lily = registerFlower("fawn_lily");
-        feverfew = registerFlower("feverfew");
-        forget_me_not = registerFlower("forget_me_not");
-        gladiolus_italicus = registerFlower("gladiolus_italicus");
-        grape_hyacinth = registerFlower("grape_hyacinth");
-        heather = registerFlower("heather");
-        hedgehog_coneflower = registerFlower("hedgehog_coneflower");
-        iceland_poppy = registerFlower("iceland_poppy");
-        japanese_spirea = registerFlower("japanese_spirea");
-        king_protea = registerFlower("king_protea");
-        koki_o_ke_oke_o = registerFlower("koki_o_ke_oke_o");
-        koki_o_ula = registerFlower("koki_o_ula");
-        labdanum = registerFlower("labdanum");
-        lemon_daylily = registerFlower("lemon_daylily");
-        lenten_rose = registerFlower("lenten_rose");
-        lily_of_the_valley = registerFlower("lily_of_the_valley");
-        madder = registerFlower("madder");
-        mandrake = registerFlower("mandrake");
-        marigold = registerFlower("marigold");
-        orange_daylily = registerFlower("orange_daylily");
-        oriental_poppy = registerFlower("oriental_poppy");
-        oxeye_daisy = registerFlower("oxeye_daisy");
-        paperwhite = registerFlower("paperwhite");
-        patchouli = registerFlower("patchouli");
-        peace_lily = registerFlower("peace_lily");
-        petunia = registerFlower("petunia");
-        poppy_anemone = registerFlower("poppy_anemone");
-        purple_heart = registerFlower("purple_heart");
-        purple_morning_glory = registerFlower("purple_morning_glory");
-        raupotaranga = registerFlower("raupotaranga");
-        red_campion = registerFlower("red_campion");
-        scarlet_globemallow = registerFlower("scarlet_globemallow");
-        spear_thistle = registerFlower("spear_thistle");
-        stringy_stonecrop = registerFlower("stringy_stonecrop");
-        sulphur_cosmos = registerFlower("sulphur_cosmos");
-        tacca_chantrieri = registerFlower("tacca_chantrieri");
-        thale_cress = registerFlower("thale_cress");
-        trailing_arbutus = registerFlower("trailing_arbutus");
-        tritomea = registerFlower("tritomea");
-        turks_cap_lily = registerFlower("turks_cap_lily");
-        varileaf_cinquefoil = registerFlower("varileaf_cinquefoil");
-        veined_sun_orchid = registerFlower("veined_sun_orchid");
-        venus_flytrap_closed = registerFlower("venus_flytrap_closed");
-        venus_flytrap_open = registerFlower("venus_flytrap_open");
-        virginia_bluebells = registerFlower("virginia_bluebells");
-        water_flag = registerFlower("water_flag");
-        welsh_poppy = registerFlower("welsh_poppy");
-        white_lupin = registerFlower("white_lupin");
-        yarrow = registerFlower("yarrow");
-        yellow_star_of_bethlehem = registerFlower("yellow_star_of_bethlehem");
 
         // Bushes
 
@@ -173,6 +103,8 @@ public class ViriBlocks {
         silver_fern_koru = registerFern("silver_fern_koru", 8, 45, 0.1D);
         sword_fern = registerFern("sword_fern", 8);
 
+        // Standalone Flora
+
         // Mushrooms
 
         // Grass Decorators
@@ -186,298 +118,59 @@ public class ViriBlocks {
         // Vines
 
         // Full Trees
-        amaranthLog = registerLargeLog("amaranth_log");
-        amaranthLogStripped = registerLargeLog("amaranth_stripped");
-        amaranthLeaves = registerLeaves("amaranth_leaves");
-        amaranthPlanks = registerPlanks("amaranth_planks");
-        amaranthSapling = registerLargeSapling("amaranth_sapling");
-
-        americanSycamoreLog = registerLargeLog("american_sycamore_log");
-        americanSycamoreLogStripped = registerLargeLog("american_sycamore_stripped");
-        americanSycamoreLeaves = registerLeaves("american_sycamore_leaves");
-        americanSycamorePlanks = registerPlanks("american_sycamore_planks");
-        americanSycamoreSapling = registerLargeSapling("american_sycamore_sapling");
-
-        ashLog = registerLargeLog("ash_log");
-        ashLogStripped = registerLargeLog("ash_stripped");
-        ashLeaves = registerLeaves("ash_leaves");
-        ashPlanks = registerPlanks("ash_planks");
-        ashSapling = registerLargeSapling("ash_sapling");
-
-        baldCypressLog = registerLargeLog("bald_cypress_log");
-        baldCypressLogStripped = registerLargeLog("bald_cypress_stripped");
-        baldCypressLeaves = registerLeaves("bald_cypress_leaves");
-        baldCypressPlanks = registerPlanks("bald_cypress_planks");
-        baldCypressSapling = registerLargeSapling("bald_cypress_sapling");
-
-        baobabLog = registerLargeLog("baobab_log");
-        baobabLogStripped = registerLargeLog("baobab_stripped");
-        baobabLeaves = registerLeaves("baobab_leaves");
-        baobabPlanks = registerPlanks("baobab_planks");
-        baobabSapling = registerLargeSapling("baobab_sapling");
-
-        beechLog = registerLargeLog("beech_log");
-        beechLogStripped = registerLargeLog("beech_stripped");
-        beechLeaves = registerLeaves("beech_leaves");
-        beechPlanks = registerPlanks("beech_planks");
-        beechSapling = registerLargeSapling("beech_sapling");
-
-        blackOakLog = registerLargeLog("black_oak_log");
-        blackOakLogStripped = registerLargeLog("black_oak_stripped");
-        blackOakLeaves = registerLeaves("black_oak_leaves");
-        blackOakPlanks = registerPlanks("black_oak_planks");
-        blackOakSapling = registerLargeSapling("black_oak_sapling");
-
-        blackPineLog = registerLargeLog("black_pine_log");
-        blackPineLogStripped = registerLargeLog("black_pine_stripped");
-        blackPineLeaves = registerLeaves("black_pine_leaves");
-        blackPinePlanks = registerPlanks("black_pine_planks");
-        blackPineSapling = registerLargeSapling("black_pine_sapling");
-
-        cacaoLog = registerLargeLog("cacao_log");
-        cacaoLogStripped = registerLargeLog("cacao_stripped");
-        cacaoLeaves = registerLeaves("cacao_leaves");
-        cacaoPlanks = registerPlanks("cacao_planks");
-        cacaoSapling = registerLargeSapling("cacao_sapling");
-
-        candlenutLog = registerLargeLog("candlenut_log");
-        candlenutLogStripped = registerLargeLog("candlenut_stripped");
-        candlenutLeaves = registerLeaves("candlenut_leaves");
-        candlenutPlanks = registerPlanks("candlenut_planks");
-        candlenutSapling = registerLargeSapling("candlenut_sapling");
-
-        coastRedwoodLog = registerLargeLog("coast_redwood_log");
-        coastRedwoodLogStripped = registerLargeLog("coast_redwood_stripped");
-        coastRedwoodLeaves = registerLeaves("coast_redwood_leaves");
-        coastRedwoodLeavesBurnt = registerLeaves("coast_redwood_leaves_burnt");
-        coastRedwoodPlanks = registerPlanks("coast_redwood_planks");
-        coastRedwoodSapling = registerLargeSapling("coast_redwood_sapling");
-
-        coconutPalmLog = registerLargeLog("coconut_palm_log");
-        coconutPalmLogStripped = registerLargeLog("coconut_palm_stripped");
-        coconutPalmLeaves = registerLeaves("coconut_palm_leaves");
-        coconutPalmPlanks = registerPlanks("coconut_palm_planks");
-        coconutPalmSapling = registerLargeSapling("coconut_palm_sapling");
-
-        coolibahLog = registerLargeLog("coolibah_log");
-        coolibahLogStripped = registerLargeLog("coolibah_stripped");
-        coolibahLeaves = registerLeaves("coolibah_leaves");
-        coolibahPlanks = registerPlanks("coolibah_planks");
-        coolibahSapling = registerLargeSapling("coolibah_sapling");
-
-        dahurianLarchLog = registerLargeLog("dahurian_larch_log");
-        dahurianLarchLogStripped = registerLargeLog("dahurian_larch_stripped");
-        dahurianLarchLeaves = registerLeaves("dahurian_larch_leaves");
-        dahurianLarchPlanks = registerPlanks("dahurian_larch_planks");
-        dahurianLarchSapling = registerLargeSapling("dahurian_larch_sapling");
-
-        dragonsBloodLog = registerLargeLog("dragons_blood_log");
-        dragonsBloodLogStripped = registerLargeLog("dragons_blood_stripped");
-        dragonsBloodLeaves = registerLeaves("dragons_blood_leaves");
-        dragonsBloodPlanks = registerPlanks("dragons_blood_planks");
-        dragonsBloodSapling = registerLargeSapling("dragons_blood_sapling");
-
-        driftwoodLog = registerLargeLog("driftwood_log");
-        driftwoodPlanks = registerPlanks("driftwood_planks");
-
-        ebonyLog = registerLargeLog("ebony_log");
-        ebonyLogStripped = registerLargeLog("ebony_stripped");
-        ebonyLeaves = registerLeaves("ebony_leaves");
-        ebonyPlanks = registerPlanks("ebony_planks");
-        ebonySapling = registerLargeSapling("ebony_sapling");
-
-        giantSequoiaLog = registerLargeLog("giant_sequoia_log");
-        giantSequoiaLogStripped = registerLargeLog("giant_sequoia_stripped");
-        giantSequoiaLeaves = registerLeaves("giant_sequoia_leaves");
-        giantSequoiaLeavesBurnt = registerLeaves("giant_sequoia_leaves_burnt");
-        giantSequoiaPlanks = registerPlanks("giant_sequoia_planks");
-        giantSequoiaSapling = registerLargeSapling("giant_sequoia_sapling");
-
-        grandFirLog = registerLargeLog("grand_fir_log");
-        grandFirLogStripped = registerLargeLog("grand_fir_stripped");
-        grandFirLeaves = registerLeaves("grand_fir_leaves");
-        grandFirPlanks = registerPlanks("grand_fir_planks");
-        grandFirSapling = registerLargeSapling("grand_fir_sapling");
-
-        hawthornLog = registerLargeLog("hawthorn_log");
-        hawthornLogStripped = registerLargeLog("hawthorn_stripped");
-        hawthornLeaves = registerLeaves("hawthorn_leaves");
-        hawthornPlanks = registerPlanks("hawthorn_planks");
-        hawthornSapling = registerLargeSapling("hawthorn_sapling");
-
-        kankanLog = registerLargeLog("kankan_log");
-        kankanLogStripped = registerLargeLog("kankan_stripped");
-        kankanLeaves = registerLeaves("kankan_leaves");
-        kankanPlanks = registerPlanks("kankan_planks");
-        kankanSapling = registerLargeSapling("kankan_sapling");
-
-        koaLog = registerLargeLog("koa_log");
-        koaLogStripped = registerLargeLog("koa_stripped");
-        koaLeaves = registerLeaves("koa_leaves");
-        koaPlanks = registerPlanks("koa_planks");
-        koaSapling = registerLargeSapling("koa_sapling");
-
-        mahoganyLog = registerLargeLog("mahogany_log");
-        mahoganyLogStripped = registerLargeLog("mahogany_stripped");
-        mahoganyLeaves = registerLeaves("mahogany_leaves");
-        mahoganyPlanks = registerPlanks("mahogany_planks");
-        mahoganySapling = registerLargeSapling("mahogany_sapling");
-
-        mediterraneanCypressLog = registerLargeLog("mediterranean_cypress_log");
-        mediterraneanCypressLogStripped = registerLargeLog("mediterranean_cypress_stripped");
-        mediterraneanCypressLeaves = registerLeaves("mediterranean_cypress_leaves");
-        mediterraneanCypressPlanks = registerPlanks("mediterranean_cypress_planks");
-        mediterraneanCypressSapling = registerLargeSapling("mediterranean_cypress_sapling");
-
-        nazarenoLog = registerLargeLog("nazareno_log");
-        nazarenoLogStripped = registerLargeLog("nazareno_stripped");
-        nazarenoLeaves = registerLeaves("nazareno_leaves");
-        nazarenoPlanks = registerPlanks("nazareno_planks");
-        nazarenoSapling = registerLargeSapling("nazareno_sapling");
-
-        paperBirchLog = registerLargeLog("paper_birch_log");
-        paperBirchLogStripped = registerLargeLog("paper_birch_stripped");
-        paperBirchLeaves = registerLeaves("paper_birch_leaves");
-        paperBirchPlanks = registerPlanks("paper_birch_planks");
-        paperBirchSapling = registerLargeSapling("paper_birch_sapling");
-
-        pedunculateOakLog = registerLargeLog("pedunculate_oak_log");
-        pedunculateOakLogStripped = registerLargeLog("pedunculate_oak_stripped");
-        pedunculateOakLeaves = registerLeaves("pedunculate_oak_leaves");
-        pedunculateOakPlanks = registerPlanks("pedunculate_oak_planks");
-        pedunculateOakSapling = registerLargeSapling("pedunculate_oak_sapling");
-
-        quakingAspenLog = registerLargeLog("quaking_aspen_log");
-        quakingAspenLogStripped = registerLargeLog("quaking_aspen_stripped");
-        quakingAspenLeaves = registerLeaves("quaking_aspen_leaves");
-        quakingAspenPlanks = registerPlanks("quaking_aspen_planks");
-        quakingAspenSapling = registerLargeSapling("quaking_aspen_sapling");
-
-        rainbowEucalyptusLog = registerLargeLog("rainbow_eucalyptus_log");
-        rainbowEucalyptusLogStripped = registerLargeLog("rainbow_eucalyptus_stripped");
-        rainbowEucalyptusLeaves = registerLeaves("rainbow_eucalyptus_leaves");
-        rainbowEucalyptusPlanks = registerPlanks("rainbow_eucalyptus_planks");
-        rainbowEucalyptusSapling = registerLargeSapling("rainbow_eucalyptus_sapling");
-
-        redAlderLog = registerLargeLog("red_alder_log");
-        redAlderLogStripped = registerLargeLog("red_alder_stripped");
-        redAlderLeaves = registerLeaves("red_alder_leaves");
-        redAlderPlanks = registerPlanks("red_alder_planks");
-        redAlderSapling = registerLargeSapling("red_alder_sapling");
-
-        redGumLog = registerLargeLog("red_gum_log");
-        redGumLogStripped = registerLargeLog("red_gum_stripped");
-        redGumLeaves = registerLeaves("red_gum_leaves");
-        redGumPlanks = registerPlanks("red_gum_planks");
-        redGumSapling = registerLargeSapling("red_gum_sapling");
-
-        redMapleLog = registerLargeLog("red_maple_log");
-        redMapleLogStripped = registerLargeLog("red_maple_stripped");
-        redMapleLeaves = registerLeaves("red_maple_leaves");
-        redMaplePlanks = registerPlanks("red_maple_planks");
-        redMapleSapling = registerLargeSapling("red_maple_sapling");
-
-        redSpruceLog = registerLargeLog("red_spruce_log");
-        redSpruceLogStripped = registerLargeLog("red_spruce_stripped");
-        redSpruceLeaves = registerLeaves("red_spruce_leaves");
-        redSprucePlanks = registerPlanks("red_spruce_planks");
-        redSpruceSapling = registerLargeSapling("red_spruce_sapling");
-
-        rowanLog = registerLargeLog("rowan_log");
-        rowanLogStripped = registerLargeLog("rowan_stripped");
-        rowanLeaves = registerLeaves("rowan_leaves");
-        rowanPlanks = registerPlanks("rowan_planks");
-        rowanSapling = registerLargeSapling("rowan_sapling");
-
-        royalPalmLog = registerLargeLog("royal_palm_log");
-        royalPalmCrown = registerLargeLog("royal_palm_crown");
-        royalPalmLeaves = registerLeaves("royal_palm_leaves");
-        royalPalmPlanks = registerPlanks("royal_palm_planks");
-        royalPalmSapling = registerLargeSapling("royal_palm_sapling");
-
-        rubberLog = registerLargeLog("rubber_log");
+        amaranth = new LargeTreeBlockSet("amaranth");
+        american_chestnut = new AmericanChestnutBlockSet("american_chestnut");
+        american_sycamore = new LargeTreeBlockSet("american_sycamore");
+        ash = new LargeTreeBlockSet("ash");
+        bald_cypress = new LargeTreeBlockSet("bald_cypress");
+        baobab = new LargeTreeBlockSet("baobab");
+        beech = new LargeTreeBlockSet("beech");
+        black_oak = new LargeTreeBlockSet("black_oak");
+        black_pine = new LargeTreeBlockSet("black_pine");
+        cacao = new LargeTreeBlockSet("cacao");
+        candlenut = new LargeTreeBlockSet("candlenut");
+        coast_redwood = new BurntLeavesTreeBlockSet("coast_redwood");
+        coconut_palm = new LargeTreeBlockSet("coconut_palm");
+        coolibah = new LargeTreeBlockSet("coolibah");
+        dahurian_larch = new LargeTreeBlockSet("dahurian_larch");
+        dragons_blood = new LargeTreeBlockSet("dragons_blood");
+        driftwood = new LargeWoodBlockSet("driftwood");
+        ebony = new LargeTreeBlockSet("ebony");
+        giant_sequoia = new BurntLeavesTreeBlockSet("giant_sequoia");
+        grand_fir = new LargeTreeBlockSet("grand_fir");
+        hawthorn = new LargeTreeBlockSet("hawthorn");
+        kankan = new LargeTreeBlockSet("kankan");
+        koa = new LargeTreeBlockSet("koa");
+        mahogany = new LargeTreeBlockSet("mahogany");
+        mediterranean_cypress = new LargeTreeBlockSet("mediterranean_cypress");
+        nazareno = new LargeTreeBlockSet("nazareno");
+        paper_birch = new LargeTreeBlockSet("paper_birch");
+        pedunculate_oak = new LargeTreeBlockSet("pedunculate_oak");
+        quaking_aspen = new LargeTreeBlockSet("quaking_aspen");
+        rainbow_eucalyptus = new LargeTreeBlockSet("rainbow_eucalyptus");
+        red_alder = new LargeTreeBlockSet("red_alder");
+        red_gum = new LargeTreeBlockSet("red_gum");
+        red_maple = new LargeTreeBlockSet("red_maple");
+        red_spruce = new LargeTreeBlockSet("red_spruce");
+        rowan = new LargeTreeBlockSet("rowan");
+        royal_palm = new PalmTreeBlockSet("royal_palm");
+        rubber = new LargeTreeBlockSet("rubber");
         rubberLogExpended = registerLargeLog("rubber_log_expended");
         rubberLogResinous = registerLargeLog("rubber_log_resinous");
-        rubberLogStripped = registerLargeLog("rubber_stripped");
-        rubberLeaves = registerLeaves("rubber_leaves");
-        rubberPlanks = registerPlanks("rubber_planks");
-        rubberSapling = registerLargeSapling("rubber_sapling");
-
-        scotsPineLog = registerLargeLog("scots_pine_log");
-        scotsPineLogStripped = registerLargeLog("scots_pine_stripped");
-        scotsPineLeaves = registerLeaves("scots_pine_leaves");
-        scotsPinePlanks = registerPlanks("scots_pine_planks");
-        scotsPineSapling = registerLargeSapling("scots_pine_sapling");
-
-        siberianLarchLog = registerLargeLog("siberian_larch_log");
-        siberianLarchLogStripped = registerLargeLog("siberian_larch_stripped");
-        siberianLarchLeaves = registerLeaves("siberian_larch_leaves");
-        siberianLarchPlanks = registerPlanks("siberian_larch_planks");
-        siberianLarchSapling = registerLargeSapling("siberian_larch_sapling");
-
-        sierraJuniperLog = registerLargeLog("sierra_juniper_log");
-        sierraJuniperLogStripped = registerLargeLog("sierra_juniper_stripped");
-        sierraJuniperLeaves = registerLeaves("sierra_juniper_leaves");
-        sierraJuniperPlanks = registerPlanks("sierra_juniper_planks");
-        sierraJuniperSapling = registerLargeSapling("sierra_juniper_sapling");
-
-        southernMagnoliaLog = registerLargeLog("southern_magnolia_log");
-        southernMagnoliaLogStripped = registerLargeLog("southern_magnolia_stripped");
-        southernMagnoliaLeaves = registerLeaves("southern_magnolia_leaves");
-        southernMagnoliaPlanks = registerPlanks("southern_magnolia_planks");
-        southernMagnoliaSapling = registerLargeSapling("southern_magnolia_sapling");
-
-        sweetCherryLog = registerLargeLog("sweet_cherry_log");
-        sweetCherryLogStripped = registerLargeLog("sweet_cherry_stripped");
-        sweetCherryLeaves = registerLeaves("sweet_cherry_leaves");
-        sweetCherryPlanks = registerPlanks("sweet_cherry_planks");
-        sweetCherrySapling = registerLargeSapling("sweet_cherry_sapling");
-
-        sweetgumLog = registerLargeLog("sweetgum_log");
-        sweetgumLogStripped = registerLargeLog("sweetgum_stripped");
-        sweetgumLeaves = registerLeaves("sweetgum_leaves");
-        sweetgumPlanks = registerPlanks("sweetgum_planks");
-        sweetgumSapling = registerLargeSapling("sweetgum_sapling");
-
-        tamarackLog = registerLargeLog("tamarack_log");
-        tamarackLogStripped = registerLargeLog("tamarack_stripped");
-        tamarackLeaves = registerLeaves("tamarack_leaves");
-        tamarackPlanks = registerPlanks("tamarack_planks");
-        tamarackSapling = registerLargeSapling("tamarack_sapling");
-
-        turkishPineLog = registerLargeLog("turkish_pine_log");
-        turkishPineLogStripped = registerLargeLog("turkish_pine_stripped");
-        turkishPineLeaves = registerLeaves("turkish_pine_leaves");
-        turkishPinePlanks = registerPlanks("turkish_pine_planks");
-        turkishPineSapling = registerLargeSapling("turkish_pine_sapling");
-
-        umbrellaTreeLog = registerLargeLog("umbrella_tree_log");
-        umbrellaTreeLogStripped = registerLargeLog("umbrella_tree_stripped");
-        umbrellaTreeLeaves = registerLeaves("umbrella_tree_leaves");
-        umbrellaTreePlanks = registerPlanks("umbrella_tree_planks");
-        umbrellaTreeSapling = registerLargeSapling("umbrella_tree_sapling");
-
-        weepingWillowLog = registerLargeLog("weeping_willow_log");
-        weepingWillowLogStripped = registerLargeLog("weeping_willow_stripped");
-        weepingWillowLeaves = registerLeaves("weeping_willow_leaves");
-        weepingWillowPlanks = registerPlanks("weeping_willow_planks");
-        weepingWillowSapling = registerLargeSapling("weeping_willow_sapling");
-
-        whitePoplarLog = registerLargeLog("white_poplar_log");
-        whitePoplarLogStripped = registerLargeLog("white_poplar_stripped");
-        whitePoplarLeavesOrange = registerLeaves("white_poplar_leaves_orange");
-        whitePoplarLeavesRed = registerLeaves("white_poplar_leaves_red");
-        whitePoplarLeavesYellow = registerLeaves("white_poplar_leaves_yellow");
-        whitePoplarPlanks = registerPlanks("white_poplar_planks");
-        whitePoplarSaplingOrange = registerLargeSapling("white_poplar_sapling_orange");
-        whitePoplarSaplingRed = registerLargeSapling("white_poplar_sapling_red");
-        whitePoplarSaplingYellow = registerLargeSapling("white_poplar_sapling_yellow");
-
-        yewLog = registerLargeLog("yew_log");
-        yewLogStripped = registerLargeLog("yew_stripped");
-        yewLeaves = registerLeaves("yew_leaves");
-        yewPlanks = registerPlanks("yew_planks");
-        yewSapling = registerLargeSapling("yew_sapling");
+        scots_pine = new LargeTreeBlockSet("scots_pine");
+        siberian_larch = new LargeTreeBlockSet("siberian_larch");
+        sierra_juniper = new LargeTreeBlockSet("sierra_juniper");
+        southern_magnolia = new LargeTreeBlockSet("southern_magnolia");
+        sweet_cherry = new LargeTreeBlockSet("sweet_cherry");
+        sweetgum = new LargeTreeBlockSet("sweetgum");
+        tamarack = new LargeTreeBlockSet("tamarack");
+        turkish_pine = new LargeTreeBlockSet("turkish_pine");
+        umbrella_tree = new LargeTreeBlockSet("umbrella_tree");
+        weeping_willow = new LargeTreeBlockSet("weeping_willow");
+        Block weepingWillowVines = new WillowVineBlock().setBlockName("weeping_willow_vines");
+        GameRegistry.registerBlock(weepingWillowVines, "weeping_willow_vines");
+        white_poplar = new WhitePoplarBlockSet("white_poplar");
+        yew = new LargeTreeBlockSet("yew");
     }
 
     // Bushes
@@ -488,10 +181,31 @@ public class ViriBlocks {
         return bush;
     }
 
+    // Full Trees
+    private Block registerLargeLog(String name) {
+        Block log = new BaseFullLog().setBlockName(name)
+            .setBlockTextureName("large_trees/" + name);
+        GameRegistry.registerBlock(log, name);
+        return log;
+    }
+
+    private Block registerLeaves(String name) {
+        Block leaves = new BaseLeaves().setBlockName(name)
+            .setBlockTextureName("large_trees/" + name);
+        GameRegistry.registerBlock(leaves, name);
+        return leaves;
+    }
+
+    private Block registerPlanks(String name) {
+        Block planks = new BasePlanks().setBlockName(name)
+            .setBlockTextureName("large_trees/" + name);
+        GameRegistry.registerBlock(planks, name);
+        return planks;
+    }
+
     // Standalone Grasses
     private Block registerTallPlant(String name, int size, int pixelWidth) {
-        Block tallPlant = new TallPlantBlock(size, pixelWidth).setBlockName(name)
-            .setBlockTextureName("flowers/" + name);
+        Block tallPlant = new TallPlantBlock(size, pixelWidth).setBlockName(name);
         GameRegistry.registerBlock(tallPlant, name);
         return tallPlant;
     }
@@ -523,12 +237,6 @@ public class ViriBlocks {
     }
 
     // Standalone Flora
-    private Block registerFlower(String name) {
-        Block flora = new BaseFlora().setBlockName(name)
-            .setBlockTextureName("flowers/" + name);
-        GameRegistry.registerBlock(flora, name);
-        return flora;
-    }
 
     // Mushrooms
 
@@ -541,35 +249,6 @@ public class ViriBlocks {
     }
 
     // Vines
-
-    // Full Trees
-    private Block registerLargeLog(String name) {
-        Block log = new BaseFullLog().setBlockName(name)
-            .setBlockTextureName("large_trees/" + name);
-        GameRegistry.registerBlock(log, name);
-        return log;
-    }
-
-    private Block registerLeaves(String name) {
-        Block leaves = new BaseLeaves().setBlockName(name)
-            .setBlockTextureName("large_trees/" + name);
-        GameRegistry.registerBlock(leaves, name);
-        return leaves;
-    }
-
-    private Block registerPlanks(String name) {
-        Block planks = new BasePlanks().setBlockName(name)
-            .setBlockTextureName("large_trees/" + name);
-        GameRegistry.registerBlock(planks, name);
-        return planks;
-    }
-
-    private Block registerLargeSapling(String name) {
-        Block sapling = new BaseSaplingBlock().setBlockName(name)
-            .setBlockTextureName("large_trees/" + name);
-        GameRegistry.registerBlock(sapling, name);
-        return sapling;
-    }
 
     // Bushes
     public static Block ainselu;
@@ -597,8 +276,6 @@ public class ViriBlocks {
     public static Block silverleaf_hydrangea;
     public static Block staghorn_sumac;
     public static Block wedding_bush;
-
-    //small trees
 
     public static SmallTreeBlockSet black_spruce;
     public static SmallTreeBlockSet blackthorn;
@@ -631,8 +308,6 @@ public class ViriBlocks {
     public static SmallTreeBlockSet witch_hazel;
     public static SmallTreeBlockSet wisteria;
 
-    //ferns
-
     public static Block autumn_fern_frond;
     public static Block bracken_frond;
     public static Block christmas_fern;
@@ -646,131 +321,12 @@ public class ViriBlocks {
     public static Block silver_fern_koru;
     public static Block sword_fern;
 
-    // large flora
-
     public static Block welwitschia_leaf;
     public static Block corpse_flower_leaf;
     public static Block corpse_flower_inflorescence;
     public static Block hemp_leaf;
     public static Block monstera_leaf_large;
     public static Block agave_americana_leaves;
-
-    // small flora TODO: all commented out plants are tall or large flora, put these in a separate folder
-    public static Block african_violet;
-    public static Block akiohala;
-    public static Block aloe_vera;
-    public static Block alstroemeria;
-    public static Block alumroot;
-    public static Block ambrette;
-    public static Block anise_hyssop;
-    public static Block asian_bleeding_heart;
-    public static Block aster;
-    public static Block azure_bluet;
-    public static Block beebalm;
-    // public static Block bethroot;
-    public static Block black_eyed_susan;
-    // public static Block bolivian_waterlily;
-    public static Block cape_sundew;
-    public static Block carnation;
-    public static Block carolina_cranesbill;
-    public static Block carolina_lily;
-    public static Block catnip;
-    public static Block celadine_poppy;
-    public static Block chamomile;
-    // public static Block chicory;
-    // public static Block christmas_cactus;
-    public static Block chrysanthemum;
-    public static Block common_peony;
-    public static Block coralbells;
-    public static Block corn_poppy;
-    public static Block cornflower;
-    public static Block cotton_headed_snow_lotus;
-    public static Block coyote_mint;
-    public static Block creeping_thistle;
-    // public static Block delphinium;
-    // public static Block dogfennel;
-    // public static Block dragon_lily;
-    // public static Block drosera_falconeri;
-    public static Block dwarf_larkspur;
-    public static Block edelweiss;
-    // public static Block falling_stars;
-    public static Block false_rue_anemone;
-    public static Block fawn_lily;
-    public static Block feverfew;
-    // public static Block fez_aloe;
-    // public static Block fireweed;
-    public static Block forget_me_not;
-    // public static Block garden_lupine;
-    // public static Block giant_airplant;
-    // public static Block giant_goldenrod;
-    // public static Block giant_ironweed;
-    public static Block gladiolus_italicus;
-    public static Block grape_hyacinth;
-    // public static Block green_pitcher_plant;
-    public static Block heather;
-    public static Block hedgehog_coneflower;
-    public static Block iceland_poppy;
-    public static Block japanese_spirea;
-    public static Block king_protea;
-    public static Block koki_o_ke_oke_o;
-    public static Block koki_o_ula;
-    public static Block labdanum;
-    public static Block lemon_daylily;
-    public static Block lenten_rose;
-    public static Block lily_of_the_valley;
-    public static Block madder;
-    public static Block mandrake;
-    public static Block marigold;
-    // public static Block mugwort;
-    // public static Block multiflora_rose;
-    // public static Block new_zealand_calceolaria;
-    public static Block orange_daylily;
-    public static Block oriental_poppy;
-    public static Block oxeye_daisy;
-    // public static Block painted_trillium;
-    public static Block paperwhite;
-    // public static Block parrot_feather_watermilfoil;
-    public static Block patchouli;
-    // public static Block patuju_flower;
-    public static Block peace_lily;
-    public static Block petunia;
-    public static Block poppy_anemone;
-    public static Block purple_heart;
-    public static Block purple_morning_glory;
-    // public static Block rafflesia_arnoldii;
-    public static Block raupotaranga;
-    public static Block red_campion;
-    // public static Block ross_lily;
-    public static Block scarlet_globemallow;
-    // public static Block skunk_cabbage;
-    // public static Block skunk_cabbage_flowering;
-    // public static Block snapdragon;
-    public static Block spear_thistle;
-    // public static Block spongeplant;
-    // public static Block stargazer_lily;
-    // public static Block stinging_nettle;
-    public static Block stringy_stonecrop;
-    public static Block sulphur_cosmos;
-    // public static Block sunflower;
-    // public static Block swanleaf_sage;
-    public static Block tacca_chantrieri;
-    public static Block thale_cress;
-    public static Block trailing_arbutus;
-    public static Block tritomea;
-    public static Block turks_cap_lily;
-    // public static Block valerian;
-    public static Block varileaf_cinquefoil;
-    public static Block veined_sun_orchid;
-    public static Block venus_flytrap_open;
-    public static Block venus_flytrap_closed;
-    public static Block virginia_bluebells;
-    public static Block water_flag;
-    // public static Block watershield;
-    public static Block welsh_poppy;
-    public static Block white_lupin;
-    // public static Block woad;
-    public static Block yarrow;
-    public static Block yellow_star_of_bethlehem;
 
     // Grass Decorators
     public static Block autumn_leaf_pile;
@@ -781,297 +337,56 @@ public class ViriBlocks {
     public static Block snorkelwort;
 
     // Large Trees
-    public static Block amaranthLog;
-    public static Block amaranthLogStripped;
-    public static Block amaranthLeaves;
-    public static Block amaranthPlanks;
-    public static Block amaranthSapling;
-
-    public static Block americanSycamoreLog;
-    public static Block americanSycamoreLogStripped;
-    public static Block americanSycamoreLeaves;
-    public static Block americanSycamorePlanks;
-    public static Block americanSycamoreSapling;
-
-    public static Block ashLog;
-    public static Block ashLogStripped;
-    public static Block ashLeaves;
-    public static Block ashPlanks;
-    public static Block ashSapling;
-
-    public static Block baldCypressLog;
-    public static Block baldCypressLogStripped;
-    public static Block baldCypressLeaves;
-    public static Block baldCypressPlanks;
-    public static Block baldCypressSapling;
-
-    public static Block baobabLog;
-    public static Block baobabLogStripped;
-    public static Block baobabLeaves;
-    public static Block baobabPlanks;
-    public static Block baobabSapling;
-
-    public static Block beechLog;
-    public static Block beechLogStripped;
-    public static Block beechLeaves;
-    public static Block beechPlanks;
-    public static Block beechSapling;
-
-    public static Block blackOakLog;
-    public static Block blackOakLogStripped;
-    public static Block blackOakLeaves;
-    public static Block blackOakPlanks;
-    public static Block blackOakSapling;
-
-    public static Block blackPineLog;
-    public static Block blackPineLogStripped;
-    public static Block blackPineLeaves;
-    public static Block blackPinePlanks;
-    public static Block blackPineSapling;
-
-    public static Block cacaoLog;
-    public static Block cacaoLogStripped;
-    public static Block cacaoLeaves;
-    public static Block cacaoPlanks;
-    public static Block cacaoSapling;
-
-    public static Block candlenutLog;
-    public static Block candlenutLogStripped;
-    public static Block candlenutLeaves;
-    public static Block candlenutPlanks;
-    public static Block candlenutSapling;
-
-    public static Block coastRedwoodLog;
-    public static Block coastRedwoodLogStripped;
-    public static Block coastRedwoodLeaves;
-    public static Block coastRedwoodLeavesBurnt;
-    public static Block coastRedwoodPlanks;
-    public static Block coastRedwoodSapling;
-
-    public static Block coconutPalmLog;
-    public static Block coconutPalmLogStripped;
-    public static Block coconutPalmLeaves;
-    public static Block coconutPalmPlanks;
-    public static Block coconutPalmSapling;
-
-    public static Block coolibahLog;
-    public static Block coolibahLogStripped;
-    public static Block coolibahLeaves;
-    public static Block coolibahPlanks;
-    public static Block coolibahSapling;
-
-    public static Block dahurianLarchLog;
-    public static Block dahurianLarchLogStripped;
-    public static Block dahurianLarchLeaves;
-    public static Block dahurianLarchPlanks;
-    public static Block dahurianLarchSapling;
-
-    public static Block dragonsBloodLog;
-    public static Block dragonsBloodLogStripped;
-    public static Block dragonsBloodLeaves;
-    public static Block dragonsBloodPlanks;
-    public static Block dragonsBloodSapling;
-
-    public static Block driftwoodLog;
-    public static Block driftwoodPlanks;
-
-    public static Block ebonyLog;
-    public static Block ebonyLogStripped;
-    public static Block ebonyLeaves;
-    public static Block ebonyPlanks;
-    public static Block ebonySapling;
-
-    public static Block giantSequoiaLog;
-    public static Block giantSequoiaLogStripped;
-    public static Block giantSequoiaLeaves;
-    public static Block giantSequoiaLeavesBurnt;
-    public static Block giantSequoiaPlanks;
-    public static Block giantSequoiaSapling;
-
-    public static Block grandFirLog;
-    public static Block grandFirLogStripped;
-    public static Block grandFirLeaves;
-    public static Block grandFirPlanks;
-    public static Block grandFirSapling;
-
-    public static Block hawthornLog;
-    public static Block hawthornLogStripped;
-    public static Block hawthornLeaves;
-    public static Block hawthornPlanks;
-    public static Block hawthornSapling;
-
-    public static Block kankanLog;
-    public static Block kankanLogStripped;
-    public static Block kankanLeaves;
-    public static Block kankanPlanks;
-    public static Block kankanSapling;
-
-    public static Block koaLog;
-    public static Block koaLogStripped;
-    public static Block koaLeaves;
-    public static Block koaPlanks;
-    public static Block koaSapling;
-
-    public static Block mahoganyLog;
-    public static Block mahoganyLogStripped;
-    public static Block mahoganyLeaves;
-    public static Block mahoganyPlanks;
-    public static Block mahoganySapling;
-
-    public static Block mediterraneanCypressLog;
-    public static Block mediterraneanCypressLogStripped;
-    public static Block mediterraneanCypressLeaves;
-    public static Block mediterraneanCypressPlanks;
-    public static Block mediterraneanCypressSapling;
-
-    public static Block nazarenoLog;
-    public static Block nazarenoLogStripped;
-    public static Block nazarenoLeaves;
-    public static Block nazarenoPlanks;
-    public static Block nazarenoSapling;
-
-    public static Block paperBirchLog;
-    public static Block paperBirchLogStripped;
-    public static Block paperBirchLeaves;
-    public static Block paperBirchPlanks;
-    public static Block paperBirchSapling;
-
-    public static Block pedunculateOakLog;
-    public static Block pedunculateOakLogStripped;
-    public static Block pedunculateOakLeaves;
-    public static Block pedunculateOakPlanks;
-    public static Block pedunculateOakSapling;
-
-    public static Block quakingAspenLog;
-    public static Block quakingAspenLogStripped;
-    public static Block quakingAspenLeaves;
-    public static Block quakingAspenPlanks;
-    public static Block quakingAspenSapling;
-
-    public static Block rainbowEucalyptusLog;
-    public static Block rainbowEucalyptusLogStripped;
-    public static Block rainbowEucalyptusLeaves;
-    public static Block rainbowEucalyptusPlanks;
-    public static Block rainbowEucalyptusSapling;
-
-    public static Block redAlderLog;
-    public static Block redAlderLogStripped;
-    public static Block redAlderLeaves;
-    public static Block redAlderPlanks;
-    public static Block redAlderSapling;
-
-    public static Block redGumLog;
-    public static Block redGumLogStripped;
-    public static Block redGumLeaves;
-    public static Block redGumPlanks;
-    public static Block redGumSapling;
-
-    public static Block redMapleLog;
-    public static Block redMapleLogStripped;
-    public static Block redMapleLeaves;
-    public static Block redMaplePlanks;
-    public static Block redMapleSapling;
-
-    public static Block redSpruceLog;
-    public static Block redSpruceLogStripped;
-    public static Block redSpruceLeaves;
-    public static Block redSprucePlanks;
-    public static Block redSpruceSapling;
-
-    public static Block rowanLog;
-    public static Block rowanLogStripped;
-    public static Block rowanLeaves;
-    public static Block rowanPlanks;
-    public static Block rowanSapling;
-
-    public static Block royalPalmLog;
-    public static Block royalPalmCrown;
-    public static Block royalPalmLeaves;
-    public static Block royalPalmPlanks;
-    public static Block royalPalmSapling;
-
-    public static Block rubberLog;
+    public static LargeTreeBlockSet amaranth;
+    public static AmericanChestnutBlockSet american_chestnut;
+    public static LargeTreeBlockSet american_sycamore;
+    public static LargeTreeBlockSet ash;
+    public static LargeTreeBlockSet bald_cypress;
+    public static LargeTreeBlockSet baobab;
+    public static LargeTreeBlockSet beech;
+    public static LargeTreeBlockSet black_oak;
+    public static LargeTreeBlockSet black_pine;
+    public static LargeTreeBlockSet cacao;
+    public static LargeTreeBlockSet candlenut;
+    public static BurntLeavesTreeBlockSet coast_redwood;
+    public static LargeTreeBlockSet coconut_palm;
+    public static LargeTreeBlockSet coolibah;
+    public static LargeTreeBlockSet dahurian_larch;
+    public static LargeTreeBlockSet dragons_blood;
+    public static LargeWoodBlockSet driftwood;
+    public static LargeTreeBlockSet ebony;
+    public static BurntLeavesTreeBlockSet giant_sequoia;
+    public static LargeTreeBlockSet grand_fir;
+    public static LargeTreeBlockSet hawthorn;
+    public static LargeTreeBlockSet kankan;
+    public static LargeTreeBlockSet koa;
+    public static LargeTreeBlockSet mahogany;
+    public static LargeTreeBlockSet mediterranean_cypress;
+    public static LargeTreeBlockSet nazareno;
+    public static LargeTreeBlockSet paper_birch;
+    public static LargeTreeBlockSet pedunculate_oak;
+    public static LargeTreeBlockSet quaking_aspen;
+    public static LargeTreeBlockSet rainbow_eucalyptus;
+    public static LargeTreeBlockSet red_alder;
+    public static LargeTreeBlockSet red_gum;
+    public static LargeTreeBlockSet red_maple;
+    public static LargeTreeBlockSet red_spruce;
+    public static LargeTreeBlockSet rowan;
+    public static PalmTreeBlockSet royal_palm;
+    public static LargeTreeBlockSet rubber;
     public static Block rubberLogExpended;
     public static Block rubberLogResinous;
-    public static Block rubberLogStripped;
-    public static Block rubberLeaves;
-    public static Block rubberPlanks;
-    public static Block rubberSapling;
-
-    public static Block scotsPineLog;
-    public static Block scotsPineLogStripped;
-    public static Block scotsPineLeaves;
-    public static Block scotsPinePlanks;
-    public static Block scotsPineSapling;
-
-    public static Block siberianLarchLog;
-    public static Block siberianLarchLogStripped;
-    public static Block siberianLarchLeaves;
-    public static Block siberianLarchPlanks;
-    public static Block siberianLarchSapling;
-
-    public static Block sierraJuniperLog;
-    public static Block sierraJuniperLogStripped;
-    public static Block sierraJuniperLeaves;
-    public static Block sierraJuniperPlanks;
-    public static Block sierraJuniperSapling;
-
-    public static Block southernMagnoliaLog;
-    public static Block southernMagnoliaLogStripped;
-    public static Block southernMagnoliaLeaves;
-    public static Block southernMagnoliaPlanks;
-    public static Block southernMagnoliaSapling;
-
-    public static Block sweetCherryLog;
-    public static Block sweetCherryLogStripped;
-    public static Block sweetCherryLeaves;
-    public static Block sweetCherryPlanks;
-    public static Block sweetCherrySapling;
-
-    public static Block sweetgumLog;
-    public static Block sweetgumLogStripped;
-    public static Block sweetgumLeaves;
-    public static Block sweetgumPlanks;
-    public static Block sweetgumSapling;
-
-    public static Block tamarackLog;
-    public static Block tamarackLogStripped;
-    public static Block tamarackLeaves;
-    public static Block tamarackPlanks;
-    public static Block tamarackSapling;
-
-    public static Block turkishPineLog;
-    public static Block turkishPineLogStripped;
-    public static Block turkishPineLeaves;
-    public static Block turkishPinePlanks;
-    public static Block turkishPineSapling;
-
-    public static Block umbrellaTreeLog;
-    public static Block umbrellaTreeLogStripped;
-    public static Block umbrellaTreeLeaves;
-    public static Block umbrellaTreePlanks;
-    public static Block umbrellaTreeSapling;
-
-    public static Block weepingWillowLog;
-    public static Block weepingWillowLogStripped;
-    public static Block weepingWillowLeaves;
-    public static Block weepingWillowPlanks;
-    public static Block weepingWillowSapling;
-
-    public static Block whitePoplarLog;
-    public static Block whitePoplarLogStripped;
-    public static Block whitePoplarLeavesOrange;
-    public static Block whitePoplarLeavesRed;
-    public static Block whitePoplarLeavesYellow;
-    public static Block whitePoplarPlanks;
-    public static Block whitePoplarSaplingOrange;
-    public static Block whitePoplarSaplingRed;
-    public static Block whitePoplarSaplingYellow;
-
-    public static Block yewLog;
-    public static Block yewLogStripped;
-    public static Block yewLeaves;
-    public static Block yewPlanks;
-    public static Block yewSapling;
+    public static LargeTreeBlockSet scots_pine;
+    public static LargeTreeBlockSet siberian_larch;
+    public static LargeTreeBlockSet sierra_juniper;
+    public static LargeTreeBlockSet southern_magnolia;
+    public static LargeTreeBlockSet sweet_cherry;
+    public static LargeTreeBlockSet sweetgum;
+    public static LargeTreeBlockSet tamarack;
+    public static LargeTreeBlockSet turkish_pine;
+    public static LargeTreeBlockSet umbrella_tree;
+    public static LargeTreeBlockSet weeping_willow;
+    public static WhitePoplarBlockSet white_poplar;
+    public static LargeTreeBlockSet yew;
 
 }
