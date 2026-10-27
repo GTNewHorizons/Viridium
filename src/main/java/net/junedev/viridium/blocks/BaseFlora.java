@@ -3,6 +3,7 @@ package net.junedev.viridium.blocks;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.junedev.viridium.Viridium;
+import net.junedev.viridium.client.renderers.ViriRenderIds;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBush;
 import net.minecraft.block.BlockSapling;
@@ -14,7 +15,7 @@ import net.minecraft.util.IIcon;
 
 import java.util.List;
 
-public class BaseFlora extends BlockBush {
+public class BaseFlora extends BaseVegetation {
 
     public BaseFlora() {
         super();
@@ -43,5 +44,10 @@ public class BaseFlora extends BlockBush {
     @Override
     public void getSubBlocks(Item itemIn, CreativeTabs tab, List<ItemStack> list) {
         list.add(new ItemStack(itemIn, 1, 0));
+    }
+
+    @Override
+    public int getRenderType() {
+        return ViriRenderIds.xShapePlantBlockRenderId;
     }
 }
