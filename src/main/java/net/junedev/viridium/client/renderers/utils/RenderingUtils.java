@@ -1,7 +1,9 @@
 package net.junedev.viridium.client.renderers.utils;
 
 import net.minecraft.block.Block;
+import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.Tessellator;
+import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 
 public final class RenderingUtils {
@@ -67,5 +69,97 @@ public final class RenderingUtils {
 
     public static float smoothstep(float edge0, float edge1, float x) {
         return smoothstep01((x - edge0) / (edge1 - edge0));
+    }
+
+    public static boolean renderXShapedPlant(IBlockAccess world, int x, int y, int z, Block block, IIcon icon,
+        double halfSize, RenderBlocks renderer, double randomOffset) {
+        long hash = RenderingUtils.positionHash(x, z);
+
+        double offsetX = RenderingUtils.getRandomOffset(hash, 16, randomOffset);
+        double offsetZ = RenderingUtils.getRandomOffset(hash, 24, randomOffset);
+
+        double rotation = RenderingUtils.getRandomRotation(hash);
+
+        Tessellator tessellator = Tessellator.instance;
+
+        RenderingUtils.resetLightAndColor(world, tessellator, block, x, y, z);
+
+        renderCrossedPlanes(x, y, z, icon, 0.5D + offsetX, 0.5D + offsetZ, halfSize, rotation);
+
+        renderer.setRenderBoundsFromBlock(block);
+
+        return true;
+    }
+
+    public static void renderCrossedPlanes(int x, int y, int z, IIcon icon, double centerX, double centerZ,
+        double halfSize, double rotation) {
+
+        Tessellator tessellator = Tessellator.instance;
+        double uMin = icon.getMinU();
+        double uMax = icon.getMaxU();
+        double vMin = icon.getMinV();
+        double vMax = icon.getMaxV();
+        double cos = Math.cos(rotation);
+        double sin = Math.sin(rotation);
+
+        // Rotation matrix
+        // ( c -s )
+        // ( s c )
+        // Og positions relative to center (-h, -h) -> (h, h), (-h, h) -> (h, -h)
+        double firstMinX = centerX - halfSize * cos + halfSize * sin;
+        double firstMinZ = centerZ - halfSize * sin - halfSize * cos;
+        double firstMaxX = centerX + halfSize * cos - halfSize * sin;
+        double firstMaxZ = centerZ + halfSize * sin + halfSize * cos;
+
+        RenderingUtils.addDoubleSidedQuad(
+            tessellator,
+            x + firstMinX,
+            y,
+            z + firstMinZ,
+            uMin,
+            vMax,
+            x + firstMaxX,
+            y,
+            z + firstMaxZ,
+            uMax,
+            vMax,
+            x + firstMaxX,
+            y + 1,
+            z + firstMaxZ,
+            uMax,
+            vMin,
+            x + firstMinX,
+            y + 1,
+            z + firstMinZ,
+            uMin,
+            vMin);
+
+        double secondMinX = centerX - halfSize * cos - halfSize * sin;
+        double secondMinZ = centerZ - halfSize * sin + halfSize * cos;
+        double secondMaxX = centerX + halfSize * cos + halfSize * sin;
+        double secondMaxZ = centerZ + halfSize * sin - halfSize * cos;
+
+        RenderingUtils.addDoubleSidedQuad(
+            tessellator,
+            x + secondMaxX,
+            y,
+            z + secondMaxZ,
+            uMax,
+            vMax,
+            x + secondMinX,
+            y,
+            z + secondMinZ,
+            uMin,
+            vMax,
+            x + secondMinX,
+            y + 1,
+            z + secondMinZ,
+            uMin,
+            vMin,
+            x + secondMaxX,
+            y + 1,
+            z + secondMaxZ,
+            uMax,
+            vMin);
     }
 }

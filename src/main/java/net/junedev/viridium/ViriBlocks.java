@@ -1,5 +1,6 @@
 package net.junedev.viridium;
 
+import net.junedev.viridium.blocks.BaseFlora;
 import net.junedev.viridium.blocks.BushBlock;
 import net.junedev.viridium.blocks.FernBlock;
 import net.junedev.viridium.blocks.GroundPlaneBlock;
@@ -103,7 +104,86 @@ public class ViriBlocks {
         silver_fern_koru = registerFern("silver_fern_koru", 8, 45, 0.1D);
         sword_fern = registerFern("sword_fern", 8);
 
-        // Standalone Flora
+        // Flora / Vegetation
+        african_violet = registerFlower("african_violet");
+        akiohala = registerFlower("akiohala");
+        aloe_vera = registerFlower("aloe_vera");
+        alstroemeria = registerFlower("alstroemeria");
+        alumroot = registerFlower("alumroot");
+        ambrette = registerFlower("ambrette");
+        anise_hyssop = registerFlower("anise_hyssop");
+        asian_bleeding_heart = registerFlower("asian_bleeding_heart");
+        aster = registerFlower("aster");
+        azure_bluet = registerFlower("azure_bluet");
+        beebalm = registerFlower("beebalm");
+        black_eyed_susan = registerFlower("black_eyed_susan");
+        cape_sundew = registerFlower("cape_sundew");
+        carnation = registerFlower("carnation");
+        carolina_cranesbill = registerFlower("carolina_cranesbill");
+        carolina_lily = registerFlower("carolina_lily");
+        catnip = registerFlower("catnip");
+        celadine_poppy = registerFlower("celadine_poppy");
+        chamomile = registerFlower("chamomile");
+        chrysanthemum = registerFlower("chrysanthemum");
+        common_peony = registerFlower("common_peony");
+        coralbells = registerFlower("coralbells");
+        corn_poppy = registerFlower("corn_poppy");
+        cornflower = registerFlower("cornflower");
+        cotton_headed_snow_lotus = registerFlower("cotton_headed_snow_lotus");
+        coyote_mint = registerFlower("coyote_mint");
+        creeping_thistle = registerFlower("creeping_thistle");
+        edelweiss = registerFlower("edelweiss");
+        false_rue_anemone = registerFlower("false_rue_anemone");
+        fawn_lily = registerFlower("fawn_lily");
+        feverfew = registerFlower("feverfew");
+        forget_me_not = registerFlower("forget_me_not");
+        gladiolus_italicus = registerFlower("gladiolus_italicus");
+        grape_hyacinth = registerFlower("grape_hyacinth");
+        heather = registerFlower("heather");
+        hedgehog_coneflower = registerFlower("hedgehog_coneflower");
+        iceland_poppy = registerFlower("iceland_poppy");
+        japanese_spirea = registerFlower("japanese_spirea");
+        king_protea = registerFlower("king_protea");
+        koki_o_ke_oke_o = registerFlower("koki_o_ke_oke_o");
+        koki_o_ula = registerFlower("koki_o_ula");
+        labdanum = registerFlower("labdanum");
+        lemon_daylily = registerFlower("lemon_daylily");
+        lenten_rose = registerFlower("lenten_rose");
+        lily_of_the_valley = registerFlower("lily_of_the_valley");
+        madder = registerFlower("madder");
+        mandrake = registerFlower("mandrake");
+        marigold = registerFlower("marigold");
+        orange_daylily = registerFlower("orange_daylily");
+        oriental_poppy = registerFlower("oriental_poppy");
+        oxeye_daisy = registerFlower("oxeye_daisy");
+        paperwhite = registerFlower("paperwhite");
+        patchouli = registerFlower("patchouli");
+        peace_lily = registerFlower("peace_lily");
+        petunia = registerFlower("petunia");
+        poppy_anemone = registerFlower("poppy_anemone");
+        purple_heart = registerFlower("purple_heart");
+        purple_morning_glory = registerFlower("purple_morning_glory");
+        raupotaranga = registerFlower("raupotaranga");
+        red_campion = registerFlower("red_campion");
+        scarlet_globemallow = registerFlower("scarlet_globemallow");
+        spear_thistle = registerFlower("spear_thistle");
+        stringy_stonecrop = registerFlower("stringy_stonecrop");
+        sulphur_cosmos = registerFlower("sulphur_cosmos");
+        tacca_chantrieri = registerFlower("tacca_chantrieri");
+        thale_cress = registerFlower("thale_cress");
+        trailing_arbutus = registerFlower("trailing_arbutus");
+        tritomea = registerFlower("tritomea");
+        turks_cap_lily = registerFlower("turks_cap_lily");
+        varileaf_cinquefoil = registerFlower("varileaf_cinquefoil");
+        veined_sun_orchid = registerFlower("veined_sun_orchid");
+        venus_flytrap_closed = registerFlower("venus_flytrap_closed");
+        venus_flytrap_open = registerFlower("venus_flytrap_open");
+        virginia_bluebells = registerFlower("virginia_bluebells");
+        water_flag = registerFlower("water_flag");
+        welsh_poppy = registerFlower("welsh_poppy");
+        white_lupin = registerFlower("white_lupin");
+        yarrow = registerFlower("yarrow");
+        yellow_star_of_bethlehem = registerFlower("yellow_star_of_bethlehem");
 
         // Mushrooms
 
@@ -237,6 +317,12 @@ public class ViriBlocks {
     }
 
     // Standalone Flora
+    private Block registerFlower(String name) {
+        Block flora = new BaseFlora().setBlockName(name)
+            .setBlockTextureName("flowers/" + name);
+        GameRegistry.registerBlock(flora, name);
+        return flora;
+    }
 
     // Mushrooms
 
@@ -335,6 +421,123 @@ public class ViriBlocks {
     public static Block leaf_pile;
     public static Block pinestraw;
     public static Block snorkelwort;
+
+    // small flora TODO: all commented out plants are tall or large flora, put these in a separate folder
+    public static Block african_violet;
+    public static Block akiohala;
+    public static Block aloe_vera;
+    public static Block alstroemeria;
+    public static Block alumroot;
+    public static Block ambrette;
+    public static Block anise_hyssop;
+    public static Block asian_bleeding_heart;
+    public static Block aster;
+    public static Block azure_bluet;
+    public static Block beebalm;
+    // public static Block bethroot;
+    public static Block black_eyed_susan;
+    // public static Block bolivian_waterlily;
+    public static Block cape_sundew;
+    public static Block carnation;
+    public static Block carolina_cranesbill;
+    public static Block carolina_lily;
+    public static Block catnip;
+    public static Block celadine_poppy;
+    public static Block chamomile;
+    // public static Block chicory;
+    // public static Block christmas_cactus;
+    public static Block chrysanthemum;
+    public static Block common_peony;
+    public static Block coralbells;
+    public static Block corn_poppy;
+    public static Block cornflower;
+    public static Block cotton_headed_snow_lotus;
+    public static Block coyote_mint;
+    public static Block creeping_thistle;
+    // public static Block delphinium;
+    // public static Block dogfennel;
+    // public static Block dragon_lily;
+    // public static Block drosera_falconeri;
+    public static Block dwarf_larkspur;
+    public static Block edelweiss;
+    // public static Block falling_stars;
+    public static Block false_rue_anemone;
+    public static Block fawn_lily;
+    public static Block feverfew;
+    // public static Block fez_aloe;
+    // public static Block fireweed;
+    public static Block forget_me_not;
+    // public static Block garden_lupine;
+    // public static Block giant_airplant;
+    // public static Block giant_goldenrod;
+    // public static Block giant_ironweed;
+    public static Block gladiolus_italicus;
+    public static Block grape_hyacinth;
+    // public static Block green_pitcher_plant;
+    public static Block heather;
+    public static Block hedgehog_coneflower;
+    public static Block iceland_poppy;
+    public static Block japanese_spirea;
+    public static Block king_protea;
+    public static Block koki_o_ke_oke_o;
+    public static Block koki_o_ula;
+    public static Block labdanum;
+    public static Block lemon_daylily;
+    public static Block lenten_rose;
+    public static Block lily_of_the_valley;
+    public static Block madder;
+    public static Block mandrake;
+    public static Block marigold;
+    // public static Block mugwort;
+    // public static Block multiflora_rose;
+    // public static Block new_zealand_calceolaria;
+    public static Block orange_daylily;
+    public static Block oriental_poppy;
+    public static Block oxeye_daisy;
+    // public static Block painted_trillium;
+    public static Block paperwhite;
+    // public static Block parrot_feather_watermilfoil;
+    public static Block patchouli;
+    // public static Block patuju_flower;
+    public static Block peace_lily;
+    public static Block petunia;
+    public static Block poppy_anemone;
+    public static Block purple_heart;
+    public static Block purple_morning_glory;
+    // public static Block rafflesia_arnoldii;
+    public static Block raupotaranga;
+    public static Block red_campion;
+    // public static Block ross_lily;
+    public static Block scarlet_globemallow;
+    // public static Block skunk_cabbage;
+    // public static Block skunk_cabbage_flowering;
+    // public static Block snapdragon;
+    public static Block spear_thistle;
+    // public static Block spongeplant;
+    // public static Block stargazer_lily;
+    // public static Block stinging_nettle;
+    public static Block stringy_stonecrop;
+    public static Block sulphur_cosmos;
+    // public static Block sunflower;
+    // public static Block swanleaf_sage;
+    public static Block tacca_chantrieri;
+    public static Block thale_cress;
+    public static Block trailing_arbutus;
+    public static Block tritomea;
+    public static Block turks_cap_lily;
+    // public static Block valerian;
+    public static Block varileaf_cinquefoil;
+    public static Block veined_sun_orchid;
+    public static Block venus_flytrap_open;
+    public static Block venus_flytrap_closed;
+    public static Block virginia_bluebells;
+    public static Block water_flag;
+    // public static Block watershield;
+    public static Block welsh_poppy;
+    public static Block white_lupin;
+    // public static Block woad;
+    public static Block yarrow;
+    public static Block yellow_star_of_bethlehem;
 
     // Large Trees
     public static LargeTreeBlockSet amaranth;

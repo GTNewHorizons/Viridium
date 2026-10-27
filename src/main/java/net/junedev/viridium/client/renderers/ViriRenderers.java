@@ -5,6 +5,7 @@ import net.junedev.viridium.client.renderers.blocks.FernBlockRenderer;
 import net.junedev.viridium.client.renderers.blocks.GroundPlaneBlockRenderer;
 import net.junedev.viridium.client.renderers.blocks.SmallLogBlockRenderer;
 import net.junedev.viridium.client.renderers.blocks.TallPlantBlockRenderer;
+import net.junedev.viridium.client.renderers.blocks.XShapedPlantBlockRenderer;
 import net.junedev.viridium.client.renderers.world.designer_tools.DesignerCommand;
 import net.junedev.viridium.client.renderers.world.designer_tools.DesignerInput;
 import net.junedev.viridium.client.renderers.world.designer_tools.DesignerScreen;
@@ -46,6 +47,9 @@ public class ViriRenderers {
 
         ViriRenderIds.tallPlantBlockRenderId = RenderingRegistry.getNextAvailableRenderId();
         RenderingRegistry.registerBlockHandler(new TallPlantBlockRenderer(ViriRenderIds.tallPlantBlockRenderId));
+
+        ViriRenderIds.xShapePlantBlockRenderId = RenderingRegistry.getNextAvailableRenderId();
+        RenderingRegistry.registerBlockHandler(new XShapedPlantBlockRenderer(ViriRenderIds.xShapePlantBlockRenderId));
 
         ViriRenderIds.fernBlockRenderId = RenderingRegistry.getNextAvailableRenderId();
         RenderingRegistry.registerBlockHandler(new FernBlockRenderer(ViriRenderIds.fernBlockRenderId));
