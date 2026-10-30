@@ -1,5 +1,7 @@
 package net.junedev.viridium.blocks.sets.large_tree;
 
+import java.util.List;
+
 import net.junedev.viridium.blocks.sets.LargeWoodBlockSet;
 import net.junedev.viridium.blocks.vanilike.BaseLeaves;
 import net.junedev.viridium.blocks.vanilike.BaseSaplingBlock;
@@ -22,5 +24,13 @@ public class LargeTreeBlockSet extends LargeWoodBlockSet {
 
         GameRegistry.registerBlock(leaves, name + "_leaves");
         GameRegistry.registerBlock(sapling, name + "_sapling");
+    }
+
+    @Override
+    public List<Block> getBlocksWithItems() {
+        List<Block> blocks = super.getBlocksWithItems();
+        blocks.add(leaves);
+        blocks.add(sapling);
+        return blocks;
     }
 }
