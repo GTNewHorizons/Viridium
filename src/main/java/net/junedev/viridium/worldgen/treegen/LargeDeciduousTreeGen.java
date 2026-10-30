@@ -7,7 +7,6 @@ import java.util.Random;
 
 import net.junedev.viridium.blocks.sets.WoodBlockSet;
 import net.junedev.viridium.blocks.sets.large_tree.LargeTreeBlockSet;
-import net.junedev.viridium.worldgen.SoilTypeRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.world.World;
 
@@ -84,7 +83,7 @@ public class LargeDeciduousTreeGen extends LargeTreeWorldGenBase {
         final int trunkPercent = (int) (height * this.trunkHeightPercent);
 
         // Make sure that a tree can grow on the soil
-        if (!SoilTypeRegistry.isValidGeneric(world.getBlock(x, y - 1, z))) return false;
+        if (!hasValidSoil(world, x, y, z, SaplingLayout.SINGLE)) return false;
 
         // make sure that we have room to grow the tree
         if (y >= 256 - height - 4) return false;
@@ -116,7 +115,7 @@ public class LargeDeciduousTreeGen extends LargeTreeWorldGenBase {
         final int trunkPercent = (int) (height * this.trunkHeightPercent);
 
         // Make sure that a tree can grow on the soil
-        if (!SoilTypeRegistry.isValidGeneric(world.getBlock(x, y - 1, z))) return false;
+        if (!hasValidSoil(world, x, y, z, SaplingLayout.SINGLE)) return false;
 
         // make sure that we have room to grow the tree
         if (y >= 256 - height - 4) return false;
