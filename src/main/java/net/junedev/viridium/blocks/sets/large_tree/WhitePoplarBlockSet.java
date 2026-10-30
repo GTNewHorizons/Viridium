@@ -1,5 +1,6 @@
 package net.junedev.viridium.blocks.sets.large_tree;
 
+import net.junedev.viridium.Viridium;
 import net.junedev.viridium.blocks.sets.LargeWoodBlockSet;
 import net.junedev.viridium.blocks.vanilike.BaseLeaves;
 import net.junedev.viridium.blocks.vanilike.BaseSaplingBlock;
@@ -27,11 +28,14 @@ public class WhitePoplarBlockSet extends LargeWoodBlockSet {
         leaves_red = new BaseLeaves().setBlockName(name + "_leaves_red")
             .setBlockTextureName(getAssetDirectory() + name + "_leaves_red");
 
-        sapling_yellow = new BaseSaplingBlock(name, this, "yellow").setBlockName(name + "_sapling_yellow")
+        sapling_yellow = new BaseSaplingBlock(Viridium.MOD_ID + ":" + name, this, "yellow")
+            .setBlockName(name + "_sapling_yellow")
             .setBlockTextureName(getAssetDirectory() + name + "_sapling_yellow");
-        sapling_orange = new BaseSaplingBlock(name, this, "orange").setBlockName(name + "_sapling_orange")
+        sapling_orange = new BaseSaplingBlock(Viridium.MOD_ID + ":" + name, this, "orange")
+            .setBlockName(name + "_sapling_orange")
             .setBlockTextureName(getAssetDirectory() + name + "_sapling_orange");
-        sapling_red = new BaseSaplingBlock(name, this, "red").setBlockName(name + "_sapling_red")
+        sapling_red = new BaseSaplingBlock(Viridium.MOD_ID + ":" + name, this, "red")
+            .setBlockName(name + "_sapling_red")
             .setBlockTextureName(getAssetDirectory() + name + "_sapling_red");
 
         GameRegistry.registerBlock(leaves_yellow, name + "_leaves_yellow");

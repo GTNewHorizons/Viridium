@@ -1,7 +1,6 @@
 package net.junedev.viridium.worldgen.treegen;
 
 import java.util.EnumSet;
-import java.util.function.Predicate;
 
 import net.junedev.viridium.worldgen.SoilType;
 import net.minecraft.block.Block;

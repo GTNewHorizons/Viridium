@@ -20,7 +20,7 @@ public final class TreeRegistry {
     public static void preInit() {
 
         register(
-            "american_chestnut",
+            "viridium:american_chestnut",
             (notifiesNeighbors) -> createDefaultGenerator(ViriBlocks.american_chestnut, notifiesNeighbors)).withLayout(
                 SaplingLayout.TWO_BY_TWO,
                 (notifiesNeighbors) -> new AmericanChestnutTreeGen(
@@ -34,7 +34,7 @@ public final class TreeRegistry {
                     12,
                     3));
         register(
-            "pedunculate_oak",
+            "viridium:pedunculate_oak",
             (notifiesNeighbors) -> createDefaultGenerator(ViriBlocks.pedunculate_oak, notifiesNeighbors)).withLayout(
                 SaplingLayout.TWO_BY_TWO,
                 (notifiesNeighbors) -> new MediumPedunculateOakTreeGen(
@@ -48,7 +48,7 @@ public final class TreeRegistry {
                     12,
                     3));
         register(
-            "coconut_palm",
+            "viridium:coconut_palm",
             (notifiesNeighbors) -> new CoconutPalmTreeGen(notifiesNeighbors, ViriBlocks.coconut_palm))
                 .withSoils(SoilType.GENERIC, SoilType.SAND);
     }
@@ -56,8 +56,9 @@ public final class TreeRegistry {
     private TreeRegistry() {}
 
     public static TreeType register(String treeId, Function<Boolean, WorldGenerator> defaultFactory) {
+        Objects.requireNonNull(treeId, "treeId");
         TreeType tree = new TreeType(Objects.requireNonNull(defaultFactory, "defaultFactory"));
-        TREES.put(Objects.requireNonNull(treeId, "treeId"), tree);
+        TREES.put(treeId, tree);
         return tree;
     }
 
