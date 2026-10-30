@@ -1,6 +1,7 @@
 package net.junedev.viridium.worldgen.treegen;
 
 import java.util.EnumMap;
+import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -8,6 +9,8 @@ import java.util.function.Function;
 
 import net.junedev.viridium.ViriBlocks;
 import net.junedev.viridium.blocks.sets.WoodBlockSet;
+import net.junedev.viridium.worldgen.SoilType;
+import net.minecraft.block.Block;
 import net.minecraft.world.gen.feature.WorldGenerator;
 
 public final class TreeRegistry {
@@ -46,19 +49,14 @@ public final class TreeRegistry {
                     3));
         register(
             "coconut_palm",
-            (notifiesNeighbors) -> new CoconutPalmTreeGen(notifiesNeighbors, ViriBlocks.coconut_palm),
-            true);
+            (notifiesNeighbors) -> new CoconutPalmTreeGen(notifiesNeighbors, ViriBlocks.coconut_palm))
+                .withSoils(SoilType.GENERIC, SoilType.SAND);
     }
 
     private TreeRegistry() {}
 
     public static TreeType register(String treeId, Function<Boolean, WorldGenerator> defaultFactory) {
-        return register(treeId, defaultFactory, false);
-    }
-
-    public static TreeType register(String treeId, Function<Boolean, WorldGenerator> defaultFactory,
-        boolean growsOnSand) {
-        TreeType tree = new TreeType(Objects.requireNonNull(defaultFactory, "defaultFactory"), growsOnSand);
+        TreeType tree = new TreeType(Objects.requireNonNull(defaultFactory, "defaultFactory"));
         TREES.put(Objects.requireNonNull(treeId, "treeId"), tree);
         return tree;
     }
@@ -67,15 +65,17 @@ public final class TreeRegistry {
     public static WorldGenerator createGenerator(String treeId, WoodBlockSet blockSet, boolean notifiesNeighbors) {
         TreeType tree = TREES.get(treeId);
         return tree == null ? createDefaultGenerator(blockSet, notifiesNeighbors)
-            : tree.defaultFactory.apply(notifiesNeighbors);
+            : configureSoil(tree.defaultFactory.apply(notifiesNeighbors), tree);
     }
 
     public static WorldGenerator createGenerator(String treeId, WoodBlockSet blockSet, SaplingLayout layout,
         boolean notifiesNeighbors) {
         TreeType tree = TREES.get(treeId);
         return tree == null ? createDefaultGenerator(blockSet, notifiesNeighbors)
-            : tree.layoutFactories.getOrDefault(layout, tree.defaultFactory)
-                .apply(notifiesNeighbors);
+            : configureSoil(
+                tree.layoutFactories.getOrDefault(layout, tree.defaultFactory)
+                    .apply(notifiesNeighbors),
+                tree);
     }
 
     public static boolean hasLayout(String treeId, SaplingLayout layout) {
@@ -87,10 +87,16 @@ public final class TreeRegistry {
         return new LargeDeciduousTreeGen(notifiesNeighbors, blockSet, "", 8, 4, 0.30D, 2, 4, 8, 6);
     }
 
-    // TODO: Placeholder while SoilTypeRegistry is introduced
-    public static boolean growsOnSand(String treeId) {
+    public static boolean isValidSoil(String treeId, Block soil) {
         TreeType tree = TREES.get(treeId);
-        return tree != null && tree.growsOnSand;
+        return tree == null ? SoilType.GENERIC.matches(soil) : tree.isValidSoil(soil);
+    }
+
+    private static WorldGenerator configureSoil(WorldGenerator generator, TreeType tree) {
+        if (generator instanceof LargeTreeWorldGenBase treeGenerator) {
+            treeGenerator.setSoils(tree.soils);
+        }
+        return generator;
     }
 
     public static final class TreeType {
@@ -98,12 +104,27 @@ public final class TreeRegistry {
         private final Function<Boolean, WorldGenerator> defaultFactory;
         private final Map<SaplingLayout, Function<Boolean, WorldGenerator>> layoutFactories = new EnumMap<>(
             SaplingLayout.class);
-        // TODO: This should be substituted by a list of soil types (EnumSet<SoilType>)
-        private final boolean growsOnSand;
+        private EnumSet<SoilType> soils = EnumSet.of(SoilType.GENERIC);
 
-        private TreeType(Function<Boolean, WorldGenerator> defaultFactory, boolean growsOnSand) {
+        private TreeType(Function<Boolean, WorldGenerator> defaultFactory) {
             this.defaultFactory = defaultFactory;
-            this.growsOnSand = growsOnSand;
+        }
+
+        /** Replaces the allowed soil categories for every layout of this tree. */
+        public TreeType withSoils(SoilType... soilTypes) {
+            EnumSet<SoilType> allowed = EnumSet.noneOf(SoilType.class);
+            for (SoilType soilType : soilTypes) {
+                allowed.add(Objects.requireNonNull(soilType, "soilType"));
+            }
+            soils = allowed;
+            return this;
+        }
+
+        private boolean isValidSoil(Block soil) {
+            for (SoilType soilType : soils) {
+                if (soilType.matches(soil)) return true;
+            }
+            return false;
         }
 
         public TreeType withLayout(SaplingLayout layout, Function<Boolean, WorldGenerator> generatorFactory) {
