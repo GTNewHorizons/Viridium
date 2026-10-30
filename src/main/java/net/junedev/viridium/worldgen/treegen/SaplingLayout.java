@@ -4,7 +4,9 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
-import java.util.function.BiPredicate;
+
+import net.minecraft.block.Block;
+import net.minecraft.world.World;
 
 public enum SaplingLayout {
 
@@ -41,14 +43,16 @@ public enum SaplingLayout {
     }
 
     /** Finds a complete layout containing the triggering sapling, regardless of its position in the layout. */
-    public Match findMatch(int x, int z, BiPredicate<Integer, Integer> isMatchingSapling) {
+    public Match findMatch(int x, int y, int z, Block sapling, World world) {
         // Bruteforce (checks all origins and its offsets)
         for (Offset trigger : offsets) {
             int originX = x - trigger.x();
             int originZ = z - trigger.z();
             boolean matches = true;
             for (Offset offset : offsets) {
-                if (!isMatchingSapling.test(originX + offset.x(), originZ + offset.z())) {
+                int x1 = originX + offset.x();
+                int z1 = originZ + offset.z();
+                if (!world.blockExists(x1, y, z1) && world.getBlock(x1, y, z1) == sapling) {
                     matches = false;
                     break;
                 }

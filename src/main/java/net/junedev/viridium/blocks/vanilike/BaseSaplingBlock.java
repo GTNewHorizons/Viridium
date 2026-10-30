@@ -102,11 +102,7 @@ public class BaseSaplingBlock extends BlockSapling {
         for (SaplingLayout layout : SaplingLayout.largestFirst()) {
             if (!TreeRegistry.hasLayout(treeId, layout)) continue;
 
-            SaplingLayout.Match match = layout.findMatch(
-                x,
-                z,
-                (saplingX, saplingZ) -> world.blockExists(saplingX, y, saplingZ)
-                    && world.getBlock(saplingX, y, saplingZ) == this);
+            SaplingLayout.Match match = layout.findMatch(x, y, z, this, world);
 
             if (match != null) return match;
         }
