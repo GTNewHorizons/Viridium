@@ -11,6 +11,10 @@ public enum ViridiumMixins implements IMixins {
 
     WATER_TEXTURES(new MixinBuilder("Own water textures in the viridium namespace")
         .addClientMixins("minecraft.MixinBlockLiquid_WaterTextures")
+        .setPhase(Phase.EARLY)),
+
+    VIDEO_SETTINGS_PAGE(new MixinBuilder("Viridium page in Angelica's video settings")
+        .addClientMixins("angelica.MixinReeseSodiumVideoOptionsScreen_ViridiumPage")
         .setPhase(Phase.EARLY));
 
     private final MixinBuilder builder;
