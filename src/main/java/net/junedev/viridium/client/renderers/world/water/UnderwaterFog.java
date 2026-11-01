@@ -2,6 +2,7 @@ package net.junedev.viridium.client.renderers.world.water;
 
 import static net.junedev.viridium.client.renderers.utils.RenderingUtils.lerp;
 
+import net.junedev.viridium.client.renderers.world.GlCheck;
 import net.junedev.viridium.client.renderers.world.water.profiles.WaterProfile;
 import net.junedev.viridium.client.renderers.world.water.profiles.WaterProfileHandler;
 import net.minecraft.block.material.Material;
@@ -74,6 +75,7 @@ public class UnderwaterFog {
 
         event.density = Math.max(0.01F, density);
         GL11.glFogi(GL11.GL_FOG_MODE, GL11.GL_EXP); // density only works in exponential mode
+        GlCheck.check("underwater fog");
         event.setCanceled(true);
     }
 

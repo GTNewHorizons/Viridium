@@ -3,6 +3,7 @@ package net.junedev.viridium.client.renderers.world.water;
 import static net.junedev.viridium.client.renderers.utils.RenderingUtils.hash01;
 import static net.junedev.viridium.client.renderers.utils.RenderingUtils.smoothstep;
 
+import net.junedev.viridium.client.renderers.world.GlCheck;
 import net.junedev.viridium.client.renderers.world.designer_tools.RayLook;
 import net.junedev.viridium.client.renderers.world.water.profiles.WaterProfile;
 import net.junedev.viridium.client.renderers.world.water.profiles.WaterProfileHandler;
@@ -403,6 +404,7 @@ public final class UnderwaterLightRays {
     }
 
     private void beginDrawing() {
+        GlCheck.check("before light rays");
         wasTexture = GL11.glIsEnabled(GL11.GL_TEXTURE_2D);
         wasLighting = GL11.glIsEnabled(GL11.GL_LIGHTING);
         wasCull = GL11.glIsEnabled(GL11.GL_CULL_FACE);
@@ -427,5 +429,6 @@ public final class UnderwaterLightRays {
         setEnabled(GL11.GL_LIGHTING, wasLighting);
         setEnabled(GL11.GL_TEXTURE_2D, wasTexture);
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+        GlCheck.check("light rays end");
     }
 }

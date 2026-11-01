@@ -3,6 +3,7 @@ package net.junedev.viridium.client.renderers.world.sky;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import net.irisshaders.iris.api.v0.IrisApi;
+import net.junedev.viridium.client.renderers.world.GlCheck;
 import net.junedev.viridium.client.renderers.world.designer_tools.DesignerRegistry;
 import net.junedev.viridium.client.renderers.world.fog.SkyState;
 import net.minecraft.client.Minecraft;
@@ -105,6 +106,7 @@ public class CustomSkyRenderer extends IRenderHandler {
 
     @Override
     public void render(float partialTicks, WorldClient world, Minecraft mc) {
+        GlCheck.check("before sky");
         registerReloadListenerOnce();
 
         int generation = reloadGeneration.get();
@@ -155,6 +157,7 @@ public class CustomSkyRenderer extends IRenderHandler {
         GL11.glEnable(GL11.GL_ALPHA_TEST);
         GL11.glEnable(GL11.GL_CULL_FACE);
         GL11.glDepthMask(true);
+        GlCheck.check("after sky");
     }
 
     private void renderVanillaSky(float partialTicks, WorldClient world, Minecraft mc) {
