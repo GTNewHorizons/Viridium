@@ -1,5 +1,6 @@
 package net.junedev.viridium.blocks.sets;
 
+import net.junedev.viridium.Viridium;
 import net.junedev.viridium.blocks.SmallLogBlock;
 import net.junedev.viridium.blocks.vanilike.BaseBark;
 import net.junedev.viridium.blocks.vanilike.BaseLeaves;
@@ -27,7 +28,7 @@ public class SmallTreeBlockSet extends WoodBlockSet {
         leaves = new BaseLeaves().setBlockName(name + "_leaves")
             .setBlockTextureName(getAssetDirectory() + name + "_leaves");
 
-        sapling = new BaseSaplingBlock(name, this).setBlockName(name + "_sapling")
+        sapling = new BaseSaplingBlock(Viridium.MOD_ID + ":" + name, this).setBlockName(name + "_sapling")
             .setBlockTextureName(getAssetDirectory() + name + "_sapling");
 
         // TODO: Change to custom block type?
