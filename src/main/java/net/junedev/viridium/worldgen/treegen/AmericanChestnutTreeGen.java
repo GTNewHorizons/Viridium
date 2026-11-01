@@ -3,7 +3,6 @@ package net.junedev.viridium.worldgen.treegen;
 import java.util.Random;
 
 import net.junedev.viridium.blocks.sets.WoodBlockSet;
-import net.junedev.viridium.worldgen.SoilTypeRegistry;
 import net.minecraft.world.World;
 
 public class AmericanChestnutTreeGen extends LargeDeciduousTreeGen {
@@ -36,7 +35,7 @@ public class AmericanChestnutTreeGen extends LargeDeciduousTreeGen {
         final int trunkPercent = (int) (height * this.trunkHeightPercent);
 
         // Make sure that a tree can grow on the soil
-        if (!SoilTypeRegistry.isValidGeneric(world.getBlock(x, y - 1, z))) return false;
+        if (!hasValidSoil(world, x, y, z, SaplingLayout.TWO_BY_TWO)) return false;
 
         // make sure that we have room to grow the tree
         if (y >= 256 - height - 4) return false;
@@ -69,7 +68,7 @@ public class AmericanChestnutTreeGen extends LargeDeciduousTreeGen {
         final int trunkPercent = (int) (height * this.trunkHeightPercent);
 
         // Make sure that a tree can grow on the soil
-        if (!SoilTypeRegistry.isValidGeneric(world.getBlock(x, y - 1, z))) return false;
+        if (!hasValidSoil(world, x, y, z, SaplingLayout.TWO_BY_TWO)) return false;
 
         // make sure that we have room to grow the tree
         if (y >= 256 - height - 4) return false;

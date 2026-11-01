@@ -1,5 +1,8 @@
 package net.junedev.viridium.worldgen.treegen;
 
+import java.util.EnumSet;
+
+import net.junedev.viridium.worldgen.SoilType;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
@@ -10,9 +13,33 @@ import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 abstract class LargeTreeWorldGenBase extends WorldGenAbstractTree {
 
     int leafCount = 0;
+    private EnumSet<SoilType> soils = EnumSet.of(SoilType.GENERIC);
 
     public LargeTreeWorldGenBase(boolean par1) {
         super(par1);
+    }
+
+    // Gets set by the tree registry!
+    final void setSoils(EnumSet<SoilType> soils) {
+        this.soils = soils;
+    }
+
+    // Can be overridden if it needs some extra logic other than the actual block
+    protected boolean isValidSoil(Block block) {
+        for (SoilType soil : soils) {
+            if (soil.matches(block)) return true;
+        }
+        return false;
+    }
+
+    protected final boolean hasValidSoil(World world, int x, int y, int z, SaplingLayout layout) {
+        for (SaplingLayout.Offset offset : layout.getOffsets()) {
+            int soilX = x + offset.x();
+            int soilZ = z + offset.z();
+            if (!world.blockExists(soilX, y - 1, soilZ) || !isValidSoil(world.getBlock(soilX, y - 1, soilZ)))
+                return false;
+        }
+        return true;
     }
 
     public boolean check1x1Trunk(int x, int y, int z, int height, Block log, World world) {

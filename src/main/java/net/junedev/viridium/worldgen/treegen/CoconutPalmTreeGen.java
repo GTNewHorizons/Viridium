@@ -1,10 +1,11 @@
 package net.junedev.viridium.worldgen.treegen;
 
+import java.util.EnumSet;
 import java.util.Random;
 
 import net.junedev.viridium.blocks.sets.WoodBlockSet;
 import net.junedev.viridium.blocks.sets.large_tree.LargeTreeBlockSet;
-import net.junedev.viridium.worldgen.SoilTypeRegistry;
+import net.junedev.viridium.worldgen.SoilType;
 import net.minecraft.block.Block;
 import net.minecraft.world.World;
 
@@ -19,6 +20,7 @@ public class CoconutPalmTreeGen extends LargeTreeWorldGenBase {
 
     public CoconutPalmTreeGen(boolean par1, WoodBlockSet blockSet) {
         super(par1);
+        setSoils(EnumSet.of(SoilType.GENERIC, SoilType.SAND));
 
         // Cast to a valid type and throw exception if blockSet could not be cast
         if (blockSet instanceof LargeTreeBlockSet tree) {
@@ -64,8 +66,7 @@ public class CoconutPalmTreeGen extends LargeTreeWorldGenBase {
         final int chunkCheck = (int) Math.ceil(radius) + 5;
 
         // Make sure that a tree can grow on the soil (Currently dirt/sand)
-        if (!(SoilTypeRegistry.isValidGeneric(world.getBlock(x, y - 1, z))
-            || SoilTypeRegistry.isValidSand(world.getBlock(x, y - 1, z)))) return false;
+        if (!hasValidSoil(world, x, y, z, SaplingLayout.SINGLE)) return false;
 
         // make sure that we have room to grow the tree
         if (y >= 256 - height - 4) return false;
@@ -104,8 +105,7 @@ public class CoconutPalmTreeGen extends LargeTreeWorldGenBase {
         final int chunkCheck = (int) Math.ceil(radius) + 1;
 
         // Make sure that a tree can grow on the soil
-        if (!(SoilTypeRegistry.isValidGeneric(world.getBlock(x, y - 1, z))
-            || SoilTypeRegistry.isValidSand(world.getBlock(x, y - 1, z)))) return false;
+        if (!hasValidSoil(world, x, y, z, SaplingLayout.SINGLE)) return false;
 
         // make sure that we have room to grow the tree
         if (y >= 256 - height - 4) return false;
