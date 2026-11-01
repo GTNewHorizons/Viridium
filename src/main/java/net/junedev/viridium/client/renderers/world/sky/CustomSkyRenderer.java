@@ -3,6 +3,7 @@ package net.junedev.viridium.client.renderers.world.sky;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import net.irisshaders.iris.api.v0.IrisApi;
+import net.junedev.viridium.client.config.RenderState;
 import net.junedev.viridium.client.renderers.world.designer_tools.DesignerRegistry;
 import net.junedev.viridium.client.renderers.world.fog.SkyState;
 import net.minecraft.client.Minecraft;
@@ -105,6 +106,11 @@ public class CustomSkyRenderer extends IRenderHandler {
 
     @Override
     public void render(float partialTicks, WorldClient world, Minecraft mc) {
+        if (!RenderState.customSky()) {
+            renderVanillaSky(partialTicks, world, mc);
+            return;
+        }
+
         registerReloadListenerOnce();
 
         int generation = reloadGeneration.get();
@@ -158,12 +164,12 @@ public class CustomSkyRenderer extends IRenderHandler {
     }
 
     private void renderVanillaSky(float partialTicks, WorldClient world, Minecraft mc) {
-        IRenderHandler self = world.provider.getSkyRenderer();
+        SkyState.invalidate();
         world.provider.setSkyRenderer(null);
         try {
             mc.renderGlobal.renderSky(partialTicks);
         } finally {
-            world.provider.setSkyRenderer(self);
+            world.provider.setSkyRenderer(this);
         }
     }
 
