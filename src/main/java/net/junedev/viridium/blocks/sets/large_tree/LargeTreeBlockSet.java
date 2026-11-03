@@ -2,6 +2,7 @@ package net.junedev.viridium.blocks.sets.large_tree;
 
 import java.util.List;
 
+import net.junedev.viridium.Viridium;
 import net.junedev.viridium.blocks.sets.LargeWoodBlockSet;
 import net.junedev.viridium.blocks.vanilike.BaseLeaves;
 import net.junedev.viridium.blocks.vanilike.BaseSaplingBlock;
@@ -17,7 +18,7 @@ public class LargeTreeBlockSet extends LargeWoodBlockSet {
     public LargeTreeBlockSet(String name) {
         super(name);
 
-        sapling = new BaseSaplingBlock(name, this).setBlockName(name + "_sapling")
+        sapling = new BaseSaplingBlock(Viridium.MOD_ID + ":" + name, this).setBlockName(name + "_sapling")
             .setBlockTextureName(getAssetDirectory() + name + "_sapling");
         leaves = new BaseLeaves().setBlockName(name + "_leaves")
             .setBlockTextureName(getAssetDirectory() + name + "_leaves");

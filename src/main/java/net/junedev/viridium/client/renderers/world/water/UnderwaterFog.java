@@ -2,6 +2,7 @@ package net.junedev.viridium.client.renderers.world.water;
 
 import static net.junedev.viridium.client.renderers.utils.RenderingUtils.lerp;
 
+import net.junedev.viridium.client.config.RenderState;
 import net.junedev.viridium.client.renderers.world.water.profiles.WaterProfile;
 import net.junedev.viridium.client.renderers.world.water.profiles.WaterProfileHandler;
 import net.minecraft.block.material.Material;
@@ -43,6 +44,10 @@ public class UnderwaterFog {
     /** Fog color under water. Called once per frame; also updates the depth factor and the blended profile. */
     @SubscribeEvent
     public void onFogColors(EntityViewRenderEvent.FogColors event) {
+        if (!RenderState.underwaterFog()) {
+            return;
+        }
+
         if (event.block.getMaterial() != Material.water) {
             return;
         }
@@ -66,6 +71,10 @@ public class UnderwaterFog {
      */
     @SubscribeEvent
     public void onFogDensity(EntityViewRenderEvent.FogDensity event) {
+        if (!RenderState.underwaterFog()) {
+            return;
+        }
+
         if (event.block.getMaterial() != Material.water) {
             return;
         }

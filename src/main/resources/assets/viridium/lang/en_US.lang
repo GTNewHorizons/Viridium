@@ -607,3 +607,18 @@ tile.umbrella_tree_planks_slab.name=Umbrella Tree Slab
 tile.weeping_willow_planks_slab.name=Weeping Willow Slab
 tile.white_poplar_planks_slab.name=White Poplar Slab
 tile.yew_planks_slab.name=Yew Slab
+
+# Settings
+options.viridium.page=Viridium
+options.viridium.custom_sky=Custom Sky
+options.viridium.custom_sky.tooltip=Use Viridium's sky instead of the vanilla sky.
+options.viridium.water_tint=Water Tint
+options.viridium.water_tint.tooltip=Tint water by depth, shore and biome. Rebuilds the chunks when changed.
+options.viridium.water_blend=Water Biome Blend
+options.viridium.water_blend.tooltip=How far water colors blend between biomes. Higher values cost more while chunks are built.
+options.viridium.underwater_fog=Underwater Fog
+options.viridium.underwater_fog.tooltip=Depth-dependent fog under water.
+options.viridium.light_rays=Light Rays
+options.viridium.light_rays.tooltip=Light shafts under water.
+options.viridium.light_ray_radius=Light Ray Range
+options.viridium.light_ray_radius.tooltip=How many shafts are drawn around you. Higher values cost more CPU.
