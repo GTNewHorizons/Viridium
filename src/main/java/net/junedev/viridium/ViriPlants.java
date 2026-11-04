@@ -1,5 +1,7 @@
 package net.junedev.viridium;
 
+import java.util.function.Function;
+
 import net.junedev.viridium.blocks.sets.LargeWoodBlockSet;
 import net.junedev.viridium.blocks.sets.SmallTreeBlockSet;
 import net.junedev.viridium.blocks.sets.WoodBlockSet;
@@ -21,8 +23,6 @@ import net.junedev.viridium.plants.forms.SmallGrassForm;
 import net.junedev.viridium.plants.forms.TallPlantForm;
 import net.junedev.viridium.plants.forms.WoodSetForm;
 import net.minecraft.block.Block;
-
-import java.util.function.Function;
 
 public final class ViriPlants {
 
