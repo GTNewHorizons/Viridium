@@ -136,6 +136,10 @@ public class TallPlantBlock extends BaseVegetation {
         return croppedIcons[meta];
     }
 
+    public int getVerticalBlockSize() {
+        return verticalBlockSize;
+    }
+
     public int getPixelWidth() {
         return pixelWidth;
     }
