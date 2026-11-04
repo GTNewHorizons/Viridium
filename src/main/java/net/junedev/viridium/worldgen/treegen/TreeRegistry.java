@@ -1,17 +1,17 @@
 package net.junedev.viridium.worldgen.treegen;
 
-import net.junedev.viridium.ViriPlants;
-import net.junedev.viridium.blocks.sets.WoodBlockSet;
-import net.junedev.viridium.worldgen.SoilType;
-import net.minecraft.block.Block;
-import net.minecraft.world.gen.feature.WorldGenerator;
-
 import java.util.EnumMap;
 import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
+
+import net.junedev.viridium.ViriPlants;
+import net.junedev.viridium.blocks.sets.WoodBlockSet;
+import net.junedev.viridium.worldgen.SoilType;
+import net.minecraft.block.Block;
+import net.minecraft.world.gen.feature.WorldGenerator;
 
 public final class TreeRegistry {
 
@@ -21,32 +21,34 @@ public final class TreeRegistry {
 
         register(
             "viridium:american_chestnut",
-            (notifiesNeighbors) -> createDefaultGenerator(ViriPlants.AMERICAN_CHESTNUT.getBlocks(), notifiesNeighbors)).withLayout(
-                SaplingLayout.TWO_BY_TWO,
-                (notifiesNeighbors) -> new AmericanChestnutTreeGen(
-                    notifiesNeighbors,
-                    ViriPlants.AMERICAN_CHESTNUT.getBlocks(),
-                    17,
-                    4,
-                    0.30D,
-                    5,
-                    2,
-                    12,
-                    3));
+            (notifiesNeighbors) -> createDefaultGenerator(ViriPlants.AMERICAN_CHESTNUT.getBlocks(), notifiesNeighbors))
+                .withLayout(
+                    SaplingLayout.TWO_BY_TWO,
+                    (notifiesNeighbors) -> new AmericanChestnutTreeGen(
+                        notifiesNeighbors,
+                        ViriPlants.AMERICAN_CHESTNUT.getBlocks(),
+                        17,
+                        4,
+                        0.30D,
+                        5,
+                        2,
+                        12,
+                        3));
         register(
             "viridium:pedunculate_oak",
-            (notifiesNeighbors) -> createDefaultGenerator(ViriPlants.PEDUNCULATE_OAK.getBlocks(), notifiesNeighbors)).withLayout(
-                SaplingLayout.TWO_BY_TWO,
-                (notifiesNeighbors) -> new MediumPedunculateOakTreeGen(
-                    notifiesNeighbors,
-                    ViriPlants.PEDUNCULATE_OAK.getBlocks(),
-                    10,
-                    3,
-                    0.40D,
-                    7,
-                    2,
-                    12,
-                    3));
+            (notifiesNeighbors) -> createDefaultGenerator(ViriPlants.PEDUNCULATE_OAK.getBlocks(), notifiesNeighbors))
+                .withLayout(
+                    SaplingLayout.TWO_BY_TWO,
+                    (notifiesNeighbors) -> new MediumPedunculateOakTreeGen(
+                        notifiesNeighbors,
+                        ViriPlants.PEDUNCULATE_OAK.getBlocks(),
+                        10,
+                        3,
+                        0.40D,
+                        7,
+                        2,
+                        12,
+                        3));
         register(
             "viridium:coconut_palm",
             (notifiesNeighbors) -> new CoconutPalmTreeGen(notifiesNeighbors, ViriPlants.COCONUT_PALM.getBlocks()))
