@@ -1,5 +1,7 @@
 package net.junedev.viridium.blocks.sets.large_tree;
 
+import java.util.List;
+
 import net.junedev.viridium.blocks.vanilike.BaseLeaves;
 import net.minecraft.block.Block;
 
@@ -16,5 +18,12 @@ public class BurntLeavesTreeBlockSet extends LargeTreeBlockSet {
             .setBlockTextureName(getAssetDirectory() + name + "_leaves_burnt");
 
         GameRegistry.registerBlock(burntLeaves, name + "_leaves_burnt");
+    }
+
+    @Override
+    public List<Block> getBlocksWithItems() {
+        List<Block> blocks = super.getBlocksWithItems();
+        blocks.add(burntLeaves);
+        return blocks;
     }
 }

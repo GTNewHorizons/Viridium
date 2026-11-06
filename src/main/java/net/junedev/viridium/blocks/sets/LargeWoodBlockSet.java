@@ -1,5 +1,7 @@
 package net.junedev.viridium.blocks.sets;
 
+import java.util.List;
+
 import net.junedev.viridium.blocks.vanilike.BaseBark;
 import net.junedev.viridium.blocks.vanilike.BaseFullLog;
 import net.minecraft.block.Block;
@@ -33,5 +35,14 @@ public class LargeWoodBlockSet extends WoodBlockSet {
     @Override
     public String getAssetDirectory() {
         return "large_trees/";
+    }
+
+    @Override
+    public List<Block> getBlocksWithItems() {
+        List<Block> blocks = super.getBlocksWithItems();
+        blocks.add(log);
+        blocks.add(stripped);
+        blocks.add(bark);
+        return blocks;
     }
 }

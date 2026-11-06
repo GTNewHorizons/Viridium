@@ -1,5 +1,9 @@
 package net.junedev.viridium.blocks.sets;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import net.junedev.viridium.blocks.vanilike.BaseFence;
 import net.junedev.viridium.blocks.vanilike.BaseFenceGate;
 import net.junedev.viridium.blocks.vanilike.BasePlanks;
@@ -45,5 +49,11 @@ public class WoodBlockSet {
 
     public String getAssetDirectory() {
         return "";
+    }
+
+    // Every block of this set that has an inventory item. The double slab is left out because it has none.
+    // Returns a new mutable list so subclasses can append their own blocks.
+    public List<Block> getBlocksWithItems() {
+        return new ArrayList<>(Arrays.asList(planks, stairs, fence, fenceGate, slab));
     }
 }
