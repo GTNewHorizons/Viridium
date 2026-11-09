@@ -1,0 +1,87 @@
+{
+  "name": "Wetland",
+  "generation": {
+    "weight": 10,
+    "climateType": "COOL",
+    "dictionaryTypes": [
+      "SWAMP",
+      "WET"
+    ]
+  },
+  "climate": {
+    "temperatureCelsius": 16.0,
+    "humidityPercent": 90.0,
+    "rain": true,
+    "snow": false
+  },
+  "terrain": {
+    "height": {
+      "baseHeight": -0.2,
+      "heightVariation": 0.1
+    }
+  },
+  "decoration": {
+    "treesPerChunk": 5,
+    "grassPerChunk": 10,
+    "trees": [
+      {
+        "id": "viridium:weeping_willow",
+        "variant": "default",
+        "weight": 4
+      },
+      {
+        "id": "viridium:flowering_dogwood",
+        "variant": "default",
+        "weight": 3
+      },
+      {
+        "id": "viridium:black_spruce",
+        "variant": "default",
+        "weight": 3
+      }
+    ],
+    "grass": [
+      {
+        "blockId": "minecraft:tallgrass",
+        "meta": 1,
+        "weight": 20
+      },
+      {
+        "blockId": "minecraft:tallgrass",
+        "meta": 2,
+        "weight": 8
+      },
+      {
+        "blockId": "viridium:clover_patch_top",
+        "meta": 0,
+        "weight": 4
+      },
+      {
+        "blockId": "viridium:leaf_pile",
+        "meta": 0,
+        "weight": 4
+      }
+    ],
+    "flowers": [
+      {
+        "blockId": "viridium:water_flag",
+        "meta": 0,
+        "weight": 1
+      },
+      {
+        "blockId": "minecraft:red_flower",
+        "meta": 1,
+        "weight": 1
+      }
+    ],
+    "flowersPerChunk": 5,
+    "features": {},
+    "waterLakeChance": 2,
+    "reedsPerChunk": 8
+  },
+  "appearance": {
+    "grassColor": "#3F7847",
+    "foliageColor": "#3F7847",
+    "waterColor": "#354D78"
+  }
+}

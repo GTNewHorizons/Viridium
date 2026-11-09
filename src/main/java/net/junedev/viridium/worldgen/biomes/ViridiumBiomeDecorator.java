@@ -7,6 +7,8 @@ import net.minecraft.init.Blocks;
 import net.minecraft.world.biome.BiomeDecorator;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.gen.feature.WorldGenBlockBlob;
+import net.minecraft.world.gen.feature.WorldGenLakes;
+import net.minecraft.world.gen.feature.WorldGenMelon;
 import net.minecraftforge.event.terraingen.DecorateBiomeEvent;
 import net.minecraftforge.event.terraingen.TerrainGen;
 
@@ -15,14 +17,35 @@ public class ViridiumBiomeDecorator extends BiomeDecorator {
     public ViridiumBiomeDefinition.SmallPatch[] smallPatches = new ViridiumBiomeDefinition.SmallPatch[0];
     public ViridiumBiomeDefinition.Blob[] blobs = new ViridiumBiomeDefinition.Blob[0];
     public ViridiumBiomeDefinition.Blob[] bushes = new ViridiumBiomeDefinition.Blob[0];
+    public int waterLakeChance;
+    public int melonChance;
 
     @Override
     protected void genDecorations(BiomeGenBase biomeGenBase) {
+        // Carve ponds before vegetation so reeds and lilies can use their shorelines.
+        if (waterLakeChance > 0 && randomGenerator.nextInt(waterLakeChance) == 0
+            && TerrainGen.decorate(
+                currentWorld,
+                randomGenerator,
+                chunk_X,
+                chunk_Z,
+                DecorateBiomeEvent.Decorate.EventType.LAKE)) {
+            int x = chunk_X + randomGenerator.nextInt(16) + 8;
+            int z = chunk_Z + randomGenerator.nextInt(16) + 8;
+            new WorldGenLakes(Blocks.water)
+                .generate(currentWorld, randomGenerator, x, currentWorld.getHeightValue(x, z), z);
+        }
         super.genDecorations(biomeGenBase);
 
         if (!TerrainGen
             .decorate(currentWorld, randomGenerator, chunk_X, chunk_Z, DecorateBiomeEvent.Decorate.EventType.CUSTOM)) {
             return;
+        }
+
+        if (melonChance > 0 && randomGenerator.nextInt(melonChance) == 0) {
+            int x = chunk_X + randomGenerator.nextInt(16) + 8;
+            int z = chunk_Z + randomGenerator.nextInt(16) + 8;
+            new WorldGenMelon().generate(currentWorld, randomGenerator, x, currentWorld.getHeightValue(x, z), z);
         }
 
         for (ViridiumBiomeDefinition.SmallPatch patch : smallPatches) {

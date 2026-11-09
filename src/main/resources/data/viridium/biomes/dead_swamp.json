@@ -1,0 +1,51 @@
+{
+  "name": "Dead Swamp",
+  "generation": {
+    "weight": 10,
+    "climateType": "WARM",
+    "dictionaryTypes": [
+      "SWAMP",
+      "WET",
+      "DEAD"
+    ]
+  },
+  "climate": {
+    "temperatureCelsius": 21.0,
+    "humidityPercent": 90.0,
+    "rain": true,
+    "snow": false
+  },
+  "terrain": {
+    "height": {
+      "baseHeight": -0.2,
+      "heightVariation": 0.08
+    }
+  },
+  "decoration": {
+    "treesPerChunk": -999,
+    "grassPerChunk": 6,
+    "trees": [],
+    "grass": [
+      {
+        "blockId": "minecraft:tallgrass",
+        "meta": 1,
+        "weight": 20
+      }
+    ],
+    "flowers": [
+      {
+        "blockId": "viridium:water_flag",
+        "meta": 0,
+        "weight": 1
+      }
+    ],
+    "flowersPerChunk": 5,
+    "features": {},
+    "waterLakeChance": 3
+  },
+  "appearance": {
+    "grassColor": "#426A46",
+    "foliageColor": "#426A46",
+    "waterColor": "#354D78"
+  }
+}

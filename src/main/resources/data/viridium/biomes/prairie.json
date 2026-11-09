@@ -3,12 +3,16 @@
   "generation": {
     "weight": 10,
     "climateType": "WARM",
-    "dictionaryTypes": []
+    "dictionaryTypes": [
+      "PLAINS",
+      "SPARSE"
+    ]
   },
   "climate": {
-    "temperature": 0.5,
-    "rainfall": 0.3,
-    "rain": true
+    "temperatureCelsius": 26.0,
+    "humidityPercent": 30.0,
+    "rain": true,
+    "snow": false
   },
   "terrain": {
     "height": {
@@ -19,11 +23,39 @@
   "decoration": {
     "treesPerChunk": 0,
     "trees": [
-      { "id": "minecraft:spruce", "weight": 5 },
-      { "id": "minecraft:oak", "weight": 5 }
+      {
+        "id": "minecraft:oak",
+        "variant": "default",
+        "weight": 1
+      }
     ],
-    "grassPerChunk": 6,
-    "flowersPerChunk": 0
+    "grassPerChunk": 12,
+    "flowersPerChunk": 5,
+    "flowers": [
+      {
+        "blockId": "viridium:giant_goldenrod",
+        "meta": 0,
+        "weight": 1
+      },
+      {
+        "blockId": "viridium:false_rue_anemone",
+        "meta": 0,
+        "weight": 1
+      }
+    ],
+    "grass": [
+      {
+        "blockId": "minecraft:tallgrass",
+        "meta": 1,
+        "weight": 20
+      },
+      {
+        "blockId": "minecraft:double_plant",
+        "meta": 2,
+        "weight": 5
+      }
+    ],
+    "features": {}
   },
   "appearance": {
     "grassColor": "#87CA84",

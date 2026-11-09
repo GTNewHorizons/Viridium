@@ -1,0 +1,63 @@
+{
+  "name": "Frost Forest",
+  "generation": {
+    "weight": 10,
+    "climateType": "ICY",
+    "dictionaryTypes": [
+      "FOREST",
+      "COLD",
+      "SNOWY"
+    ]
+  },
+  "climate": {
+    "temperatureCelsius": -18.0,
+    "humidityPercent": 50.0,
+    "rain": true,
+    "snow": true
+  },
+  "terrain": {
+    "height": {
+      "baseHeight": 0.2,
+      "heightVariation": 0.2
+    }
+  },
+  "decoration": {
+    "treesPerChunk": 4,
+    "grassPerChunk": 3,
+    "trees": [
+      {
+        "id": "minecraft:spruce",
+        "variant": "default",
+        "weight": 1
+      }
+    ],
+    "grass": [
+      {
+        "blockId": "minecraft:tallgrass",
+        "meta": 1,
+        "weight": 20
+      }
+    ],
+    "flowers": [
+      {
+        "blockId": "viridium:dog_violet",
+        "meta": 0,
+        "weight": 1
+      }
+    ],
+    "flowersPerChunk": 5,
+    "features": {
+      "blobs": [
+        {
+          "blockId": "minecraft:cobblestone",
+          "radius": 1,
+          "frequency": 6
+        }
+      ]
+    }
+  },
+  "appearance": {
+    "grassColor": "#B0C3A8",
+    "foliageColor": "#B0C3A8"
+  }
+}

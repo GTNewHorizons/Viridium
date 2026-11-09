@@ -47,10 +47,10 @@ public class Viridium {
         items = new ViriItems();
         items.preInit();
 
+        TreeRegistry.preInit();
+
         biomes = new ViriBiomes();
         biomes.preInit();
-
-        TreeRegistry.preInit();
 
         proxy.preInit(event);
     }

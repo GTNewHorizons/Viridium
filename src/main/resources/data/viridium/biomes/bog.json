@@ -1,0 +1,55 @@
+{
+  "name": "Bog",
+  "generation": {
+    "weight": 10,
+    "climateType": "COOL",
+    "dictionaryTypes": [
+      "SWAMP",
+      "WET"
+    ]
+  },
+  "climate": {
+    "temperatureCelsius": 10.0,
+    "humidityPercent": 90.0,
+    "rain": true,
+    "snow": false
+  },
+  "terrain": {
+    "height": {
+      "baseHeight": -0.15,
+      "heightVariation": 0.08
+    }
+  },
+  "decoration": {
+    "treesPerChunk": 2,
+    "grassPerChunk": 8,
+    "trees": [
+      {
+        "id": "minecraft:oak_shrub",
+        "variant": "default",
+        "weight": 8
+      }
+    ],
+    "grass": [
+      {
+        "blockId": "minecraft:tallgrass",
+        "meta": 1,
+        "weight": 20
+      },
+      {
+        "blockId": "viridium:leaf_pile",
+        "meta": 0,
+        "weight": 4
+      }
+    ],
+    "flowers": [],
+    "flowersPerChunk": 0,
+    "features": {},
+    "waterLakeChance": 3,
+    "reedsPerChunk": 8
+  },
+  "appearance": {
+    "grassColor": "#A58B52",
+    "foliageColor": "#A58B52"
+  }
+}

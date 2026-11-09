@@ -3,23 +3,39 @@
   "generation": {
     "weight": 10,
     "climateType": "WARM",
-    "dictionaryTypes": ["WET", "PLAINS", "SPARSE"]
+    "dictionaryTypes": [
+      "SWAMP",
+      "HOT"
+    ]
   },
   "climate": {
-    "temperature": 0.9,
-    "rainfall": 0.4,
-    "rain": true
+    "temperatureCelsius": 38.0,
+    "humidityPercent": 40.0,
+    "rain": true,
+    "snow": false
   },
   "terrain": {
     "height": {
-      "baseHeight": 0.05,
-      "heightVariation": 0.05
+      "baseHeight": -0.1,
+      "heightVariation": 0.08
     }
   },
   "decoration": {
-    "treesPerChunk": -1,
-    "grassPerChunk": 5,
-    "flowersPerChunk": 0,
+    "treesPerChunk": 3,
+    "grassPerChunk": 10,
+    "flowersPerChunk": 5,
+    "flowers": [
+      {
+        "blockId": "viridium:english_lavender",
+        "meta": 0,
+        "weight": 1
+      },
+      {
+        "blockId": "minecraft:red_flower",
+        "meta": 2,
+        "weight": 1
+      }
+    ],
     "features": {
       "blobs": [
         {
@@ -28,10 +44,42 @@
           "frequency": 6
         }
       ]
-    }
+    },
+    "trees": [
+      {
+        "id": "minecraft:oak_shrub",
+        "variant": "default",
+        "weight": 2
+      },
+      {
+        "id": "viridium:bald_cypress",
+        "variant": "default",
+        "weight": 5
+      }
+    ],
+    "grass": [
+      {
+        "blockId": "minecraft:tallgrass",
+        "meta": 1,
+        "weight": 20
+      },
+      {
+        "blockId": "minecraft:double_plant",
+        "meta": 2,
+        "weight": 5
+      },
+      {
+        "blockId": "viridium:dead_leaf_pile",
+        "meta": 0,
+        "weight": 4
+      }
+    ],
+    "waterLakeChance": 3,
+    "reedsPerChunk": 8,
+    "waterlilyPerChunk": 6
   },
   "appearance": {
     "grassColor": "#A4BE94",
-    "foliageColor": "#99B687"
+    "foliageColor": "#A4BE94"
   }
 }

@@ -3,12 +3,17 @@
   "generation": {
     "weight": 10,
     "climateType": "COOL",
-    "dictionaryTypes": []
+    "dictionaryTypes": [
+      "PLAINS",
+      "SPARSE",
+      "DRY"
+    ]
   },
   "climate": {
-    "temperature": 0.4,
-    "rainfall": 0.05,
-    "rain": true
+    "temperatureCelsius": 15.0,
+    "humidityPercent": 5.0,
+    "rain": true,
+    "snow": false
   },
   "terrain": {
     "height": {
@@ -17,12 +22,37 @@
     }
   },
   "decoration": {
-    "treesPerChunk": 0,
+    "treesPerChunk": 1,
     "trees": [
-      { "id": "minecraft:oak", "weight": 1 }
+      {
+        "id": "minecraft:oak_shrub",
+        "variant": "default",
+        "weight": 1
+      }
     ],
-    "grassPerChunk": 6,
-    "flowersPerChunk": 0
+    "grassPerChunk": 7,
+    "flowersPerChunk": 5,
+    "grass": [
+      {
+        "blockId": "minecraft:tallgrass",
+        "meta": 1,
+        "weight": 20
+      }
+    ],
+    "flowers": [
+      {
+        "blockId": "minecraft:red_flower",
+        "meta": 2,
+        "weight": 1
+      },
+      {
+        "blockId": "viridium:cornflower",
+        "meta": 0,
+        "weight": 1
+      }
+    ],
+    "features": {},
+    "waterLakeChance": 16
   },
   "appearance": {
     "grassColor": "#AFC9AD",

@@ -3,12 +3,16 @@
   "generation": {
     "weight": 10,
     "climateType": "COOL",
-    "dictionaryTypes": ["WET", "FOREST", "DENSE"]
+    "dictionaryTypes": [
+      "FOREST",
+      "WET"
+    ]
   },
   "climate": {
-    "temperature": 0.4,
-    "rainfall": 0.8,
-    "rain": true
+    "temperatureCelsius": 14.0,
+    "humidityPercent": 80.0,
+    "rain": true,
+    "snow": false
   },
   "terrain": {
     "height": {
@@ -17,14 +21,69 @@
     }
   },
   "decoration": {
-    "treesPerChunk": 2,
+    "treesPerChunk": 6,
     "trees": [
-      { "id": "minecraft:oak", "weight": 8 },
-      { "id": "minecraft:birch", "weight": 3 },
-      { "id": "minecraft:dark_oak", "weight": 1 }
+      {
+        "id": "viridium:kankan",
+        "variant": "default",
+        "weight": 6
+      },
+      {
+        "id": "minecraft:birch",
+        "variant": "default",
+        "weight": 4
+      },
+      {
+        "id": "viridium:wisteria",
+        "variant": "default",
+        "weight": 2
+      }
     ],
-    "grassPerChunk": 4,
-    "flowersPerChunk": 4
+    "grassPerChunk": 8,
+    "flowersPerChunk": 5,
+    "grass": [
+      {
+        "blockId": "minecraft:tallgrass",
+        "meta": 1,
+        "weight": 20
+      },
+      {
+        "blockId": "minecraft:double_plant",
+        "meta": 2,
+        "weight": 5
+      }
+    ],
+    "flowers": [
+      {
+        "blockId": "viridium:false_rue_anemone",
+        "meta": 0,
+        "weight": 1
+      },
+      {
+        "blockId": "viridium:daffodil_flowering",
+        "meta": 0,
+        "weight": 1
+      },
+      {
+        "blockId": "viridium:dandelion_flowering",
+        "meta": 0,
+        "weight": 1
+      },
+      {
+        "blockId": "viridium:corn_poppy",
+        "meta": 0,
+        "weight": 1
+      }
+    ],
+    "features": {
+      "bushes": [
+        {
+          "blockId": "viridium:satsuki_azalea",
+          "radius": 1,
+          "frequency": 3
+        }
+      ]
+    }
   },
   "appearance": {
     "grassColor": "#7AB88A",

@@ -1,0 +1,60 @@
+{
+  "name": "Canyon",
+  "generation": {
+    "weight": 10,
+    "climateType": "WARM",
+    "dictionaryTypes": [
+      "MESA",
+      "MOUNTAIN",
+      "DRY",
+      "HOT"
+    ]
+  },
+  "climate": {
+    "temperatureCelsius": 35.0,
+    "humidityPercent": 30.0,
+    "rain": true,
+    "snow": false
+  },
+  "terrain": {
+    "height": {
+      "baseHeight": 1.5,
+      "heightVariation": 0.35
+    },
+    "surface": {
+      "topBlockId": "minecraft:dirt",
+      "topBlockMeta": 1,
+      "fillerBlockId": "minecraft:hardened_clay"
+    }
+  },
+  "decoration": {
+    "treesPerChunk": 1,
+    "grassPerChunk": 3,
+    "trees": [
+      {
+        "id": "minecraft:acacia",
+        "variant": "default",
+        "weight": 3
+      },
+      {
+        "id": "minecraft:spruce",
+        "variant": "default",
+        "weight": 7
+      }
+    ],
+    "grass": [
+      {
+        "blockId": "minecraft:tallgrass",
+        "meta": 1,
+        "weight": 20
+      }
+    ],
+    "flowers": [],
+    "flowersPerChunk": 0,
+    "features": {}
+  },
+  "appearance": {
+    "grassColor": "#92A274",
+    "foliageColor": "#92A274"
+  }
+}

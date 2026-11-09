@@ -1,0 +1,62 @@
+{
+  "name": "Mountain",
+  "generation": {
+    "weight": 10,
+    "climateType": "COOL",
+    "dictionaryTypes": [
+      "MOUNTAIN",
+      "CONIFEROUS",
+      "DRY"
+    ]
+  },
+  "climate": {
+    "temperatureCelsius": 9.0,
+    "humidityPercent": 10.0,
+    "rain": true,
+    "snow": false
+  },
+  "terrain": {
+    "height": {
+      "baseHeight": 1.2,
+      "heightVariation": 0.8
+    }
+  },
+  "decoration": {
+    "treesPerChunk": 3,
+    "grassPerChunk": 5,
+    "trees": [
+      {
+        "id": "minecraft:spruce",
+        "variant": "default",
+        "weight": 7
+      },
+      {
+        "id": "minecraft:oak",
+        "variant": "default",
+        "weight": 3
+      }
+    ],
+    "grass": [
+      {
+        "blockId": "minecraft:tallgrass",
+        "meta": 1,
+        "weight": 20
+      }
+    ],
+    "flowers": [],
+    "flowersPerChunk": 0,
+    "features": {
+      "bushes": [
+        {
+          "blockId": "viridium:raspberry",
+          "radius": 1,
+          "frequency": 3
+        }
+      ]
+    }
+  },
+  "appearance": {
+    "grassColor": "#7FA866",
+    "foliageColor": "#7FA866"
+  }
+}

@@ -1,0 +1,63 @@
+{
+  "name": "Bamboo Forest",
+  "generation": {
+    "weight": 10,
+    "climateType": "WARM",
+    "dictionaryTypes": [
+      "JUNGLE",
+      "DENSE",
+      "HOT",
+      "WET"
+    ]
+  },
+  "climate": {
+    "temperatureCelsius": 50.0,
+    "humidityPercent": 90.0,
+    "rain": true,
+    "snow": false
+  },
+  "terrain": {
+    "height": {
+      "baseHeight": 0.15,
+      "heightVariation": 0.1
+    }
+  },
+  "decoration": {
+    "treesPerChunk": 18,
+    "grassPerChunk": 8,
+    "trees": [
+      {
+        "id": "viridium:giant_bamboo",
+        "variant": "default",
+        "weight": 1
+      }
+    ],
+    "grass": [
+      {
+        "blockId": "minecraft:tallgrass",
+        "meta": 1,
+        "weight": 20
+      },
+      {
+        "blockId": "minecraft:tallgrass",
+        "meta": 2,
+        "weight": 8
+      }
+    ],
+    "flowers": [],
+    "flowersPerChunk": 0,
+    "features": {
+      "bushes": [
+        {
+          "blockId": "viridium:satsuki_azalea",
+          "radius": 1,
+          "frequency": 3
+        }
+      ]
+    }
+  },
+  "appearance": {
+    "grassColor": "#65C747",
+    "foliageColor": "#65C747"
+  }
+}

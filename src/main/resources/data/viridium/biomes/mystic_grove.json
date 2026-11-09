@@ -1,0 +1,101 @@
+{
+  "name": "Mystic Grove",
+  "generation": {
+    "weight": 10,
+    "climateType": "WARM",
+    "dictionaryTypes": [
+      "FOREST",
+      "WET",
+      "MAGICAL"
+    ]
+  },
+  "climate": {
+    "temperatureCelsius": 20.0,
+    "humidityPercent": 100.0,
+    "rain": true,
+    "snow": false
+  },
+  "terrain": {
+    "height": {
+      "baseHeight": 0.1,
+      "heightVariation": 0.15
+    }
+  },
+  "decoration": {
+    "treesPerChunk": 6,
+    "grassPerChunk": 8,
+    "trees": [
+      {
+        "id": "viridium:pedunculate_oak",
+        "variant": "default",
+        "weight": 4
+      },
+      {
+        "id": "minecraft:oak_shrub",
+        "variant": "default",
+        "weight": 2
+      },
+      {
+        "id": "viridium:jacaranda",
+        "variant": "default",
+        "weight": 3
+      },
+      {
+        "id": "viridium:weeping_willow",
+        "variant": "default",
+        "weight": 2
+      }
+    ],
+    "grass": [
+      {
+        "blockId": "minecraft:tallgrass",
+        "meta": 1,
+        "weight": 20
+      },
+      {
+        "blockId": "viridium:clover_patch_top",
+        "meta": 0,
+        "weight": 4
+      },
+      {
+        "blockId": "viridium:leaf_pile",
+        "meta": 0,
+        "weight": 4
+      }
+    ],
+    "flowers": [
+      {
+        "blockId": "viridium:dandelion_flowering",
+        "meta": 0,
+        "weight": 1
+      },
+      {
+        "blockId": "viridium:daffodil_flowering",
+        "meta": 0,
+        "weight": 1
+      },
+      {
+        "blockId": "viridium:corn_poppy",
+        "meta": 0,
+        "weight": 1
+      },
+      {
+        "blockId": "viridium:azure_bluet",
+        "meta": 0,
+        "weight": 1
+      },
+      {
+        "blockId": "minecraft:red_flower",
+        "meta": 2,
+        "weight": 1
+      }
+    ],
+    "flowersPerChunk": 5,
+    "features": {}
+  },
+  "appearance": {
+    "grassColor": "#53C7B3",
+    "foliageColor": "#53C7B3",
+    "waterColor": "#9966CC"
+  }
+}

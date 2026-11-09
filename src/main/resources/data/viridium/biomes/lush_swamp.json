@@ -1,0 +1,52 @@
+{
+  "name": "Lush Swamp",
+  "generation": {
+    "weight": 10,
+    "climateType": "WARM",
+    "dictionaryTypes": [
+      "SWAMP",
+      "WET",
+      "LUSH"
+    ]
+  },
+  "climate": {
+    "temperatureCelsius": 21.0,
+    "humidityPercent": 100.0,
+    "rain": true,
+    "snow": false
+  },
+  "terrain": {
+    "height": {
+      "baseHeight": -0.2,
+      "heightVariation": 0.1
+    }
+  },
+  "decoration": {
+    "treesPerChunk": 5,
+    "grassPerChunk": 8,
+    "trees": [
+      {
+        "id": "minecraft:oak",
+        "variant": "default",
+        "weight": 1
+      }
+    ],
+    "grass": [
+      {
+        "blockId": "minecraft:tallgrass",
+        "meta": 1,
+        "weight": 20
+      }
+    ],
+    "flowers": [],
+    "flowersPerChunk": 0,
+    "features": {},
+    "waterLakeChance": 2,
+    "reedsPerChunk": 8,
+    "waterlilyPerChunk": 6
+  },
+  "appearance": {
+    "grassColor": "#57B84F",
+    "foliageColor": "#57B84F"
+  }
+}

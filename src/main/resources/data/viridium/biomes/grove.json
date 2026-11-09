@@ -1,0 +1,92 @@
+{
+  "name": "Grove",
+  "generation": {
+    "weight": 10,
+    "climateType": "COOL",
+    "dictionaryTypes": [
+      "FOREST",
+      "WET"
+    ]
+  },
+  "climate": {
+    "temperatureCelsius": 17.0,
+    "humidityPercent": 80.0,
+    "rain": true,
+    "snow": false
+  },
+  "terrain": {
+    "height": {
+      "baseHeight": 0.1,
+      "heightVariation": 0.1
+    }
+  },
+  "decoration": {
+    "treesPerChunk": 5,
+    "grassPerChunk": 9,
+    "trees": [
+      {
+        "id": "minecraft:oak_shrub",
+        "variant": "default",
+        "weight": 3
+      },
+      {
+        "id": "viridium:black_oak",
+        "variant": "default",
+        "weight": 5
+      },
+      {
+        "id": "minecraft:birch",
+        "variant": "default",
+        "weight": 3
+      }
+    ],
+    "grass": [
+      {
+        "blockId": "minecraft:tallgrass",
+        "meta": 1,
+        "weight": 20
+      },
+      {
+        "blockId": "viridium:clover_patch_top",
+        "meta": 0,
+        "weight": 4
+      },
+      {
+        "blockId": "viridium:leaf_pile",
+        "meta": 0,
+        "weight": 4
+      }
+    ],
+    "flowers": [
+      {
+        "blockId": "viridium:common_peony",
+        "meta": 0,
+        "weight": 1
+      },
+      {
+        "blockId": "viridium:dandelion_flowering",
+        "meta": 0,
+        "weight": 1
+      },
+      {
+        "blockId": "viridium:corn_poppy",
+        "meta": 0,
+        "weight": 1
+      }
+    ],
+    "flowersPerChunk": 5,
+    "features": {
+      "bushes": [
+        {
+          "blockId": "viridium:blackberry",
+          "radius": 1,
+          "frequency": 3
+        }
+      ]
+    }
+  },
+  "appearance": {
+    "grassColor": "#4F8747",
+    "foliageColor": "#4F8747"
+  }
+}

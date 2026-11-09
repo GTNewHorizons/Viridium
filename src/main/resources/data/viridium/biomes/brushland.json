@@ -1,0 +1,66 @@
+{
+  "name": "Brushland",
+  "generation": {
+    "weight": 10,
+    "climateType": "WARM",
+    "dictionaryTypes": [
+      "SAVANNA",
+      "DRY",
+      "HOT",
+      "SPARSE"
+    ]
+  },
+  "climate": {
+    "temperatureCelsius": 48.0,
+    "humidityPercent": 10.0,
+    "rain": true,
+    "snow": false
+  },
+  "terrain": {
+    "height": {
+      "baseHeight": 0.15,
+      "heightVariation": 0.1
+    }
+  },
+  "decoration": {
+    "treesPerChunk": 1,
+    "grassPerChunk": 7,
+    "trees": [
+      {
+        "id": "minecraft:oak_shrub",
+        "variant": "default",
+        "weight": 6
+      },
+      {
+        "id": "minecraft:acacia",
+        "variant": "default",
+        "weight": 3
+      },
+      {
+        "id": "minecraft:spruce",
+        "variant": "default",
+        "weight": 1
+      }
+    ],
+    "grass": [
+      {
+        "blockId": "minecraft:tallgrass",
+        "meta": 1,
+        "weight": 20
+      }
+    ],
+    "flowers": [
+      {
+        "blockId": "minecraft:red_flower",
+        "meta": 2,
+        "weight": 1
+      }
+    ],
+    "flowersPerChunk": 5,
+    "features": {}
+  },
+  "appearance": {
+    "grassColor": "#95A36B",
+    "foliageColor": "#95A36B"
+  }
+}

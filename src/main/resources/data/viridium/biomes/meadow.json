@@ -2,13 +2,17 @@
   "name": "Meadow",
   "generation": {
     "weight": 10,
-    "climateType": "COOL",
-    "dictionaryTypes": []
+    "climateType": "WARM",
+    "dictionaryTypes": [
+      "PLAINS",
+      "LUSH"
+    ]
   },
   "climate": {
-    "temperature": 0.4,
-    "rainfall": 0.7,
-    "rain": true
+    "temperatureCelsius": 20.0,
+    "humidityPercent": 70.0,
+    "rain": true,
+    "snow": false
   },
   "terrain": {
     "height": {
@@ -19,11 +23,54 @@
   "decoration": {
     "treesPerChunk": 1,
     "trees": [
-      { "id": "minecraft:spruce", "weight": 1 },
-      { "id": "minecraft:oak", "weight": 10 }
+      {
+        "id": "viridium:mimosa",
+        "variant": "default",
+        "weight": 2
+      },
+      {
+        "id": "viridium:black_spruce",
+        "variant": "default",
+        "weight": 2
+      },
+      {
+        "id": "minecraft:oak",
+        "variant": "default",
+        "weight": 5
+      }
     ],
-    "grassPerChunk": 5,
-    "flowersPerChunk": 5
+    "grassPerChunk": 9,
+    "flowersPerChunk": 5,
+    "flowers": [
+      {
+        "blockId": "viridium:false_rue_anemone",
+        "meta": 0,
+        "weight": 1
+      },
+      {
+        "blockId": "viridium:corn_poppy",
+        "meta": 0,
+        "weight": 1
+      },
+      {
+        "blockId": "viridium:dandelion_flowering",
+        "meta": 0,
+        "weight": 1
+      }
+    ],
+    "grass": [
+      {
+        "blockId": "minecraft:tallgrass",
+        "meta": 1,
+        "weight": 20
+      },
+      {
+        "blockId": "viridium:clover_patch_top",
+        "meta": 0,
+        "weight": 4
+      }
+    ],
+    "features": {}
   },
   "appearance": {
     "grassColor": "#61B16C",
