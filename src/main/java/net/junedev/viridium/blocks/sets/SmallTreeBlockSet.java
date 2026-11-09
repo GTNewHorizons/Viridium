@@ -1,5 +1,7 @@
 package net.junedev.viridium.blocks.sets;
 
+import java.util.List;
+
 import net.junedev.viridium.Viridium;
 import net.junedev.viridium.blocks.SmallLogBlock;
 import net.junedev.viridium.blocks.vanilike.BaseBark;
@@ -46,5 +48,15 @@ public class SmallTreeBlockSet extends WoodBlockSet {
     @Override
     public String getAssetDirectory() {
         return "small_trees/";
+    }
+
+    @Override
+    public List<Block> getBlocksWithItems() {
+        List<Block> blocks = super.getBlocksWithItems();
+        blocks.add(log);
+        blocks.add(leaves);
+        blocks.add(sapling);
+        blocks.add(bark);
+        return blocks;
     }
 }

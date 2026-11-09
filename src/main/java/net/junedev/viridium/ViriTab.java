@@ -34,7 +34,7 @@ public class ViriTab extends CreativeTabs {
 
     @Override
     public Item getTabIconItem() {
-        return Item.getItemFromBlock(ViriBlocks.amaranth.sapling);
+        return Item.getItemFromBlock(ViriPlants.AMARANTH.getBlocks().sapling);
     }
 
     @Override
