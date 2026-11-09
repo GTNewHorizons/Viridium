@@ -1,5 +1,6 @@
 package net.junedev.viridium.client.renderers.world.fog;
 
+import net.junedev.viridium.client.config.RenderState;
 import net.junedev.viridium.client.renderers.world.sky.CustomSkyRenderer;
 import net.minecraft.client.Minecraft;
 import net.minecraft.potion.Potion;
@@ -16,6 +17,10 @@ public final class CustomFogRenderer {
 
     @SubscribeEvent
     public void onFogColors(EntityViewRenderEvent.FogColors event) {
+        if (!RenderState.skyFog()) {
+            return;
+        }
+
         if (!SkyState.isActive()) {
             return;
         }

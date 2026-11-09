@@ -3,6 +3,8 @@ package net.junedev.viridium.client.renderers.world.water;
 import static net.junedev.viridium.client.renderers.utils.RenderingUtils.hash01;
 import static net.junedev.viridium.client.renderers.utils.RenderingUtils.smoothstep;
 
+import net.junedev.viridium.client.config.RenderConfig;
+import net.junedev.viridium.client.config.RenderState;
 import net.junedev.viridium.client.renderers.world.designer_tools.RayLook;
 import net.junedev.viridium.client.renderers.world.water.profiles.WaterProfile;
 import net.junedev.viridium.client.renderers.world.water.profiles.WaterProfileHandler;
@@ -33,7 +35,8 @@ public final class UnderwaterLightRays {
     private static final float SHADOW_CHECK_BELOW = 1.1F;
     private static final double SUN_RAY_MAX_DISTANCE = 64.0;
     public static int cell = 6;
-    public static int cellRadius = 3;
+    public static int cellRadius = RenderConfig.lightRayCellRadius;
+
     // Maximum length of a shaft. A shaft is shortened where the light hits a solid block (see clippedLength).
     public static float shaftLength = 18.0F;
     public static float shaftStartAbove = 0.0F;
@@ -149,6 +152,10 @@ public final class UnderwaterLightRays {
 
     @SubscribeEvent
     public void onRenderWorldLast(RenderWorldLastEvent event) {
+        if (!RenderState.lightRays()) {
+            return;
+        }
+
         Minecraft mc = Minecraft.getMinecraft();
         World world = mc.theWorld;
         EntityLivingBase viewer = mc.renderViewEntity;

@@ -1,5 +1,7 @@
 package net.junedev.viridium.blocks.sets.large_tree;
 
+import java.util.List;
+
 import net.junedev.viridium.blocks.vanilike.BaseFullLog;
 import net.minecraft.block.Block;
 
@@ -16,5 +18,12 @@ public class PalmTreeBlockSet extends LargeTreeBlockSet {
             .setBlockTextureName(getAssetDirectory() + name + "_crown");
 
         GameRegistry.registerBlock(crown, name + "_crown");
+    }
+
+    @Override
+    public List<Block> getBlocksWithItems() {
+        List<Block> blocks = super.getBlocksWithItems();
+        blocks.add(crown);
+        return blocks;
     }
 }

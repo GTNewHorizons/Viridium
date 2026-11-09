@@ -8,7 +8,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 
-import net.junedev.viridium.ViriBlocks;
+import net.junedev.viridium.ViriPlants;
 import net.junedev.viridium.blocks.sets.WoodBlockSet;
 import net.junedev.viridium.worldgen.SoilType;
 import net.minecraft.block.Block;
@@ -42,184 +42,186 @@ public final class TreeRegistry {
 
         register(
             "viridium:american_chestnut",
-            (notifiesNeighbors) -> createDefaultGenerator(ViriBlocks.american_chestnut, notifiesNeighbors)).withLayout(
-                SaplingLayout.TWO_BY_TWO,
-                (notifiesNeighbors) -> new AmericanChestnutTreeGen(
-                    notifiesNeighbors,
-                    ViriBlocks.american_chestnut,
-                    17,
-                    4,
-                    0.30D,
-                    5,
-                    2,
-                    12,
-                    3));
+            (notifiesNeighbors) -> createDefaultGenerator(ViriPlants.AMERICAN_CHESTNUT.getBlocks(), notifiesNeighbors))
+                .withLayout(
+                    SaplingLayout.TWO_BY_TWO,
+                    (notifiesNeighbors) -> new AmericanChestnutTreeGen(
+                        notifiesNeighbors,
+                        ViriPlants.AMERICAN_CHESTNUT.getBlocks(),
+                        17,
+                        4,
+                        0.30D,
+                        5,
+                        2,
+                        12,
+                        3));
         register(
             "viridium:pedunculate_oak",
-            (notifiesNeighbors) -> createDefaultGenerator(ViriBlocks.pedunculate_oak, notifiesNeighbors)).withLayout(
-                SaplingLayout.TWO_BY_TWO,
-                (notifiesNeighbors) -> new MediumPedunculateOakTreeGen(
-                    notifiesNeighbors,
-                    ViriBlocks.pedunculate_oak,
-                    10,
-                    3,
-                    0.40D,
-                    7,
-                    2,
-                    12,
-                    3));
+            (notifiesNeighbors) -> createDefaultGenerator(ViriPlants.PEDUNCULATE_OAK.getBlocks(), notifiesNeighbors))
+                .withLayout(
+                    SaplingLayout.TWO_BY_TWO,
+                    (notifiesNeighbors) -> new MediumPedunculateOakTreeGen(
+                        notifiesNeighbors,
+                        ViriPlants.PEDUNCULATE_OAK.getBlocks(),
+                        10,
+                        3,
+                        0.40D,
+                        7,
+                        2,
+                        12,
+                        3));
         // Existing species blocks with shared, interim tree silhouettes.
         registerSimple(
             "bald_cypress",
-            ViriBlocks.bald_cypress.log,
-            ViriBlocks.bald_cypress.leaves,
+            ViriPlants.BALD_CYPRESS.getBlocks().log,
+            ViriPlants.BALD_CYPRESS.getBlocks().leaves,
             10,
             5,
             SimpleSpeciesTreeGen.Shape.CONIFER);
         registerSimple(
             "black_oak",
-            ViriBlocks.black_oak.log,
-            ViriBlocks.black_oak.leaves,
+            ViriPlants.BLACK_OAK.getBlocks().log,
+            ViriPlants.BLACK_OAK.getBlocks().leaves,
             7,
             4,
             SimpleSpeciesTreeGen.Shape.BROADLEAF);
         registerSimple(
             "cacao",
-            ViriBlocks.cacao.log,
-            ViriBlocks.cacao.leaves,
+            ViriPlants.CACAO.getBlocks().log,
+            ViriPlants.CACAO.getBlocks().leaves,
             5,
             3,
             SimpleSpeciesTreeGen.Shape.BROADLEAF);
         registerSimple(
             "coast_redwood",
-            ViriBlocks.coast_redwood.log,
-            ViriBlocks.coast_redwood.leaves,
+            ViriPlants.COAST_REDWOOD.getBlocks().log,
+            ViriPlants.COAST_REDWOOD.getBlocks().leaves,
             20,
             10,
             SimpleSpeciesTreeGen.Shape.CONIFER);
         registerSimple(
             "giant_sequoia",
-            ViriBlocks.giant_sequoia.log,
-            ViriBlocks.giant_sequoia.leaves,
+            ViriPlants.GIANT_SEQUOIA.getBlocks().log,
+            ViriPlants.GIANT_SEQUOIA.getBlocks().leaves,
             24,
             10,
             SimpleSpeciesTreeGen.Shape.CONIFER);
         registerSimple(
             "kankan",
-            ViriBlocks.kankan.log,
-            ViriBlocks.kankan.leaves,
+            ViriPlants.KANKAN.getBlocks().log,
+            ViriPlants.KANKAN.getBlocks().leaves,
             7,
             3,
             SimpleSpeciesTreeGen.Shape.BROADLEAF);
         registerSimple(
             "mahogany",
-            ViriBlocks.mahogany.log,
-            ViriBlocks.mahogany.leaves,
+            ViriPlants.MAHOGANY.getBlocks().log,
+            ViriPlants.MAHOGANY.getBlocks().leaves,
             13,
             6,
             SimpleSpeciesTreeGen.Shape.BROADLEAF);
         registerSimple(
             "quaking_aspen",
-            ViriBlocks.quaking_aspen.log,
-            ViriBlocks.quaking_aspen.leaves,
+            ViriPlants.QUAKING_ASPEN.getBlocks().log,
+            ViriPlants.QUAKING_ASPEN.getBlocks().leaves,
             8,
             4,
             SimpleSpeciesTreeGen.Shape.BROADLEAF);
         registerSimple(
             "red_maple",
-            ViriBlocks.red_maple.log,
-            ViriBlocks.red_maple.leaves,
+            ViriPlants.RED_MAPLE.getBlocks().log,
+            ViriPlants.RED_MAPLE.getBlocks().leaves,
             8,
             4,
             SimpleSpeciesTreeGen.Shape.BROADLEAF);
         registerSimple(
             "red_spruce",
-            ViriBlocks.red_spruce.log,
-            ViriBlocks.red_spruce.leaves,
+            ViriPlants.RED_SPRUCE.getBlocks().log,
+            ViriPlants.RED_SPRUCE.getBlocks().leaves,
             10,
             6,
             SimpleSpeciesTreeGen.Shape.CONIFER);
         registerSimple(
             "scots_pine",
-            ViriBlocks.scots_pine.log,
-            ViriBlocks.scots_pine.leaves,
+            ViriPlants.SCOTS_PINE.getBlocks().log,
+            ViriPlants.SCOTS_PINE.getBlocks().leaves,
             9,
             5,
             SimpleSpeciesTreeGen.Shape.CONIFER);
         registerSimple(
             "sweetgum",
-            ViriBlocks.sweetgum.log,
-            ViriBlocks.sweetgum.leaves,
+            ViriPlants.SWEETGUM.getBlocks().log,
+            ViriPlants.SWEETGUM.getBlocks().leaves,
             9,
             4,
             SimpleSpeciesTreeGen.Shape.BROADLEAF);
         registerSimple(
             "weeping_willow",
-            ViriBlocks.weeping_willow.log,
-            ViriBlocks.weeping_willow.leaves,
+            ViriPlants.WEEPING_WILLOW.getBlocks().log,
+            ViriPlants.WEEPING_WILLOW.getBlocks().leaves,
             7,
             4,
             SimpleSpeciesTreeGen.Shape.BROADLEAF);
         registerSimple(
             "black_spruce",
-            ViriBlocks.black_spruce.log,
-            ViriBlocks.black_spruce.leaves,
+            ViriPlants.BLACK_SPRUCE.getBlocks().log,
+            ViriPlants.BLACK_SPRUCE.getBlocks().leaves,
             5,
             3,
             SimpleSpeciesTreeGen.Shape.CONIFER);
         registerSimple(
             "flowering_dogwood",
-            ViriBlocks.flowering_dogwood.log,
-            ViriBlocks.flowering_dogwood.leaves,
+            ViriPlants.FLOWERING_DOGWOOD.getBlocks().log,
+            ViriPlants.FLOWERING_DOGWOOD.getBlocks().leaves,
             4,
             2,
             SimpleSpeciesTreeGen.Shape.BROADLEAF);
         registerSimple(
             "giant_bamboo",
-            ViriBlocks.giant_bamboo.log,
-            ViriBlocks.giant_bamboo.leaves,
+            ViriPlants.GIANT_BAMBOO.getBlocks().log,
+            ViriPlants.GIANT_BAMBOO.getBlocks().leaves,
             10,
             7,
             SimpleSpeciesTreeGen.Shape.BAMBOO);
         registerSimple(
             "jacaranda",
-            ViriBlocks.jacaranda.log,
-            ViriBlocks.jacaranda.leaves,
+            ViriPlants.JACARANDA.getBlocks().log,
+            ViriPlants.JACARANDA.getBlocks().leaves,
             5,
             3,
             SimpleSpeciesTreeGen.Shape.BROADLEAF);
         registerSimple(
             "mimosa",
-            ViriBlocks.mimosa.log,
-            ViriBlocks.mimosa.leaves,
+            ViriPlants.MIMOSA.getBlocks().log,
+            ViriPlants.MIMOSA.getBlocks().leaves,
             4,
             3,
             SimpleSpeciesTreeGen.Shape.BROADLEAF);
         registerSimple(
             "mulga",
-            ViriBlocks.mulga.log,
-            ViriBlocks.mulga.leaves,
+            ViriPlants.MULGA.getBlocks().log,
+            ViriPlants.MULGA.getBlocks().leaves,
             3,
             3,
             SimpleSpeciesTreeGen.Shape.BROADLEAF).withSoils(SoilType.GENERIC, SoilType.SAND);
         registerSimple(
             "red_cinchona",
-            ViriBlocks.red_cinchona.log,
-            ViriBlocks.red_cinchona.leaves,
+            ViriPlants.RED_CINCHONA.getBlocks().log,
+            ViriPlants.RED_CINCHONA.getBlocks().leaves,
             4,
             3,
             SimpleSpeciesTreeGen.Shape.BROADLEAF);
         registerSimple(
             "wisteria",
-            ViriBlocks.wisteria.log,
-            ViriBlocks.wisteria.leaves,
+            ViriPlants.WISTERIA.getBlocks().log,
+            ViriPlants.WISTERIA.getBlocks().leaves,
             4,
             3,
             SimpleSpeciesTreeGen.Shape.BROADLEAF);
 
         register(
             "viridium:coconut_palm",
-            (notifiesNeighbors) -> new CoconutPalmTreeGen(notifiesNeighbors, ViriBlocks.coconut_palm))
+            (notifiesNeighbors) -> new CoconutPalmTreeGen(notifiesNeighbors, ViriPlants.COCONUT_PALM.getBlocks()))
                 .withSoils(SoilType.GENERIC, SoilType.SAND);
     }
 
