@@ -1,0 +1,58 @@
+{
+  "name": "Sludgepit",
+  "generation": {
+    "weight": 10,
+    "climateType": "WARM",
+    "dictionaryTypes": [
+      "SWAMP",
+      "WET"
+    ]
+  },
+  "climate": {
+    "temperatureCelsius": 26.0,
+    "humidityPercent": 90.0,
+    "rain": true,
+    "snow": false
+  },
+  "terrain": {
+    "height": {
+      "baseHeight": -0.15,
+      "heightVariation": 0.05
+    }
+  },
+  "decoration": {
+    "treesPerChunk": 2,
+    "grassPerChunk": 5,
+    "trees": [
+      {
+        "id": "viridium:red_cinchona",
+        "variant": "default",
+        "weight": 1
+      }
+    ],
+    "grass": [
+      {
+        "blockId": "minecraft:tallgrass",
+        "meta": 1,
+        "weight": 20
+      }
+    ],
+    "flowers": [],
+    "flowersPerChunk": 0,
+    "features": {
+      "bushes": [
+        {
+          "blockId": "viridium:croton",
+          "radius": 1,
+          "frequency": 3
+        }
+      ]
+    },
+    "waterLakeChance": 4,
+    "deadBushPerChunk": 3
+  },
+  "appearance": {
+    "grassColor": "#A19B50",
+    "foliageColor": "#A19B50"
+  }
+}

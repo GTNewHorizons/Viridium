@@ -3,12 +3,17 @@
   "generation": {
     "weight": 10,
     "climateType": "COOL",
-    "dictionaryTypes": ["WET", "FOREST", "DENSE"]
+    "dictionaryTypes": [
+      "FOREST",
+      "DENSE",
+      "WET"
+    ]
   },
   "climate": {
-    "temperature": 0.4,
-    "rainfall": 0.8,
-    "rain": true
+    "temperatureCelsius": 16.0,
+    "humidityPercent": 80.0,
+    "rain": true,
+    "snow": false
   },
   "terrain": {
     "height": {
@@ -19,11 +24,43 @@
   "decoration": {
     "treesPerChunk": 6,
     "trees": [
-      { "id": "minecraft:oak", "weight": 16 },
-      { "id": "minecraft:birch", "weight": 1 }
+      {
+        "id": "viridium:american_chestnut",
+        "variant": "two_by_two",
+        "weight": 10
+      },
+      {
+        "id": "minecraft:birch_shrub",
+        "variant": "default",
+        "weight": 2
+      },
+      {
+        "id": "minecraft:oak_shrub",
+        "variant": "default",
+        "weight": 3
+      }
     ],
-    "grassPerChunk": 4,
-    "flowersPerChunk": 1
+    "grassPerChunk": 8,
+    "flowersPerChunk": 0,
+    "flowers": [],
+    "grass": [
+      {
+        "blockId": "minecraft:tallgrass",
+        "meta": 1,
+        "weight": 20
+      },
+      {
+        "blockId": "minecraft:tallgrass",
+        "meta": 2,
+        "weight": 8
+      },
+      {
+        "blockId": "viridium:dead_leaf_pile",
+        "meta": 0,
+        "weight": 4
+      }
+    ],
+    "features": {}
   },
   "appearance": {
     "grassColor": "#A0AF5E",

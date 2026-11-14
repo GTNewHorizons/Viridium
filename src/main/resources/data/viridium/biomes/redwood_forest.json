@@ -1,0 +1,72 @@
+{
+  "name": "Redwood Forest",
+  "generation": {
+    "weight": 10,
+    "climateType": "WARM",
+    "dictionaryTypes": [
+      "FOREST",
+      "DENSE"
+    ]
+  },
+  "climate": {
+    "temperatureCelsius": 21.0,
+    "humidityPercent": 70.0,
+    "rain": true,
+    "snow": false
+  },
+  "terrain": {
+    "height": {
+      "baseHeight": 0.3,
+      "heightVariation": 0.25
+    }
+  },
+  "decoration": {
+    "treesPerChunk": 6,
+    "grassPerChunk": 8,
+    "trees": [
+      {
+        "id": "viridium:coast_redwood",
+        "variant": "default",
+        "weight": 8
+      },
+      {
+        "id": "viridium:giant_sequoia",
+        "variant": "default",
+        "weight": 2
+      }
+    ],
+    "grass": [
+      {
+        "blockId": "minecraft:tallgrass",
+        "meta": 1,
+        "weight": 20
+      },
+      {
+        "blockId": "viridium:dead_leaf_pile",
+        "meta": 0,
+        "weight": 4
+      }
+    ],
+    "flowers": [
+      {
+        "blockId": "minecraft:red_flower",
+        "meta": 1,
+        "weight": 1
+      }
+    ],
+    "flowersPerChunk": 5,
+    "features": {
+      "bushes": [
+        {
+          "blockId": "viridium:false_indigo",
+          "radius": 1,
+          "frequency": 3
+        }
+      ]
+    }
+  },
+  "appearance": {
+    "grassColor": "#8BC478",
+    "foliageColor": "#8BC478"
+  }
+}

@@ -3,12 +3,17 @@
   "generation": {
     "weight": 10,
     "climateType": "COOL",
-    "dictionaryTypes": ["FOREST", "DENSE"]
+    "dictionaryTypes": [
+      "PLAINS",
+      "SPARSE",
+      "COLD"
+    ]
   },
   "climate": {
-    "temperature": 0.3,
-    "rainfall": 0.3,
-    "rain": true
+    "temperatureCelsius": 3.0,
+    "humidityPercent": 30.0,
+    "rain": true,
+    "snow": false
   },
   "terrain": {
     "height": {
@@ -17,13 +22,52 @@
     }
   },
   "decoration": {
-    "treesPerChunk": 0,
+    "treesPerChunk": 1,
     "trees": [
-      { "id": "minecraft:oak", "weight": 1 },
-      { "id": "minecraft:birch", "weight": 5 }
+      {
+        "id": "minecraft:birch_shrub",
+        "variant": "default",
+        "weight": 4
+      },
+      {
+        "id": "minecraft:spruce",
+        "variant": "default",
+        "weight": 2
+      },
+      {
+        "id": "viridium:jacaranda",
+        "variant": "default",
+        "weight": 1
+      }
     ],
-    "grassPerChunk": 6,
-    "flowersPerChunk": 0
+    "grassPerChunk": 8,
+    "flowersPerChunk": 5,
+    "flowers": [
+      {
+        "blockId": "viridium:heather",
+        "meta": 0,
+        "weight": 1
+      },
+      {
+        "blockId": "minecraft:red_flower",
+        "meta": 2,
+        "weight": 1
+      }
+    ],
+    "grass": [
+      {
+        "blockId": "minecraft:tallgrass",
+        "meta": 1,
+        "weight": 20
+      },
+      {
+        "blockId": "viridium:dead_leaf_pile",
+        "meta": 0,
+        "weight": 4
+      }
+    ],
+    "features": {},
+    "waterLakeChance": 12
   },
   "appearance": {
     "grassColor": "#B1A261",

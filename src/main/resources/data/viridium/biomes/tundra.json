@@ -1,0 +1,69 @@
+{
+  "name": "Tundra",
+  "generation": {
+    "weight": 10,
+    "climateType": "ICY",
+    "dictionaryTypes": [
+      "PLAINS",
+      "COLD",
+      "SNOWY",
+      "SPARSE"
+    ]
+  },
+  "climate": {
+    "temperatureCelsius": -7.0,
+    "humidityPercent": 50.0,
+    "rain": true,
+    "snow": true
+  },
+  "terrain": {
+    "height": {
+      "baseHeight": 0.1,
+      "heightVariation": 0.1
+    }
+  },
+  "decoration": {
+    "treesPerChunk": 1,
+    "grassPerChunk": 6,
+    "trees": [
+      {
+        "id": "minecraft:oak_shrub",
+        "variant": "default",
+        "weight": 1
+      }
+    ],
+    "grass": [
+      {
+        "blockId": "minecraft:tallgrass",
+        "meta": 1,
+        "weight": 20
+      },
+      {
+        "blockId": "viridium:dead_leaf_pile",
+        "meta": 0,
+        "weight": 4
+      }
+    ],
+    "flowers": [
+      {
+        "blockId": "viridium:dog_violet",
+        "meta": 0,
+        "weight": 1
+      }
+    ],
+    "flowersPerChunk": 5,
+    "features": {
+      "blobs": [
+        {
+          "blockId": "minecraft:cobblestone",
+          "radius": 1,
+          "frequency": 6
+        }
+      ]
+    }
+  },
+  "appearance": {
+    "grassColor": "#A09265",
+    "foliageColor": "#A09265"
+  }
+}

@@ -1,0 +1,73 @@
+{
+  "name": "Lush Desert",
+  "generation": {
+    "weight": 10,
+    "climateType": "WARM",
+    "dictionaryTypes": [
+      "SANDY",
+      "HOT",
+      "SPARSE"
+    ]
+  },
+  "climate": {
+    "temperatureCelsius": 43.0,
+    "humidityPercent": 50.0,
+    "rain": true,
+    "snow": false
+  },
+  "terrain": {
+    "height": {
+      "baseHeight": 0.15,
+      "heightVariation": 0.12
+    },
+    "surface": {
+      "topBlockId": "minecraft:dirt",
+      "fillerBlockId": "minecraft:hardened_clay",
+      "patches": [
+        {
+          "minNoise": 1.5,
+          "topBlockId": "minecraft:hardened_clay"
+        }
+      ]
+    }
+  },
+  "decoration": {
+    "treesPerChunk": 1,
+    "grassPerChunk": 3,
+    "trees": [
+      {
+        "id": "minecraft:acacia",
+        "variant": "default",
+        "weight": 6
+      },
+      {
+        "id": "minecraft:acacia",
+        "variant": "default",
+        "weight": 2
+      }
+    ],
+    "grass": [
+      {
+        "blockId": "minecraft:tallgrass",
+        "meta": 1,
+        "weight": 20
+      }
+    ],
+    "flowers": [],
+    "flowersPerChunk": 0,
+    "features": {
+      "bushes": [
+        {
+          "blockId": "viridium:golden_wattle",
+          "radius": 1,
+          "frequency": 3
+        }
+      ]
+    },
+    "deadBushPerChunk": 3
+  },
+  "appearance": {
+    "grassColor": "#72BB4C",
+    "foliageColor": "#72BB4C"
+  }
+}

@@ -1,8 +1,16 @@
 package net.junedev.viridium.client.textures;
 
+import java.lang.reflect.Field;
+
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
 import net.minecraft.util.IIcon;
 
+import cpw.mods.fml.relauncher.ReflectionHelper;
+
 public class CroppedIcon implements IIcon {
+
+    private static final Field USE_ANISOTROPIC_FILTERING = ReflectionHelper
+        .findField(TextureAtlasSprite.class, "useAnisotropicFiltering", "field_147966_k");
 
     private final IIcon parent;
     private final String name;
@@ -14,7 +22,6 @@ public class CroppedIcon implements IIcon {
 
     public CroppedIcon(IIcon parent, int part, int x, int segmentWidth, int segmentHeight) {
         this.parent = parent;
-
         this.name = parent.getIconName() + "#" + x + "," + part;
 
         this.width = segmentWidth;
@@ -40,32 +47,52 @@ public class CroppedIcon implements IIcon {
     }
 
     private int getY() {
-        return parent.getIconHeight() - (part + 1) * height;
+        return getParentHeight() - (part + 1) * height;
+    }
+
+    private int getParentWidth() {
+        return parent.getIconWidth() - getParentPadding();
+    }
+
+    private int getParentHeight() {
+        return parent.getIconHeight() - getParentPadding();
+    }
+
+    private int getParentPadding() {
+        if (!(parent instanceof TextureAtlasSprite)) return 0;
+
+        // Vanilla adds 16 pixels to the sprite dimensions, but excludes them from its UV bounds.
+        // Read the loaded sprite's flag: Angelica disables this padding even when the game setting is enabled.
+        try {
+            return USE_ANISOTROPIC_FILTERING.getBoolean(parent) ? 16 : 0;
+        } catch (IllegalAccessException e) {
+            throw new IllegalStateException("Cannot read texture sprite padding", e);
+        }
     }
 
     // Atlas coordinates
     @Override
     public float getMinU() {
         float range = parent.getMaxU() - parent.getMinU();
-        return parent.getMinU() + (float) getX() * range / parent.getIconWidth();
+        return parent.getMinU() + (float) getX() * range / getParentWidth();
     }
 
     @Override
     public float getMaxU() {
         float range = parent.getMaxU() - parent.getMinU();
-        return getMinU() + (float) width * range / parent.getIconWidth();
+        return getMinU() + (float) width * range / getParentWidth();
     }
 
     @Override
     public float getMinV() {
         float range = parent.getMaxV() - parent.getMinV();
-        return parent.getMinV() + (float) getY() * range / parent.getIconHeight();
+        return parent.getMinV() + (float) getY() * range / getParentHeight();
     }
 
     @Override
     public float getMaxV() {
         float range = parent.getMaxV() - parent.getMinV();
-        return getMinV() + (float) height * range / parent.getIconHeight();
+        return getMinV() + (float) height * range / getParentHeight();
     }
 
     @Override

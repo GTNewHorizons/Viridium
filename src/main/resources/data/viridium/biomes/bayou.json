@@ -1,0 +1,50 @@
+{
+  "name": "Bayou",
+  "generation": {
+    "weight": 10,
+    "climateType": "WARM",
+    "dictionaryTypes": [
+      "SWAMP",
+      "WET"
+    ]
+  },
+  "climate": {
+    "temperatureCelsius": 26.0,
+    "humidityPercent": 90.0,
+    "rain": true,
+    "snow": false
+  },
+  "terrain": {
+    "height": {
+      "baseHeight": -0.2,
+      "heightVariation": 0.08
+    }
+  },
+  "decoration": {
+    "treesPerChunk": 4,
+    "grassPerChunk": 8,
+    "trees": [
+      {
+        "id": "viridium:weeping_willow",
+        "variant": "default",
+        "weight": 1
+      }
+    ],
+    "grass": [
+      {
+        "blockId": "minecraft:tallgrass",
+        "meta": 1,
+        "weight": 20
+      }
+    ],
+    "flowers": [],
+    "flowersPerChunk": 0,
+    "features": {},
+    "waterLakeChance": 2,
+    "waterlilyPerChunk": 6
+  },
+  "appearance": {
+    "grassColor": "#9AB78A",
+    "foliageColor": "#9AB78A"
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "name": "Tropical Rainforest",
+  "generation": {
+    "weight": 10,
+    "climateType": "WARM",
+    "dictionaryTypes": [
+      "JUNGLE",
+      "DENSE",
+      "WET",
+      "HOT"
+    ]
+  },
+  "climate": {
+    "temperatureCelsius": 50.0,
+    "humidityPercent": 100.0,
+    "rain": true,
+    "snow": false
+  },
+  "terrain": {
+    "height": {
+      "baseHeight": 0.2,
+      "heightVariation": 0.2
+    }
+  },
+  "decoration": {
+    "treesPerChunk": 9,
+    "grassPerChunk": 10,
+    "trees": [
+      {
+        "id": "viridium:cacao",
+        "variant": "default",
+        "weight": 5
+      },
+      {
+        "id": "viridium:mahogany",
+        "variant": "default",
+        "weight": 5
+      }
+    ],
+    "grass": [
+      {
+        "blockId": "minecraft:tallgrass",
+        "meta": 1,
+        "weight": 20
+      },
+      {
+        "blockId": "minecraft:tallgrass",
+        "meta": 2,
+        "weight": 8
+      }
+    ],
+    "flowers": [
+      {
+        "blockId": "viridium:sulphur_cosmos",
+        "meta": 0,
+        "weight": 1
+      }
+    ],
+    "flowersPerChunk": 5,
+    "features": {},
+    "melonChance": 8
+  },
+  "appearance": {
+    "grassColor": "#A3CC43",
+    "foliageColor": "#A3CC43",
+    "waterColor": "#70A83D"
+  }
+}

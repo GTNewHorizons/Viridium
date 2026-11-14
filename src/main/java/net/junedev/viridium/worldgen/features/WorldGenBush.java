@@ -42,10 +42,10 @@ public class WorldGenBush extends WorldGenerator {
             int verDelta = random.nextInt(2);
             int horDelta = verDelta + random.nextInt(2);
 
-            int j1 = r + verDelta;
+            int j1 = Math.max(1, r + verDelta);
 
-            int i1 = r + horDelta;
-            int k1 = r + horDelta;
+            int i1 = Math.max(1, r + horDelta);
+            int k1 = Math.max(1, r + horDelta);
 
             for (int i2 = x - i1; i2 <= x + i1; ++i2) {
                 for (int k2 = z - k1; k2 <= z + k1; ++k2) {
@@ -55,13 +55,12 @@ public class WorldGenBush extends WorldGenerator {
                         float f3 = (float) (j2 - y) / j1;
 
                         if (f1 * f1 + f2 * f2 + f3 * f3 <= 1.0 && world.getBlock(i2, j2, k2)
-                            .isReplaceable(world, x, y, z)) {
+                            .isReplaceable(world, i2, j2, k2)) {
                             world.setBlock(i2, j2, k2, this.block, 0, 4);
                         }
                     }
                 }
             }
-
 
             return true;
         }

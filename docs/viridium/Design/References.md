@@ -1,0 +1,59 @@
+## Paintings
+
+All paintings in the game are taken from Wikipedia.
+Photo Locations:
+
+- Eurasian Circumboreal
+	- Haiyrakan Mountain, Tuva, Russia
+- American Circumboreal
+	- Black RIver, Queen Elizabeth II Wildlands Provincial Park, Canada
+- Eastern Asiatic
+	- Mount Huang, Anhui, China
+- Western Atlantic
+	- Blue Ridge Mountains, South Carolina, United States
+- Rocky Mountains
+	- Snake River, Grand Teton National Park, Wyoming
+- Mediterranean
+	- Cape Sounion, Greece
+- Saharo-Arabian
+	- Ahaggar Mountains, Tamanrasset, Algeria
+- Irano-Turanian
+	- Kopetdag Range, Akhal, Turkmenistan
+- California
+	- Sierra Nevada Escarpment, California, United States
+- Guineo-Congolian
+	- Afi River Forest Reserve, Nigeria
+- Sub-Saharan
+	- Ennedi Plateau, Chad
+- Karoo-Namib
+	- Boland Granite Fymbos, South Africa
+- Madagascar
+	- Analavory Geyser, Itasy, Madagascar
+- India
+	- Ajanta Caves, Maharashtra, India
+- Indochina
+	- Tam Coc, Ninh Binh, Vietnam
+- Indonesia
+	- Kapuas River, Borneo, Indonesia
+- Polynesia
+	- Ofu-Olosega, American Samoa, United States
+- Hawaii
+	- Kilauea, Hawaii, United States
+- Caribbean
+	- Cabrits National Park, Dominica
+- Amazonia
+	- Amazon River, Amazonas, Brasil
+- Brasilian
+	- Atlantic Forest, Curitiba, Brasil
+- Andean
+	- Sol de Manana, Bolivia
+- Outer Australia
+	- Jamison Valley, New South Wales, Australia
+- Outback
+	- Kata Tjuta, Northern Territory, Australia
+- Patagonia
+	- Tierra del Fuego, Argentina
+- New Zealand
+	- Otago, New Zealand
+- Antarctica
+	- Booth Island, Antarctica

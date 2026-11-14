@@ -3,12 +3,18 @@
   "generation": {
     "weight": 10,
     "climateType": "WARM",
-    "dictionaryTypes": ["WET", "FOREST", "DENSE"]
+    "dictionaryTypes": [
+      "FOREST",
+      "DENSE",
+      "WET",
+      "MUSHROOM"
+    ]
   },
   "climate": {
-    "temperature": 0.8,
-    "rainfall": 1.0,
-    "rain": true
+    "temperatureCelsius": 32.0,
+    "humidityPercent": 100.0,
+    "rain": true,
+    "snow": false
   },
   "terrain": {
     "height": {
@@ -16,7 +22,7 @@
       "heightVariation": 0.05
     },
     "surface": {
-      "patches":[
+      "patches": [
         {
           "minNoise": 2.5,
           "topBlockId": "minecraft:mycelium",
@@ -26,15 +32,26 @@
     }
   },
   "decoration": {
-    "treesPerChunk": 0,
+    "treesPerChunk": 4,
     "trees": [
-      { "id": "minecraft:oak", "weight": 8 },
-      { "id": "minecraft:birch", "weight": 3 }
+      {
+        "id": "minecraft:oak",
+        "variant": "tall",
+        "weight": 1
+      }
     ],
-    "grassPerChunk": 4,
+    "grassPerChunk": 8,
     "grass": [
-      {"blockId": "minecraft:tallgrass", "meta": 1, "weight": 30},
-      {"blockId": "minecraft:tallgrass", "meta": 2, "weight": 10}
+      {
+        "blockId": "minecraft:tallgrass",
+        "meta": 1,
+        "weight": 20
+      },
+      {
+        "blockId": "minecraft:tallgrass",
+        "meta": 2,
+        "weight": 8
+      }
     ],
     "flowersPerChunk": 0,
     "features": {
@@ -50,17 +67,16 @@
           "blockId": "viridium:kudzu",
           "radius": 1,
           "frequency": 3
-        },
-        {
-          "blockId": "viridium:kudzu",
-          "radius": 0,
-          "frequency": 1
         }
       ]
-    }
+    },
+    "flowers": [],
+    "mushroomsPerChunk": 4,
+    "bigMushroomsPerChunk": 3
   },
   "appearance": {
     "grassColor": "#85DB60",
-    "foliageColor": "#85DB60"
+    "foliageColor": "#85DB60",
+    "waterColor": "#40D9D0"
   }
 }

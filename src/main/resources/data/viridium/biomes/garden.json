@@ -1,0 +1,66 @@
+{
+  "name": "Garden",
+  "generation": {
+    "weight": 10,
+    "climateType": "WARM",
+    "dictionaryTypes": [
+      "PLAINS",
+      "LUSH",
+      "WET"
+    ]
+  },
+  "climate": {
+    "temperatureCelsius": 20.0,
+    "humidityPercent": 80.0,
+    "rain": true,
+    "snow": false
+  },
+  "terrain": {
+    "height": {
+      "baseHeight": 0.1,
+      "heightVariation": 0.05
+    }
+  },
+  "decoration": {
+    "treesPerChunk": 1,
+    "grassPerChunk": 10,
+    "trees": [
+      {
+        "id": "minecraft:oak_shrub",
+        "variant": "default",
+        "weight": 1
+      }
+    ],
+    "grass": [
+      {
+        "blockId": "minecraft:tallgrass",
+        "meta": 1,
+        "weight": 20
+      }
+    ],
+    "flowers": [
+      {
+        "blockId": "viridium:false_rue_anemone",
+        "meta": 0,
+        "weight": 1
+      },
+      {
+        "blockId": "viridium:sunflower",
+        "meta": 0,
+        "weight": 1
+      },
+      {
+        "blockId": "viridium:corn_poppy",
+        "meta": 0,
+        "weight": 1
+      }
+    ],
+    "flowersPerChunk": 5,
+    "features": {},
+    "melonChance": 8
+  },
+  "appearance": {
+    "grassColor": "#61BF57",
+    "foliageColor": "#61BF57"
+  }
+}

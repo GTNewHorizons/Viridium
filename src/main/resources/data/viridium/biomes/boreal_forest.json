@@ -1,0 +1,74 @@
+{
+  "name": "Boreal Forest",
+  "generation": {
+    "weight": 10,
+    "climateType": "COOL",
+    "dictionaryTypes": [
+      "FOREST",
+      "CONIFEROUS"
+    ]
+  },
+  "climate": {
+    "temperatureCelsius": 9.0,
+    "humidityPercent": 60.0,
+    "rain": true,
+    "snow": false
+  },
+  "terrain": {
+    "height": {
+      "baseHeight": 0.2,
+      "heightVariation": 0.2
+    }
+  },
+  "decoration": {
+    "treesPerChunk": 7,
+    "grassPerChunk": 10,
+    "trees": [
+      {
+        "id": "viridium:pedunculate_oak",
+        "variant": "default",
+        "weight": 4
+      },
+      {
+        "id": "viridium:quaking_aspen",
+        "variant": "default",
+        "weight": 4
+      },
+      {
+        "id": "minecraft:spruce",
+        "variant": "tall",
+        "weight": 5
+      }
+    ],
+    "grass": [
+      {
+        "blockId": "minecraft:tallgrass",
+        "meta": 1,
+        "weight": 20
+      },
+      {
+        "blockId": "minecraft:tallgrass",
+        "meta": 2,
+        "weight": 8
+      },
+      {
+        "blockId": "viridium:dead_leaf_pile",
+        "meta": 0,
+        "weight": 4
+      }
+    ],
+    "flowers": [
+      {
+        "blockId": "minecraft:double_plant",
+        "meta": 4,
+        "weight": 1
+      }
+    ],
+    "flowersPerChunk": 5,
+    "features": {}
+  },
+  "appearance": {
+    "grassColor": "#9FB88A",
+    "foliageColor": "#9FB88A"
+  }
+}

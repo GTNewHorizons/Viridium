@@ -1,0 +1,69 @@
+{
+  "name": "Sacred Springs",
+  "generation": {
+    "weight": 10,
+    "climateType": "COOL",
+    "dictionaryTypes": [
+      "FOREST",
+      "MAGICAL",
+      "MOUNTAIN"
+    ]
+  },
+  "climate": {
+    "temperatureCelsius": 10.0,
+    "humidityPercent": 50.0,
+    "rain": true,
+    "snow": false
+  },
+  "terrain": {
+    "height": {
+      "baseHeight": 0.8,
+      "heightVariation": 0.8
+    }
+  },
+  "decoration": {
+    "treesPerChunk": 4,
+    "grassPerChunk": 3,
+    "trees": [
+      {
+        "id": "viridium:pedunculate_oak",
+        "variant": "two_by_two",
+        "weight": 1
+      }
+    ],
+    "grass": [
+      {
+        "blockId": "minecraft:tallgrass",
+        "meta": 1,
+        "weight": 20
+      },
+      {
+        "blockId": "minecraft:tallgrass",
+        "meta": 2,
+        "weight": 8
+      }
+    ],
+    "flowers": [
+      {
+        "blockId": "viridium:daffodil_flowering",
+        "meta": 0,
+        "weight": 1
+      }
+    ],
+    "flowersPerChunk": 5,
+    "features": {
+      "bushes": [
+        {
+          "blockId": "viridium:silverleaf_hydrangea",
+          "radius": 1,
+          "frequency": 3
+        }
+      ]
+    },
+    "waterLakeChance": 4
+  },
+  "appearance": {
+    "grassColor": "#3E7843",
+    "foliageColor": "#3E7843"
+  }
+}

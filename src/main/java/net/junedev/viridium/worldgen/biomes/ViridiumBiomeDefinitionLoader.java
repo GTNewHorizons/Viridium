@@ -17,21 +17,11 @@ public final class ViridiumBiomeDefinitionLoader {
 
     private static final Gson GSON = new Gson();
 
-    // TODO: Add checks when loading!
-
     public static ViridiumBiomeDefinition load(File file) {
         try (Reader reader = new InputStreamReader(new FileInputStream(file), StandardCharsets.UTF_8)) {
-
-            ViridiumBiomeDefinition definition = GSON.fromJson(reader, ViridiumBiomeDefinition.class);
-
-            if (definition == null || definition.name == null || definition.name.isEmpty()) {
-                Viridium.LOGGER.error("Biome definition has no name: {}", file.getAbsolutePath());
-                return null;
-            }
-
-            return definition;
+            return readDefinition(reader, file.getAbsolutePath());
         } catch (IOException | JsonParseException exception) {
-            Viridium.LOGGER.error("Could not load biome definition {}", file.getAbsolutePath());
+            Viridium.LOGGER.error("Could not load biome definition " + file.getAbsolutePath(), exception);
             return null;
         }
     }
@@ -46,18 +36,43 @@ public final class ViridiumBiomeDefinitionLoader {
             }
 
             try (Reader reader = new InputStreamReader(stream, StandardCharsets.UTF_8)) {
-                ViridiumBiomeDefinition definition = GSON.fromJson(reader, ViridiumBiomeDefinition.class);
-
-                if (definition == null || definition.name == null || definition.name.isEmpty()) {
-                    Viridium.LOGGER.error("Biome definition has no name: {}", path);
-                    return null;
-                }
-
-                return definition;
+                return readDefinition(reader, path);
             }
-        } catch (IOException exception) {
-            Viridium.LOGGER.error("Could not read biome JSON: {}", path);
+        } catch (IOException | JsonParseException exception) {
+            Viridium.LOGGER.error("Could not read biome JSON: " + path, exception);
             return null;
         }
+    }
+
+    static ViridiumBiomeDefinition readDefinition(Reader reader, String source) {
+        ViridiumBiomeDefinition definition = GSON.fromJson(reader, ViridiumBiomeDefinition.class);
+
+        if (validateDefinition(definition, source)) return definition;
+
+        throw new RuntimeException(
+            "This code should not be reached, something went horribly wrong when validating the biome definitions.");
+    }
+
+    static boolean validateDefinition(ViridiumBiomeDefinition definition, String source) {
+        if (definition == null || definition.name == null
+            || definition.name.trim()
+                .isEmpty()) {
+            throw new JsonParseException(source + ": biome definition has no name");
+        }
+        // Gson maps unknown enum strings to null. Reject them before registration mutates biome IDs.
+        if (definition.generation == null || definition.generation.climateType == null) {
+            throw new JsonParseException(
+                source + ": generation.climateType must be DESERT, WARM, COOL or ICY (Forge 1.7.10)");
+        }
+        if (definition.generation.dictionaryTypes == null) {
+            throw new JsonParseException(source + ": generation.dictionaryTypes must be an array");
+        }
+        for (Object type : definition.generation.dictionaryTypes) {
+            if (type == null) {
+                throw new JsonParseException(source + ": generation.dictionaryTypes contains an unknown or null type");
+            }
+        }
+
+        return true;
     }
 }

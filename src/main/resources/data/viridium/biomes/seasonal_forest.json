@@ -1,0 +1,74 @@
+{
+  "name": "Seasonal Forest",
+  "generation": {
+    "weight": 10,
+    "climateType": "COOL",
+    "dictionaryTypes": [
+      "FOREST",
+      "WET"
+    ]
+  },
+  "climate": {
+    "temperatureCelsius": 8.0,
+    "humidityPercent": 80.0,
+    "rain": true,
+    "snow": false
+  },
+  "terrain": {
+    "height": {
+      "baseHeight": 0.2,
+      "heightVariation": 0.15
+    }
+  },
+  "decoration": {
+    "treesPerChunk": 7,
+    "grassPerChunk": 9,
+    "trees": [
+      {
+        "id": "viridium:quaking_aspen",
+        "variant": "default",
+        "weight": 4
+      },
+      {
+        "id": "viridium:sweetgum",
+        "variant": "default",
+        "weight": 4
+      },
+      {
+        "id": "viridium:red_maple",
+        "variant": "default",
+        "weight": 4
+      },
+      {
+        "id": "viridium:pedunculate_oak",
+        "variant": "default",
+        "weight": 3
+      }
+    ],
+    "grass": [
+      {
+        "blockId": "minecraft:tallgrass",
+        "meta": 1,
+        "weight": 20
+      },
+      {
+        "blockId": "minecraft:tallgrass",
+        "meta": 2,
+        "weight": 8
+      },
+      {
+        "blockId": "viridium:dead_leaf_pile",
+        "meta": 0,
+        "weight": 4
+      }
+    ],
+    "flowers": [],
+    "flowersPerChunk": 0,
+    "features": {},
+    "mushroomsPerChunk": 4
+  },
+  "appearance": {
+    "grassColor": "#A2B15A",
+    "foliageColor": "#A2B15A"
+  }
+}

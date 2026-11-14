@@ -3,28 +3,64 @@
   "generation": {
     "weight": 10,
     "climateType": "COOL",
-    "dictionaryTypes": []
+    "dictionaryTypes": [
+      "FOREST"
+    ]
   },
   "climate": {
-    "temperature": 0.4,
-    "rainfall": 0.4,
-    "rain": true
+    "temperatureCelsius": 16.0,
+    "humidityPercent": 40.0,
+    "rain": true,
+    "snow": false
   },
   "terrain": {
     "height": {
-      "baseHeight": 0.05,
-      "heightVariation": 0.05
+      "baseHeight": 0.15,
+      "heightVariation": 0.15
     }
   },
   "decoration": {
     "treesPerChunk": 6,
     "trees": [
-      { "id": "minecraft:oak", "weight": 15 },
-      { "id": "minecraft:tall_oak", "weight": 1 },
-      { "id": "minecraft:dark_oak", "weight": 3 }
+      {
+        "id": "viridium:pedunculate_oak",
+        "variant": "default",
+        "weight": 5
+      },
+      {
+        "id": "viridium:pedunculate_oak",
+        "variant": "two_by_two",
+        "weight": 2
+      }
     ],
-    "grassPerChunk": 3,
-    "flowersPerChunk": 0
+    "grassPerChunk": 8,
+    "flowersPerChunk": 5,
+    "flowers": [
+      {
+        "blockId": "minecraft:double_plant",
+        "meta": 4,
+        "weight": 1
+      }
+    ],
+    "grass": [
+      {
+        "blockId": "minecraft:tallgrass",
+        "meta": 1,
+        "weight": 20
+      },
+      {
+        "blockId": "viridium:clover_patch_top",
+        "meta": 0,
+        "weight": 4
+      },
+      {
+        "blockId": "viridium:leaf_pile",
+        "meta": 0,
+        "weight": 4
+      }
+    ],
+    "features": {},
+    "mushroomsPerChunk": 4
   },
   "appearance": {
     "grassColor": "#94CE49",

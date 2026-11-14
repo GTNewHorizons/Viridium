@@ -1,0 +1,86 @@
+{
+  "name": "Maple Woods",
+  "generation": {
+    "weight": 10,
+    "climateType": "ICY",
+    "dictionaryTypes": [
+      "FOREST",
+      "SNOWY",
+      "COLD",
+      "WET"
+    ]
+  },
+  "climate": {
+    "temperatureCelsius": -7.0,
+    "humidityPercent": 80.0,
+    "rain": true,
+    "snow": true
+  },
+  "terrain": {
+    "height": {
+      "baseHeight": 0.2,
+      "heightVariation": 0.2
+    }
+  },
+  "decoration": {
+    "treesPerChunk": 7,
+    "grassPerChunk": 8,
+    "trees": [
+      {
+        "id": "viridium:red_maple",
+        "variant": "default",
+        "weight": 8
+      },
+      {
+        "id": "viridium:black_oak",
+        "variant": "default",
+        "weight": 2
+      },
+      {
+        "id": "minecraft:birch",
+        "variant": "default",
+        "weight": 3
+      },
+      {
+        "id": "viridium:red_spruce",
+        "variant": "default",
+        "weight": 2
+      }
+    ],
+    "grass": [
+      {
+        "blockId": "minecraft:tallgrass",
+        "meta": 1,
+        "weight": 20
+      },
+      {
+        "blockId": "viridium:clover_patch_top",
+        "meta": 0,
+        "weight": 4
+      }
+    ],
+    "flowers": [
+      {
+        "blockId": "viridium:dandelion_flowering",
+        "meta": 0,
+        "weight": 1
+      },
+      {
+        "blockId": "viridium:false_rue_anemone",
+        "meta": 0,
+        "weight": 1
+      },
+      {
+        "blockId": "viridium:corn_poppy",
+        "meta": 0,
+        "weight": 1
+      }
+    ],
+    "flowersPerChunk": 5,
+    "features": {}
+  },
+  "appearance": {
+    "grassColor": "#77A45B",
+    "foliageColor": "#77A45B"
+  }
+}

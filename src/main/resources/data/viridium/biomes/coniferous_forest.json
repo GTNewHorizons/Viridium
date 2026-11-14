@@ -3,30 +3,79 @@
   "generation": {
     "weight": 10,
     "climateType": "COOL",
-    "dictionaryTypes": ["WET", "FOREST", "DENSE"]
+    "dictionaryTypes": [
+      "FOREST",
+      "CONIFEROUS",
+      "DENSE"
+    ]
   },
   "climate": {
-    "temperature": 0.4,
-    "rainfall": 0.8,
-    "rain": true
+    "temperatureCelsius": 10.0,
+    "humidityPercent": 50.0,
+    "rain": true,
+    "snow": false
   },
   "terrain": {
     "height": {
-      "baseHeight": 0.05,
-      "heightVariation": 0.05
+      "baseHeight": 0.2,
+      "heightVariation": 0.2
     }
   },
   "decoration": {
-    "treesPerChunk": 2,
+    "treesPerChunk": 7,
     "trees": [
-      { "id": "minecraft:spruce", "weight": 8 },
-      { "id": "minecraft:birch", "weight": 1 }
+      {
+        "id": "minecraft:spruce",
+        "variant": "tall",
+        "weight": 5
+      },
+      {
+        "id": "minecraft:spruce",
+        "variant": "default",
+        "weight": 3
+      }
     ],
-    "grassPerChunk": 4,
-    "flowersPerChunk": 4
+    "grassPerChunk": 8,
+    "flowersPerChunk": 5,
+    "grass": [
+      {
+        "blockId": "minecraft:tallgrass",
+        "meta": 1,
+        "weight": 20
+      },
+      {
+        "blockId": "minecraft:tallgrass",
+        "meta": 2,
+        "weight": 8
+      },
+      {
+        "blockId": "viridium:clover_patch_top",
+        "meta": 0,
+        "weight": 4
+      },
+      {
+        "blockId": "viridium:dead_leaf_pile",
+        "meta": 0,
+        "weight": 4
+      }
+    ],
+    "flowers": [
+      {
+        "blockId": "viridium:virginia_bluebells",
+        "meta": 0,
+        "weight": 1
+      },
+      {
+        "blockId": "viridium:azure_bluet",
+        "meta": 0,
+        "weight": 1
+      }
+    ],
+    "features": {},
+    "mushroomsPerChunk": 4
   },
   "appearance": {
-    "grassColor": "#7AB88A",
-    "foliageColor": "#7AB88A"
+    "grassColor": "#7AB86A",
+    "foliageColor": "#7AB86A"
   }
 }

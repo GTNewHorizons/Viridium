@@ -3,13 +3,16 @@ package net.junedev.viridium.worldgen.biomes;
 import java.util.Random;
 
 import net.junedev.viridium.utils.parser.BlockParser;
+import net.junedev.viridium.worldgen.features.PlantPlacement;
+import net.junedev.viridium.worldgen.features.WorldGenBiomeGrass;
+import net.junedev.viridium.worldgen.features.WorldGenWeightedFlowers;
+import net.junedev.viridium.worldgen.treegen.TreeRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeDecorator;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
-import net.minecraft.world.gen.feature.WorldGenTallGrass;
 import net.minecraft.world.gen.feature.WorldGenerator;
 
 import cpw.mods.fml.relauncher.Side;
@@ -21,11 +24,12 @@ public class ViridiumBiomeGen extends BiomeGenBase {
     private Integer foliageColorOverride;
 
     public Block baseTopBlock = Blocks.grass;
+    public int baseTopBlockMeta;
     public Block baseFillerBlock = Blocks.dirt;
     private ViridiumBiomeDefinition.SurfacePatch[] patches = new ViridiumBiomeDefinition.SurfacePatch[0];
-    private WeightedSelector<WorldGenAbstractTree> treeSelector;
+    private WeightedSelector<ViridiumBiomeDefinition.TreeEntry> treeSelector;
     private WeightedSelector<PlantVariant> grassSelector;
-    private ViridiumBiomeDefinition.VegetationEntry[] flowers = new ViridiumBiomeDefinition.VegetationEntry[0];
+    private WeightedSelector<PlantVariant> flowerSelector;
 
     private ViridiumBiomeDecorator viridiumDecorator;
 
@@ -76,11 +80,14 @@ public class ViridiumBiomeGen extends BiomeGenBase {
         double noise) {
 
         topBlock = baseTopBlock;
+        field_150604_aj = baseTopBlockMeta;
         fillerBlock = baseFillerBlock;
 
         for (ViridiumBiomeDefinition.SurfacePatch patch : patches) {
             if (noise > patch.minNoise) {
                 setTopBlock(BlockParser.getBlock(patch.topBlockId));
+                field_150604_aj = patch.topBlockMeta != null ? patch.topBlockMeta
+                    : (patch.topBlockId == null ? baseTopBlockMeta : 0);
                 setFillerBlock(BlockParser.getBlock(patch.fillerBlockId));
             }
         }
@@ -115,8 +122,9 @@ public class ViridiumBiomeGen extends BiomeGenBase {
 
     @Override
     public WorldGenAbstractTree func_150567_a(Random random) {
-        return treeSelector == null || treeSelector.isEmpty() ? super.func_150567_a(random)
-            : treeSelector.select(random);
+        if (treeSelector == null || treeSelector.isEmpty()) return super.func_150567_a(random);
+        ViridiumBiomeDefinition.TreeEntry tree = treeSelector.select(random);
+        return TreeRegistry.createGenerator(tree.id, tree.variant, false);
     }
 
     @Override
@@ -124,11 +132,16 @@ public class ViridiumBiomeGen extends BiomeGenBase {
         if (grassSelector == null || grassSelector.isEmpty()) return super.getRandomWorldGenForGrass(random);
 
         PlantVariant selectedGrass = grassSelector.select(random);
-        return new WorldGenTallGrass(selectedGrass.block, selectedGrass.meta);
+        return new WorldGenBiomeGrass(selectedGrass);
     }
 
     public void setSmallPatches(ViridiumBiomeDefinition.SmallPatch[] smallPatches) {
         viridiumDecorator.smallPatches = smallPatches;
+    }
+
+    public void setExtraDecoration(ViridiumBiomeDefinition.Decoration decoration) {
+        viridiumDecorator.waterLakeChance = decoration.waterLakeChance;
+        viridiumDecorator.melonChance = decoration.melonChance;
     }
 
     public void setBlobs(ViridiumBiomeDefinition.Blob[] blobs) {
@@ -139,7 +152,7 @@ public class ViridiumBiomeGen extends BiomeGenBase {
         viridiumDecorator.bushes = bushes;
     }
 
-    public void setTreeSelector(WeightedSelector<WorldGenAbstractTree> treeSelector) {
+    public void setTreeSelector(WeightedSelector<ViridiumBiomeDefinition.TreeEntry> treeSelector) {
         this.treeSelector = treeSelector;
     }
 
@@ -147,8 +160,18 @@ public class ViridiumBiomeGen extends BiomeGenBase {
         this.grassSelector = grassSelector;
     }
 
-    public void setFlowers(ViridiumBiomeDefinition.VegetationEntry[] flowers) {
-        this.flowers = flowers;
+    public void setFlowerSelector(WeightedSelector<PlantVariant> selector) {
+        flowerSelector = selector;
+        viridiumDecorator.yellowFlowerGen = new WorldGenWeightedFlowers(selector);
+    }
+
+    @Override
+    public void plantFlower(World world, Random random, int x, int y, int z) {
+        if (flowerSelector == null) {
+            super.plantFlower(world, random, x, y, z);
+        } else if (!flowerSelector.isEmpty()) {
+            PlantPlacement.place(world, flowerSelector.select(random), x, y, z);
+        }
     }
 
 }

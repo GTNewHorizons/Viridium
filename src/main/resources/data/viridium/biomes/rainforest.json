@@ -1,0 +1,71 @@
+{
+  "name": "Rainforest",
+  "generation": {
+    "weight": 10,
+    "climateType": "WARM",
+    "dictionaryTypes": [
+      "FOREST",
+      "DENSE",
+      "HOT",
+      "WET"
+    ]
+  },
+  "climate": {
+    "temperatureCelsius": 38.0,
+    "humidityPercent": 100.0,
+    "rain": true,
+    "snow": false
+  },
+  "terrain": {
+    "height": {
+      "baseHeight": 0.2,
+      "heightVariation": 0.2
+    }
+  },
+  "decoration": {
+    "treesPerChunk": 8,
+    "grassPerChunk": 10,
+    "trees": [
+      {
+        "id": "viridium:pedunculate_oak",
+        "variant": "default",
+        "weight": 5
+      },
+      {
+        "id": "viridium:flowering_dogwood",
+        "variant": "default",
+        "weight": 3
+      }
+    ],
+    "grass": [
+      {
+        "blockId": "minecraft:tallgrass",
+        "meta": 1,
+        "weight": 20
+      },
+      {
+        "blockId": "viridium:leaf_pile",
+        "meta": 0,
+        "weight": 4
+      }
+    ],
+    "flowers": [
+      {
+        "blockId": "viridium:daffodil_flowering",
+        "meta": 0,
+        "weight": 1
+      },
+      {
+        "blockId": "viridium:sulphur_cosmos",
+        "meta": 0,
+        "weight": 1
+      }
+    ],
+    "flowersPerChunk": 5,
+    "features": {}
+  },
+  "appearance": {
+    "grassColor": "#6BC244",
+    "foliageColor": "#6BC244"
+  }
+}

@@ -3,12 +3,15 @@
   "generation": {
     "weight": 10,
     "climateType": "COOL",
-    "dictionaryTypes": []
+    "dictionaryTypes": [
+      "PLAINS"
+    ]
   },
   "climate": {
-    "temperature": 0.4,
-    "rainfall": 0.7,
-    "rain": true
+    "temperatureCelsius": 12.0,
+    "humidityPercent": 70.0,
+    "rain": true,
+    "snow": false
   },
   "terrain": {
     "height": {
@@ -17,11 +20,44 @@
     }
   },
   "decoration": {
-    "treesPerChunk": 0,
+    "treesPerChunk": 1,
     "trees": [
-      { "id": "minecraft:oak", "weight": 1 }
+      {
+        "id": "viridium:pedunculate_oak",
+        "variant": "default",
+        "weight": 2
+      },
+      {
+        "id": "minecraft:oak_shrub",
+        "variant": "default",
+        "weight": 3
+      },
+      {
+        "id": "viridium:jacaranda",
+        "variant": "default",
+        "weight": 2
+      }
     ],
     "grassPerChunk": 7,
-    "flowersPerChunk": 0
+    "flowersPerChunk": 10,
+    "flowers": [
+      {
+        "blockId": "viridium:english_lavender",
+        "meta": 0,
+        "weight": 1
+      }
+    ],
+    "grass": [
+      {
+        "blockId": "minecraft:tallgrass",
+        "meta": 1,
+        "weight": 20
+      }
+    ],
+    "features": {}
+  },
+  "appearance": {
+    "grassColor": "#70AC62",
+    "foliageColor": "#70AC62"
   }
 }

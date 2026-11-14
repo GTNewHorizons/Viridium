@@ -1,21 +1,21 @@
 package net.junedev.viridium.blocks.sets;
 
-import net.junedev.viridium.blocks.BaseLeaves;
-import net.junedev.viridium.blocks.BasePlanks;
-import net.junedev.viridium.blocks.BaseSaplingBlock;
+import java.util.List;
+
+import net.junedev.viridium.Viridium;
 import net.junedev.viridium.blocks.SmallLogBlock;
+import net.junedev.viridium.blocks.vanilike.BaseBark;
+import net.junedev.viridium.blocks.vanilike.BaseLeaves;
+import net.junedev.viridium.blocks.vanilike.BaseSaplingBlock;
 import net.minecraft.block.Block;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 
-public class SmallTreeBlockSet {
+public class SmallTreeBlockSet extends WoodBlockSet {
 
-    private static final String ASSET_DIRECTORY = "small_trees/";
-
-    public final Block smallLog;
+    public final Block log;
     public final Block bark;
     public final Block leaves;
-    public final Block planks;
     public final Block sapling;
 
     public SmallTreeBlockSet(String name) {
@@ -23,24 +23,40 @@ public class SmallTreeBlockSet {
     }
 
     public SmallTreeBlockSet(String name, int halfWidth, int faceHalfWidth, boolean doSidesConnect) {
-        smallLog = new SmallLogBlock(halfWidth, faceHalfWidth, doSidesConnect).setBlockName(name + "_log")
-            .setBlockTextureName(ASSET_DIRECTORY + name + "_log");
+        super(name);
+
+        log = new SmallLogBlock(halfWidth, faceHalfWidth, doSidesConnect).setBlockName(name + "_log")
+            .setBlockTextureName(getAssetDirectory() + name + "_log");
         leaves = new BaseLeaves().setBlockName(name + "_leaves")
-            .setBlockTextureName(ASSET_DIRECTORY + name + "_leaves");
-        planks = new BasePlanks().setBlockName(name + "_planks")
-            .setBlockTextureName(ASSET_DIRECTORY + name + "_planks");
-        sapling = new BaseSaplingBlock().setBlockName(name + "_sapling")
-            .setBlockTextureName(ASSET_DIRECTORY + name + "_sapling");
+            .setBlockTextureName(getAssetDirectory() + name + "_leaves");
+
+        sapling = new BaseSaplingBlock(Viridium.MOD_ID + ":" + name, this).setBlockName(name + "_sapling")
+            .setBlockTextureName(getAssetDirectory() + name + "_sapling");
 
         // TODO: Change to custom block type?
-        bark = new BasePlanks().setBlockName(name + "_bark")
-            .setBlockTextureName(ASSET_DIRECTORY + name + "_bark");
+        bark = new BaseBark().setBlockName(name + "_bark")
+            .setBlockTextureName(getAssetDirectory() + name + "_bark");
 
         // TODO: Deffer registry to method
-        GameRegistry.registerBlock(smallLog, name + "_log");
+        GameRegistry.registerBlock(log, name + "_log");
         GameRegistry.registerBlock(leaves, name + "_leaves");
-        GameRegistry.registerBlock(planks, name + "_planks");
         GameRegistry.registerBlock(sapling, name + "_sapling");
         GameRegistry.registerBlock(bark, name + "_bark");
+
+    }
+
+    @Override
+    public String getAssetDirectory() {
+        return "small_trees/";
+    }
+
+    @Override
+    public List<Block> getBlocksWithItems() {
+        List<Block> blocks = super.getBlocksWithItems();
+        blocks.add(log);
+        blocks.add(leaves);
+        blocks.add(sapling);
+        blocks.add(bark);
+        return blocks;
     }
 }

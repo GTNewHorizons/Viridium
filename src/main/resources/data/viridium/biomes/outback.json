@@ -1,0 +1,70 @@
+{
+  "name": "Outback",
+  "generation": {
+    "weight": 10,
+    "climateType": "WARM",
+    "dictionaryTypes": [
+      "SANDY",
+      "SAVANNA",
+      "DRY",
+      "HOT",
+      "SPARSE"
+    ]
+  },
+  "climate": {
+    "temperatureCelsius": 54.0,
+    "humidityPercent": 5.0,
+    "rain": true,
+    "snow": false
+  },
+  "terrain": {
+    "height": {
+      "baseHeight": 0.15,
+      "heightVariation": 0.08
+    },
+    "surface": {
+      "patches": [
+        {
+          "minNoise": 0.0,
+          "topBlockId": "minecraft:sand",
+          "topBlockMeta": 1,
+          "fillerBlockId": "minecraft:sand"
+        }
+      ]
+    }
+  },
+  "decoration": {
+    "treesPerChunk": 1,
+    "grassPerChunk": 4,
+    "trees": [
+      {
+        "id": "viridium:mulga",
+        "variant": "default",
+        "weight": 5
+      }
+    ],
+    "grass": [
+      {
+        "blockId": "minecraft:tallgrass",
+        "meta": 1,
+        "weight": 20
+      }
+    ],
+    "flowers": [],
+    "flowersPerChunk": 0,
+    "features": {
+      "bushes": [
+        {
+          "blockId": "viridium:sandhill_wattle",
+          "radius": 1,
+          "frequency": 3
+        }
+      ]
+    },
+    "deadBushPerChunk": 3
+  },
+  "appearance": {
+    "grassColor": "#96924E",
+    "foliageColor": "#96924E"
+  }
+}
