@@ -7,9 +7,13 @@ import net.junedev.viridium.blocks.SmallLogBlock;
 import net.junedev.viridium.blocks.vanilike.BaseBark;
 import net.junedev.viridium.blocks.vanilike.BaseLeaves;
 import net.junedev.viridium.blocks.vanilike.BaseSaplingBlock;
+import net.junedev.viridium.blocks.vanilike.BaseSeedling;
+import net.junedev.viridium.items.BaseSeed;
 import net.minecraft.block.Block;
 
 import cpw.mods.fml.common.registry.GameRegistry;
+import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
 
 public class SmallTreeBlockSet extends WoodBlockSet {
 
@@ -17,6 +21,8 @@ public class SmallTreeBlockSet extends WoodBlockSet {
     public final Block bark;
     public final Block leaves;
     public final Block sapling;
+    public final Block seedling;
+    public final Item seed;
 
     public SmallTreeBlockSet(String name) {
         this(name, 4, 4, true);
@@ -27,11 +33,19 @@ public class SmallTreeBlockSet extends WoodBlockSet {
 
         log = new SmallLogBlock(halfWidth, faceHalfWidth, doSidesConnect).setBlockName(name + "_log")
             .setBlockTextureName(getAssetDirectory() + name + "_log");
-        leaves = new BaseLeaves().setBlockName(name + "_leaves")
-            .setBlockTextureName(getAssetDirectory() + name + "_leaves");
+
 
         sapling = new BaseSaplingBlock(Viridium.MOD_ID + ":" + name, this).setBlockName(name + "_sapling")
             .setBlockTextureName(getAssetDirectory() + name + "_sapling");
+
+        seedling = new BaseSeedling(Viridium.MOD_ID + ":" + name, this).setSapling(sapling);
+        seedling.setBlockName(name + "_seedling")
+            .setBlockTextureName(name);
+        seed = new BaseSeed(seedling, Blocks.grass).setUnlocalizedName(name + "_seeds")
+            .setTextureName(name + "_seeds");
+
+        leaves = new BaseLeaves().setItemDropped(seed).setBlockName(name + "_leaves")
+            .setBlockTextureName(getAssetDirectory() + name + "_leaves");
 
         // TODO: Change to custom block type?
         bark = new BaseBark().setBlockName(name + "_bark")
@@ -42,6 +56,8 @@ public class SmallTreeBlockSet extends WoodBlockSet {
         GameRegistry.registerBlock(leaves, name + "_leaves");
         GameRegistry.registerBlock(sapling, name + "_sapling");
         GameRegistry.registerBlock(bark, name + "_bark");
+        GameRegistry.registerBlock(seedling, name + "_seedling");
+        GameRegistry.registerItem(seed, name + "_seeds");
 
     }
 
@@ -57,6 +73,7 @@ public class SmallTreeBlockSet extends WoodBlockSet {
         blocks.add(leaves);
         blocks.add(sapling);
         blocks.add(bark);
+        blocks.add(seedling);
         return blocks;
     }
 }

@@ -1,12 +1,14 @@
 package net.junedev.viridium.blocks.vanilike;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import net.junedev.viridium.Viridium;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLeaves;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
@@ -21,6 +23,8 @@ public class BaseLeaves extends BlockLeaves {
 
     @SideOnly(Side.CLIENT)
     private IIcon fastIcon;
+
+    public Item seed;
 
     public BaseLeaves() {
         super();
@@ -97,6 +101,12 @@ public class BaseLeaves extends BlockLeaves {
         return this;
     }
 
+    @Override
+    public Item getItemDropped(int meta, Random random, int fortune)
+    {
+        return this.seed;
+    }
+
     // Getters
     public IIcon getFancyIcon() {
         return fancyIcon;
@@ -104,5 +114,12 @@ public class BaseLeaves extends BlockLeaves {
 
     public IIcon getFastIcon() {
         return fastIcon;
+    }
+
+    // Setters
+
+    public Block setItemDropped(Item seed) {
+        this.seed = seed;
+        return this;
     }
 }

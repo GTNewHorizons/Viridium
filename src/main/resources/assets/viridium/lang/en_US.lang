@@ -34,6 +34,7 @@ tile.amaranth_stripped.name=Stripped Amaranth Wood
 tile.amaranth_leaves.name=Amaranth Leaves
 tile.amaranth_planks.name=Amaranth Planks
 tile.amaranth_sapling.name=Amaranth Sapling
+item.amaranth_seeds.name=Amaranth Seeds
 
 tile.american_chestnut_log.name=American Chestnut Wood
 tile.american_chestnut_stripped.name=Stripped American Chestnut Wood
@@ -41,6 +42,7 @@ tile.american_chestnut_leaves.name=American Chestnut Leaves
 tile.american_chestnut_planks.name=American Chestnut Planks
 tile.american_chestnut_planks_wormy.name=Wormy American Chestnut Planks
 tile.american_chestnut_sapling.name=American Chestnut Sapling
+item.american_chestnut_seeds.name=American Chestnut Nut
 
 tile.american_sycamore_log.name=American Sycamore Wood
 tile.american_sycamore_stripped.name=Stripped American Sycamore Wood
@@ -54,7 +56,7 @@ tile.ash_stripped.name=Stripped Ash Wood
 tile.ash_leaves.name=Ash Leaves
 tile.ash_planks.name=Ash Planks
 tile.ash_sapling.name=Ash Sapling
-# TODO: Seeds
+item.ash_seeds.name=Ash Seeds
 
 tile.bald_cypress_log.name=Bald Cypress Wood
 tile.bald_cypress_stripped.name=Stripped Bald Cypress Wood
@@ -70,19 +72,26 @@ tile.baobab_planks.name=Baobab Planks
 tile.baobab_sapling.name=Baobab Saplings
 item.baobab_seeds.name=Baobab Seeds
 
+tile.beech_log.name=Beech Wood
+tile.beech_stripped.name=Stripped Beech Wood
+tile.beech_leaves.name=Beech Leaves
+tile.beech_planks.name=Beech Planks
+tile.beech_sapling.name=Beech Sapling
+item.beech_seeds.name=Beech Seeds
+
 tile.black_oak_log.name=Black Oak Wood
 tile.black_oak_stripped.name=Stripped Black Oak Wood
 tile.black_oak_leaves.name=Black Oak Leaves
 tile.black_oak_planks.name=Black Oak Planks
 tile.black_oak_sapling.name=Black Oak Sapling
-# TODO: Seeds
+item.black_oak_seeds.name=Black Oak Acorn
 
 tile.black_pine_log.name=Black Pine Wood
 tile.black_pine_stripped.name=Stripped Black Pine Wood
 tile.black_pine_leaves.name=Black Pine Leaves
 tile.black_pine_planks.name=Black Pine Planks
 tile.black_pine_sapling.name=Black Pine Sapling
-item.black_pine_cone.name=Black Pine Cone
+item.black_pine_seeds.name=Black Pine Cone
 
 tile.cacao_log.name=Cacao Wood
 tile.cacao_stripped.name=Stripped Cacao Wood
@@ -103,7 +112,7 @@ tile.coast_redwood_stripped.name=Stripped Coast Redwood Wood
 tile.coast_redwood_leaves.name=Coast Redwood Leaves
 tile.coast_redwood_planks.name=Coast Redwood Planks
 tile.coast_redwood_sapling.name=Coast Redwood Sapling
-# TODO: Seeds
+item.coast_redwood_seeds.name=Coast Redwood Cone
 
 tile.coconut_palm_log.name=Coconut Palm Wood
 tile.coconut_palm_stripped.name=Stripped Coconut Palm Wood
@@ -117,14 +126,14 @@ tile.coolibah_stripped.name=Stripped Coolibah Wood
 tile.coolibah_leaves.name=Coolibah Leaves
 tile.coolibah_planks.name=Coolibah Planks
 tile.coolibah_sapling.name=Coolibah Sapling
-# TODO: Seeds
+item.coolibah_seeds.name=Coolibah Seeds
 
 tile.dahurian_larch_log.name=Dahurian Larch Wood
 tile.dahurian_larch_stripped.name=Stripped Dahurian Larch Wood
 tile.dahurian_larch_leaves.name=Dahurian Larch Leaves
 tile.dahurian_larch_planks.name=Dahurian Larch Planks
 tile.dahurian_larch_sapling.name=Dahurian Larch Sapling
-# TODO: Seeds
+item.dahurian_larch_seeds.name=Dahurian Larch Cone
 
 tile.dragons_blood_log.name=Dragon's Blood Wood
 tile.dragons_blood_stripped.name=Stripped Dragon's Blood Wood
@@ -141,7 +150,7 @@ tile.ebony_stripped.name=Stripped Ebony Wood
 tile.ebony_leaves.name=Ebony Leaves
 tile.ebony_planks.name=Ebony Planks
 tile.ebony_sapling.name=Ebony Sapling
-# TODO: Seeds
+item.ebony_seeds.name=Ebony Seeds
 
 tile.giant_sequoia_log.name=Giant Sequoia Wood
 tile.giant_sequoia_stripped.name=Stripped Giant Sequoia Wood
@@ -149,112 +158,112 @@ tile.giant_sequoia_leaves.name=Giant Sequoia Leaves
 tile.giant_sequoia_leaves_burnt.name=Burnt Giant Sequoia Leaves
 tile.giant_sequoia_planks.name=Giant Sequoia Planks
 tile.giant_sequoia_sapling.name=Giant Sequoia Sapling
-# TODO: Seeds
+item.giant_sequoia_seeds.name=Giant Sequoia Cone
 
 tile.grand_fir_log.name=Grand Fir Wood
 tile.grand_fir_stripped.name=Stripped Grand Fir Wood
 tile.grand_fir_leaves.name=Grand Fir Leaves
 tile.grand_fir_planks.name=Grand Fir Planks
 tile.grand_fir_sapling.name=Grand Fir Sapling
-# TODO: Seeds
+item.grand_fir_seeds.name=Grand Fir Cone
 
 tile.hawthorn_log.name=Hawthorn Wood
 tile.hawthorn_stripped.name=Stripped Hawthorn Wood
 tile.hawthorn_leaves.name=Hawthorn Leaves
 tile.hawthorn_planks.name=Hawthorn Planks
 tile.hawthorn_sapling.name=Hawthorn Sapling
-# TODO: Seeds
+item.hawthorn_seeds.name=Hawthorn Seeds
 
 tile.kankan_log.name=Kankan Wood
 tile.kankan_stripped.name=Stripped Kankan Wood
 tile.kankan_leaves.name=Kankan Leaves
 tile.kankan_planks.name=Kankan Planks
 tile.kankan_sapling.name=Kankan Sapling
-# TODO: Seeds
+item.kankan_seeds.name=Kankan Seeds
 
 tile.koa_log.name=Koa Wood
 tile.koa_stripped.name=Stripped Koa Wood
 tile.koa_leaves.name=Koa Leaves
 tile.koa_planks.name=Koa Planks
 tile.koa_sapling.name=Koa Sapling
-# TODO: Seeds
+item.koa_seeds.name=Koa Seeds
 
 tile.mahogany_log.name=Mahogany Wood
 tile.mahogany_stripped.name=Stripped Mahogany Wood
 tile.mahogany_leaves.name=Mahogany Leaves
 tile.mahogany_planks.name=Mahogany Planks
 tile.mahogany_sapling.name=Mahogany Sapling
-# TODO: Seeds
+item.mahogany_seeds.name=Mahogany Seeds
 
 tile.mediterranean_cypress_log.name=Mediterranean Cypress Wood
 tile.mediterranean_cypress_stripped.name=Stripped Mediterranean Cypress Wood
 tile.mediterranean_cypress_leaves.name=Mediterranean Cypress Leaves
 tile.mediterranean_cypress_planks.name=Mediterranean Cypress Planks
 tile.mediterranean_cypress_sapling.name=Mediterranean Cypress Sapling
-# TODO: Seeds
+item.mediterranean_cypress_seeds.name=Mediterranean Cypress Cone
 
 tile.nazareno_log.name=Nazareno Wood
 tile.nazareno_stripped.name=Stripped Nazareno Wood
 tile.nazareno_leaves.name=Nazareno Leaves
 tile.nazareno_planks.name=Nazareno Planks
 tile.nazareno_sapling.name=Nazareno Sapling
-# TODO: Seeds
+item.nazareno_seeds.name=Nazareno Seeds
 
 tile.paper_birch_log.name=Paper Birch Wood
 tile.paper_birch_stripped.name=Stripped Paper Birch Wood
 tile.paper_birch_leaves.name=Paper Birch Leaves
 tile.paper_birch_planks.name=Paper Birch Planks
 tile.paper_birch_sapling.name=Paper Birch Sapling
-# TODO: Seeds
+item.paper_birch_seeds.name=Paper Birch Seeds
 
 tile.pedunculate_oak_log.name=Pedunculate Oak Wood
 tile.pedunculate_oak_stripped.name=Stripped Pedunculate Oak Wood
 tile.pedunculate_oak_leaves.name=Pedunculate Oak Leaves
 tile.pedunculate_oak_planks.name=Pedunculate Oak Planks
 tile.pedunculate_oak_sapling.name=Pedunculate Oak Sapling
-# TODO: Seeds
+item.pedunculate_oak_seeds.name=Pedunculate Oak Acorn
 
 tile.quaking_aspen_log.name=Quaking Aspen Wood
 tile.quaking_aspen_stripped.name=Stripped Quaking Aspen Wood
 tile.quaking_aspen_leaves.name=Quaking Aspen Leaves
 tile.quaking_aspen_planks.name=Quaking Aspen Planks
 tile.quaking_aspen_sapling.name=Quaking Aspen Sapling
-# TODO: Seeds
+item.quaking_aspen_seeds.name=Quaking Aspen Seeds
 
 tile.rainbow_eucalyptus_log.name=Rainbow Eucalyptus Wood
 tile.rainbow_eucalyptus_stripped.name=Stripped Rainbow Eucalyptus Wood
 tile.rainbow_eucalyptus_leaves.name=Rainbow Eucalyptus Leaves
 tile.rainbow_eucalyptus_planks.name=Rainbow Eucalyptus Planks
 tile.rainbow_eucalyptus_sapling.name=Rainbow Eucalyptus Sapling
-# TODO: Seeds
+item.rainbow_eucalyptus_seeds.name=Rainbow Eucalyptus Seeds
 
 tile.red_alder_log.name=Red Alder Wood
 tile.red_alder_stripped.name=Stripped Red Alder Wood
 tile.red_alder_leaves.name=Red Alder Leaves
 tile.red_alder_planks.name=Red Alder Planks
 tile.red_alder_sapling.name=Red Alder Sapling
-# TODO: Seeds
+item.red_alder_seeds.name=Red Alder Cone
 
 tile.red_gum_log.name=Red Gum Wood
 tile.red_gum_stripped.name=Stripped Red Gum Wood
 tile.red_gum_leaves.name=Red Gum Leaves
 tile.red_gum_planks.name=Red Gum Planks
 tile.red_gum_sapling.name=Red Gum Sapling
-# TODO: Seeds
+item.red_gum_seeds.name=Red Gum Seeds
 
 tile.red_maple_log.name=Red Maple Wood
 tile.red_maple_stripped.name=Stripped Red Maple Wood
 tile.red_maple_leaves.name=Red Maple Leaves
 tile.red_maple_planks.name=Red Maple Planks
 tile.red_maple_sapling.name=Red Maple Sapling
-# TODO: Seeds
+item.red_maple_seeds.name=Red Maple Seeds
 
 tile.red_spruce_log.name=Red Spruce Wood
 tile.red_spruce_stripped.name=Stripped Red Spruce Wood
 tile.red_spruce_leaves.name=Red Spruce Leaves
 tile.red_spruce_planks.name=Red Spruce Planks
 tile.red_spruce_sapling.name=Red Spruce Sapling
-# TODO: Seeds
+item.red_spruce_seeds.name=Red Spruce Cone
 
 tile.rowan_log.name=Rowan Wood
 tile.rowan_stripped.name=Stripped Rowan Wood
@@ -277,42 +286,42 @@ tile.rubber_stripped.name=Stripped Rubber Wood
 tile.rubber_leaves.name=Rubber Leaves
 tile.rubber_planks.name=Rubber Planks
 tile.rubber_sapling.name=Rubber Sapling
-# TODO: Seeds
+item.rubber_seeds.name=Rubber Seeds
 
 tile.scots_pine_log.name=Scots Pine Wood
 tile.scots_pine_stripped.name=Stripped Scots Pine Wood
 tile.scots_pine_leaves.name=Scots Pine Leaves
 tile.scots_pine_planks.name=Scots Pine Planks
 tile.scots_pine_sapling.name=Scots Pine Sapling
-# TODO: Seeds
+item.scots_pine_seeds.name=Scots Pine Cone
 
 tile.siberian_larch_log.name=Siberian Larch Wood
 tile.siberian_larch_stripped.name=Stripped Siberian Larch Wood
 tile.siberian_larch_leaves.name=Siberian Larch Leaves
 tile.siberian_larch_planks.name=Siberian Larch Planks
 tile.siberian_larch_sapling.name=Siberian Larch Sapling
-# TODO: Seeds
+item.siberian_larch_seeds.name=Siberian Larch Cone
 
 tile.sierra_juniper_log.name=Sierra Juniper Wood
 tile.sierra_juniper_stripped.name=Stripped Sierra Juniper Wood
 tile.sierra_juniper_leaves.name=Sierra Juniper Leaves
 tile.sierra_juniper_planks.name=Sierra Juniper Planks
 tile.sierra_juniper_sapling.name=Sierra Juniper Sapling
-item.sierra_juniper_berry.name=Sierra Juniper Berry
+item.sierra_juniper_seeds.name=Sierra Juniper Berry
 
 tile.southern_magnolia_log.name=Southern Magnolia Wood
 tile.southern_magnolia_stripped.name=Stripped Southern Magnolia Wood
 tile.southern_magnolia_leaves.name=Southern Magnolia Leaves
 tile.southern_magnolia_planks.name=Southern Magnolia Planks
 tile.southern_magnolia_sapling.name=Southern Magnolia Sapling
-# TODO: Seeds
+item.southern_magnolia_seeds.name=Southern Magnolia Seeds
 
 tile.sweet_cherry_log.name=Sweet Cherry Wood
 tile.sweet_cherry_stripped.name=Stripped Sweet Cherry Wood
 tile.sweet_cherry_leaves.name=Sweet Cherry Leaves
 tile.sweet_cherry_planks.name=Sweet Cherry Planks
 tile.sweet_cherry_sapling.name=Sweet Cherry Sapling
-# TODO: Seeds
+item.sweet_cherry_seeds.name=Sweet Cherry Seeds
 
 tile.sweetgum_log.name=Sweetgum Wood
 tile.sweetgum_stripped.name=Stripped Sweetgum Wood
@@ -326,21 +335,21 @@ tile.tamarack_stripped.name=Stripped Tamarack Wood
 tile.tamarack_leaves.name=Tamarack Leaves
 tile.tamarack_planks.name=Tamarack Planks
 tile.tamarack_sapling.name=Tamarack Sapling
-# TODO: Seeds
+item.tamarack_seeds.name=Tamarack Cone
 
 tile.turkish_pine_log.name=Turkish Pine Wood
 tile.turkish_pine_stripped.name=Stripped Turkish Pine Wood
 tile.turkish_pine_leaves.name=Turkish Pine Leaves
 tile.turkish_pine_planks.name=Turkish Pine Planks
 tile.turkish_pine_sapling.name=Turkish Pine Sapling
-# TODO: Seeds
+item.turkish_pine_seeds.name=Turkish Pine Cone
 
 tile.umbrella_tree_log.name=Umbrella Tree Wood
 tile.umbrella_tree_stripped.name=Stripped Umbrella Tree Wood
 tile.umbrella_tree_leaves.name=Umbrella Tree Leaves
 tile.umbrella_tree_planks.name=Umbrella Tree Planks
 tile.umbrella_tree_sapling.name=Umbrella Tree Sapling
-# TODO: Seeds
+item.umbrella_tree_seeds.name=Umbrella Tree Seeds
 
 tile.weeping_willow_log.name=Weeping Willow Wood
 tile.weeping_willow_stripped.name=Stripped Weeping Willow Wood
@@ -365,7 +374,7 @@ tile.yew_stripped.name=Stripped Yew Wood
 tile.yew_leaves.name=Yew Leaves
 tile.yew_planks.name=Yew Planks
 tile.yew_sapling.name=Yew Sapling
-# TODO: Seeds
+item.yew_seeds.name=Yew Seeds
 
 
 # SMALL TREES
@@ -374,6 +383,7 @@ tile.black_spruce_bark.name=Black Spruce Bark
 tile.black_spruce_leaves.name=Black Spruce Leaves
 tile.black_spruce_planks.name=Black Spruce Planks
 tile.black_spruce_sapling.name=Black Spruce Sapling
+item.black_spruce_seeds.name=Black Spruce Cone
 
 tile.blackthorn_log.name=Blackthorn Wood
 tile.blackthorn_bark.name=Blackthorn Bark
@@ -386,18 +396,21 @@ tile.blue_mahoe_bark.name=Blue Mahoe Bark
 tile.blue_mahoe_leaves.name=Blue Mahoe Leaves
 tile.blue_mahoe_planks.name=Blue Mahoe Planks
 tile.blue_mahoe_sapling.name=Blue Mahoe Sapling
+item.blue_mahoe_seeds.name=Blue Mahoe Seeds
 
 tile.box_elder_log.name=Box Elder Wood
 tile.box_elder_bark.name=Box Elder Bark
 tile.box_elder_leaves.name=Box Elder Leaves
 tile.box_elder_planks.name=Box Elder Planks
 tile.box_elder_sapling.name=Box Elder Sapling
+item.box_elder_seeds.name=Box Elder Seeds
 
 tile.callery_pear_log.name=Callery Pear Wood
 tile.callery_pear_bark.name=Callery Pear Bark
 tile.callery_pear_leaves.name=Callery Pear Leaves
 tile.callery_pear_planks.name=Callery Pear Planks
 tile.callery_pear_sapling.name=Callery Pear Sapling
+item.callery_peak_seeds.name=Callery Pear Seeds
 
 tile.citron_log.name=Citron Wood
 tile.citron_bark.name=Citron Bark
@@ -410,18 +423,21 @@ tile.crape_myrtle_bark.name=Crape Myrtle Bark
 tile.crape_myrtle_leaves.name=Crape Myrtle Leaves
 tile.crape_myrtle_planks.name=Crape Myrtle Planks
 tile.crape_myrtle_sapling.name=Crape Myrtle Sapling
+item.crape_myrtle_seeds.name=Crape Myrtle Seeds
 
 tile.desert_bloodwood_log.name=Desert Bloodwood Wood
 tile.desert_bloodwood_bark.name=Desert Bloodwood Bark
 tile.desert_bloodwood_leaves.name=Desert Bloodwood Leaves
 tile.desert_bloodwood_planks.name=Desert Bloodwood Planks
 tile.desert_bloodwood_sapling.name=Desert Bloodwood Sapling
+tile.desert_bloodwood_seeds.name=Desert Bloodwood Seeds
 
 tile.flowering_dogwood_log.name=Flowering Dogwood Wood
 tile.flowering_dogwood_bark.name=Flowering Dogwood Bark
 tile.flowering_dogwood_leaves.name=Flowering Dogwood Leaves
 tile.flowering_dogwood_planks.name=Flowering Dogwood Planks
 tile.flowering_dogwood_sapling.name=Flowering Dogwood Sapling
+item.flowering_dogwood_seeds.name=Flowering Dogwood Seeds
 
 tile.giant_bamboo_log.name=Giant Bamboo
 tile.giant_bamboo_bark.name=Giant Bamboo Bark
@@ -440,12 +456,14 @@ tile.jacaranda_bark.name=Jacaranda Bark
 tile.jacaranda_leaves.name=Jacaranda Leaves
 tile.jacaranda_planks.name=Jacaranda Planks
 tile.jacaranda_sapling.name=Jacaranda Sapling
+item.jacaranda_seeds.name=Jacaranda Seeds
 
 tile.japanese_maple_log.name=Japanese Maple Wood
 tile.japanese_maple_bark.name=Japanese Maple Bark
 tile.japanese_maple_leaves.name=Japanese Maple Leaves
 tile.japanese_maple_planks.name=Japanese Maple Planks
 tile.japanese_maple_sapling.name=Japanese Maple Sapling
+item.japanese_maple_seeds.name=Japanese Maple Seeds
 
 tile.joshua_tree_log.name=Joshua Tree Wood
 tile.joshua_tree_bark.name=Joshua Tree Bark
@@ -470,24 +488,28 @@ tile.lemon_myrtle_bark.name=Lemon Myrtle Bark
 tile.lemon_myrtle_leaves.name=Lemon Myrtle Leaves
 tile.lemon_myrtle_planks.name=Lemon Myrtle Planks
 tile.lemon_myrtle_sapling.name=Lemon Myrtle Sapling
+item.lemon_myrtle_seeds.name=Lemon Myrtle Seeds
 
 tile.lilac_log.name=Lilac Wood
 tile.lilac_bark.name=Lilac Bark
 tile.lilac_leaves.name=Lilac Leaves
 tile.lilac_planks.name=Lilac Planks
 tile.lilac_sapling.name=Lilac Sapling
+item.lilac_seeds.name=Lilac Seeds
 
 tile.mimosa_log.name=Mimosa Wood
 tile.mimosa_bark.name=Mimosa Bark
 tile.mimosa_leaves.name=Mimosa Leaves
 tile.mimosa_planks.name=Mimosa Planks
 tile.mimosa_sapling.name=Mimosa Sapling
+item.mimosa_seeds.name=Mimosa Seeds
 
 tile.mulga_log.name=Mulga Wood
 tile.mulga_bark.name=Mulga Bark
 tile.mulga_leaves.name=Mulga Leaves
 tile.mulga_planks.name=Mulga Planks
 tile.mulga_sapling.name=Mulga Sapling
+item.mulga_seeds.name=Mulga Seeds
 
 tile.olive_log.name=Olive Wood
 tile.olive_bark.name=Olive Bark
@@ -500,12 +522,14 @@ tile.pacific_yew_bark.name=Pacific Yew Bark
 tile.pacific_yew_leaves.name=Pacific Yew Leaves
 tile.pacific_yew_planks.name=Pacific Yew Planks
 tile.pacific_yew_sapling.name=Pacific Yew Sapling
+item.pacific_yew_seeds.name=Pacific Yew Seeds
 
 tile.paperbark_maple_log.name=Paperbark Maple Wood
 tile.paperbark_maple_bark.name=Paperbark Maple Bark
 tile.paperbark_maple_leaves.name=Paperbark Maple Leaves
 tile.paperbark_maple_planks.name=Paperbark Maple Planks
 tile.paperbark_maple_sapling.name=Paperbark Maple Sapling
+item.paperbark_maple_seeds.name=Paperbark Maple Seeds
 
 tile.pawpaw_log.name=Pawpaw Wood
 tile.pawpaw_bark.name=Pawpaw Bark
@@ -524,12 +548,14 @@ tile.red_cinchona_bark.name=Red Cinchona Bark
 tile.red_cinchona_leaves.name=Red Cinchona Leaves
 tile.red_cinchona_planks.name=Red Cinchona Planks
 tile.red_cinchona_sapling.name=Red Cinchona Sapling
+item.red_cinchona_seeds.name=Red Cinchona Seeds
 
 tile.redbud_log.name=Redbud Wood
 tile.redbud_bark.name=Redbud Bark
 tile.redbud_leaves.name=Redbud Leaves
 tile.redbud_planks.name=Redbud Planks
 tile.redbud_sapling.name=Redbud Sapling
+item.redbud_seeds.name=Redbud Seeds
 
 tile.wild_apple_log.name=Wild Apple Wood
 tile.wild_apple_bark.name=Wild Apple Bark
@@ -542,12 +568,14 @@ tile.witch_hazel_bark.name=Witch Hazel Bark
 tile.witch_hazel_leaves.name=Witch Hazel Leaves
 tile.witch_hazel_planks.name=Witch Hazel Planks
 tile.witch_hazel_sapling.name=Witch Hazel Sapling
+item.witch_hazel_seeds.name=Witch Hazel Seeds
 
 tile.wisteria_log.name=Wisteria Wood
 tile.wisteria_bark.name=Wisteria Bark
 tile.wisteria_leaves.name=Wisteria Leaves
 tile.wisteria_planks.name=Wisteria Planks
 tile.wisteria_sapling.name=Wisteria Sapling
+item.wisteria_seeds.name=Wisteria Seeds
 
 
 # Tall Plants

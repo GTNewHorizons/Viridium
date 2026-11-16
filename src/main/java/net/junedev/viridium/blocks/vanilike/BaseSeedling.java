@@ -44,7 +44,7 @@ public class BaseSeedling extends BaseSaplingBlock {
 
     @Override
     public Block setBlockTextureName(String texName) {
-        this.textureName = Viridium.MOD_ID + ":" + texName;
+        this.textureName = Viridium.MOD_ID + ":" + "ground/seeded_grass_decorator_healthy";
         return this;
     }
 

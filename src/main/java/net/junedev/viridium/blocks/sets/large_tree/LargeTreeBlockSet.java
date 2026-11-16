@@ -26,13 +26,13 @@ public class LargeTreeBlockSet extends LargeWoodBlockSet {
 
         sapling = new BaseSaplingBlock(Viridium.MOD_ID + ":" + name, this).setBlockName(name + "_sapling")
             .setBlockTextureName(getAssetDirectory() + name + "_sapling");
-        leaves = new BaseLeaves().setBlockName(name + "_leaves")
-            .setBlockTextureName(getAssetDirectory() + name + "_leaves");
         seedling = new BaseSeedling(Viridium.MOD_ID + ":" + name, this).setSapling(sapling);
         seedling.setBlockName(name + "_seedling")
-            .setBlockTextureName(name + "_seeds");
+            .setBlockTextureName(name);
         seed = new BaseSeed(seedling, Blocks.grass).setUnlocalizedName(name + "_seeds")
             .setTextureName(name + "_seeds");
+        leaves = new BaseLeaves().setItemDropped(seed).setBlockName(name + "_leaves")
+            .setBlockTextureName(getAssetDirectory() + name + "_leaves");
 
         GameRegistry.registerBlock(leaves, name + "_leaves");
         GameRegistry.registerBlock(sapling, name + "_sapling");
