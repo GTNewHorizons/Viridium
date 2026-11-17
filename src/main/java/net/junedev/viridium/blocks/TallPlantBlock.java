@@ -136,6 +136,11 @@ public class TallPlantBlock extends BaseVegetation {
         return croppedIcons[meta];
     }
 
+    @SideOnly(Side.CLIENT)
+    public IIcon getTopIcon() {
+        return getIcon(1, verticalBlockSize - 1);
+    }
+
     public int getPixelWidth() {
         return pixelWidth;
     }
