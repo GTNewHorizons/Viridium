@@ -44,7 +44,7 @@ dependencies {
     implementation("com.github.GTNewHorizons:Baubles-Expanded:2.2.25-GTNH:dev") { transitive = false }
     devOnlyNonPublishable("com.github.GTNewHorizons:ModularUI2:2.3.92-1.7.10:dev")
 
-    runtimeOnlyNonPublishable("com.github.GTNewHorizons:NotEnoughItems:2.8.163-GTNH:dev")
+    devOnlyNonPublishable("com.github.GTNewHorizons:NotEnoughItems:2.8.163-GTNH:dev")
     runtimeOnlyNonPublishable(rfg.deobf("com.github.GTNewHorizons:CoreTweaks:0.3.4.7-GTNH"))
 
     // Profiling (spark is reobfuscated, therefore rfg.deobf). Jar lives in libs/, which is git-ignored. (If there is a better option for this let us know.)
