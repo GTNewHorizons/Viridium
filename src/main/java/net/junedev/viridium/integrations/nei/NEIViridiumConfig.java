@@ -1,11 +1,12 @@
 package net.junedev.viridium.integrations.nei;
 
+import net.junedev.viridium.Viridium;
+
 import codechicken.nei.api.API;
 import codechicken.nei.api.IConfigureNEI;
-import net.junedev.viridium.Viridium;
-import net.minecraftforge.common.MinecraftForge;
 
 public class NEIViridiumConfig implements IConfigureNEI {
+
     @Override
     public void loadConfig() {
         API.registerRecipeHandler(new NEIViridiumRecipeHandler());

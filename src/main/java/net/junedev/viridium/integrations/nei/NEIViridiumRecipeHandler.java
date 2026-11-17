@@ -1,15 +1,17 @@
 package net.junedev.viridium.integrations.nei;
 
-import codechicken.lib.gui.GuiDraw;
-import codechicken.nei.ColorUtils;
-import codechicken.nei.PositionedStack;
-import codechicken.nei.recipe.TemplateRecipeHandler;
 import net.junedev.viridium.blocks.IBlockScientificName;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumChatFormatting;
 
+import codechicken.lib.gui.GuiDraw;
+import codechicken.nei.ColorUtils;
+import codechicken.nei.PositionedStack;
+import codechicken.nei.recipe.TemplateRecipeHandler;
+
 public class NEIViridiumRecipeHandler extends TemplateRecipeHandler {
+
     @Override
     public String getGuiTexture() {
         // Will not be used, but we need something!
@@ -23,8 +25,8 @@ public class NEIViridiumRecipeHandler extends TemplateRecipeHandler {
 
     @Override
     public void loadCraftingRecipes(ItemStack result) {
-        if(result.getItem() instanceof ItemBlock itemBlock)
-            if(itemBlock.field_150939_a instanceof IBlockScientificName smartBlock)
+        if (result.getItem() instanceof ItemBlock itemBlock)
+            if (itemBlock.field_150939_a instanceof IBlockScientificName smartBlock)
                 arecipes.add(new ViridiumCachedRecipe(result, smartBlock.getScientificName()));
     }
 
@@ -32,19 +34,23 @@ public class NEIViridiumRecipeHandler extends TemplateRecipeHandler {
     public void drawExtras(int recipe) {
         ViridiumCachedRecipe plantLocationRecipe = (ViridiumCachedRecipe) arecipes.get(recipe);
 
-        GuiDraw.drawString(EnumChatFormatting.ITALIC + plantLocationRecipe.scientificName, 2, 4, ColorUtils.recipeTitle.getColor(), true);
+        GuiDraw.drawString(
+            EnumChatFormatting.ITALIC + plantLocationRecipe.scientificName,
+            2,
+            4,
+            ColorUtils.recipeTitle.getColor(),
+            true);
     }
 
     @Override
-    public void drawBackground(int recipe) {
-    }
+    public void drawBackground(int recipe) {}
 
-    class ViridiumCachedRecipe extends CachedRecipe{
+    class ViridiumCachedRecipe extends CachedRecipe {
 
         ItemStack input;
         String scientificName;
 
-        ViridiumCachedRecipe(ItemStack input, String scientificName){
+        ViridiumCachedRecipe(ItemStack input, String scientificName) {
             this.input = input;
             this.scientificName = scientificName;
         }
