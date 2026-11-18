@@ -11,10 +11,11 @@ public class NEIEventHandler {
 
     @SubscribeEvent
     public void registerHandlerInfos(NEIRegisterHandlerInfosEvent event) {
-        event.registerHandlerInfo(
-            NEIViridiumRecipeHandler.class,
-            "Viridium",
-            Viridium.MOD_ID,
-            builder -> builder.setDisplayStack(new ItemStack(ViriPlants.AMARANTH.getBlocks().sapling)));
+        event.registerHandlerInfo(NEIViridiumRecipeHandler.class, "Viridium", Viridium.MOD_ID, builder -> {
+            builder.setDisplayStack(new ItemStack(ViriPlants.AMARANTH.getBlocks().sapling));
+            builder.setWidth(146);
+            builder.setHeight(180);
+            builder.setMultipleWidgetsAllowed(false);
+        });
     }
 }
