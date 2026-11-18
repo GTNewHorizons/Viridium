@@ -8,6 +8,7 @@ Programmers:
 Artists:
     AnarchicRaconteur
     ChoniclerVI
+    Embri
     EmeraldsEmerald
     Flamey
     FyreOfShadow
@@ -15,6 +16,7 @@ Artists:
     Jekaloic (Coquet)
     June | june_username
     Juniper | seventh-june
+    MDiyo (Natura)
     Onion
     Terra
     PiperPaperRose
