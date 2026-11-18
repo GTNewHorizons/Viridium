@@ -91,7 +91,7 @@ public class ViriBlocks {
         hemp_leaf = registerTallPlant("hemp_leaf", 2, 21, 5);
         monstera_leaf_large = registerTallPlant("monstera_leaf_large", 2, 13, 9);
 
-        //Large Plants
+        //Large Flowers
 
         belladonna_lily = registerTallPlant("belladonna_lily", 2, 15, 8);
         bethroot = registerTallPlant("bethroot", 2, 17, 9);
@@ -132,6 +132,31 @@ public class ViriBlocks {
         valerian = registerTallPlant("valerian", 2, 13, 9);
         white_snakeroot = registerTallPlant("white_snakeroot", 2, 11, 11);
         woad = registerTallPlant("woad", 2, 18, 7);
+
+        // Large Grasses
+        bear_grass = registerTallPlant("bear_grass", 2, 14, 9);
+        cattail = registerTallPlant("cattail", 2, 17, 7);
+        cattail_tall = registerTallPlant("cattail_tall",2, 13, 10);
+        cogongrass = registerTallPlant("cogongrass", 1, 18, 7);
+        cogongrass_flowering = registerTallPlant("cogongrass_flowering", 2, 22, 5);
+        common_reed = registerTallPlant("common_reed", 2, 17, 7);
+        fountaingrass = registerTallPlant("fountaingrass", 1, 23, 7);
+        fountaingrass_flowering = registerTallPlant("fountaingrass_flowering", 2, 23, 5);
+        lemongrass = registerTallPlant("lemongrass", 1, 19, 6);
+        meadow_fescue = registerTallPlant("meadow_fescue", 2, 27, 3);
+        monkeygrass = registerTallPlant("monkeygrass", 1, 18, 7);
+        pampas_grass = registerTallPlant("pampas_grass", 2, 29, 1);
+        pampas_grass_flowering = registerTallPlant("pampas_grass_flowering", 3, 29, 17);
+        papyrus_sedge = registerTallPlant("papyrus_sedge", 3, 32, 16);
+        spider_plant = registerTallPlant("spider_plant", 1, 18, 7);
+        sweet_flag = registerTallPlant("sweet_flag", 2, 24, 4);
+        switchgrass = registerTallPlant("switchgrass", 2, 16, 8);
+        triodia_basedowii = registerTallPlant("triodia_basedowii", 1, 21, 6);
+        triodia_pungens = registerTallPlant("triodia_pungens", 1, 21, 6);
+        tule = registerTallPlant("tule", 3, 28, 18);
+        xate = registerTallPlant("xate", 2, 21, 6);
+        zanzibar_gem = registerTallPlant("zanzibar_gem", 2, 19, 7);
+
         // Bushes
 
         // Ferns
@@ -325,7 +350,6 @@ public class ViriBlocks {
         siberian_squall_flowering = registerFlower("siberian_squall_flowering");
         siberian_squall_grass = registerFlower("siberian_squall_grass");
         spearmint = registerFlower("spearmint");
-        spider_plant = registerFlower("spider_plant");
         strawberry_spiderhead = registerFlower("strawberry_spiderhead");
         swamp_canegrass = registerFlower("swamp_canegrass");
 
@@ -634,6 +658,7 @@ public class ViriBlocks {
     public static Block hemp_leaf;
     public static Block monstera_leaf_large;
     public static Block agave_americana_leaves;
+
     public static Block belladonna_lily;
     public static Block bethroot;
     public static Block blue_agave;
@@ -675,6 +700,30 @@ public class ViriBlocks {
     public static Block valerian;
     public static Block white_snakeroot;
     public static Block woad;
+
+    //Tall Grass
+    public static Block bear_grass;
+    public static Block cattail;
+    public static Block cattail_tall;
+    public static Block cogongrass;
+    public static Block cogongrass_flowering;
+    public static Block common_reed;
+    public static Block cordgrass;
+    public static Block fountaingrass;
+    public static Block fountaingrass_flowering;
+    public static Block lemongrass;
+    public static Block meadow_fescue;
+    public static Block monkeygrass;
+    public static Block pampas_grass;
+    public static Block pampas_grass_flowering;
+    public static Block papyrus_sedge;
+    public static Block sweet_flag;
+    public static Block switchgrass;
+    public static Block triodia_basedowii;
+    public static Block triodia_pungens;
+    public static Block tule;
+    public static Block xate;
+    public static Block zanzibar_gem;
 
     // Grass Decorators
     public static Block autumn_leaf_pile;
