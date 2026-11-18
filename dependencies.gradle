@@ -47,6 +47,8 @@ dependencies {
     devOnlyNonPublishable("com.github.GTNewHorizons:NotEnoughItems:2.8.163-GTNH:dev")
     runtimeOnlyNonPublishable(rfg.deobf("com.github.GTNewHorizons:CoreTweaks:0.3.4.7-GTNH"))
 
+    implementation('com.github.GTNewHorizons:Postea:1.2.4:dev@jar')
+    // implementation(rfg.deobf("curse.maven:biomes-o-plenty-220318:2499612"))
     // Profiling (spark is reobfuscated, therefore rfg.deobf). Jar lives in libs/, which is git-ignored. (If there is a better option for this let us know.)
     // devOnlyNonPublishable(rfg.deobf(project.files("libs/spark-1.10.19-forge1710.jar")))
 }
