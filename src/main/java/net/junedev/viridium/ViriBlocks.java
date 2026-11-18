@@ -82,7 +82,7 @@ public class ViriBlocks {
         witch_hazel = new SmallTreeBlockSet("witch_hazel");
         wisteria = new SmallTreeBlockSet("wisteria");
 
-        //TODO: complex plants
+        // TODO: complex plants
 
         agave_americana_leaves = registerTallPlant("agave_americana_leaves", 2, 30, 1);
         welwitschia_leaf = registerTallPlant("welwitschia_leaf", 3, 19, 22);
@@ -91,12 +91,17 @@ public class ViriBlocks {
         hemp_leaf = registerTallPlant("hemp_leaf", 2, 21, 5);
         monstera_leaf_large = registerTallPlant("monstera_leaf_large", 2, 13, 9);
 
-        //Large Flowers
+        // Large Flowers
 
+        ashwagandha = registerTallPlant("ashwagandha", 1, 25, 4);
         belladonna_lily = registerTallPlant("belladonna_lily", 2, 15, 8);
         bethroot = registerTallPlant("bethroot", 2, 17, 9);
+        black_sage = registerTallPlant("black_sage", 2, 21, 6);
         blue_agave = registerTallPlant("blue_agave", 2, 29, 1);
+        calla_lily = registerTallPlant("calla_lily", 1, 18, 6);
+        cape_heath = registerTallPlant("cape_heath", 2, 20, 6);
         chicory = registerTallPlant("chicory", 2, 15, 7);
+        cumani = registerTallPlant("cumani", 2, 12, 10);
         delphinium = registerTallPlant("delphinium", 2, 15, 7);
         dogfennel = registerTallPlant("dogfennel", 2, 13, 7);
         dragon_lily = registerTallPlant("dragon_lily", 2, 22, 6);
@@ -110,18 +115,26 @@ public class ViriBlocks {
         giant_goldenrod = registerTallPlant("giant_goldenrod", 2, 14, 9);
         giant_ironweed = registerTallPlant("giant_ironweed", 2, 11, 10);
         green_pitcher_plant = registerTallPlant("green_pitcher_plant", 2, 8, 12);
+        haleakala_silversword = registerTallPlant("haleakala_silversword", 1, 20, 6);
+        haleakala_silversword_flowering = registerTallPlant("haleakala_silversword_flowering", 3, 20, 22);
         iliau_flower = registerTallPlant("iliau_flower", 2, 13, 9);
         mugwort = registerTallPlant("mugwort", 2, 16, 8);
         multiflora_rose = registerTallPlant("multiflora_rose", 2, 15, 8);
         new_zealand_calceolaria = registerTallPlant("new_zealand_calceolaria", 2, 18, 7);
         ocotillo = registerTallPlant("ocotillo", 4, 64, 1);
         ocotillo_flowering = registerTallPlant("ocotillo_flowering", 4, 64, 1);
+        orkid_payanke = registerTallPlant("orkid_payanke", 2, 10, 11);
         painted_trillium = registerTallPlant("painted_trillium", 2, 16, 7);
         parrot_feather_watermilfoil = registerTallPlant("parrot_feather_watermilfoil", 2, 16, 8);
         patuju_flower = registerTallPlant("patuju_flower", 2, 30, 1);
         purple_loosestrife = registerTallPlant("purple_loosestrife", 2, 16, 8);
+        queen_of_the_andes_flower = registerTallPlant("queen_of_the_andes_flower", 4, 18, 23);
+        queen_of_the_andes_leaves = registerTallPlant("queen_of_the_andes_leaves", 2, 30, 1);
         ross_lily = registerTallPlant("ross_lily", 1, 20, 6);
         royal_hakea = registerTallPlant("royal_hakea", 2, 16, 8);
+        sapphire_tower = registerTallPlant("sapphire_tower", 2, 20, 6);
+        sea_lavender = registerTallPlant("sea_lavender", 1, 18, 7);
+        silphium = registerTallPlant("silphium", 2, 25, 4);
         skunk_cabbage = registerTallPlant("skunk_cabbage", 1, 23, 5);
         skunk_cabbage_flowering = registerTallPlant("skunk_cabbage_flowering", 2, 23, 5);
         snapdragon = registerTallPlant("snapdragon", 2, 11, 10);
@@ -129,6 +142,7 @@ public class ViriBlocks {
         stinging_nettle = registerTallPlant("stinging_nettle", 2, 12, 10);
         sunflower = registerTallPlant("sunflower", 2, 8, 12);
         swanleaf_sage = registerTallPlant("swanleaf_sage", 1, 24, 4);
+        toquilla_palm = registerTallPlant("toquilla_palm", 2, 28, 2);
         valerian = registerTallPlant("valerian", 2, 13, 9);
         white_snakeroot = registerTallPlant("white_snakeroot", 2, 11, 11);
         woad = registerTallPlant("woad", 2, 18, 7);
@@ -136,7 +150,7 @@ public class ViriBlocks {
         // Large Grasses
         bear_grass = registerTallPlant("bear_grass", 2, 14, 9);
         cattail = registerTallPlant("cattail", 2, 17, 7);
-        cattail_tall = registerTallPlant("cattail_tall",2, 13, 10);
+        cattail_tall = registerTallPlant("cattail_tall", 2, 13, 10);
         cogongrass = registerTallPlant("cogongrass", 1, 18, 7);
         cogongrass_flowering = registerTallPlant("cogongrass_flowering", 2, 22, 5);
         common_reed = registerTallPlant("common_reed", 2, 17, 7);
@@ -659,10 +673,15 @@ public class ViriBlocks {
     public static Block monstera_leaf_large;
     public static Block agave_americana_leaves;
 
+    public static Block ashwagandha;
     public static Block belladonna_lily;
     public static Block bethroot;
+    public static Block black_sage;
     public static Block blue_agave;
+    public static Block calla_lily;
+    public static Block cape_heath;
     public static Block chicory;
+    public static Block cumani;
     public static Block delphinium;
     public static Block dogfennel;
     public static Block dragon_lily;
@@ -676,20 +695,28 @@ public class ViriBlocks {
     public static Block giant_goldenrod;
     public static Block giant_ironweed;
     public static Block green_pitcher_plant;
+    public static Block haleakala_silversword;
+    public static Block haleakala_silversword_flowering;
     public static Block iliau_flower;
     public static Block mugwort;
     public static Block multiflora_rose;
     public static Block new_zealand_calceolaria;
     public static Block ocotillo;
     public static Block ocotillo_flowering;
+    public static Block orkid_payanke;
     public static Block painted_trillium;
     public static Block parrot_feather_watermilfoil;
     public static Block patuju_flower;
     public static Block purple_loosestrife;
+    public static Block queen_of_the_andes_flower;
+    public static Block queen_of_the_andes_leaves;
     public static Block ragweed;
     public static Block ross_lily;
     public static Block royal_hakea;
     public static Block sandhill_canegrass;
+    public static Block sapphire_tower;
+    public static Block sea_lavender;
+    public static Block silphium;
     public static Block skunk_cabbage;
     public static Block skunk_cabbage_flowering;
     public static Block snapdragon;
@@ -697,11 +724,12 @@ public class ViriBlocks {
     public static Block stinging_nettle;
     public static Block sunflower;
     public static Block swanleaf_sage;
+    public static Block toquilla_palm;
     public static Block valerian;
     public static Block white_snakeroot;
     public static Block woad;
 
-    //Tall Grass
+    // Tall Grass
     public static Block bear_grass;
     public static Block cattail;
     public static Block cattail_tall;
@@ -733,7 +761,7 @@ public class ViriBlocks {
     public static Block pinestraw;
     public static Block snorkelwort;
 
-    //Flora
+    // Flora
     public static Block african_lily;
     public static Block african_star_grass;
     public static Block african_violet;
