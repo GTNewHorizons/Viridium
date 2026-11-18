@@ -9,6 +9,7 @@ public final class PlantType<B> {
 
     private final String registryName;
     private final PlantForm<B> form;
+    private SeedType seedType = SeedType.NONE;
 
     private B blocks;
 
@@ -42,5 +43,14 @@ public final class PlantType<B> {
             throw new IllegalStateException("Blocks of plant '" + registryName + "' were already created");
         }
         blocks = form.createBlocks(registryName);
+    }
+
+    public PlantType<B> withSeedType(SeedType seedType) {
+        this.seedType = seedType;
+        return this;
+    }
+
+    public SeedType getSeedType() {
+        return seedType;
     }
 }

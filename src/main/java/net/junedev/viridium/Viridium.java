@@ -20,7 +20,7 @@ import cpw.mods.fml.common.event.FMLServerStartingEvent;
     version = Tags.VERSION,
     name = "Viridium",
     acceptedMinecraftVersions = "[1.7.10]",
-    dependencies = "required-after:angelica")
+    dependencies = "required-after:angelica;" + "after:postea;")
 public class Viridium {
 
     public static final String MOD_ID = "viridium";
