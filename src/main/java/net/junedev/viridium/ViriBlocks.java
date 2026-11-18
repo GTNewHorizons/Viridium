@@ -305,8 +305,13 @@ public class ViriBlocks {
         dandelion_leaves = registerFlower("dandelion_leaves");
         dandelion_seeding = registerFlower("dandelion_seeding");
         dog_violet = registerFlower("dog_violet");
+        dwarf_furze = registerFlower("dwarf_furze");
+        dwarf_furze_flowering = registerFlower("dwarf_furze_flowering");
         dunegrass = registerFlower("dunegrass");
+        freshwater_eelgrass = registerFlower("freshwater_eelgrass");
         goose_grass = registerFlower("goose_grass");
+        hatpins = registerFlower("hatpins");
+        hatpins_flowering = registerFlower("hatpins_flowering");
         kangaroo_grass = registerFlower("kangaroo_grass");
         liriope_flowering = registerFlower("liriope_flowering");
         liriope_grass = registerFlower("liriope_grass");
@@ -314,7 +319,9 @@ public class ViriBlocks {
         mitchell_grass = registerFlower("mitchell_grass");
         native_millet = registerFlower("native_millet");
         needleleaf_sedge = registerFlower("needleleaf_sedge");
+        raddia_grass = registerFlower("raddia_grass");
         resurrection_plant = registerFlower("resurrection_plant");
+        saltwater_eelgrass = registerFlower("saltwater_eelgrass");
         siberian_squall_flowering = registerFlower("siberian_squall_flowering");
         siberian_squall_grass = registerFlower("siberian_squall_grass");
         spearmint = registerFlower("spearmint");
@@ -835,7 +842,12 @@ public class ViriBlocks {
     public static Block dandelion_leaves;
     public static Block dog_violet;
     public static Block dunegrass;
+    public static Block dwarf_furze;
+    public static Block dwarf_furze_flowering;
+    public static Block freshwater_eelgrass;
     public static Block goose_grass;
+    public static Block hatpins;
+    public static Block hatpins_flowering;
     public static Block kangaroo_grass;
     public static Block liriope_flowering;
     public static Block liriope_grass;
@@ -843,7 +855,9 @@ public class ViriBlocks {
     public static Block mitchell_grass;
     public static Block native_millet;
     public static Block needleleaf_sedge;
+    public static Block raddia_grass;
     public static Block resurrection_plant;
+    public static Block saltwater_eelgrass;
     public static Block siberian_squall_flowering;
     public static Block siberian_squall_grass;
     public static Block spearmint;
