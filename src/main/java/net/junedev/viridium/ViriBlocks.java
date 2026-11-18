@@ -8,6 +8,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 public class ViriBlocks {
 
     public void preInit() {
+
         ViriPlants.createAllBlocks();
 
         // Rocks
