@@ -94,6 +94,8 @@ public final class RenderingUtils {
     public static void renderCrossedPlanes(int x, int y, int z, IIcon icon, double centerX, double centerZ,
         double halfSize, double rotation) {
 
+        halfSize *= 0.70710678;
+
         Tessellator tessellator = Tessellator.instance;
         double uMin = icon.getMinU();
         double uMax = icon.getMaxU();
@@ -160,6 +162,126 @@ public final class RenderingUtils {
             y + 1,
             z + secondMaxZ,
             uMax,
+            vMin);
+    }
+
+    public static void renderOpeningPlanes(double centerX, double y, double centerZ, IIcon icon, double halfSize,
+        double openingAngle, double minimumRadius, double rotation) {
+
+        Tessellator tessellator = Tessellator.instance;
+        double uMin = icon.getMinU();
+        double uMax = icon.getMaxU();
+        double vMin = icon.getMinV();
+        double vMax = icon.getMaxV();
+
+        double cos = Math.cos(rotation) * halfSize;
+        double sin = Math.sin(rotation) * halfSize;
+
+        // Angle above the ground: keep the frond length constant while tilting it.
+        double length = halfSize * 2;
+        // Normalized plane area
+        double height = Math.sin(openingAngle) * length;
+        double reach = Math.cos(openingAngle) * length;
+        // Sine and Cosine taking into account their actual radius
+        double innerOutwardCos = Math.cos(rotation) * minimumRadius;
+        double innerOutwardSin = Math.sin(rotation) * minimumRadius;
+        double outerOutwardCos = Math.cos(rotation) * (reach + minimumRadius);
+        double outerOutwardSin = Math.sin(rotation) * (reach + minimumRadius);
+
+        // Rotation matrix
+        // ( c s )
+        // ( -s c )
+
+        addDoubleSidedQuad(
+            tessellator,
+            centerX - cos + innerOutwardSin,
+            y,
+            centerZ + sin + innerOutwardCos,
+            uMin,
+            vMax,
+            centerX + cos + innerOutwardSin,
+            y,
+            centerZ - sin + innerOutwardCos,
+            uMax,
+            vMax,
+            centerX + cos + outerOutwardSin,
+            y + height,
+            centerZ - sin + outerOutwardCos,
+            uMax,
+            vMin,
+            centerX - cos + outerOutwardSin,
+            y + height,
+            centerZ + sin + outerOutwardCos,
+            uMin,
+            vMin);
+
+        addDoubleSidedQuad(
+            tessellator,
+            centerX + sin + innerOutwardCos,
+            y,
+            centerZ + cos - innerOutwardSin,
+            uMin,
+            vMax,
+            centerX - sin + innerOutwardCos,
+            y,
+            centerZ - cos - innerOutwardSin,
+            uMax,
+            vMax,
+            centerX - sin + outerOutwardCos,
+            y + height,
+            centerZ - cos - outerOutwardSin,
+            uMax,
+            vMin,
+            centerX + sin + outerOutwardCos,
+            y + height,
+            centerZ + cos - outerOutwardSin,
+            uMin,
+            vMin);
+
+        addDoubleSidedQuad(
+            tessellator,
+            centerX + cos - innerOutwardSin,
+            y,
+            centerZ - sin - innerOutwardCos,
+            uMin,
+            vMax,
+            centerX - cos - innerOutwardSin,
+            y,
+            centerZ + sin - innerOutwardCos,
+            uMax,
+            vMax,
+            centerX - cos - outerOutwardSin,
+            y + height,
+            centerZ + sin - outerOutwardCos,
+            uMax,
+            vMin,
+            centerX + cos - outerOutwardSin,
+            y + height,
+            centerZ - sin - outerOutwardCos,
+            uMin,
+            vMin);
+
+        addDoubleSidedQuad(
+            tessellator,
+            centerX - sin - innerOutwardCos,
+            y,
+            centerZ - cos + innerOutwardSin,
+            uMin,
+            vMax,
+            centerX + sin - innerOutwardCos,
+            y,
+            centerZ + cos + innerOutwardSin,
+            uMax,
+            vMax,
+            centerX + sin - outerOutwardCos,
+            y + height,
+            centerZ + cos + outerOutwardSin,
+            uMax,
+            vMin,
+            centerX - sin - outerOutwardCos,
+            y + height,
+            centerZ - cos + outerOutwardSin,
+            uMin,
             vMin);
     }
 }
