@@ -1,6 +1,7 @@
 package net.junedev.viridium.blocks;
 
 import net.junedev.viridium.Viridium;
+import net.junedev.viridium.items.ScientificNameRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
@@ -9,7 +10,7 @@ import net.minecraft.util.MovingObjectPosition;
 import net.minecraft.util.Vec3;
 import net.minecraft.world.World;
 
-public class BaseVegetation extends Block {
+public class BaseVegetation extends Block implements IBlockScientificName {
 
     public BaseVegetation() {
         super(Material.grass);
@@ -61,5 +62,13 @@ public class BaseVegetation extends Block {
         MovingObjectPosition closestHit = new MovingObjectPosition(x, y, z, hit.sideHit, hit.hitVec);;
 
         return closestHit;
+    }
+
+    @Override
+    public String getScientificName() {
+        return ScientificNameRegistry.getScientificName(
+            Viridium.MOD_ID + ":"
+                + this.getUnlocalizedName()
+                    .substring(5));
     }
 }
