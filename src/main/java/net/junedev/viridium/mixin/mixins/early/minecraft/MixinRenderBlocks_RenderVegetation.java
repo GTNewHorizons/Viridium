@@ -8,21 +8,23 @@ import net.minecraft.util.IIcon;
 
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
+import org.spongepowered.asm.mixin.injection.Coerce;
+import org.spongepowered.asm.mixin.injection.Constant;
+import org.spongepowered.asm.mixin.injection.ModifyConstant;
 
 import com.llamalad7.mixinextras.injector.wrapoperation.Operation;
 import com.llamalad7.mixinextras.injector.wrapoperation.WrapOperation;
-import org.spongepowered.asm.mixin.injection.Coerce;
 
 @Mixin(RenderBlocks.class)
-public abstract class MixinRenderBlocks_RenderXGrass {
+public abstract class MixinRenderBlocks_RenderVegetation {
 
     @WrapOperation(
-        method = {"renderCrossedSquares", "renderBlockDoublePlant"},
+        method = { "renderCrossedSquares", "renderBlockDoublePlant" },
         at = @At(
             value = "INVOKE",
             target = "Lnet/minecraft/client/renderer/RenderBlocks;drawCrossedSquares(Lnet/minecraft/util/IIcon;DDDF)V"))
     private void viridium$renderXGrass(RenderBlocks renderer, IIcon icon, double x, double y, double z, float size,
-                                       Operation<Void> original, @Coerce Block block, int bx, int by, int bz) {
+        Operation<Void> original, @Coerce Block block, int bx, int by, int bz) {
 
         double centerX = x + 0.5D;
         double centerZ = z + 0.5D;
@@ -35,16 +37,14 @@ public abstract class MixinRenderBlocks_RenderXGrass {
 
         // Blocks.tallgrass also stores dead shrubs and ferns as metadata variants.
         if (RenderingUtils.hash01(bx, bz, by) < 0.2F && renderer.blockAccess.getBlockMetadata(bx, by, bz) == 1) {
-            RenderingUtils.renderOpeningPlanes(
-                centerX,
-                by,
-                centerZ,
-                icon,
-                0.5D * size,
-                Math.PI / 4.0D,
-                0.1D,
-                -rotation);
+            RenderingUtils
+                .renderOpeningPlanes(centerX, by, centerZ, icon, 0.5D * size, Math.PI / 4.0D, 0.1D, -rotation);
         }
+    }
+
+    @ModifyConstant(method = "renderBlockVine", constant = @Constant(doubleValue = 0.05000000074505806D))
+    private double viridium$vineOffset(double original) {
+        return 1D / 16;
     }
 
 }
