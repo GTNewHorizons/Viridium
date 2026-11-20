@@ -17,13 +17,14 @@ import org.lwjgl.opengl.GL20;
 
 public class SkyShader {
 
-    private static final ResourceLocation VERTEX_FILE = new ResourceLocation("viridium", "shaders/sky.vsh");
-    private static final ResourceLocation FRAGMENT_FILE = new ResourceLocation("viridium", "shaders/sky.fsh");
+    private static final ResourceLocation VERTEX_FILE = new ResourceLocation("viridium", "shaders/source/sky.vsh");
+    private static final ResourceLocation FRAGMENT_FILE = new ResourceLocation("viridium", "shaders/source/sky.fsh");
 
     private final int program;
     private final int uSunDir, uRain;
     private final int uBase, uMieG, uHaloColor, uSunsetColor;
-    private final int uSunsetWidth, uDayBias, uHorizonBase, uRainDarkening, uRayleighScale, uHorizonSlope;
+    private final int uSunsetWidth, uDayBias, uHorizonBase, uRainDarkening, uRayleighScale, uHorizonSlope,
+        uBaseBrightness;
     private final int uModelView, uProjection;
     private final FloatBuffer matrixBuffer = BufferUtils.createFloatBuffer(16);
     private int previousProgram;
@@ -42,6 +43,7 @@ public class SkyShader {
         uRainDarkening = loc("uRainDarkening");
         uRayleighScale = loc("uRayleighScale");
         uHorizonSlope = loc("uHorizonSlope");
+        uBaseBrightness = loc("uBaseBrightness");
 
         uModelView = loc("uModelView");
         uProjection = loc("uProjection");
@@ -136,6 +138,7 @@ public class SkyShader {
         GL20.glUniform1f(uRainDarkening, p.rainDarkening);
         GL20.glUniform1f(uRayleighScale, p.rayleighScale);
         GL20.glUniform1f(uHorizonSlope, p.horizonSlope);
+        GL20.glUniform1f(uBaseBrightness, p.baseBrightness);
     }
 
     public void unbind() {

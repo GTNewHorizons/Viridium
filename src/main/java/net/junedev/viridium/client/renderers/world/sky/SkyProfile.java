@@ -5,6 +5,7 @@ import static net.junedev.viridium.client.renderers.utils.RenderingUtils.lerp;
 public class SkyProfile {
 
     public float baseR = 0.25F, baseG = 0.5F, baseB = 1.0F;
+    public float baseBrightness = 0.0F;
 
     public float mieG = 0.78F;
     public float haloR = 0.15F, haloG = 0.12F, haloB = 0.08F;
@@ -28,6 +29,11 @@ public class SkyProfile {
         this.baseR = r;
         this.baseG = g;
         this.baseB = b;
+        return this;
+    }
+
+    public SkyProfile baseBrightness(float baseBrightness) {
+        this.baseBrightness = baseBrightness;
         return this;
     }
 
@@ -80,6 +86,7 @@ public class SkyProfile {
         baseR = o.baseR;
         baseG = o.baseG;
         baseB = o.baseB;
+        baseBrightness = o.baseBrightness;
         mieG = o.mieG;
         haloR = o.haloR;
         haloG = o.haloG;
@@ -99,6 +106,7 @@ public class SkyProfile {
         baseR = lerp(baseR, t.baseR, k);
         baseG = lerp(baseG, t.baseG, k);
         baseB = lerp(baseB, t.baseB, k);
+        baseBrightness = lerp(baseBrightness, t.baseBrightness, k);
         mieG = lerp(mieG, t.mieG, k);
         haloR = lerp(haloR, t.haloR, k);
         haloG = lerp(haloG, t.haloG, k);

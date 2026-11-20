@@ -16,6 +16,7 @@ uniform float uHorizonBase;
 uniform float uHorizonSlope;
 uniform float uRainDarkening;
 uniform float uRayleighScale;
+uniform float uBaseBrightness;
 
 const float STAR_SCALE = 120.0;
 const float STAR_THRESHOLD = 0.97;
@@ -74,7 +75,7 @@ void main() {
     float dayFactor = clamp(sunHeight * 2.0 + uDayBias, 0.0, 1.0);
     float horizon = clamp(uHorizonBase + dir.y * uHorizonSlope, 0.0, 1.0);
 
-    vec3 col = uBase * rayleigh * dayFactor * horizon
+    vec3 col = uBase * (uBaseBrightness + rayleigh) * dayFactor * horizon
     + uSunsetColor * sunsetFactor * band * azimuth
     + mie * uHaloColor * dayFactor;
 

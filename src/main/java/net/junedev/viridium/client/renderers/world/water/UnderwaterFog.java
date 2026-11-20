@@ -90,7 +90,6 @@ public class UnderwaterFog {
      * Runs after every other FogColors handler (also above water) and blends the final color over time.
      * Smooths biome changes, diving in and out, and color jumps from other mods.
      */
-
     @SubscribeEvent(priority = EventPriority.LOWEST)
     public void onFogColorsSmooth(EntityViewRenderEvent.FogColors event) {
         World world = event.entity.worldObj;
