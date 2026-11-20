@@ -190,7 +190,7 @@ public final class ViriPlants {
     public static final PlantType<Block> AUTUMN_FERN_FROND = fern("autumn_fern_frond", 8);
     public static final PlantType<Block> BRACKEN_FROND = fern("bracken_frond", 16, 40);
     public static final PlantType<Block> CHRISTMAS_FERN = fern("christmas_fern", 16, 40);
-    public static final PlantType<Block> CINNAMON_FERN_FROND = fern("cinnamon_fern_frond", 16, 30, 5);
+    public static final PlantType<Block> CINNAMON_FERN_FROND = fern("cinnamon_fern_frond", 16, 30, 0.0D, 5);
     public static final PlantType<Block> DEER_FERN_FROND = fern("deer_fern_frond", 8);
     public static final PlantType<Block> HARTS_TONGUE_FERN_FROND = fern("harts_tongue_fern_frond", 8);
     public static final PlantType<Block> HORSETAIL = fern("horsetail", 16, 40);
