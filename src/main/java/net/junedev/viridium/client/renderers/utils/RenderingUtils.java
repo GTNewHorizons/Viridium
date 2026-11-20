@@ -167,6 +167,11 @@ public final class RenderingUtils {
 
     public static void renderOpeningPlanes(double centerX, double y, double centerZ, IIcon icon, double halfSize,
         double openingAngle, double minimumRadius, double rotation) {
+        renderOpeningPlanes(centerX, y, centerZ, icon, halfSize, openingAngle, minimumRadius, rotation, 4);
+    }
+
+    public static void renderOpeningPlanes(double centerX, double y, double centerZ, IIcon icon, double halfSize,
+        double openingAngle, double minimumRadius, double rotation, int leaveCount) {
 
         Tessellator tessellator = Tessellator.instance;
         double uMin = icon.getMinU();
@@ -192,96 +197,36 @@ public final class RenderingUtils {
         // ( c s )
         // ( -s c )
 
-        addDoubleSidedQuad(
-            tessellator,
-            centerX - cos + innerOutwardSin,
-            y,
-            centerZ + sin + innerOutwardCos,
-            uMin,
-            vMax,
-            centerX + cos + innerOutwardSin,
-            y,
-            centerZ - sin + innerOutwardCos,
-            uMax,
-            vMax,
-            centerX + cos + outerOutwardSin,
-            y + height,
-            centerZ - sin + outerOutwardCos,
-            uMax,
-            vMin,
-            centerX - cos + outerOutwardSin,
-            y + height,
-            centerZ + sin + outerOutwardCos,
-            uMin,
-            vMin);
+        double step = 2 * Math.PI / leaveCount;
 
-        addDoubleSidedQuad(
-            tessellator,
-            centerX + sin + innerOutwardCos,
-            y,
-            centerZ + cos - innerOutwardSin,
-            uMin,
-            vMax,
-            centerX - sin + innerOutwardCos,
-            y,
-            centerZ - cos - innerOutwardSin,
-            uMax,
-            vMax,
-            centerX - sin + outerOutwardCos,
-            y + height,
-            centerZ - cos - outerOutwardSin,
-            uMax,
-            vMin,
-            centerX + sin + outerOutwardCos,
-            y + height,
-            centerZ + cos - outerOutwardSin,
-            uMin,
-            vMin);
+        // Probably would have been better to directly do a matrix library or smt
+        for (int i = 0; i < 5; i++) {
+            double angle = step * i;
+            double polarCos = Math.cos(angle);
+            double polarSin = Math.sin(angle);
 
-        addDoubleSidedQuad(
-            tessellator,
-            centerX + cos - innerOutwardSin,
-            y,
-            centerZ - sin - innerOutwardCos,
-            uMin,
-            vMax,
-            centerX - cos - innerOutwardSin,
-            y,
-            centerZ + sin - innerOutwardCos,
-            uMax,
-            vMax,
-            centerX - cos - outerOutwardSin,
-            y + height,
-            centerZ + sin - outerOutwardCos,
-            uMax,
-            vMin,
-            centerX + cos - outerOutwardSin,
-            y + height,
-            centerZ - sin - outerOutwardCos,
-            uMin,
-            vMin);
-
-        addDoubleSidedQuad(
-            tessellator,
-            centerX - sin - innerOutwardCos,
-            y,
-            centerZ - cos + innerOutwardSin,
-            uMin,
-            vMax,
-            centerX + sin - innerOutwardCos,
-            y,
-            centerZ + cos + innerOutwardSin,
-            uMax,
-            vMax,
-            centerX + sin - outerOutwardCos,
-            y + height,
-            centerZ + cos + outerOutwardSin,
-            uMax,
-            vMin,
-            centerX - sin - outerOutwardCos,
-            y + height,
-            centerZ - cos + outerOutwardSin,
-            uMin,
-            vMin);
+            addDoubleSidedQuad(
+                tessellator,
+                centerX + (-cos + innerOutwardSin) * polarCos + (sin + innerOutwardCos) * polarSin,
+                y,
+                centerZ - (-cos + innerOutwardSin) * polarSin + (sin + innerOutwardCos) * polarCos,
+                uMin,
+                vMax,
+                centerX + (cos + innerOutwardSin) * polarCos + (-sin + innerOutwardCos) * polarSin,
+                y,
+                centerZ - (cos + innerOutwardSin) * polarSin + (-sin + innerOutwardCos) * polarCos,
+                uMax,
+                vMax,
+                centerX + (cos + outerOutwardSin) * polarCos + (-sin + outerOutwardCos) * polarSin,
+                y + height,
+                centerZ - (cos + outerOutwardSin) * polarSin + (-sin + outerOutwardCos) * polarCos,
+                uMax,
+                vMin,
+                centerX + (-cos + outerOutwardSin) * polarCos + (sin + outerOutwardCos) * polarSin,
+                y + height,
+                centerZ - (-cos + outerOutwardSin) * polarSin + (sin + outerOutwardCos) * polarCos,
+                uMin,
+                vMin);
+        }
     }
 }
