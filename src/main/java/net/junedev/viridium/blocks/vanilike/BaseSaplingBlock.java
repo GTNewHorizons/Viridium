@@ -5,7 +5,9 @@ import java.util.Objects;
 import java.util.Random;
 
 import net.junedev.viridium.Viridium;
+import net.junedev.viridium.blocks.IBlockScientificName;
 import net.junedev.viridium.blocks.sets.WoodBlockSet;
+import net.junedev.viridium.items.ScientificNameRegistry;
 import net.junedev.viridium.worldgen.treegen.SaplingLayout;
 import net.junedev.viridium.worldgen.treegen.TreeRegistry;
 import net.minecraft.block.Block;
@@ -22,7 +24,7 @@ import net.minecraft.world.gen.feature.WorldGenerator;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class BaseSaplingBlock extends BlockSapling {
+public class BaseSaplingBlock extends BlockSapling implements IBlockScientificName {
 
     private final String treeId;
     private final WoodBlockSet blockSet;
@@ -128,5 +130,10 @@ public class BaseSaplingBlock extends BlockSapling {
 
     public WoodBlockSet getBlockSet() {
         return blockSet;
+    }
+
+    @Override
+    public String getScientificName() {
+        return ScientificNameRegistry.getScientificName(treeId);
     }
 }

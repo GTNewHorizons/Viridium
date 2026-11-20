@@ -2,9 +2,11 @@ package net.junedev.viridium;
 
 import net.junedev.viridium.client.renderers.ViriRenderers;
 import net.junedev.viridium.client.renderers.world.sky.CustomSkyRenderer;
+import net.junedev.viridium.integrations.nei.NEIEventHandler;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.world.WorldEvent;
 
+import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLLoadCompleteEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
@@ -21,6 +23,11 @@ public class ClientProxy extends CommonProxy {
 
         renderers = new ViriRenderers();
         renderers.preInit(event);
+
+        if (Loader.isModLoaded("NotEnoughItems")) {
+            MinecraftForge.EVENT_BUS.register(new NEIEventHandler());
+        }
+
     }
 
     @Override

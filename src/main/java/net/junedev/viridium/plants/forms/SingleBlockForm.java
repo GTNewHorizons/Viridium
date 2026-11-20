@@ -3,6 +3,7 @@ package net.junedev.viridium.plants.forms;
 import java.util.Collections;
 import java.util.List;
 
+import net.junedev.viridium.items.ItemBlockScientificName;
 import net.junedev.viridium.plants.PlantForm;
 import net.minecraft.block.Block;
 
@@ -18,7 +19,7 @@ public interface SingleBlockForm extends PlantForm<Block> {
     default Block createBlocks(String registryName) {
         Block block = newBlock().setBlockName(registryName)
             .setBlockTextureName(textureFolder() + registryName);
-        GameRegistry.registerBlock(block, registryName);
+        GameRegistry.registerBlock(block, ItemBlockScientificName.class, registryName);
         return block;
     }
 

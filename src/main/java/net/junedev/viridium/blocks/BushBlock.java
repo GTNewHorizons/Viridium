@@ -4,6 +4,7 @@ import java.util.List;
 
 import net.junedev.viridium.Viridium;
 import net.junedev.viridium.client.renderers.ViriRenderIds;
+import net.junedev.viridium.items.ScientificNameRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -16,7 +17,7 @@ import net.minecraft.world.World;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class BushBlock extends Block {
+public class BushBlock extends Block implements IBlockScientificName {
 
     private static final double PLATFORM_HEIGHT = 0.75;
     private double movementAttenuation = 0.4D;
@@ -142,4 +143,11 @@ public class BushBlock extends Block {
         return fastLeaveIcon;
     }
 
+    @Override
+    public String getScientificName() {
+        return ScientificNameRegistry.getScientificName(
+            Viridium.MOD_ID + ":"
+                + this.getUnlocalizedName()
+                    .substring(5));
+    }
 }
