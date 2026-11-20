@@ -6,6 +6,7 @@ import net.junedev.viridium.Viridium;
 import net.junedev.viridium.blocks.sets.LargeWoodBlockSet;
 import net.junedev.viridium.blocks.vanilike.BaseLeaves;
 import net.junedev.viridium.blocks.vanilike.BaseSaplingBlock;
+import net.junedev.viridium.items.ItemBlockScientificName;
 import net.minecraft.block.Block;
 
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -44,9 +45,9 @@ public class WhitePoplarBlockSet extends LargeWoodBlockSet {
         GameRegistry.registerBlock(leaves_orange, name + "_leaves_orange");
         GameRegistry.registerBlock(leaves_red, name + "_leaves_red");
 
-        GameRegistry.registerBlock(sapling_yellow, name + "_sapling_yellow");
-        GameRegistry.registerBlock(sapling_orange, name + "_sapling_orange");
-        GameRegistry.registerBlock(sapling_red, name + "_sapling_red");
+        GameRegistry.registerBlock(sapling_yellow, ItemBlockScientificName.class, name + "_sapling_yellow");
+        GameRegistry.registerBlock(sapling_orange, ItemBlockScientificName.class, name + "_sapling_orange");
+        GameRegistry.registerBlock(sapling_red, ItemBlockScientificName.class, name + "_sapling_red");
     }
 
     @Override

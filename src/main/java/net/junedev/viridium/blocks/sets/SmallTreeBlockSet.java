@@ -9,6 +9,7 @@ import net.junedev.viridium.blocks.vanilike.BaseLeaves;
 import net.junedev.viridium.blocks.vanilike.BaseSaplingBlock;
 import net.junedev.viridium.blocks.vanilike.BaseSeedling;
 import net.junedev.viridium.items.BaseSeed;
+import net.junedev.viridium.items.ItemBlockScientificName;
 import net.minecraft.block.Block;
 
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -54,7 +55,7 @@ public class SmallTreeBlockSet extends WoodBlockSet {
         // TODO: Deffer registry to method
         GameRegistry.registerBlock(log, name + "_log");
         GameRegistry.registerBlock(leaves, name + "_leaves");
-        GameRegistry.registerBlock(sapling, name + "_sapling");
+        GameRegistry.registerBlock(sapling, ItemBlockScientificName.class, name + "_sapling");
         GameRegistry.registerBlock(bark, name + "_bark");
         GameRegistry.registerBlock(seedling, name + "_seedling");
         GameRegistry.registerItem(seed, name + "_seeds");

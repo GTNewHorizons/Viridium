@@ -1,5 +1,6 @@
 package net.junedev.viridium;
 
+import net.junedev.viridium.items.ScientificNameRegistry;
 import net.junedev.viridium.worldgen.treegen.TreeRegistry;
 import net.minecraftforge.common.MinecraftForge;
 
@@ -19,7 +20,7 @@ import cpw.mods.fml.common.event.FMLServerStartingEvent;
     version = Tags.VERSION,
     name = "Viridium",
     acceptedMinecraftVersions = "[1.7.10]",
-    dependencies = "required-after:angelica")
+    dependencies = "required-after:angelica;" + "after:postea;")
 public class Viridium {
 
     public static final String MOD_ID = "viridium";
@@ -45,6 +46,7 @@ public class Viridium {
         items.preInit();
 
         TreeRegistry.preInit();
+        ScientificNameRegistry.preInit();
 
         proxy.preInit(event);
     }

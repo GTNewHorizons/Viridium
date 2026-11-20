@@ -8,6 +8,7 @@ import net.junedev.viridium.blocks.vanilike.BaseLeaves;
 import net.junedev.viridium.blocks.vanilike.BaseSaplingBlock;
 import net.junedev.viridium.blocks.vanilike.BaseSeedling;
 import net.junedev.viridium.items.BaseSeed;
+import net.junedev.viridium.items.ItemBlockScientificName;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
@@ -35,6 +36,7 @@ public class LargeTreeBlockSet extends LargeWoodBlockSet {
             .setBlockTextureName(getAssetDirectory() + name + "_leaves");
 
         GameRegistry.registerBlock(leaves, name + "_leaves");
+        GameRegistry.registerBlock(sapling, ItemBlockScientificName.class, name + "_sapling");
         GameRegistry.registerBlock(sapling, name + "_sapling");
         GameRegistry.registerItem(seed, name + "_seeds");
         GameRegistry.registerBlock(seedling, name + "_crop");
