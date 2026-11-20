@@ -4,7 +4,8 @@ import net.junedev.viridium.blocks.FernBlock;
 import net.junedev.viridium.plants.PlantCategory;
 import net.minecraft.block.Block;
 
-public record FernForm(int halfSize, double openingAngle, double minimumRadius) implements SingleBlockForm {
+public record FernForm(int halfSize, double openingAngle, double minimumRadius, int leaveCount)
+    implements SingleBlockForm {
 
     @Override
     public PlantCategory category() {
@@ -18,6 +19,6 @@ public record FernForm(int halfSize, double openingAngle, double minimumRadius) 
 
     @Override
     public Block newBlock() {
-        return new FernBlock(halfSize, openingAngle, minimumRadius);
+        return new FernBlock(halfSize, openingAngle, minimumRadius, leaveCount);
     }
 }

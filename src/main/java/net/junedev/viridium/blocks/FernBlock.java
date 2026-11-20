@@ -11,16 +11,20 @@ public class FernBlock extends BaseVegetation {
     private double openingAngle = 60;
     private double minimumRadius = 0.0D;
 
+    private int leaveCount = 4;
+
     public FernBlock() {
         super();
     }
 
-    public FernBlock(int halfSize, double openingAngle, double minimumRadius) {
+    public FernBlock(int halfSize, double openingAngle, double minimumRadius, int leaveCount) {
         this();
 
         this.halfSize = halfSize;
         this.openingAngle = openingAngle;
         this.minimumRadius = minimumRadius;
+
+        this.leaveCount = leaveCount;
     }
 
     @Override
@@ -41,6 +45,11 @@ public class FernBlock extends BaseVegetation {
     @SideOnly(Side.CLIENT)
     public double getMinimumRadius() {
         return minimumRadius;
+    }
+
+    @SideOnly(Side.CLIENT)
+    public int getLeaveCount() {
+        return leaveCount;
     }
 
 }

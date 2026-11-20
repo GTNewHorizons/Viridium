@@ -190,13 +190,13 @@ public final class ViriPlants {
     public static final PlantType<Block> AUTUMN_FERN_FROND = fern("autumn_fern_frond", 8);
     public static final PlantType<Block> BRACKEN_FROND = fern("bracken_frond", 16, 40);
     public static final PlantType<Block> CHRISTMAS_FERN = fern("christmas_fern", 16, 40);
-    public static final PlantType<Block> CINNAMON_FERN_FROND = fern("cinnamon_fern_frond", 16, 30);
+    public static final PlantType<Block> CINNAMON_FERN_FROND = fern("cinnamon_fern_frond", 16, 30, 5);
     public static final PlantType<Block> DEER_FERN_FROND = fern("deer_fern_frond", 8);
     public static final PlantType<Block> HARTS_TONGUE_FERN_FROND = fern("harts_tongue_fern_frond", 8);
     public static final PlantType<Block> HORSETAIL = fern("horsetail", 16, 40);
     public static final PlantType<Block> MT_KAALA_CYANEA_FROND = fern("mt_kaala_cyanea_frond", 16, 40);
     public static final PlantType<Block> OEM_FROND = fern("oem_frond", 32, -20, 0.2D);
-    public static final PlantType<Block> SILVER_FERN_FROND = fern("silver_fern_frond", 16, 40, 0.2D);
+    public static final PlantType<Block> SILVER_FERN_FROND = fern("silver_fern_frond", 16, 40, 0.2D, 6);
     public static final PlantType<Block> SILVER_FERN_KORU = fern("silver_fern_koru", 8, 45, 0.1D);
     public static final PlantType<Block> SWORD_FERN = fern("sword_fern", 8);
 
@@ -473,7 +473,12 @@ public final class ViriPlants {
     }
 
     private static PlantType<Block> fern(String registryName, int halfSize, double openingAngle, double minimumRadius) {
-        return PlantRegistry.register(registryName, new FernForm(halfSize, openingAngle, minimumRadius));
+        return fern(registryName, halfSize, openingAngle, 0.0, 4);
+    }
+
+    private static PlantType<Block> fern(String registryName, int halfSize, double openingAngle, double minimumRadius,
+        int leaveCount) {
+        return PlantRegistry.register(registryName, new FernForm(halfSize, openingAngle, minimumRadius, leaveCount));
     }
 
     private static PlantType<Block> tallPlant(String registryName, int verticalBlockSize, int pixelWidth,

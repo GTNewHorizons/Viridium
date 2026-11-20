@@ -200,7 +200,7 @@ public final class RenderingUtils {
         double step = 2 * Math.PI / leaveCount;
 
         // Probably would have been better to directly do a matrix library or smt
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < leaveCount; i++) {
             double angle = step * i;
             double polarCos = Math.cos(angle);
             double polarSin = Math.sin(angle);

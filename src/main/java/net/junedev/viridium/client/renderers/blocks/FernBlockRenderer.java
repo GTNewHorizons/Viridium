@@ -48,7 +48,8 @@ public class FernBlockRenderer implements ISimpleBlockRenderingHandler {
             (double) plantBlock.getHalfSize() / 16,
             Math.toRadians(plantBlock.getOpeningAngle()),
             plantBlock.getMinimumRadius(),
-            rotation);
+            rotation,
+            plantBlock.getLeaveCount());
 
         renderer.setRenderBoundsFromBlock(block);
 
