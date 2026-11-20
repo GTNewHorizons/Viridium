@@ -7,6 +7,8 @@ import java.util.Map;
 import net.junedev.viridium.Viridium;
 import net.junedev.viridium.client.renderers.world.designer_tools.bindings.SkyBindings;
 import net.junedev.viridium.client.renderers.world.designer_tools.bindings.WaterBindings;
+import net.junedev.viridium.client.renderers.world.sky.SkyProfileHandler;
+import net.junedev.viridium.client.renderers.world.sky.SkyProfileLoader;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiScreen;
@@ -86,7 +88,8 @@ public class DesignerScreen extends ModularScreen {
                     () -> {
                         if (!names.isEmpty()) DesignerRegistry.reset(names.get(controller.getActivePageIndex()));
                     }))
-            .child(button("Export", DesignerScreen::export))
+            .child(
+                button("Export", () -> { if (!names.isEmpty()) export(names.get(controller.getActivePageIndex())); }))
             .child(button("Rebuild chunks", DesignerRegistry::rebuildChunks));
 
         return new ModularPanel(NAME).size(340, 230)
@@ -148,10 +151,13 @@ public class DesignerScreen extends ModularScreen {
             });
     }
 
-    private static void export() {
-        String text = DesignerRegistry.export();
+    private static void export(String category) {
+        boolean isSky = category.equals(SkyBindings.CATEGORY);
+        String text = isSky ? SkyProfileLoader.toJson(SkyProfileHandler.DEFAULT) : DesignerRegistry.export();
+
         GuiScreen.setClipboardString(text);
         Viridium.LOGGER.info("Designer export:\n{}", text);
-        Minecraft.getMinecraft().thePlayer.addChatMessage(new ChatComponentText("Designer values copied to clipboard"));
+        String message = isSky ? "Sky profile copied to clipboard as JSON" : "Designer values copied to clipboard";
+        Minecraft.getMinecraft().thePlayer.addChatMessage(new ChatComponentText(message));
     }
 }
