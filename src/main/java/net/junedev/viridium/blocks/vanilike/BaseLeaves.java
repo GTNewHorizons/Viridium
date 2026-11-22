@@ -102,8 +102,7 @@ public class BaseLeaves extends BlockLeaves {
     }
 
     @Override
-    public Item getItemDropped(int meta, Random random, int fortune)
-    {
+    public Item getItemDropped(int meta, Random random, int fortune) {
         return this.seed;
     }
 

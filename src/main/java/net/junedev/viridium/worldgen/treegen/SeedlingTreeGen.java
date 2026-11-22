@@ -1,13 +1,17 @@
 package net.junedev.viridium.worldgen.treegen;
 
+import java.util.EnumSet;
+import java.util.Random;
+
 import net.junedev.viridium.blocks.sets.WoodBlockSet;
 import net.junedev.viridium.blocks.sets.large_tree.LargeTreeBlockSet;
+import net.junedev.viridium.blocks.sets.large_tree.LargeTreeBlockSetAcorn;
+import net.junedev.viridium.blocks.sets.large_tree.LargeTreeBlockSetCone;
+import net.junedev.viridium.blocks.sets.large_tree.LargeTreeBlockSetFruit;
+import net.junedev.viridium.blocks.sets.large_tree.LargeTreeBlockSetNut;
 import net.junedev.viridium.worldgen.SoilType;
 import net.minecraft.block.Block;
 import net.minecraft.world.World;
-
-import java.util.EnumSet;
-import java.util.Random;
 
 public class SeedlingTreeGen extends LargeTreeWorldGenBase {
 
@@ -17,10 +21,13 @@ public class SeedlingTreeGen extends LargeTreeWorldGenBase {
         super(par1);
         setSoils(EnumSet.of(SoilType.GENERIC, SoilType.SAND));
 
-        if (blockSet instanceof LargeTreeBlockSet tree) {
-            this.sapling = tree.sapling;
-        } else {
-            throw new IllegalArgumentException("Tree generation requires a tree block set");
+        switch (blockSet) {
+            case LargeTreeBlockSet tree -> this.sapling = tree.sapling;
+            case LargeTreeBlockSetCone tree -> this.sapling = tree.sapling;
+            case LargeTreeBlockSetAcorn tree -> this.sapling = tree.sapling;
+            case LargeTreeBlockSetFruit tree -> this.sapling = tree.sapling;
+            case LargeTreeBlockSetNut tree -> this.sapling = tree.sapling;
+            case null, default -> throw new IllegalArgumentException("Tree generation requires a tree block set");
         }
     }
 
@@ -40,7 +47,6 @@ public class SeedlingTreeGen extends LargeTreeWorldGenBase {
 
         // Make sure that a tree can grow on the soil
         if (!hasValidSoil(world, x, y, z, SaplingLayout.SINGLE)) return false;
-
 
         // make sure that we have room to grow the tree
         if (y >= 256 - 1) return false;

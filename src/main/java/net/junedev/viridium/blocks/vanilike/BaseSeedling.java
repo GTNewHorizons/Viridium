@@ -99,7 +99,7 @@ public class BaseSeedling extends BaseSaplingBlock {
         }
     }
 
-    private SaplingLayout.Match findLayout(World world, int x, int y, int z) {
+    protected SaplingLayout.Match findLayout(World world, int x, int y, int z) {
         for (SaplingLayout layout : SaplingLayout.largestFirst()) {
             if (!TreeRegistry.hasLayout(treeId, layout)) continue;
 

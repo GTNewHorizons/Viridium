@@ -9,6 +9,7 @@ import net.junedev.viridium.blocks.vanilike.BaseSaplingBlock;
 import net.junedev.viridium.blocks.vanilike.BaseSeedling;
 import net.junedev.viridium.items.BaseSeed;
 import net.junedev.viridium.items.ItemBlockScientificName;
+import net.junedev.viridium.plants.SeedType;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
@@ -21,10 +22,12 @@ public class LargeTreeBlockSet extends LargeWoodBlockSet {
     public final Block sapling;
     public final Item seed;
     public final Block seedling;
+    public final SeedType seedType;
 
     public LargeTreeBlockSet(String name) {
         super(name);
 
+        seedType = SeedType.GENERIC;
         sapling = new BaseSaplingBlock(Viridium.MOD_ID + ":" + name, this).setBlockName(name + "_sapling")
             .setBlockTextureName(getAssetDirectory() + name + "_sapling");
         seedling = new BaseSeedling(Viridium.MOD_ID + ":" + name, this).setSapling(sapling);
@@ -32,12 +35,12 @@ public class LargeTreeBlockSet extends LargeWoodBlockSet {
             .setBlockTextureName(name);
         seed = new BaseSeed(seedling, Blocks.grass).setUnlocalizedName(name + "_seeds")
             .setTextureName(name + "_seeds");
-        leaves = new BaseLeaves().setItemDropped(seed).setBlockName(name + "_leaves")
+        leaves = new BaseLeaves().setItemDropped(seed)
+            .setBlockName(name + "_leaves")
             .setBlockTextureName(getAssetDirectory() + name + "_leaves");
 
         GameRegistry.registerBlock(leaves, name + "_leaves");
         GameRegistry.registerBlock(sapling, ItemBlockScientificName.class, name + "_sapling");
-        GameRegistry.registerBlock(sapling, name + "_sapling");
         GameRegistry.registerItem(seed, name + "_seeds");
         GameRegistry.registerBlock(seedling, name + "_crop");
     }

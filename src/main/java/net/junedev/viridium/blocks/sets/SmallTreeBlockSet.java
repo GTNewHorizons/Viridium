@@ -11,10 +11,10 @@ import net.junedev.viridium.blocks.vanilike.BaseSeedling;
 import net.junedev.viridium.items.BaseSeed;
 import net.junedev.viridium.items.ItemBlockScientificName;
 import net.minecraft.block.Block;
-
-import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
+
+import cpw.mods.fml.common.registry.GameRegistry;
 
 public class SmallTreeBlockSet extends WoodBlockSet {
 
@@ -35,7 +35,6 @@ public class SmallTreeBlockSet extends WoodBlockSet {
         log = new SmallLogBlock(halfWidth, faceHalfWidth, doSidesConnect).setBlockName(name + "_log")
             .setBlockTextureName(getAssetDirectory() + name + "_log");
 
-
         sapling = new BaseSaplingBlock(Viridium.MOD_ID + ":" + name, this).setBlockName(name + "_sapling")
             .setBlockTextureName(getAssetDirectory() + name + "_sapling");
 
@@ -45,7 +44,8 @@ public class SmallTreeBlockSet extends WoodBlockSet {
         seed = new BaseSeed(seedling, Blocks.grass).setUnlocalizedName(name + "_seeds")
             .setTextureName(name + "_seeds");
 
-        leaves = new BaseLeaves().setItemDropped(seed).setBlockName(name + "_leaves")
+        leaves = new BaseLeaves().setItemDropped(seed)
+            .setBlockName(name + "_leaves")
             .setBlockTextureName(getAssetDirectory() + name + "_leaves");
 
         // TODO: Change to custom block type?

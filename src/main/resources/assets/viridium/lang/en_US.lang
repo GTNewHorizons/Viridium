@@ -91,7 +91,7 @@ tile.black_pine_stripped.name=Stripped Black Pine Wood
 tile.black_pine_leaves.name=Black Pine Leaves
 tile.black_pine_planks.name=Black Pine Planks
 tile.black_pine_sapling.name=Black Pine Sapling
-item.black_pine_seeds.name=Black Pine Cone
+item.black_pine_cone.name=Black Pine Cone
 
 tile.cacao_log.name=Cacao Wood
 tile.cacao_stripped.name=Stripped Cacao Wood
@@ -112,7 +112,7 @@ tile.coast_redwood_stripped.name=Stripped Coast Redwood Wood
 tile.coast_redwood_leaves.name=Coast Redwood Leaves
 tile.coast_redwood_planks.name=Coast Redwood Planks
 tile.coast_redwood_sapling.name=Coast Redwood Sapling
-item.coast_redwood_seeds.name=Coast Redwood Cone
+item.coast_redwood_cone.name=Coast Redwood Cone
 
 tile.coconut_palm_log.name=Coconut Palm Wood
 tile.coconut_palm_stripped.name=Stripped Coconut Palm Wood
@@ -133,7 +133,7 @@ tile.dahurian_larch_stripped.name=Stripped Dahurian Larch Wood
 tile.dahurian_larch_leaves.name=Dahurian Larch Leaves
 tile.dahurian_larch_planks.name=Dahurian Larch Planks
 tile.dahurian_larch_sapling.name=Dahurian Larch Sapling
-item.dahurian_larch_seeds.name=Dahurian Larch Cone
+item.dahurian_larch_cone.name=Dahurian Larch Cone
 
 tile.dragons_blood_log.name=Dragon's Blood Wood
 tile.dragons_blood_stripped.name=Stripped Dragon's Blood Wood
@@ -158,14 +158,14 @@ tile.giant_sequoia_leaves.name=Giant Sequoia Leaves
 tile.giant_sequoia_leaves_burnt.name=Burnt Giant Sequoia Leaves
 tile.giant_sequoia_planks.name=Giant Sequoia Planks
 tile.giant_sequoia_sapling.name=Giant Sequoia Sapling
-item.giant_sequoia_seeds.name=Giant Sequoia Cone
+item.giant_sequoia_cone.name=Giant Sequoia Cone
 
 tile.grand_fir_log.name=Grand Fir Wood
 tile.grand_fir_stripped.name=Stripped Grand Fir Wood
 tile.grand_fir_leaves.name=Grand Fir Leaves
 tile.grand_fir_planks.name=Grand Fir Planks
 tile.grand_fir_sapling.name=Grand Fir Sapling
-item.grand_fir_seeds.name=Grand Fir Cone
+item.grand_fir_cone.name=Grand Fir Cone
 
 tile.hawthorn_log.name=Hawthorn Wood
 tile.hawthorn_stripped.name=Stripped Hawthorn Wood
@@ -200,7 +200,7 @@ tile.mediterranean_cypress_stripped.name=Stripped Mediterranean Cypress Wood
 tile.mediterranean_cypress_leaves.name=Mediterranean Cypress Leaves
 tile.mediterranean_cypress_planks.name=Mediterranean Cypress Planks
 tile.mediterranean_cypress_sapling.name=Mediterranean Cypress Sapling
-item.mediterranean_cypress_seeds.name=Mediterranean Cypress Cone
+item.mediterranean_cypress_cone.name=Mediterranean Cypress Cone
 
 tile.nazareno_log.name=Nazareno Wood
 tile.nazareno_stripped.name=Stripped Nazareno Wood
@@ -242,7 +242,7 @@ tile.red_alder_stripped.name=Stripped Red Alder Wood
 tile.red_alder_leaves.name=Red Alder Leaves
 tile.red_alder_planks.name=Red Alder Planks
 tile.red_alder_sapling.name=Red Alder Sapling
-item.red_alder_seeds.name=Red Alder Cone
+item.red_alder_cone.name=Red Alder Cone
 
 tile.red_gum_log.name=Red Gum Wood
 tile.red_gum_stripped.name=Stripped Red Gum Wood
@@ -263,7 +263,7 @@ tile.red_spruce_stripped.name=Stripped Red Spruce Wood
 tile.red_spruce_leaves.name=Red Spruce Leaves
 tile.red_spruce_planks.name=Red Spruce Planks
 tile.red_spruce_sapling.name=Red Spruce Sapling
-item.red_spruce_seeds.name=Red Spruce Cone
+item.red_spruce_cone.name=Red Spruce Cone
 
 tile.rowan_log.name=Rowan Wood
 tile.rowan_stripped.name=Stripped Rowan Wood
@@ -293,14 +293,14 @@ tile.scots_pine_stripped.name=Stripped Scots Pine Wood
 tile.scots_pine_leaves.name=Scots Pine Leaves
 tile.scots_pine_planks.name=Scots Pine Planks
 tile.scots_pine_sapling.name=Scots Pine Sapling
-item.scots_pine_seeds.name=Scots Pine Cone
+item.scots_pine_cone.name=Scots Pine Cone
 
 tile.siberian_larch_log.name=Siberian Larch Wood
 tile.siberian_larch_stripped.name=Stripped Siberian Larch Wood
 tile.siberian_larch_leaves.name=Siberian Larch Leaves
 tile.siberian_larch_planks.name=Siberian Larch Planks
 tile.siberian_larch_sapling.name=Siberian Larch Sapling
-item.siberian_larch_seeds.name=Siberian Larch Cone
+item.siberian_larch_cone.name=Siberian Larch Cone
 
 tile.sierra_juniper_log.name=Sierra Juniper Wood
 tile.sierra_juniper_stripped.name=Stripped Sierra Juniper Wood
@@ -335,14 +335,14 @@ tile.tamarack_stripped.name=Stripped Tamarack Wood
 tile.tamarack_leaves.name=Tamarack Leaves
 tile.tamarack_planks.name=Tamarack Planks
 tile.tamarack_sapling.name=Tamarack Sapling
-item.tamarack_seeds.name=Tamarack Cone
+item.tamarack_cone.name=Tamarack Cone
 
 tile.turkish_pine_log.name=Turkish Pine Wood
 tile.turkish_pine_stripped.name=Stripped Turkish Pine Wood
 tile.turkish_pine_leaves.name=Turkish Pine Leaves
 tile.turkish_pine_planks.name=Turkish Pine Planks
 tile.turkish_pine_sapling.name=Turkish Pine Sapling
-item.turkish_pine_seeds.name=Turkish Pine Cone
+item.turkish_pine_cone.name=Turkish Pine Cone
 
 tile.umbrella_tree_log.name=Umbrella Tree Wood
 tile.umbrella_tree_stripped.name=Stripped Umbrella Tree Wood
@@ -383,7 +383,7 @@ tile.black_spruce_bark.name=Black Spruce Bark
 tile.black_spruce_leaves.name=Black Spruce Leaves
 tile.black_spruce_planks.name=Black Spruce Planks
 tile.black_spruce_sapling.name=Black Spruce Sapling
-item.black_spruce_seeds.name=Black Spruce Cone
+item.black_spruce_cone.name=Black Spruce Cone
 
 tile.blackthorn_log.name=Blackthorn Wood
 tile.blackthorn_bark.name=Blackthorn Bark

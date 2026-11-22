@@ -7,7 +7,7 @@ import net.minecraft.block.Block;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 
-public class AmericanChestnutBlockSet extends LargeTreeBlockSet {
+public class AmericanChestnutBlockSet extends LargeTreeBlockSetNut {
 
     public final Block planksWormy;
 

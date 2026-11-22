@@ -81,13 +81,14 @@ public final class TreeRegistry {
                 tree);
     }
 
-    public static WorldGenerator createGenerator2(String treeId, WoodBlockSet blockSet, SaplingLayout layout, boolean notifiesNeighbors) {
+    public static WorldGenerator createGenerator2(String treeId, WoodBlockSet blockSet, SaplingLayout layout,
+        boolean notifiesNeighbors) {
         TreeType tree = TREES.get(treeId);
         return tree == null ? createSeedlingGenerator(blockSet, notifiesNeighbors)
             : configureSoil(
-            tree.layoutFactories.getOrDefault(layout, tree.defaultFactory)
-                .apply(notifiesNeighbors),
-            tree);
+                tree.layoutFactories.getOrDefault(layout, tree.defaultFactory)
+                    .apply(notifiesNeighbors),
+                tree);
     }
 
     public static boolean hasLayout(String treeId, SaplingLayout layout) {
