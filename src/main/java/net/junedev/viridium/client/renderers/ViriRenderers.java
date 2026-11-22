@@ -10,9 +10,12 @@ import net.junedev.viridium.client.renderers.world.designer_tools.DesignerComman
 import net.junedev.viridium.client.renderers.world.designer_tools.DesignerInput;
 import net.junedev.viridium.client.renderers.world.designer_tools.DesignerScreen;
 import net.junedev.viridium.client.renderers.world.fog.CustomFogRenderer;
+import net.junedev.viridium.client.renderers.world.sky.SkyProfileLoader;
 import net.junedev.viridium.client.renderers.world.water.UnderwaterFog;
 import net.junedev.viridium.client.renderers.world.water.UnderwaterLightRays;
 import net.junedev.viridium.client.renderers.world.water.profiles.WaterProfileHandler;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.resources.IReloadableResourceManager;
 import net.minecraftforge.client.ClientCommandHandler;
 import net.minecraftforge.common.MinecraftForge;
 
@@ -32,6 +35,10 @@ public class ViriRenderers {
 
     public void init(FMLInitializationEvent event) {
         ClientCommandHandler.instance.registerCommand(new DesignerCommand());
+
+        // Loads the sky profiles once right away and again on every resource reload (F3+T)
+        ((IReloadableResourceManager) Minecraft.getMinecraft()
+            .getResourceManager()).registerReloadListener(new SkyProfileLoader());
     }
 
     public void loadComplete(FMLLoadCompleteEvent event) {
