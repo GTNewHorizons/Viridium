@@ -17,6 +17,8 @@ uniform float uHorizonSlope;
 uniform float uRainDarkening;
 uniform float uRayleighScale;
 uniform float uBaseBrightness;
+uniform float uHorizonDesaturation;
+uniform float uHorizonLift;
 
 const float STAR_SCALE = 120.0;
 const float STAR_THRESHOLD = 0.97;
@@ -78,6 +80,12 @@ void main() {
     vec3 col = uBase * (uBaseBrightness + rayleigh) * dayFactor * horizon
     + uSunsetColor * sunsetFactor * band * azimuth
     + mie * uHaloColor * dayFactor;
+
+    // Horizon haze: near the horizon the sky gets paler and brighter (band = 1 at the horizon).
+    // Sky only, SkyMath (fog) does not have this on purpose.
+    float hazeLuminance = dot(col, vec3(0.299, 0.587, 0.114));
+    col = mix(col, vec3(hazeLuminance), uHorizonDesaturation * band);
+    col = mix(col, vec3(1.0), uHorizonLift * band * dayFactor);
 
     float lum = dot(col, vec3(0.299, 0.587, 0.114));
     float visibility = 1.0 - smoothstep(0.02, 0.22, lum);

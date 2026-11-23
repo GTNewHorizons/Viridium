@@ -1,5 +1,7 @@
 package net.junedev.viridium.client.renderers.world.sky;
 
+import static net.junedev.viridium.client.renderers.utils.RenderingUtils.lerp;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -25,6 +27,7 @@ public class SkyShader {
     private final int uBase, uMieG, uHaloColor, uSunsetColor;
     private final int uSunsetWidth, uDayBias, uHorizonBase, uRainDarkening, uRayleighScale, uHorizonSlope,
         uBaseBrightness;
+    private final int uHorizonDesaturation, uHorizonLift;
     private final int uModelView, uProjection;
     private final FloatBuffer matrixBuffer = BufferUtils.createFloatBuffer(16);
     private int previousProgram;
@@ -43,6 +46,8 @@ public class SkyShader {
         uRainDarkening = loc("uRainDarkening");
         uRayleighScale = loc("uRayleighScale");
         uHorizonSlope = loc("uHorizonSlope");
+        uHorizonDesaturation = loc("uHorizonDesaturation");
+        uHorizonLift = loc("uHorizonLift");
         uBaseBrightness = loc("uBaseBrightness");
 
         uModelView = loc("uModelView");
@@ -131,13 +136,20 @@ public class SkyShader {
         GL20.glUniform3f(uBase, p.baseR, p.baseG, p.baseB);
         GL20.glUniform1f(uMieG, p.mieG);
         GL20.glUniform3f(uHaloColor, p.haloR, p.haloG, p.haloB);
-        GL20.glUniform3f(uSunsetColor, p.sunsetR, p.sunsetG, p.sunsetB);
+        float morning = SkyProfile.morningWeight(sunX);
+        GL20.glUniform3f(
+            uSunsetColor,
+            lerp(p.sunsetR, p.sunriseR, morning),
+            lerp(p.sunsetG, p.sunriseG, morning),
+            lerp(p.sunsetB, p.sunriseB, morning));
         GL20.glUniform1f(uSunsetWidth, p.sunsetWidth);
         GL20.glUniform1f(uDayBias, p.dayBias);
         GL20.glUniform1f(uHorizonBase, p.horizonBase);
         GL20.glUniform1f(uRainDarkening, p.rainDarkening);
         GL20.glUniform1f(uRayleighScale, p.rayleighScale);
         GL20.glUniform1f(uHorizonSlope, p.horizonSlope);
+        GL20.glUniform1f(uHorizonDesaturation, p.horizonDesaturation);
+        GL20.glUniform1f(uHorizonLift, p.horizonLift);
         GL20.glUniform1f(uBaseBrightness, p.baseBrightness);
     }
 

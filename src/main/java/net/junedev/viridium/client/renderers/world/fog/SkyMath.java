@@ -1,5 +1,7 @@
 package net.junedev.viridium.client.renderers.world.fog;
 
+import static net.junedev.viridium.client.renderers.utils.RenderingUtils.lerp;
+
 import net.junedev.viridium.client.renderers.world.sky.SkyProfile;
 
 public final class SkyMath {
@@ -44,9 +46,14 @@ public final class SkyMath {
         float halo = mie * dayFactor;
         float rainFactor = 1.0F - rain * p.rainDarkening;
 
-        out[0] = clamp((p.baseR * base + p.sunsetR * sunset + p.haloR * halo) * rainFactor);
-        out[1] = clamp((p.baseG * base + p.sunsetG * sunset + p.haloG * halo) * rainFactor);
-        out[2] = clamp((p.baseB * base + p.sunsetB * sunset + p.haloB * halo) * rainFactor);
+        float morning = SkyProfile.morningWeight(sunX);
+        float twilightR = lerp(p.sunsetR, p.sunriseR, morning);
+        float twilightG = lerp(p.sunsetG, p.sunriseG, morning);
+        float twilightB = lerp(p.sunsetB, p.sunriseB, morning);
+
+        out[0] = clamp((p.baseR * base + twilightR * sunset + p.haloR * halo) * rainFactor);
+        out[1] = clamp((p.baseG * base + twilightG * sunset + p.haloG * halo) * rainFactor);
+        out[2] = clamp((p.baseB * base + twilightB * sunset + p.haloB * halo) * rainFactor);
     }
 
     public static void horizonColor(SkyProfile p, float sunX, float sunY, float sunZ, float rain, float yawDegrees,

@@ -37,4 +37,70 @@ public class ColorSpaces {
             linearToGamma(Math.clamp((float) (l * -1.2684380046 + m * 2.6097574011 + s * -0.3413193965), 0, 1)),
             linearToGamma(Math.clamp((float) (l * -0.0041960863 + m * -0.7034186147 + s * 1.7076147010), 0, 1)) };
     }
+
+    /** RGB (0..1) to HSV: hue in degrees 0..360, saturation and value 0..1. */
+    public static float[] rgbToHsv(float red, float green, float blue) {
+        float max = Math.max(red, Math.max(green, blue));
+        float min = Math.min(red, Math.min(green, blue));
+        float delta = max - min;
+
+        float hue;
+        if (delta == 0F) {
+            hue = 0F;
+        } else if (max == red) {
+            hue = 60F * ((green - blue) / delta);
+        } else if (max == green) {
+            hue = 60F * ((blue - red) / delta + 2F);
+        } else {
+            hue = 60F * ((red - green) / delta + 4F);
+        }
+        if (hue < 0F) {
+            hue += 360F;
+        }
+        float saturation = max == 0F ? 0F : delta / max;
+        return new float[] { hue, saturation, max };
+    }
+
+    /** HSV (hue in degrees, saturation and value 0..1) to RGB (0..1). */
+    public static float[] hsvToRgb(float hue, float saturation, float value) {
+        float chroma = value * saturation;
+        float sector = ((hue % 360F) + 360F) % 360F / 60F;
+        float secondary = chroma * (1F - Math.abs(sector % 2F - 1F));
+
+        float red, green, blue;
+        switch ((int) sector) {
+            case 0 -> {
+                red = chroma;
+                green = secondary;
+                blue = 0F;
+            }
+            case 1 -> {
+                red = secondary;
+                green = chroma;
+                blue = 0F;
+            }
+            case 2 -> {
+                red = 0F;
+                green = chroma;
+                blue = secondary;
+            }
+            case 3 -> {
+                red = 0F;
+                green = secondary;
+                blue = chroma;
+            }
+            case 4 -> {
+                red = secondary;
+                green = 0F;
+                blue = chroma;
+            }
+            default -> {
+                red = chroma;
+                green = 0F;
+                blue = secondary;
+            }
+        }
+        float brightnessOffset = value - chroma;
+        return new float[] { red + brightnessOffset, green + brightnessOffset, blue + brightnessOffset };
+    }
 }

@@ -68,11 +68,16 @@ public final class SkyProfileLoader implements IResourceManagerReloadListener {
             }
             if (data.sunset.width != null) profile.sunsetWidth = data.sunset.width;
         }
+        if (data.sunrise != null) {
+            profile.sunrise(data.sunrise[0], data.sunrise[1], data.sunrise[2]);
+        }
         if (data.dayBias != null) profile.dayBias = data.dayBias;
         if (data.horizonBase != null) profile.horizonBase = data.horizonBase;
         if (data.horizonSlope != null) profile.horizonSlope = data.horizonSlope;
         if (data.rayleighScale != null) profile.rayleighScale = data.rayleighScale;
         if (data.rainDarkening != null) profile.rainDarkening = data.rainDarkening;
+        if (data.horizonDesaturation != null) profile.horizonDesaturation = data.horizonDesaturation;
+        if (data.horizonLift != null) profile.horizonLift = data.horizonLift;
     }
 
     private static <T> T read(IResourceManager resourceManager, String fileName, Class<T> type) {
@@ -103,11 +108,14 @@ public final class SkyProfileLoader implements IResourceManagerReloadListener {
         data.sunset = new SkyProfileData.SunsetData();
         data.sunset.color = color(profile.sunsetR, profile.sunsetG, profile.sunsetB);
         data.sunset.width = round(profile.sunsetWidth);
+        data.sunrise = color(profile.sunriseR, profile.sunriseG, profile.sunriseB);
         data.dayBias = round(profile.dayBias);
         data.horizonBase = round(profile.horizonBase);
         data.horizonSlope = round(profile.horizonSlope);
         data.rayleighScale = round(profile.rayleighScale);
         data.rainDarkening = round(profile.rainDarkening);
+        data.horizonDesaturation = round(profile.horizonDesaturation);
+        data.horizonLift = round(profile.horizonLift);
         return PRETTY_GSON.toJson(data);
     }
 
