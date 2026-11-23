@@ -1,0 +1,12 @@
+{
+  "base": [0.25, 0.5, 1.0],
+  "baseBrightness": 0.0,
+  "mieG": 0.78,
+  "halo": [0.15, 0.12, 0.08],
+  "sunset": { "color": [1.0, 0.4, 0.1], "width": 4.0 },
+  "dayBias": 0.3,
+  "horizonBase": 0.8,
+  "horizonSlope": 1.0,
+  "rayleighScale": 0.75,
+  "rainDarkening": 0.7
+}
