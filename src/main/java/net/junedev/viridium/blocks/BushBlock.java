@@ -34,7 +34,7 @@ public class BushBlock extends Block implements IBlockScientificName {
     private IIcon fastLeaveIcon;
 
     @SideOnly(Side.CLIENT)
-    private IIcon decoratorIcon = null;
+    private IIcon decoratorIcon;
 
     public BushBlock() {
         super(Material.leaves);
