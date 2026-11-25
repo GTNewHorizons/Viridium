@@ -9,6 +9,7 @@ import net.junedev.viridium.blocks.sets.large_tree.LargeTreeBlockSetAcorn;
 import net.junedev.viridium.blocks.sets.large_tree.LargeTreeBlockSetCone;
 import net.junedev.viridium.blocks.sets.large_tree.LargeTreeBlockSetFruit;
 import net.junedev.viridium.blocks.sets.large_tree.LargeTreeBlockSetNut;
+import net.junedev.viridium.blocks.sets.small_tree.*;
 import net.junedev.viridium.worldgen.SoilType;
 import net.minecraft.block.Block;
 import net.minecraft.world.World;
@@ -23,10 +24,15 @@ public class SeedlingTreeGen extends LargeTreeWorldGenBase {
 
         switch (blockSet) {
             case LargeTreeBlockSet tree -> this.sapling = tree.sapling;
+            case SmallTreeBlockSet tree -> this.sapling = tree.sapling;
             case LargeTreeBlockSetCone tree -> this.sapling = tree.sapling;
+            case SmallTreeBlockSetCone tree -> this.sapling = tree.sapling;
             case LargeTreeBlockSetAcorn tree -> this.sapling = tree.sapling;
+            case SmallTreeBlockSetAcorn tree -> this.sapling = tree.sapling;
             case LargeTreeBlockSetFruit tree -> this.sapling = tree.sapling;
+            case SmallTreeBlockSetFruit tree -> this.sapling = tree.sapling;
             case LargeTreeBlockSetNut tree -> this.sapling = tree.sapling;
+            case SmallTreeBlockSetNut tree -> this.sapling = tree.sapling;
             case null, default -> throw new IllegalArgumentException("Tree generation requires a tree block set");
         }
     }

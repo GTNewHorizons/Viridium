@@ -37,7 +37,7 @@ public class LargeTreeBlockSetFruit extends LargeWoodBlockSet {
             .setTextureName(name + "_fruit");
         leaves = new BaseLeaves().setItemDropped(seed)
             .setBlockName(name + "_leaves")
-            .setBlockTextureName(getAssetDirectory() + name + "_fruit");
+            .setBlockTextureName(getAssetDirectory() + name + "_leaves");
 
         GameRegistry.registerBlock(leaves, name + "_leaves");
         GameRegistry.registerBlock(sapling, ItemBlockScientificName.class, name + "_sapling");

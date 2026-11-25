@@ -1,0 +1,78 @@
+package net.junedev.viridium.blocks.sets.small_tree;
+
+import cpw.mods.fml.common.registry.GameRegistry;
+import net.junedev.viridium.Viridium;
+import net.junedev.viridium.blocks.SmallLogBlock;
+import net.junedev.viridium.blocks.sets.WoodBlockSet;
+import net.junedev.viridium.blocks.vanilike.*;
+import net.junedev.viridium.items.BaseSeed;
+import net.junedev.viridium.items.ConeSeed;
+import net.junedev.viridium.items.ItemBlockScientificName;
+import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
+
+import java.util.List;
+
+public class SmallTreeBlockSetCone extends WoodBlockSet {
+
+    public final Block log;
+    public final Block bark;
+    public final Block leaves;
+    public final Block sapling;
+    public final Block seedling;
+    public final Item seed;
+
+    public SmallTreeBlockSetCone(String name) {
+        this(name, 4, 4, true);
+    }
+
+    public SmallTreeBlockSetCone(String name, int halfWidth, int faceHalfWidth, boolean doSidesConnect) {
+        super(name);
+
+        log = new SmallLogBlock(halfWidth, faceHalfWidth, doSidesConnect).setBlockName(name + "_log")
+            .setBlockTextureName(getAssetDirectory() + name + "_log");
+
+        sapling = new SmallSaplingBlock(Viridium.MOD_ID + ":" + name, this).setBlockName(name + "_sapling")
+            .setBlockTextureName(getAssetDirectory() + name + "_sapling");
+
+        seedling = new SmallConeSeedling(Viridium.MOD_ID + ":" + name, this).setSapling(sapling);
+        seedling.setBlockName(name + "_seedling")
+            .setBlockTextureName(name);
+        seed = new ConeSeed(seedling, Blocks.grass).setUnlocalizedName(name + "_cone")
+            .setTextureName(name + "_cone");
+
+        leaves = new BaseLeaves().setItemDropped(seed)
+            .setBlockName(name + "_leaves")
+            .setBlockTextureName(getAssetDirectory() + name + "_leaves");
+
+        // TODO: Change to custom block type?
+        bark = new BaseBark().setBlockName(name + "_bark")
+            .setBlockTextureName(getAssetDirectory() + name + "_bark");
+
+        // TODO: Deffer registry to method
+        GameRegistry.registerBlock(log, name + "_log");
+        GameRegistry.registerBlock(leaves, name + "_leaves");
+        GameRegistry.registerBlock(sapling, ItemBlockScientificName.class, name + "_sapling");
+        GameRegistry.registerBlock(bark, name + "_bark");
+        GameRegistry.registerBlock(seedling, name + "_seedling");
+        GameRegistry.registerItem(seed, name + "_cone");
+
+    }
+
+    @Override
+    public String getAssetDirectory() {
+        return "small_trees/";
+    }
+
+    @Override
+    public List<Block> getBlocksWithItems() {
+        List<Block> blocks = super.getBlocksWithItems();
+        blocks.add(log);
+        blocks.add(leaves);
+        blocks.add(sapling);
+        blocks.add(bark);
+        blocks.add(seedling);
+        return blocks;
+    }
+}

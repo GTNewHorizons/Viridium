@@ -21,7 +21,7 @@ public final class TreeRegistry {
 
         register(
             "viridium:american_chestnut",
-            (notifiesNeighbors) -> createDefaultGenerator(ViriPlants.AMERICAN_CHESTNUT.getBlocks(), notifiesNeighbors))
+            (notifiesNeighbors) -> createDefaultLargeGenerator(ViriPlants.AMERICAN_CHESTNUT.getBlocks(), notifiesNeighbors))
                 .withLayout(
                     SaplingLayout.TWO_BY_TWO,
                     (notifiesNeighbors) -> new AmericanChestnutTreeGen(
@@ -36,7 +36,7 @@ public final class TreeRegistry {
                         3));
         register(
             "viridium:pedunculate_oak",
-            (notifiesNeighbors) -> createDefaultGenerator(ViriPlants.PEDUNCULATE_OAK.getBlocks(), notifiesNeighbors))
+            (notifiesNeighbors) -> createDefaultLargeGenerator(ViriPlants.PEDUNCULATE_OAK.getBlocks(), notifiesNeighbors))
                 .withLayout(
                     SaplingLayout.TWO_BY_TWO,
                     (notifiesNeighbors) -> new MediumPedunculateOakTreeGen(
@@ -67,18 +67,34 @@ public final class TreeRegistry {
     // Create a new generator for each tree to avoid reusing state from previous generations
     public static WorldGenerator createGenerator(String treeId, WoodBlockSet blockSet, boolean notifiesNeighbors) {
         TreeType tree = TREES.get(treeId);
-        return tree == null ? createDefaultGenerator(blockSet, notifiesNeighbors)
+        return tree == null ? createDefaultLargeGenerator(blockSet, notifiesNeighbors)
+            : configureSoil(tree.defaultFactory.apply(notifiesNeighbors), tree);
+    }
+
+    public static WorldGenerator createSmallGenerator(String treeId, WoodBlockSet blockSet, boolean notifiesNeighbors) {
+        TreeType tree = TREES.get(treeId);
+        return tree == null ? createDefaultLargeGenerator(blockSet, notifiesNeighbors)
             : configureSoil(tree.defaultFactory.apply(notifiesNeighbors), tree);
     }
 
     public static WorldGenerator createGenerator(String treeId, WoodBlockSet blockSet, SaplingLayout layout,
         boolean notifiesNeighbors) {
         TreeType tree = TREES.get(treeId);
-        return tree == null ? createDefaultGenerator(blockSet, notifiesNeighbors)
+        return tree == null ? createDefaultLargeGenerator(blockSet, notifiesNeighbors)
             : configureSoil(
                 tree.layoutFactories.getOrDefault(layout, tree.defaultFactory)
                     .apply(notifiesNeighbors),
                 tree);
+    }
+
+    public static WorldGenerator createSmallGenerator(String treeId, WoodBlockSet blockSet, SaplingLayout layout,
+                                                 boolean notifiesNeighbors) {
+        TreeType tree = TREES.get(treeId);
+        return tree == null ? createDefaultSmallGenerator(blockSet, notifiesNeighbors)
+            : configureSoil(
+            tree.layoutFactories.getOrDefault(layout, tree.defaultFactory)
+                .apply(notifiesNeighbors),
+            tree);
     }
 
     public static WorldGenerator createGenerator2(String treeId, WoodBlockSet blockSet, SaplingLayout layout,
@@ -96,8 +112,12 @@ public final class TreeRegistry {
         return tree != null && tree.layoutFactories.containsKey(layout);
     }
 
-    private static WorldGenerator createDefaultGenerator(WoodBlockSet blockSet, boolean notifiesNeighbors) {
+    private static WorldGenerator createDefaultLargeGenerator(WoodBlockSet blockSet, boolean notifiesNeighbors) {
         return new LargeDeciduousTreeGen(notifiesNeighbors, blockSet, "", 8, 4, 0.30D, 2, 4, 8, 6);
+    }
+
+    private static WorldGenerator createDefaultSmallGenerator(WoodBlockSet blockSet, boolean notifiesNeighbors) {
+        return new SmallDeciduousTreeGen(notifiesNeighbors, blockSet, "", 8, 4, 0.30D, 2, 4, 8, 6);
     }
 
     private static WorldGenerator createSeedlingGenerator(WoodBlockSet blockSet, boolean notifiesNeighbors) {

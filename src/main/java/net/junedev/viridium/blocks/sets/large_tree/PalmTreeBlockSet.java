@@ -7,7 +7,7 @@ import net.minecraft.block.Block;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 
-public class PalmTreeBlockSet extends LargeTreeBlockSetFruit {
+public class PalmTreeBlockSet extends LargeTreeBlockSet {
 
     public final Block crown;
 

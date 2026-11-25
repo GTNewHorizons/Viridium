@@ -42,7 +42,7 @@ tile.american_chestnut_leaves.name=American Chestnut Leaves
 tile.american_chestnut_planks.name=American Chestnut Planks
 tile.american_chestnut_planks_wormy.name=Wormy American Chestnut Planks
 tile.american_chestnut_sapling.name=American Chestnut Sapling
-item.american_chestnut_seeds.name=American Chestnut Nut
+item.american_chestnut_nut.name=American Chestnut Nut
 
 tile.american_sycamore_log.name=American Sycamore Wood
 tile.american_sycamore_stripped.name=Stripped American Sycamore Wood
@@ -105,7 +105,7 @@ tile.candlenut_stripped.name=Stripped Candlenut Wood
 tile.candlenut_leaves.name=Candlenut Leaves
 tile.candlenut_planks.name=Candlenut Planks
 tile.candlenut_sapling.name=Candlenut Sapling
-# TODO: Seeds
+item.candlenut_fruit.name=Candlenut Fruit
 
 tile.coast_redwood_log.name=Coast Redwood Wood
 tile.coast_redwood_stripped.name=Stripped Coast Redwood Wood
@@ -119,7 +119,7 @@ tile.coconut_palm_stripped.name=Stripped Coconut Palm Wood
 tile.coconut_palm_leaves.name=Coconut Palm Leaves
 tile.coconut_palm_planks.name=Coconut Palm Planks
 tile.coconut_palm_sapling.name=Coconut Palm Sapling
-# TODO: Seeds
+item.coconut_palm_fruit.name=Coconut
 
 tile.coolibah_log.name=Coolibah Wood
 tile.coolibah_stripped.name=Stripped Coolibah Wood
@@ -221,7 +221,7 @@ tile.pedunculate_oak_stripped.name=Stripped Pedunculate Oak Wood
 tile.pedunculate_oak_leaves.name=Pedunculate Oak Leaves
 tile.pedunculate_oak_planks.name=Pedunculate Oak Planks
 tile.pedunculate_oak_sapling.name=Pedunculate Oak Sapling
-item.pedunculate_oak_seeds.name=Pedunculate Oak Acorn
+item.pedunculate_oak_acorn.name=Pedunculate Oak Acorn
 
 tile.quaking_aspen_log.name=Quaking Aspen Wood
 tile.quaking_aspen_stripped.name=Stripped Quaking Aspen Wood
@@ -270,7 +270,7 @@ tile.rowan_stripped.name=Stripped Rowan Wood
 tile.rowan_leaves.name=Rowan Leaves
 tile.rowan_planks.name=Rowan Planks
 tile.rowan_sapling.name=Rowan Sapling
-# TODO: Seeds
+item.rowan_fruit.name=Rowan Berries
 
 tile.royal_palm_log.name=Royal Palm Wood
 tile.royal_palm_crown.name=Royal Palm Crown
@@ -307,7 +307,7 @@ tile.sierra_juniper_stripped.name=Stripped Sierra Juniper Wood
 tile.sierra_juniper_leaves.name=Sierra Juniper Leaves
 tile.sierra_juniper_planks.name=Sierra Juniper Planks
 tile.sierra_juniper_sapling.name=Sierra Juniper Sapling
-item.sierra_juniper_seeds.name=Sierra Juniper Berry
+item.sierra_juniper_fruit.name=Sierra Juniper Berry
 
 tile.southern_magnolia_log.name=Southern Magnolia Wood
 tile.southern_magnolia_stripped.name=Stripped Southern Magnolia Wood
@@ -328,7 +328,7 @@ tile.sweetgum_stripped.name=Stripped Sweetgum Wood
 tile.sweetgum_leaves.name=Sweetgum Leaves
 tile.sweetgum_planks.name=Sweetgum Planks
 tile.sweetgum_sapling.name=Sweetgum Sapling
-item.sweetgum_seed_pod.name=Sweetgum Seeds
+item.sweetgum_seeds.name=Sweetgum Seeds
 
 tile.tamarack_log.name=Tamarack Wood
 tile.tamarack_stripped.name=Stripped Tamarack Wood
@@ -390,6 +390,7 @@ tile.blackthorn_bark.name=Blackthorn Bark
 tile.blackthorn_leaves.name=Blackthorn Leaves
 tile.blackthorn_planks.name=Blackthorn Planks
 tile.blackthorn_sapling.name=Blackthorn Sapling
+item.blackthorn_fruit.name=Blackthorn Plum
 
 tile.blue_mahoe_log.name=Blue Mahoe Wood
 tile.blue_mahoe_bark.name=Blue Mahoe Bark
@@ -410,13 +411,14 @@ tile.callery_pear_bark.name=Callery Pear Bark
 tile.callery_pear_leaves.name=Callery Pear Leaves
 tile.callery_pear_planks.name=Callery Pear Planks
 tile.callery_pear_sapling.name=Callery Pear Sapling
-item.callery_peak_seeds.name=Callery Pear Seeds
+item.callery_pear_seeds.name=Callery Pear Seeds
 
 tile.citron_log.name=Citron Wood
 tile.citron_bark.name=Citron Bark
 tile.citron_leaves.name=Citron Leaves
 tile.citron_planks.name=Citron Planks
 tile.citron_sapling.name=Citron Sapling
+item.citron_fruit.name=Citron
 
 tile.crape_myrtle_log.name=Crape Myrtle Wood
 tile.crape_myrtle_bark.name=Crape Myrtle Bark
@@ -430,7 +432,7 @@ tile.desert_bloodwood_bark.name=Desert Bloodwood Bark
 tile.desert_bloodwood_leaves.name=Desert Bloodwood Leaves
 tile.desert_bloodwood_planks.name=Desert Bloodwood Planks
 tile.desert_bloodwood_sapling.name=Desert Bloodwood Sapling
-tile.desert_bloodwood_seeds.name=Desert Bloodwood Seeds
+item.desert_bloodwood_seeds.name=Desert Bloodwood Seeds
 
 tile.flowering_dogwood_log.name=Flowering Dogwood Wood
 tile.flowering_dogwood_bark.name=Flowering Dogwood Bark
@@ -450,6 +452,7 @@ tile.holly_bark.name=Holly Bark
 tile.holly_leaves.name=Holly Leaves
 tile.holly_planks.name=Holly Planks
 tile.holly_sapling.name=Holly Sapling
+item.holly_fruit.name=Holly Berries
 
 tile.jacaranda_log.name=Jacaranda Wood
 tile.jacaranda_bark.name=Jacaranda Bark
@@ -470,18 +473,21 @@ tile.joshua_tree_bark.name=Joshua Tree Bark
 tile.joshua_tree_leaves.name=Joshua Tree Leaves
 tile.joshua_tree_planks.name=Joshua Tree Planks
 tile.joshua_tree_sapling.name=Joshua Tree Sapling
+item.joshua_tree_fruit.name=Joshua Tree Fruit
 
 tile.koki_o_kea_log.name=Koki'o Kea Wood
 tile.koki_o_kea_bark.name=Koki'o Kea Bark
 tile.koki_o_kea_leaves.name=Koki'o Kea Leaves
 tile.koki_o_kea_planks.name=Koki'o Kea Planks
 tile.koki_o_kea_sapling.name=Koki'o Kea Sapling
+item.koki_o_kea_seeds.name=Koki'o Kea Seeds
 
 tile.kumquat_log.name=Kumquat Wood
 tile.kumquat_bark.name=Kumquat Bark
 tile.kumquat_leaves.name=Kumquat Leaves
 tile.kumquat_planks.name=Kumquat Planks
 tile.kumquat_sapling.name=Kumquat Sapling
+item.kumquat_fruit.name=Kumquat
 
 tile.lemon_myrtle_log.name=Lemon Myrtle Wood
 tile.lemon_myrtle_bark.name=Lemon Myrtle Bark
@@ -516,6 +522,7 @@ tile.olive_bark.name=Olive Bark
 tile.olive_leaves.name=Olive Leaves
 tile.olive_planks.name=Olive Planks
 tile.olive_sapling.name=Olive Sapling
+item.olive_fruit.name=Olive
 
 tile.pacific_yew_log.name=Pacific Yew Wood
 tile.pacific_yew_bark.name=Pacific Yew Bark
@@ -536,12 +543,14 @@ tile.pawpaw_bark.name=Pawpaw Bark
 tile.pawpaw_leaves.name=Pawpaw Leaves
 tile.pawpaw_planks.name=Pawpaw Planks
 tile.pawpaw_sapling.name=Pawpaw Sapling
+item.pawpaw_fruit.name=Pawpaw
 
 tile.pear_log.name=Pear Wood
 tile.pear_bark.name=Pear Bark
 tile.pear_leaves.name=Pear Leaves
 tile.pear_planks.name=Pear Planks
 tile.pear_sapling.name=Pear Sapling
+item.pear_fruit.name=Pear
 
 tile.red_cinchona_log.name=Red Cinchona Wood
 tile.red_cinchona_bark.name=Red Cinchona Bark
@@ -562,6 +571,7 @@ tile.wild_apple_bark.name=Wild Apple Bark
 tile.wild_apple_leaves.name=Wild Apple Leaves
 tile.wild_apple_planks.name=Wild Apple Planks
 tile.wild_apple_sapling.name=Wild Apple Sapling
+item.wild_apple_fruit.name=Wild Apple
 
 tile.witch_hazel_log.name=Witch Hazel Wood
 tile.witch_hazel_bark.name=Witch Hazel Bark

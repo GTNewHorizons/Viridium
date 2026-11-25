@@ -1,22 +1,20 @@
-package net.junedev.viridium.blocks.sets;
+package net.junedev.viridium.blocks.sets.small_tree;
 
-import java.util.List;
-
+import cpw.mods.fml.common.registry.GameRegistry;
 import net.junedev.viridium.Viridium;
 import net.junedev.viridium.blocks.SmallLogBlock;
-import net.junedev.viridium.blocks.vanilike.BaseBark;
-import net.junedev.viridium.blocks.vanilike.BaseLeaves;
-import net.junedev.viridium.blocks.vanilike.BaseSaplingBlock;
-import net.junedev.viridium.blocks.vanilike.BaseSeedling;
+import net.junedev.viridium.blocks.sets.WoodBlockSet;
+import net.junedev.viridium.blocks.vanilike.*;
 import net.junedev.viridium.items.BaseSeed;
 import net.junedev.viridium.items.ItemBlockScientificName;
+import net.junedev.viridium.items.TreeNut;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 
-import cpw.mods.fml.common.registry.GameRegistry;
+import java.util.List;
 
-public class SmallTreeBlockSet extends WoodBlockSet {
+public class SmallTreeBlockSetNut extends WoodBlockSet {
 
     public final Block log;
     public final Block bark;
@@ -25,24 +23,24 @@ public class SmallTreeBlockSet extends WoodBlockSet {
     public final Block seedling;
     public final Item seed;
 
-    public SmallTreeBlockSet(String name) {
+    public SmallTreeBlockSetNut(String name) {
         this(name, 4, 4, true);
     }
 
-    public SmallTreeBlockSet(String name, int halfWidth, int faceHalfWidth, boolean doSidesConnect) {
+    public SmallTreeBlockSetNut(String name, int halfWidth, int faceHalfWidth, boolean doSidesConnect) {
         super(name);
 
         log = new SmallLogBlock(halfWidth, faceHalfWidth, doSidesConnect).setBlockName(name + "_log")
             .setBlockTextureName(getAssetDirectory() + name + "_log");
 
-        sapling = new BaseSaplingBlock(Viridium.MOD_ID + ":" + name, this).setBlockName(name + "_sapling")
+        sapling = new SmallSaplingBlock(Viridium.MOD_ID + ":" + name, this).setBlockName(name + "_sapling")
             .setBlockTextureName(getAssetDirectory() + name + "_sapling");
 
         seedling = new BaseSeedling(Viridium.MOD_ID + ":" + name, this).setSapling(sapling);
         seedling.setBlockName(name + "_seedling")
             .setBlockTextureName(name);
-        seed = new BaseSeed(seedling, Blocks.grass).setUnlocalizedName(name + "_seeds")
-            .setTextureName(name + "_seeds");
+        seed = new TreeNut(1, 1.0F, seedling, Blocks.grass).setUnlocalizedName(name + "_nut")
+            .setTextureName(name + "_nut");
 
         leaves = new BaseLeaves().setItemDropped(seed)
             .setBlockName(name + "_leaves")
@@ -58,7 +56,7 @@ public class SmallTreeBlockSet extends WoodBlockSet {
         GameRegistry.registerBlock(sapling, ItemBlockScientificName.class, name + "_sapling");
         GameRegistry.registerBlock(bark, name + "_bark");
         GameRegistry.registerBlock(seedling, name + "_seedling");
-        GameRegistry.registerItem(seed, name + "_seeds");
+        GameRegistry.registerItem(seed, name + "_nut");
 
     }
 
