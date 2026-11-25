@@ -215,10 +215,26 @@ public final class RenderingUtils {
 
             addDoubleSidedQuad(
                 tessellator,
-                startX, y, startZ, uMin, vMax,
-                endX, y, endZ, uMax, vMax,
-                endX, top, endZ, uMax, vMin,
-                startX, top, startZ, uMin, vMin);
+                startX,
+                y,
+                startZ,
+                uMin,
+                vMax,
+                endX,
+                y,
+                endZ,
+                uMax,
+                vMax,
+                endX,
+                top,
+                endZ,
+                uMax,
+                vMin,
+                startX,
+                top,
+                startZ,
+                uMin,
+                vMin);
         }
     }
 
