@@ -3,7 +3,6 @@ package net.junedev.viridium;
 import java.util.function.Function;
 
 import net.junedev.viridium.blocks.sets.LargeWoodBlockSet;
-import net.junedev.viridium.blocks.sets.small_tree.*;
 import net.junedev.viridium.blocks.sets.WoodBlockSet;
 import net.junedev.viridium.blocks.sets.large_tree.AmericanChestnutBlockSet;
 import net.junedev.viridium.blocks.sets.large_tree.BurntLeavesTreeBlockSet;
@@ -16,6 +15,7 @@ import net.junedev.viridium.blocks.sets.large_tree.PalmTreeBlockSet;
 import net.junedev.viridium.blocks.sets.large_tree.RubberTreeBlockSet;
 import net.junedev.viridium.blocks.sets.large_tree.WeepingWillowBlockSet;
 import net.junedev.viridium.blocks.sets.large_tree.WhitePoplarBlockSet;
+import net.junedev.viridium.blocks.sets.small_tree.*;
 import net.junedev.viridium.plants.PlantCategory;
 import net.junedev.viridium.plants.PlantRegistry;
 import net.junedev.viridium.plants.PlantType;
@@ -406,7 +406,7 @@ public final class ViriPlants {
     public static final PlantType<LargeTreeBlockSet> BEECH = largeTree("beech");
     public static final PlantType<LargeTreeBlockSetAcorn> BLACK_OAK = largeTreeAcorn("black_oak");
     public static final PlantType<LargeTreeBlockSetCone> BLACK_PINE = largeTreeCone("black_pine");
-    public static final PlantType<LargeTreeBlockSet> CACAO = largeTree("cacao"); //TODO: Unique "fruit"
+    public static final PlantType<LargeTreeBlockSet> CACAO = largeTree("cacao"); // TODO: Unique "fruit"
     public static final PlantType<LargeTreeBlockSetFruit> CANDLENUT = largeTreeFruit("candlenut");
     public static final PlantType<BurntLeavesTreeBlockSet> COAST_REDWOOD = largeTree(
         "coast_redwood",

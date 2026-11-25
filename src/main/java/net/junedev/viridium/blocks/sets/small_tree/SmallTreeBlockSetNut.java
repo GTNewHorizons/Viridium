@@ -1,18 +1,18 @@
 package net.junedev.viridium.blocks.sets.small_tree;
 
-import cpw.mods.fml.common.registry.GameRegistry;
+import java.util.List;
+
 import net.junedev.viridium.Viridium;
 import net.junedev.viridium.blocks.SmallLogBlock;
 import net.junedev.viridium.blocks.sets.WoodBlockSet;
 import net.junedev.viridium.blocks.vanilike.*;
-import net.junedev.viridium.items.BaseSeed;
 import net.junedev.viridium.items.ItemBlockScientificName;
 import net.junedev.viridium.items.TreeNut;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 
-import java.util.List;
+import cpw.mods.fml.common.registry.GameRegistry;
 
 public class SmallTreeBlockSetNut extends WoodBlockSet {
 

@@ -1,15 +1,15 @@
 package net.junedev.viridium.worldgen.treegen;
 
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.Queue;
+import java.util.Random;
+
 import net.junedev.viridium.blocks.sets.WoodBlockSet;
 import net.junedev.viridium.blocks.sets.large_tree.*;
 import net.junedev.viridium.blocks.sets.small_tree.*;
 import net.minecraft.block.Block;
 import net.minecraft.world.World;
-
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.Random;
 
 // Thank you ExtrabiomesXL for being CC
 public class SmallDeciduousTreeGen extends SmallTreeWorldGenBase {
@@ -25,8 +25,8 @@ public class SmallDeciduousTreeGen extends SmallTreeWorldGenBase {
     public int leafCanopyWidthVariance; // Original default: 6
 
     public SmallDeciduousTreeGen(boolean par1, WoodBlockSet blockSet, int baseTrunkHeight, int trunkHeightVariance,
-                                 double trunkHeightPercent, int baseBranchCount, int maxExtraBranches, int leafCanopyWidth,
-                                 int leafCanopyWidthVariance) {
+        double trunkHeightPercent, int baseBranchCount, int maxExtraBranches, int leafCanopyWidth,
+        int leafCanopyWidthVariance) {
         this(
             par1,
             blockSet,

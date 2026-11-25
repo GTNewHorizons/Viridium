@@ -1,14 +1,14 @@
 package net.junedev.viridium.blocks.vanilike;
 
+import java.util.List;
+import java.util.Random;
+
 import net.junedev.viridium.blocks.sets.WoodBlockSet;
 import net.junedev.viridium.worldgen.treegen.SaplingLayout;
 import net.junedev.viridium.worldgen.treegen.TreeRegistry;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
-
-import java.util.List;
-import java.util.Random;
 
 public class SmallConeSeedling extends BaseSeedling {
 

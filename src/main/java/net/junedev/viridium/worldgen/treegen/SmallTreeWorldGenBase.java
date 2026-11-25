@@ -1,13 +1,13 @@
 package net.junedev.viridium.worldgen.treegen;
 
+import java.util.EnumSet;
+
 import net.junedev.viridium.worldgen.SoilType;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
-
-import java.util.EnumSet;
 
 // Thank you ExtraBiomesXL for being CC
 abstract class SmallTreeWorldGenBase extends WorldGenAbstractTree {

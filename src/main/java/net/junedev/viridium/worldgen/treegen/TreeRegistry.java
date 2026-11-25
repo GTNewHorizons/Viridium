@@ -21,8 +21,9 @@ public final class TreeRegistry {
 
         register(
             "viridium:american_chestnut",
-            (notifiesNeighbors) -> createDefaultLargeGenerator(ViriPlants.AMERICAN_CHESTNUT.getBlocks(), notifiesNeighbors))
-                .withLayout(
+            (notifiesNeighbors) -> createDefaultLargeGenerator(
+                ViriPlants.AMERICAN_CHESTNUT.getBlocks(),
+                notifiesNeighbors)).withLayout(
                     SaplingLayout.TWO_BY_TWO,
                     (notifiesNeighbors) -> new AmericanChestnutTreeGen(
                         notifiesNeighbors,
@@ -36,8 +37,9 @@ public final class TreeRegistry {
                         3));
         register(
             "viridium:pedunculate_oak",
-            (notifiesNeighbors) -> createDefaultLargeGenerator(ViriPlants.PEDUNCULATE_OAK.getBlocks(), notifiesNeighbors))
-                .withLayout(
+            (notifiesNeighbors) -> createDefaultLargeGenerator(
+                ViriPlants.PEDUNCULATE_OAK.getBlocks(),
+                notifiesNeighbors)).withLayout(
                     SaplingLayout.TWO_BY_TWO,
                     (notifiesNeighbors) -> new MediumPedunculateOakTreeGen(
                         notifiesNeighbors,
@@ -88,13 +90,13 @@ public final class TreeRegistry {
     }
 
     public static WorldGenerator createSmallGenerator(String treeId, WoodBlockSet blockSet, SaplingLayout layout,
-                                                 boolean notifiesNeighbors) {
+        boolean notifiesNeighbors) {
         TreeType tree = TREES.get(treeId);
         return tree == null ? createDefaultSmallGenerator(blockSet, notifiesNeighbors)
             : configureSoil(
-            tree.layoutFactories.getOrDefault(layout, tree.defaultFactory)
-                .apply(notifiesNeighbors),
-            tree);
+                tree.layoutFactories.getOrDefault(layout, tree.defaultFactory)
+                    .apply(notifiesNeighbors),
+                tree);
     }
 
     public static WorldGenerator createGenerator2(String treeId, WoodBlockSet blockSet, SaplingLayout layout,

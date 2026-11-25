@@ -1,27 +1,15 @@
 package net.junedev.viridium.blocks.vanilike;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import net.junedev.viridium.Viridium;
-import net.junedev.viridium.blocks.IBlockScientificName;
-import net.junedev.viridium.blocks.sets.WoodBlockSet;
-import net.junedev.viridium.items.ScientificNameRegistry;
-import net.junedev.viridium.worldgen.treegen.SaplingLayout;
-import net.junedev.viridium.worldgen.treegen.TreeRegistry;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockSapling;
-import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.init.Blocks;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.IIcon;
-import net.minecraft.world.World;
-import net.minecraft.world.gen.feature.WorldGenerator;
-
 import java.util.List;
 import java.util.Objects;
 import java.util.Random;
+
+import net.junedev.viridium.blocks.sets.WoodBlockSet;
+import net.junedev.viridium.worldgen.treegen.SaplingLayout;
+import net.junedev.viridium.worldgen.treegen.TreeRegistry;
+import net.minecraft.init.Blocks;
+import net.minecraft.world.World;
+import net.minecraft.world.gen.feature.WorldGenerator;
 
 public class SmallSaplingBlock extends BaseSaplingBlock {
 
