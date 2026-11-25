@@ -6,8 +6,11 @@ import java.util.Queue;
 import java.util.Random;
 
 import net.junedev.viridium.blocks.sets.WoodBlockSet;
-import net.junedev.viridium.blocks.sets.large_tree.*;
-import net.junedev.viridium.blocks.sets.small_tree.*;
+import net.junedev.viridium.blocks.sets.small_tree.SmallTreeBlockSet;
+import net.junedev.viridium.blocks.sets.small_tree.SmallTreeBlockSetAcorn;
+import net.junedev.viridium.blocks.sets.small_tree.SmallTreeBlockSetCone;
+import net.junedev.viridium.blocks.sets.small_tree.SmallTreeBlockSetFruit;
+import net.junedev.viridium.blocks.sets.small_tree.SmallTreeBlockSetNut;
 import net.minecraft.block.Block;
 import net.minecraft.world.World;
 
