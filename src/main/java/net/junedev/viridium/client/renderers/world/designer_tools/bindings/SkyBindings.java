@@ -8,6 +8,8 @@ import net.junedev.viridium.client.renderers.world.sky.SkyProfileHandler;
 
 public class SkyBindings {
 
+    public static final String CATEGORY = "sky";
+
     public static void bind() {
         DesignerTime.bind();
 
@@ -33,5 +35,6 @@ public class SkyBindings {
         register(c, "rainDarkening", 0F, 1F, () -> p.rainDarkening, v -> p.rainDarkening = v);
         register(c, "rayleighScale", 0F, 2F, () -> p.rayleighScale, v -> p.rayleighScale = v);
         register(c, "horizonSlope", 0F, 4F, () -> p.horizonSlope, v -> p.horizonSlope = v);
+        register(c, "baseBrightness", 0F, 1F, () -> p.baseBrightness, v -> p.baseBrightness = v);
     }
 }

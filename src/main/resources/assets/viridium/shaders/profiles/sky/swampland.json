@@ -1,0 +1,5 @@
+{
+  "biomes": ["Swampland"],
+  "base": [0.3, 0.45, 0.3],
+  "mieG": 0.8
+}

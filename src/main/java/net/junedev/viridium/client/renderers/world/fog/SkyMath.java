@@ -39,7 +39,7 @@ public final class SkyMath {
         float dayFactor = clamp(sunY * 2.0F + p.dayBias);
         float horizon = clamp(p.horizonBase + dy * p.horizonSlope);
 
-        float base = rayleigh * dayFactor * horizon;
+        float base = (p.baseBrightness + rayleigh) * dayFactor * horizon;
         float sunset = sunsetFactor * band * azimuth;
         float halo = mie * dayFactor;
         float rainFactor = 1.0F - rain * p.rainDarkening;
