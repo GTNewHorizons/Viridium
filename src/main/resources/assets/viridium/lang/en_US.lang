@@ -1,31 +1,63 @@
 itemGroup.VTab=Viridium
 
 # BUSHES
+tile.acerola.name=Acerola
 tile.ainselu.name=Ainselu
+tile.althea.name=Althea
 tile.bears_breeches.name=Bears Breeches
 tile.blackberry.name=Blackberry
+tile.bog_myrtle.name=Bog Myrtle
+tile.butterfly_bush.name=Butterfly Bush
+tile.california_sagebrush.name=California Sagebrush
+tile.cassava.name=Cassava
+tile.chili_pepper.name=Chili Pepper
+tile.coleus.name=Coleus
 tile.creosote_bush.name=Creosote Bush
 tile.croton.name=Croton
+tile.deer_oak.name=Deer Oak
+tile.dwarf_birch.name=Dwarf Birch
+tile.dwarf_oak.name=Dwarf Oak
 tile.elderberry.name=Elderberry Bush
+tile.euphronia.name=Euphronia
 tile.false_indigo.name=False Indigo
 tile.golden_wattle.name=Golden Wattle
+tile.gooseberry.name=Gooseberry Bush
+tile.gorse.name=Gorse
+tile.hairy_appleberry.name=Hairy Appleberry
 tile.honeysuckle.name=Honeysuckle
 tile.japanese_andromeda.name=Japanese Andromeda
+tile.kinnikinnick.name=Kinnikinnick
 tile.koki_o_ono.name=Koki O Ono
 tile.kudzu.name=Kudzu
 tile.kutjera.name=Kutjera
 tile.ma_o_hau_hele.name=Ma'o Hau Hele
+tile.oakleaf_hydrangea.name=Oakleaf Hydrangea
 tile.oldman_saltbush.name=Oldman Saltbush
+tile.passionfruit.name=Passionfruit
 tile.poinsettia.name=Poinsettia
+tile.poison_hemlock.name=Poison Hemlock
+tile.pomegranate.name=Pomegranate
+tile.qantu.name=Qantu
 tile.quandong.name=Quandong Bush
 tile.raspberry.name=Raspberry Bush
+tile.redcurrant.name=Redcurrant Bush
+tile.renosterbos.name=Renosterbos
 tile.rhododendron.name=Rhododendron
 tile.rose_shrub.name=Rose Shrub
 tile.sandhill_wattle.name=Sandhill Wattle
 tile.satsuki_azalea.name=Satsuki Azalea
+tile.shawiash.name=Shawiash
 tile.silverleaf_hydrangea.name=Silverleaf Hydrangea
+tile.soursop.name=Soursop
 tile.staghorn_sumac.name=Staghorn Sumac
+tile.sweetsop.name=Sweetsop
+tile.tea.name=Tea Bush
+tile.ti_plant.name=Ti Plant
+tile.true_myrtle.name=True Myrtle
+tile.umhlonishwa.name=Umhlonishwa
+tile.velvet_philodendron.name=Velvet Philodendron
 tile.wedding_bush.name=Wedding Bush
+tile.wild_rosemary.name=Wild Rosemary
 
 
 # LARGE TREES

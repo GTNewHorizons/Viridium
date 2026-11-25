@@ -1,10 +1,18 @@
 package net.junedev.viridium.client.renderers.utils;
 
+import java.io.IOException;
+import java.io.InputStream;
+
 import net.minecraft.block.Block;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.util.IIcon;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.IBlockAccess;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public final class RenderingUtils {
 
@@ -227,6 +235,23 @@ public final class RenderingUtils {
                 centerZ - (-cos + outerOutwardSin) * polarSin + (sin + outerOutwardCos) * polarCos,
                 uMin,
                 vMin);
+        }
+    }
+
+    @SideOnly(Side.CLIENT)
+    public static boolean blockTextureExists(String iconName) {
+        ResourceLocation icon = new ResourceLocation(iconName);
+        ResourceLocation png = new ResourceLocation(
+            icon.getResourceDomain(),
+            "textures/blocks/" + icon.getResourcePath() + ".png");
+
+        try (InputStream stream = Minecraft.getMinecraft()
+            .getResourceManager()
+            .getResource(png)
+            .getInputStream()) {
+            return true;
+        } catch (IOException e) {
+            return false;
         }
     }
 }

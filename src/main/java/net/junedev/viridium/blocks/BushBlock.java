@@ -4,6 +4,7 @@ import java.util.List;
 
 import net.junedev.viridium.Viridium;
 import net.junedev.viridium.client.renderers.ViriRenderIds;
+import net.junedev.viridium.client.renderers.utils.RenderingUtils;
 import net.junedev.viridium.items.ScientificNameRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -31,6 +32,9 @@ public class BushBlock extends Block implements IBlockScientificName {
 
     @SideOnly(Side.CLIENT)
     private IIcon fastLeaveIcon;
+
+    @SideOnly(Side.CLIENT)
+    private IIcon decoratorIcon = null;
 
     public BushBlock() {
         super(Material.leaves);
@@ -120,6 +124,8 @@ public class BushBlock extends Block implements IBlockScientificName {
         branchIcon = reg.registerIcon(getTextureName() + "_branches");
         leaveIcon = reg.registerIcon(getTextureName() + "_leaves");
         fastLeaveIcon = reg.registerIcon(getTextureName() + "_leaves_fast");
+        if (RenderingUtils.blockTextureExists(getTextureName() + "_decorator"))
+            decoratorIcon = reg.registerIcon(getTextureName() + "_decorator");
     }
 
     @Override
@@ -141,6 +147,11 @@ public class BushBlock extends Block implements IBlockScientificName {
     @SideOnly(Side.CLIENT)
     public IIcon getFastLeaveIcon() {
         return fastLeaveIcon;
+    }
+
+    @SideOnly(Side.CLIENT)
+    public IIcon getDecoratorIcon() {
+        return decoratorIcon;
     }
 
     @Override
