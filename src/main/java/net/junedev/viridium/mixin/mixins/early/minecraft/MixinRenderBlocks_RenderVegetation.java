@@ -29,16 +29,19 @@ public abstract class MixinRenderBlocks_RenderVegetation {
         double centerX = x + 0.5D;
         double centerZ = z + 0.5D;
         double rotation = RenderingUtils.getRandomRotation(RenderingUtils.positionHash(bx, bz));
-        RenderingUtils.renderCrossedPlanes(bx, by, bz, icon, centerX - bx, centerZ - bz, 0.5D * size, rotation);
+        double halfWidth = 0.5D * size;
 
-        if (block != Blocks.tallgrass) {
+        // Blocks.tallgrass also stores dead shrubs and ferns as metadata variants.
+        boolean isGrass = block == Blocks.tallgrass && renderer.blockAccess.getBlockMetadata(bx, by, bz) == 1;
+        float variant = isGrass ? RenderingUtils.hash01(bx, bz, by) : 1.0F;
+        if (variant >= 0.2F && variant < 0.4F) {
+            RenderingUtils.renderTriangularPlanes(centerX, by, centerZ, icon, halfWidth, size, 0.125D * size, rotation);
             return;
         }
 
-        // Blocks.tallgrass also stores dead shrubs and ferns as metadata variants.
-        if (RenderingUtils.hash01(bx, bz, by) < 0.2F && renderer.blockAccess.getBlockMetadata(bx, by, bz) == 1) {
-            RenderingUtils
-                .renderOpeningPlanes(centerX, by, centerZ, icon, 0.5D * size, Math.PI / 4.0D, 0.1D, -rotation);
+        RenderingUtils.renderCrossedPlanes(bx, by, bz, icon, centerX - bx, centerZ - bz, halfWidth, rotation);
+        if (variant < 0.2F) {
+            RenderingUtils.renderOpeningPlanes(centerX, by, centerZ, icon, halfWidth, Math.PI / 4.0D, 0.1D, -rotation);
         }
     }
 
