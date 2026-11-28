@@ -13,6 +13,10 @@ public enum ViridiumMixins implements IMixins {
         .addClientMixins("minecraft.MixinBlockLiquid_WaterTextures")
         .setPhase(Phase.EARLY)),
 
+    VEGETATION_RENDERING(new MixinBuilder("Overwritting of the vanilla vegetation rendering")
+        .addClientMixins("minecraft.MixinRenderBlocks_RenderVegetation")
+        .setPhase(Phase.EARLY)),
+
     VIDEO_SETTINGS_PAGE(new MixinBuilder("Viridium page in Angelica's video settings")
         .addClientMixins("angelica.MixinReeseSodiumVideoOptionsScreen_ViridiumPage")
         .setPhase(Phase.EARLY));

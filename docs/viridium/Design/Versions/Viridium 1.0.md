@@ -1,0 +1,1 @@
+Viridium 1.0 is a simpler version than 2.0, as it has as its main focus to cleanroom BoP (that is, completely recreating its behaviour), and add expand upon that. It does not want to include any major changes itself to the world, but just add a lot of new blocks, and specially vegetation and rocks.

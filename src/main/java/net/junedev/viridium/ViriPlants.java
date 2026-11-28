@@ -33,31 +33,63 @@ public final class ViriPlants {
     }
 
     // ===== Bushes =====
+    public static final PlantType<Block> ACEROLA = bush("acerola");
     public static final PlantType<Block> AINSELU = bush("ainselu");
+    public static final PlantType<Block> ALTHEA = bush("althea");
     public static final PlantType<Block> BEARS_BREECHES = bush("bears_breeches");
     public static final PlantType<Block> BLACKBERRY = bush("blackberry");
+    public static final PlantType<Block> BOG_MYRTLE = bush("bog_myrtle");
+    public static final PlantType<Block> BUTTERFLY_BUSH = bush("butterfly_bush");
+    public static final PlantType<Block> CALIFORNIA_SAGEBRUSH = bush("california_sagebrush");
+    public static final PlantType<Block> CASSAVA = bush("cassava");
+    public static final PlantType<Block> CHILI_PEPPER = bush("chili_pepper");
+    public static final PlantType<Block> COLEUS = bush("coleus");
     public static final PlantType<Block> CREOSOTE_BUSH = bush("creosote_bush");
     public static final PlantType<Block> CROTON = bush("croton");
+    public static final PlantType<Block> DEER_OAK = bush("deer_oak");
+    public static final PlantType<Block> DWARF_BIRCH = bush("dwarf_birch");
+    public static final PlantType<Block> DWARF_OAK = bush("dwarf_oak");
     public static final PlantType<Block> ELDERBERRY = bush("elderberry");
+    public static final PlantType<Block> EUPHRONIA = bush("euphronia");
     public static final PlantType<Block> FALSE_INDIGO = bush("false_indigo");
     public static final PlantType<Block> GOLDEN_WATTLE = bush("golden_wattle");
+    public static final PlantType<Block> GOOSEBERRY = bush("gooseberry");
+    public static final PlantType<Block> GORSE = bush("gorse");
+    public static final PlantType<Block> HAIRY_APPLEBERRY = bush("hairy_appleberry");
     public static final PlantType<Block> HONEYSUCKLE = bush("honeysuckle");
     public static final PlantType<Block> JAPANESE_ANDROMEDA = bush("japanese_andromeda");
+    public static final PlantType<Block> KINNIKINNICK = bush("kinnikinnick");
     public static final PlantType<Block> KOKI_O_ONO = bush("koki_o_ono");
     public static final PlantType<Block> KUDZU = bush("kudzu");
     public static final PlantType<Block> KUTJERA = bush("kutjera");
     public static final PlantType<Block> MA_O_HAU_HELE = bush("ma_o_hau_hele");
+    public static final PlantType<Block> OAKLEAF_HYDRANGEA = bush("oakleaf_hydrangea");
     public static final PlantType<Block> OLDMAN_SALTBUSH = bush("oldman_saltbush");
+    public static final PlantType<Block> PASSIONFRUIT = bush("passionfruit");
     public static final PlantType<Block> POINSETTIA = bush("poinsettia");
+    public static final PlantType<Block> POISON_HEMLOCK = bush("poison_hemlock");
+    public static final PlantType<Block> POMEGRANATE = bush("pomegranate");
+    public static final PlantType<Block> QANTU = bush("qantu");
     public static final PlantType<Block> QUANDONG = bush("quandong");
     public static final PlantType<Block> RASPBERRY = bush("raspberry");
+    public static final PlantType<Block> REDCURRANT = bush("redcurrant");
+    public static final PlantType<Block> RENOSTERBOS = bush("renosterbos");
     public static final PlantType<Block> RHODODENDRON = bush("rhododendron");
     public static final PlantType<Block> ROSE_SHRUB = bush("rose_shrub");
     public static final PlantType<Block> SANDHILL_WATTLE = bush("sandhill_wattle");
     public static final PlantType<Block> SATSUKI_AZALEA = bush("satsuki_azalea");
+    public static final PlantType<Block> SHAWIASH = bush("shawiash");
     public static final PlantType<Block> SILVERLEAF_HYDRANGEA = bush("silverleaf_hydrangea");
+    public static final PlantType<Block> SOURSOP = bush("soursop");
     public static final PlantType<Block> STAGHORN_SUMAC = bush("staghorn_sumac");
+    public static final PlantType<Block> SWEETSOP = bush("sweetsop");
+    public static final PlantType<Block> TEA = bush("tea");
+    public static final PlantType<Block> TI_PLANT = bush("ti_plant");
+    public static final PlantType<Block> TRUE_MYRTLE = bush("true_myrtle");
+    public static final PlantType<Block> UMHLONISHWA = bush("umhlonishwa");
+    public static final PlantType<Block> VELVET_PHILODENDRON = bush("velvet_philodendron");
     public static final PlantType<Block> WEDDING_BUSH = bush("wedding_bush");
+    public static final PlantType<Block> WILD_ROSEMARY = bush("wild_rosemary");
 
     // ===== Small Trees =====
     public static final PlantType<SmallTreeBlockSet> BLACK_SPRUCE = smallTree("black_spruce");
@@ -190,13 +222,13 @@ public final class ViriPlants {
     public static final PlantType<Block> AUTUMN_FERN_FROND = fern("autumn_fern_frond", 8);
     public static final PlantType<Block> BRACKEN_FROND = fern("bracken_frond", 16, 40);
     public static final PlantType<Block> CHRISTMAS_FERN = fern("christmas_fern", 16, 40);
-    public static final PlantType<Block> CINNAMON_FERN_FROND = fern("cinnamon_fern_frond", 16, 30);
+    public static final PlantType<Block> CINNAMON_FERN_FROND = fern("cinnamon_fern_frond", 16, 30, 0.0D, 5);
     public static final PlantType<Block> DEER_FERN_FROND = fern("deer_fern_frond", 8);
     public static final PlantType<Block> HARTS_TONGUE_FERN_FROND = fern("harts_tongue_fern_frond", 8);
     public static final PlantType<Block> HORSETAIL = fern("horsetail", 16, 40);
     public static final PlantType<Block> MT_KAALA_CYANEA_FROND = fern("mt_kaala_cyanea_frond", 16, 40);
     public static final PlantType<Block> OEM_FROND = fern("oem_frond", 32, -20, 0.2D);
-    public static final PlantType<Block> SILVER_FERN_FROND = fern("silver_fern_frond", 16, 40, 0.2D);
+    public static final PlantType<Block> SILVER_FERN_FROND = fern("silver_fern_frond", 16, 40, 0.2D, 6);
     public static final PlantType<Block> SILVER_FERN_KORU = fern("silver_fern_koru", 8, 45, 0.1D);
     public static final PlantType<Block> SWORD_FERN = fern("sword_fern", 8);
 
@@ -473,7 +505,12 @@ public final class ViriPlants {
     }
 
     private static PlantType<Block> fern(String registryName, int halfSize, double openingAngle, double minimumRadius) {
-        return PlantRegistry.register(registryName, new FernForm(halfSize, openingAngle, minimumRadius));
+        return fern(registryName, halfSize, openingAngle, 0.0, 4);
+    }
+
+    private static PlantType<Block> fern(String registryName, int halfSize, double openingAngle, double minimumRadius,
+        int leaveCount) {
+        return PlantRegistry.register(registryName, new FernForm(halfSize, openingAngle, minimumRadius, leaveCount));
     }
 
     private static PlantType<Block> tallPlant(String registryName, int verticalBlockSize, int pixelWidth,

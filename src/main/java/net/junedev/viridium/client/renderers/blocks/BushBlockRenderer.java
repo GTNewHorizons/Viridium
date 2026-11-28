@@ -1,6 +1,7 @@
 package net.junedev.viridium.client.renderers.blocks;
 
 import net.junedev.viridium.blocks.BushBlock;
+import net.junedev.viridium.client.renderers.utils.RenderingUtils;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.Tessellator;
@@ -15,6 +16,7 @@ import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 public class BushBlockRenderer implements ISimpleBlockRenderingHandler {
 
     private static final int HALF_WIDTH = 1;
+    private static final double DECORATOR_THRESHOLD = 0.5D;
 
     private final int renderId;
 
@@ -69,6 +71,24 @@ public class BushBlockRenderer implements ISimpleBlockRenderingHandler {
 
         renderer.setRenderBounds(0.0, 0.0, 0.0, 1.0, 1.0, 1.0);
         renderer.renderStandardBlock(block, x, y, z);
+
+        if (bushBlock.getDecoratorIcon() != null && world.isAirBlock(x, y + 1, z)) {
+
+            if (RenderingUtils.hash01(x, z, y) > DECORATOR_THRESHOLD) {
+                long hash = RenderingUtils.positionHash(x, z);
+                RenderingUtils
+                    .resetLightAndColor(world, Tessellator.instance, world.getBlock(x, y + 1, z), x, y + 1, z);
+                RenderingUtils.renderCrossedPlanes(
+                    x,
+                    y + 1,
+                    z,
+                    bushBlock.getDecoratorIcon(),
+                    0.5,
+                    0.5,
+                    0.5,
+                    RenderingUtils.getRandomRotation(hash));
+            }
+        }
 
         if (!hasOverrideTexture) {
             renderer.clearOverrideBlockTexture();

@@ -1,0 +1,11 @@
+- Thaumcraft (integration): taint biomes
+- Chisel (integration): blocks
+- BoP (total replacement)
+- Forestry (partial replacement)
+- Natura (partial replacement)
+- CropsNH (integration): plant breeding and bonsais
+- RWG2 (integration 1.0 and replacement 2.0)
+- NEI (integration): information on where to find stuff
+- GT5U (integration/partial replacement): ic2 rubber trees
+- Twilight Forest (partial replacement): worldgen rework (3.0?)
+- Railcraft (partial replacement): rocks

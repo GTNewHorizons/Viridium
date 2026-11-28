@@ -1,10 +1,18 @@
 package net.junedev.viridium.client.renderers.utils;
 
+import java.io.IOException;
+import java.io.InputStream;
+
 import net.minecraft.block.Block;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.util.IIcon;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.IBlockAccess;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public final class RenderingUtils {
 
@@ -27,7 +35,10 @@ public final class RenderingUtils {
         tessellator.addVertexWithUV(x4, y4, z4, u4, v4);
     }
 
-    /// Needs to be done every time a block is placed, standard renderer techniques already implement it
+    /**
+     * Resets light and color.
+     * Needs to be done every time a block is placed, standard renderer techniques already implement it.
+     */
     public static void resetLightAndColor(IBlockAccess world, Tessellator tessellator, Block block, int x, int y,
         int z) {
         tessellator.setBrightness(block.getMixedBrightnessForBlock(world, x, y, z));
@@ -35,12 +46,17 @@ public final class RenderingUtils {
         tessellator.setColorOpaque_F(1.0F, 1.0F, 1.0F);
     }
 
-    // Randomized hashed positions and rotations
+    /**
+     * Randomized Hash for locationally deterministic pseudorandom features.
+     */
     public static long positionHash(int x, int z) {
         long hash = (long) x * 3129871L ^ (long) z * 116129781L;
         return hash * hash * 42317861L + hash * 11L;
     }
 
+    /**
+     * Randomized Hash for locationally deterministic pseudorandom features, normalized to 0 and 1.
+     */
     public static float hash01(int x, int z, int salt) {
         int h = x * 73856093 ^ z * 19349663 ^ salt * 83492791;
         h ^= h >>> 13;
@@ -91,8 +107,16 @@ public final class RenderingUtils {
         return true;
     }
 
+    /**
+     * Draws two X shaped planes, like vanilla, with a correction to minimize the distortion.
+     */
     public static void renderCrossedPlanes(int x, int y, int z, IIcon icon, double centerX, double centerZ,
         double halfSize, double rotation) {
+
+        // Size correction for squared pixels
+        halfSize *= 0.70710678D;
+        // 2*sqrt(2)/(1+pi/2), has the minimal deformation across all angles
+        halfSize *= 1.100214395D;
 
         Tessellator tessellator = Tessellator.instance;
         double uMin = icon.getMinU();
@@ -161,5 +185,141 @@ public final class RenderingUtils {
             z + secondMaxZ,
             uMax,
             vMin);
+    }
+
+    /**
+     * Draws three vertical planes whose intersections form an equilateral triangle in the XZ plane.
+     * The apothem is the distance of the plane to the center.
+     */
+    public static void renderTriangularPlanes(double centerX, double y, double centerZ, IIcon icon, double halfWidth,
+        double height, double apothem, double rotation) {
+        Tessellator tessellator = Tessellator.instance;
+        double uMin = icon.getMinU();
+        double uMax = icon.getMaxU();
+        double vMin = icon.getMinV();
+        double vMax = icon.getMaxV();
+        double top = y + height;
+
+        for (int side = 0; side < 3; side++) {
+            double angle = rotation + side * (2.0D * Math.PI / 3.0D);
+            double normalX = Math.cos(angle);
+            double normalZ = Math.sin(angle);
+            double midpointX = centerX + apothem * normalX;
+            double midpointZ = centerZ + apothem * normalZ;
+            double tangentX = -halfWidth * normalZ;
+            double tangentZ = halfWidth * normalX;
+            double startX = midpointX - tangentX;
+            double startZ = midpointZ - tangentZ;
+            double endX = midpointX + tangentX;
+            double endZ = midpointZ + tangentZ;
+
+            addDoubleSidedQuad(
+                tessellator,
+                startX,
+                y,
+                startZ,
+                uMin,
+                vMax,
+                endX,
+                y,
+                endZ,
+                uMax,
+                vMax,
+                endX,
+                top,
+                endZ,
+                uMax,
+                vMin,
+                startX,
+                top,
+                startZ,
+                uMin,
+                vMin);
+        }
+    }
+
+    public static void renderOpeningPlanes(double centerX, double y, double centerZ, IIcon icon, double halfSize,
+        double openingAngle, double minimumRadius, double rotation) {
+        renderOpeningPlanes(centerX, y, centerZ, icon, halfSize, openingAngle, minimumRadius, rotation, 4);
+    }
+
+    /**
+     * Draws leaveCount planes opening like a fern with openingAngle, and a minimumRadius to the center.
+     */
+    public static void renderOpeningPlanes(double centerX, double y, double centerZ, IIcon icon, double halfSize,
+        double openingAngle, double minimumRadius, double rotation, int leaveCount) {
+
+        Tessellator tessellator = Tessellator.instance;
+        double uMin = icon.getMinU();
+        double uMax = icon.getMaxU();
+        double vMin = icon.getMinV();
+        double vMax = icon.getMaxV();
+
+        double cos = Math.cos(rotation) * halfSize;
+        double sin = Math.sin(rotation) * halfSize;
+
+        // Angle above the ground: keep the frond length constant while tilting it.
+        double length = halfSize * 2;
+        // Normalized plane area
+        double height = Math.sin(openingAngle) * length;
+        double reach = Math.cos(openingAngle) * length;
+        // Sine and Cosine taking into account their actual radius
+        double innerOutwardCos = Math.cos(rotation) * minimumRadius;
+        double innerOutwardSin = Math.sin(rotation) * minimumRadius;
+        double outerOutwardCos = Math.cos(rotation) * (reach + minimumRadius);
+        double outerOutwardSin = Math.sin(rotation) * (reach + minimumRadius);
+
+        // Rotation matrix
+        // ( c s )
+        // ( -s c )
+
+        double step = 2 * Math.PI / leaveCount;
+
+        // Probably would have been better to directly do a matrix library or smt
+        for (int i = 0; i < leaveCount; i++) {
+            double angle = step * i;
+            double polarCos = Math.cos(angle);
+            double polarSin = Math.sin(angle);
+
+            addDoubleSidedQuad(
+                tessellator,
+                centerX + (-cos + innerOutwardSin) * polarCos + (sin + innerOutwardCos) * polarSin,
+                y,
+                centerZ - (-cos + innerOutwardSin) * polarSin + (sin + innerOutwardCos) * polarCos,
+                uMin,
+                vMax,
+                centerX + (cos + innerOutwardSin) * polarCos + (-sin + innerOutwardCos) * polarSin,
+                y,
+                centerZ - (cos + innerOutwardSin) * polarSin + (-sin + innerOutwardCos) * polarCos,
+                uMax,
+                vMax,
+                centerX + (cos + outerOutwardSin) * polarCos + (-sin + outerOutwardCos) * polarSin,
+                y + height,
+                centerZ - (cos + outerOutwardSin) * polarSin + (-sin + outerOutwardCos) * polarCos,
+                uMax,
+                vMin,
+                centerX + (-cos + outerOutwardSin) * polarCos + (sin + outerOutwardCos) * polarSin,
+                y + height,
+                centerZ - (-cos + outerOutwardSin) * polarSin + (sin + outerOutwardCos) * polarCos,
+                uMin,
+                vMin);
+        }
+    }
+
+    @SideOnly(Side.CLIENT)
+    public static boolean blockTextureExists(String iconName) {
+        ResourceLocation icon = new ResourceLocation(iconName);
+        ResourceLocation png = new ResourceLocation(
+            icon.getResourceDomain(),
+            "textures/blocks/" + icon.getResourcePath() + ".png");
+
+        try (InputStream stream = Minecraft.getMinecraft()
+            .getResourceManager()
+            .getResource(png)
+            .getInputStream()) {
+            return true;
+        } catch (IOException e) {
+            return false;
+        }
     }
 }
