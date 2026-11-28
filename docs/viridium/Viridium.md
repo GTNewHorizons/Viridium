@@ -11,3 +11,7 @@ Github link: [GitHub - GTNewHorizons/Viridium](https://github.com/GTNewHorizons/
 Viridium development will be split into 2 separate versions:
 - [[Viridium 1.0]]
 - [[Viridium 2.0]]
+
+## Index
+
+[[Mod Integrations]]

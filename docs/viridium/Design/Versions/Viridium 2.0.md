@@ -1,0 +1,1 @@
+Viridium 2.0 aims to be a major revamp of the world generation, with focus in geological precision (without sacrificing gameplay, which will be the main target).
