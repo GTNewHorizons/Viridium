@@ -7,10 +7,6 @@ import java.util.Random;
 
 import net.junedev.viridium.blocks.sets.WoodBlockSet;
 import net.junedev.viridium.blocks.sets.small_tree.SmallTreeBlockSet;
-import net.junedev.viridium.blocks.sets.small_tree.SmallTreeBlockSetAcorn;
-import net.junedev.viridium.blocks.sets.small_tree.SmallTreeBlockSetCone;
-import net.junedev.viridium.blocks.sets.small_tree.SmallTreeBlockSetFruit;
-import net.junedev.viridium.blocks.sets.small_tree.SmallTreeBlockSetNut;
 import net.minecraft.block.Block;
 import net.minecraft.world.World;
 
@@ -44,34 +40,16 @@ public class SmallDeciduousTreeGen extends SmallTreeWorldGenBase {
     }
 
     public SmallDeciduousTreeGen(boolean par1, WoodBlockSet blockSet, String leafVariant, int baseTrunkHeight,
-                                 int trunkHeightVariance, double trunkHeightPercent, int baseBranchCount, int maxExtraBranches,
-                                 int leafCanopyWidth, int leafCanopyWidthVariance) {
+        int trunkHeightVariance, double trunkHeightPercent, int baseBranchCount, int maxExtraBranches,
+        int leafCanopyWidth, int leafCanopyWidthVariance) {
         super(par1);
 
-        // Cast to a valid type and throw exception if blockSet could not be cast
-        switch (blockSet) {
-            case SmallTreeBlockSet tree -> {
-                this.leafBlock = tree.leaves;
-                this.trunkBlock = tree.log;
-            }
-            case SmallTreeBlockSetAcorn tree -> {
-                this.leafBlock = tree.leaves;
-                this.trunkBlock = tree.log;
-            }
-            case SmallTreeBlockSetCone tree -> {
-                this.leafBlock = tree.leaves;
-                this.trunkBlock = tree.log;
-            }
-            case SmallTreeBlockSetFruit tree -> {
-                this.leafBlock = tree.leaves;
-                this.trunkBlock = tree.log;
-            }
-            case SmallTreeBlockSetNut tree -> {
-                this.leafBlock = tree.leaves;
-                this.trunkBlock = tree.log;
-            }
-            case null, default -> throw new IllegalArgumentException("Tree generation requires a tree block set");
-        }
+        if (!(blockSet instanceof SmallTreeBlockSet smallTreeBlockSet))
+            throw new IllegalArgumentException("Tree generation requires a tree block set");
+
+        this.leafBlock = smallTreeBlockSet.leaves;
+        this.trunkBlock = smallTreeBlockSet.log;
+
         this.baseTrunkHeight = baseTrunkHeight; // The base height for trees
         this.trunkHeightVariance = trunkHeightVariance; // The max extra height that a tree (via main trunk) can have
         this.trunkHeightPercent = trunkHeightPercent; // What percent of the total height the main trunk extends

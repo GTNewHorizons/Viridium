@@ -79,7 +79,7 @@ public class BaseSaplingBlock extends BlockSapling implements IBlockScientificNa
             if (!canBlockStay(world, match.originX() + offset.x(), y, match.originZ() + offset.z())) return;
         }
 
-        WorldGenerator generator = TreeRegistry.createGenerator(treeId, blockSet, match.layout(), true);
+        WorldGenerator generator = TreeRegistry.createLargeGenerator(treeId, blockSet, match.layout(), true);
 
         // We store the blocks data and remove them for the generation check
         int[] metadata = new int[offsets.size()];

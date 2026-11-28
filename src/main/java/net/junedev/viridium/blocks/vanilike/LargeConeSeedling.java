@@ -10,9 +10,9 @@ import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 
-public class ConeSeedling extends BaseSeedling {
+public class LargeConeSeedling extends BaseSeedling {
 
-    public ConeSeedling(String treeId, WoodBlockSet blockSet) {
+    public LargeConeSeedling(String treeId, WoodBlockSet blockSet) {
         super(treeId, blockSet);
     }
 
@@ -29,7 +29,7 @@ public class ConeSeedling extends BaseSeedling {
             if (!canBlockStay(world, match.originX() + offset.x(), y, match.originZ() + offset.z())) return;
         }
 
-        WorldGenerator generator = TreeRegistry.createGenerator(treeId, blockSet, match.layout(), true);
+        WorldGenerator generator = TreeRegistry.createLargeGenerator(treeId, blockSet, match.layout(), true);
 
         // We store the blocks data and remove them for the generation check
         int[] metadata = new int[offsets.size()];

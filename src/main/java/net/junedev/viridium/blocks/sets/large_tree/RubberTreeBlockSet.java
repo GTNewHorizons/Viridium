@@ -3,6 +3,9 @@ package net.junedev.viridium.blocks.sets.large_tree;
 import java.util.List;
 
 import net.junedev.viridium.blocks.vanilike.BaseFullLog;
+import net.junedev.viridium.blocks.vanilike.BaseSeedling;
+import net.junedev.viridium.items.BaseSeed;
+import net.junedev.viridium.plants.SeedType;
 import net.minecraft.block.Block;
 
 import cpw.mods.fml.common.registry.GameRegistry;
@@ -13,7 +16,7 @@ public class RubberTreeBlockSet extends LargeTreeBlockSet {
     public final Block logResinous;
 
     public RubberTreeBlockSet(String name) {
-        super(name);
+        super(name, SeedType.GENERIC, BaseSeedling::new, BaseSeed::new);
 
         logExpended = new BaseFullLog().setBlockName(name + "_log_expended")
             .setBlockTextureName(getAssetDirectory() + name + "_log_expended");

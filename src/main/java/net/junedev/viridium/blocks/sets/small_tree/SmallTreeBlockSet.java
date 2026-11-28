@@ -1,16 +1,16 @@
 package net.junedev.viridium.blocks.sets.small_tree;
 
 import java.util.List;
+import java.util.function.BiFunction;
 
 import net.junedev.viridium.Viridium;
 import net.junedev.viridium.blocks.SmallLogBlock;
 import net.junedev.viridium.blocks.sets.WoodBlockSet;
-import net.junedev.viridium.blocks.vanilike.BaseBark;
-import net.junedev.viridium.blocks.vanilike.BaseLeaves;
-import net.junedev.viridium.blocks.vanilike.BaseSeedling;
-import net.junedev.viridium.blocks.vanilike.SmallSaplingBlock;
+import net.junedev.viridium.blocks.vanilike.*;
 import net.junedev.viridium.items.BaseSeed;
 import net.junedev.viridium.items.ItemBlockScientificName;
+import net.junedev.viridium.items.TreeFruit;
+import net.junedev.viridium.items.TreeNut;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
@@ -27,10 +27,11 @@ public class SmallTreeBlockSet extends WoodBlockSet {
     public final Item seed;
 
     public SmallTreeBlockSet(String name) {
-        this(name, 4, 4, true);
+        this(name, 4, 4, true, "_seeds", BaseSeedling::new, BaseSeed::new);
     }
 
-    public SmallTreeBlockSet(String name, int halfWidth, int faceHalfWidth, boolean doSidesConnect) {
+    public SmallTreeBlockSet(String name, int halfWidth, int faceHalfWidth, boolean doSidesConnect, String suffix,
+        BiFunction<String, WoodBlockSet, BaseSeedling> seedling, BiFunction<Block, Block, Item> seed) {
         super(name);
 
         log = new SmallLogBlock(halfWidth, faceHalfWidth, doSidesConnect).setBlockName(name + "_log")
@@ -39,13 +40,15 @@ public class SmallTreeBlockSet extends WoodBlockSet {
         sapling = new SmallSaplingBlock(Viridium.MOD_ID + ":" + name, this).setBlockName(name + "_sapling")
             .setBlockTextureName(getAssetDirectory() + name + "_sapling");
 
-        seedling = new BaseSeedling(Viridium.MOD_ID + ":" + name, this).setSapling(sapling);
-        seedling.setBlockName(name + "_seedling")
+        this.seedling = seedling.apply(Viridium.MOD_ID + ":" + name, this)
+            .setSapling(sapling)
+            .setBlockName(name + "_seedling")
             .setBlockTextureName(name);
-        seed = new BaseSeed(seedling, Blocks.grass).setUnlocalizedName(name + "_seeds")
-            .setTextureName(name + "_seeds");
+        this.seed = seed.apply(this.seedling, Blocks.grass)
+            .setUnlocalizedName(name + suffix)
+            .setTextureName(name + suffix);
 
-        leaves = new BaseLeaves().setItemDropped(seed)
+        leaves = new BaseLeaves().setItemDropped(this.seed)
             .setBlockName(name + "_leaves")
             .setBlockTextureName(getAssetDirectory() + name + "_leaves");
 
@@ -58,9 +61,42 @@ public class SmallTreeBlockSet extends WoodBlockSet {
         GameRegistry.registerBlock(leaves, name + "_leaves");
         GameRegistry.registerBlock(sapling, ItemBlockScientificName.class, name + "_sapling");
         GameRegistry.registerBlock(bark, name + "_bark");
-        GameRegistry.registerBlock(seedling, name + "_seedling");
-        GameRegistry.registerItem(seed, name + "_seeds");
+        GameRegistry.registerBlock(this.seedling, name + "_seedling");
+        GameRegistry.registerItem(this.seed, name + suffix);
+    }
 
+    public static SmallTreeBlockSet genericBlockSet(String name) {
+        return new SmallTreeBlockSet(name, 4, 4, true, "_seed", BaseSeedling::new, BaseSeed::new);
+    }
+
+    public static SmallTreeBlockSet acornBlockSet(String name) {
+        return new SmallTreeBlockSet(name, 4, 4, true, "_acorn", BaseSeedling::new, BaseSeed::new);
+    }
+
+    public static SmallTreeBlockSet coneBlockSet(String name) {
+        return new SmallTreeBlockSet(name, 4, 4, true, "_cone", SmallConeSeedling::new, BaseSeed::new);
+    }
+
+    public static SmallTreeBlockSet fruitBlockSet(String name) {
+        return new SmallTreeBlockSet(
+            name,
+            4,
+            4,
+            true,
+            "_fruit",
+            BaseSeedling::new,
+            (seedling, soilblock) -> new TreeFruit(1, 1.0f, seedling, soilblock));
+    }
+
+    public static SmallTreeBlockSet nutBlockSet(String name) {
+        return new SmallTreeBlockSet(
+            name,
+            4,
+            4,
+            true,
+            "_nut",
+            BaseSeedling::new,
+            (seedling, soilblock) -> new TreeNut(1, 1.0f, seedling, soilblock));
     }
 
     @Override

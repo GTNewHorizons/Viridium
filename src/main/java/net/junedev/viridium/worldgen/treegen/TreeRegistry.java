@@ -67,7 +67,7 @@ public final class TreeRegistry {
     }
 
     // Create a new generator for each tree to avoid reusing state from previous generations
-    public static WorldGenerator createGenerator(String treeId, WoodBlockSet blockSet, boolean notifiesNeighbors) {
+    public static WorldGenerator createLargeGenerator(String treeId, WoodBlockSet blockSet, boolean notifiesNeighbors) {
         TreeType tree = TREES.get(treeId);
         return tree == null ? createDefaultLargeGenerator(blockSet, notifiesNeighbors)
             : configureSoil(tree.defaultFactory.apply(notifiesNeighbors), tree);
@@ -79,8 +79,8 @@ public final class TreeRegistry {
             : configureSoil(tree.defaultFactory.apply(notifiesNeighbors), tree);
     }
 
-    public static WorldGenerator createGenerator(String treeId, WoodBlockSet blockSet, SaplingLayout layout,
-        boolean notifiesNeighbors) {
+    public static WorldGenerator createLargeGenerator(String treeId, WoodBlockSet blockSet, SaplingLayout layout,
+                                                      boolean notifiesNeighbors) {
         TreeType tree = TREES.get(treeId);
         return tree == null ? createDefaultLargeGenerator(blockSet, notifiesNeighbors)
             : configureSoil(
@@ -99,7 +99,7 @@ public final class TreeRegistry {
                 tree);
     }
 
-    public static WorldGenerator createGenerator2(String treeId, WoodBlockSet blockSet, SaplingLayout layout,
+    public static WorldGenerator createSeedlingGenerator(String treeId, WoodBlockSet blockSet, SaplingLayout layout,
         boolean notifiesNeighbors) {
         TreeType tree = TREES.get(treeId);
         return tree == null ? createSeedlingGenerator(blockSet, notifiesNeighbors)

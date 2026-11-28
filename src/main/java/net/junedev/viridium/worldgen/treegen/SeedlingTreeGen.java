@@ -5,15 +5,7 @@ import java.util.Random;
 
 import net.junedev.viridium.blocks.sets.WoodBlockSet;
 import net.junedev.viridium.blocks.sets.large_tree.LargeTreeBlockSet;
-import net.junedev.viridium.blocks.sets.large_tree.LargeTreeBlockSetAcorn;
-import net.junedev.viridium.blocks.sets.large_tree.LargeTreeBlockSetCone;
-import net.junedev.viridium.blocks.sets.large_tree.LargeTreeBlockSetFruit;
-import net.junedev.viridium.blocks.sets.large_tree.LargeTreeBlockSetNut;
 import net.junedev.viridium.blocks.sets.small_tree.SmallTreeBlockSet;
-import net.junedev.viridium.blocks.sets.small_tree.SmallTreeBlockSetAcorn;
-import net.junedev.viridium.blocks.sets.small_tree.SmallTreeBlockSetCone;
-import net.junedev.viridium.blocks.sets.small_tree.SmallTreeBlockSetFruit;
-import net.junedev.viridium.blocks.sets.small_tree.SmallTreeBlockSetNut;
 import net.junedev.viridium.worldgen.SoilType;
 import net.minecraft.block.Block;
 import net.minecraft.world.World;
@@ -26,18 +18,12 @@ public class SeedlingTreeGen extends LargeTreeWorldGenBase {
         super(par1);
         setSoils(EnumSet.of(SoilType.GENERIC, SoilType.SAND));
 
-        switch (blockSet) {
-            case LargeTreeBlockSet tree -> this.sapling = tree.sapling;
-            case SmallTreeBlockSet tree -> this.sapling = tree.sapling;
-            case LargeTreeBlockSetCone tree -> this.sapling = tree.sapling;
-            case SmallTreeBlockSetCone tree -> this.sapling = tree.sapling;
-            case LargeTreeBlockSetAcorn tree -> this.sapling = tree.sapling;
-            case SmallTreeBlockSetAcorn tree -> this.sapling = tree.sapling;
-            case LargeTreeBlockSetFruit tree -> this.sapling = tree.sapling;
-            case SmallTreeBlockSetFruit tree -> this.sapling = tree.sapling;
-            case LargeTreeBlockSetNut tree -> this.sapling = tree.sapling;
-            case SmallTreeBlockSetNut tree -> this.sapling = tree.sapling;
-            case null, default -> throw new IllegalArgumentException("Tree generation requires a tree block set");
+        if (blockSet instanceof LargeTreeBlockSet largeTreeBlockSet) {
+            this.sapling = largeTreeBlockSet.sapling;
+        } else if (blockSet instanceof SmallTreeBlockSet smallTreeBlockSet) {
+            this.sapling = smallTreeBlockSet.sapling;
+        } else {
+            throw new IllegalArgumentException("Tree generation requires a tree block set");
         }
     }
 

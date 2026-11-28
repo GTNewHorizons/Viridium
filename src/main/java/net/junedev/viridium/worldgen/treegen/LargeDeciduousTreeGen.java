@@ -7,10 +7,6 @@ import java.util.Random;
 
 import net.junedev.viridium.blocks.sets.WoodBlockSet;
 import net.junedev.viridium.blocks.sets.large_tree.LargeTreeBlockSet;
-import net.junedev.viridium.blocks.sets.large_tree.LargeTreeBlockSetAcorn;
-import net.junedev.viridium.blocks.sets.large_tree.LargeTreeBlockSetCone;
-import net.junedev.viridium.blocks.sets.large_tree.LargeTreeBlockSetFruit;
-import net.junedev.viridium.blocks.sets.large_tree.LargeTreeBlockSetNut;
 import net.minecraft.block.Block;
 import net.minecraft.world.World;
 
@@ -48,30 +44,12 @@ public class LargeDeciduousTreeGen extends LargeTreeWorldGenBase {
         int leafCanopyWidth, int leafCanopyWidthVariance) {
         super(par1);
 
-        // Cast to a valid type and throw exception if blockSet could not be cast
-        switch (blockSet) {
-            case LargeTreeBlockSet tree -> {
-                this.leafBlock = tree.leaves;
-                this.trunkBlock = tree.log;
-            }
-            case LargeTreeBlockSetAcorn tree -> {
-                this.leafBlock = tree.leaves;
-                this.trunkBlock = tree.log;
-            }
-            case LargeTreeBlockSetCone tree -> {
-                this.leafBlock = tree.leaves;
-                this.trunkBlock = tree.log;
-            }
-            case LargeTreeBlockSetFruit tree -> {
-                this.leafBlock = tree.leaves;
-                this.trunkBlock = tree.log;
-            }
-            case LargeTreeBlockSetNut tree -> {
-                this.leafBlock = tree.leaves;
-                this.trunkBlock = tree.log;
-            }
-            case null, default -> throw new IllegalArgumentException("Tree generation requires a tree block set");
-        }
+        if (!(blockSet instanceof LargeTreeBlockSet largeTreeBlockSet))
+            throw new IllegalArgumentException("Tree generation requires a tree block set");
+
+        this.leafBlock = largeTreeBlockSet.leaves;
+        this.trunkBlock = largeTreeBlockSet.log;
+
         this.baseTrunkHeight = baseTrunkHeight; // The base height for trees
         this.trunkHeightVariance = trunkHeightVariance; // The max extra height that a tree (via main trunk) can have
         this.trunkHeightPercent = trunkHeightPercent; // What percent of the total height the main trunk extends
