@@ -4,7 +4,6 @@ import java.util.List;
 
 import net.junedev.viridium.blocks.vanilike.BasePlanks;
 import net.junedev.viridium.blocks.vanilike.BaseSeedling;
-import net.junedev.viridium.items.BaseSeed;
 import net.junedev.viridium.items.TreeNut;
 import net.junedev.viridium.plants.SeedType;
 import net.minecraft.block.Block;
@@ -16,7 +15,11 @@ public class AmericanChestnutBlockSet extends LargeTreeBlockSet {
     public final Block planksWormy;
 
     public AmericanChestnutBlockSet(String name) {
-        super(name, SeedType.NUT, BaseSeedling::new, (seedling, soilblock) -> new TreeNut(1, 1.0f, seedling, soilblock));
+        super(
+            name,
+            SeedType.NUT,
+            BaseSeedling::new,
+            (seedling, soilblock) -> new TreeNut(1, 1.0f, seedling, soilblock));
 
         planksWormy = new BasePlanks().setBlockName(name + "_planks_wormy")
             .setBlockTextureName(getAssetDirectory() + name + "_planks_wormy");

@@ -80,7 +80,7 @@ public final class TreeRegistry {
     }
 
     public static WorldGenerator createLargeGenerator(String treeId, WoodBlockSet blockSet, SaplingLayout layout,
-                                                      boolean notifiesNeighbors) {
+        boolean notifiesNeighbors) {
         TreeType tree = TREES.get(treeId);
         return tree == null ? createDefaultLargeGenerator(blockSet, notifiesNeighbors)
             : configureSoil(
