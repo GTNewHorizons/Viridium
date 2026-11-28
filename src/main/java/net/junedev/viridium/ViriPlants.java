@@ -3,7 +3,6 @@ package net.junedev.viridium;
 import java.util.function.Function;
 
 import net.junedev.viridium.blocks.sets.LargeWoodBlockSet;
-import net.junedev.viridium.blocks.sets.SmallTreeBlockSet;
 import net.junedev.viridium.blocks.sets.WoodBlockSet;
 import net.junedev.viridium.blocks.sets.large_tree.AmericanChestnutBlockSet;
 import net.junedev.viridium.blocks.sets.large_tree.BurntLeavesTreeBlockSet;
@@ -12,6 +11,9 @@ import net.junedev.viridium.blocks.sets.large_tree.PalmTreeBlockSet;
 import net.junedev.viridium.blocks.sets.large_tree.RubberTreeBlockSet;
 import net.junedev.viridium.blocks.sets.large_tree.WeepingWillowBlockSet;
 import net.junedev.viridium.blocks.sets.large_tree.WhitePoplarBlockSet;
+import net.junedev.viridium.blocks.sets.small_tree.SmallTreeBlockSet;
+import net.junedev.viridium.blocks.vanilike.BaseSeedling;
+import net.junedev.viridium.items.BaseSeed;
 import net.junedev.viridium.plants.PlantCategory;
 import net.junedev.viridium.plants.PlantRegistry;
 import net.junedev.viridium.plants.PlantType;
@@ -92,34 +94,34 @@ public final class ViriPlants {
     public static final PlantType<Block> WILD_ROSEMARY = bush("wild_rosemary");
 
     // ===== Small Trees =====
-    public static final PlantType<SmallTreeBlockSet> BLACK_SPRUCE = smallTree("black_spruce");
-    public static final PlantType<SmallTreeBlockSet> BLACKTHORN = smallTree("blackthorn");
+    public static final PlantType<SmallTreeBlockSet> BLACK_SPRUCE = smallTreeCone("black_spruce");
+    public static final PlantType<SmallTreeBlockSet> BLACKTHORN = smallTreeFruit("blackthorn");
     public static final PlantType<SmallTreeBlockSet> BLUE_MAHOE = smallTree("blue_mahoe");
     public static final PlantType<SmallTreeBlockSet> BOX_ELDER = smallTree("box_elder");
     public static final PlantType<SmallTreeBlockSet> CALLERY_PEAR = smallTree("callery_pear");
-    public static final PlantType<SmallTreeBlockSet> CITRON = smallTree("citron");
+    public static final PlantType<SmallTreeBlockSet> CITRON = smallTreeFruit("citron");
     public static final PlantType<SmallTreeBlockSet> CRAPE_MYRTLE = smallTree("crape_myrtle");
     public static final PlantType<SmallTreeBlockSet> DESERT_BLOODWOOD = smallTree("desert_bloodwood");
     public static final PlantType<SmallTreeBlockSet> FLOWERING_DOGWOOD = smallTree("flowering_dogwood");
-    public static final PlantType<SmallTreeBlockSet> GIANT_BAMBOO = smallTree("giant_bamboo", 3, 4, false);
-    public static final PlantType<SmallTreeBlockSet> HOLLY = smallTree("holly");
+    public static final PlantType<SmallTreeBlockSet> GIANT_BAMBOO = bambooTree("giant_bamboo", 3, 4, false);
+    public static final PlantType<SmallTreeBlockSet> HOLLY = smallTreeFruit("holly");
     public static final PlantType<SmallTreeBlockSet> JACARANDA = smallTree("jacaranda");
     public static final PlantType<SmallTreeBlockSet> JAPANESE_MAPLE = smallTree("japanese_maple");
-    public static final PlantType<SmallTreeBlockSet> JOSHUA_TREE = smallTree("joshua_tree");
+    public static final PlantType<SmallTreeBlockSet> JOSHUA_TREE = smallTreeFruit("joshua_tree");
     public static final PlantType<SmallTreeBlockSet> KOKI_O_KEA = smallTree("koki_o_kea");
-    public static final PlantType<SmallTreeBlockSet> KUMQUAT = smallTree("kumquat");
+    public static final PlantType<SmallTreeBlockSet> KUMQUAT = smallTreeFruit("kumquat");
     public static final PlantType<SmallTreeBlockSet> LEMON_MYRTLE = smallTree("lemon_myrtle");
     public static final PlantType<SmallTreeBlockSet> LILAC = smallTree("lilac");
     public static final PlantType<SmallTreeBlockSet> MIMOSA = smallTree("mimosa");
     public static final PlantType<SmallTreeBlockSet> MULGA = smallTree("mulga");
-    public static final PlantType<SmallTreeBlockSet> OLIVE = smallTree("olive");
+    public static final PlantType<SmallTreeBlockSet> OLIVE = smallTreeFruit("olive");
     public static final PlantType<SmallTreeBlockSet> PACIFIC_YEW = smallTree("pacific_yew");
     public static final PlantType<SmallTreeBlockSet> PAPERBARK_MAPLE = smallTree("paperbark_maple");
-    public static final PlantType<SmallTreeBlockSet> PAWPAW = smallTree("pawpaw");
-    public static final PlantType<SmallTreeBlockSet> PEAR = smallTree("pear");
+    public static final PlantType<SmallTreeBlockSet> PAWPAW = smallTreeFruit("pawpaw");
+    public static final PlantType<SmallTreeBlockSet> PEAR = smallTreeFruit("pear");
     public static final PlantType<SmallTreeBlockSet> RED_CINCHONA = smallTree("red_cinchona");
     public static final PlantType<SmallTreeBlockSet> REDBUD = smallTree("redbud");
-    public static final PlantType<SmallTreeBlockSet> WILD_APPLE = smallTree("wild_apple");
+    public static final PlantType<SmallTreeBlockSet> WILD_APPLE = smallTreeFruit("wild_apple");
     public static final PlantType<SmallTreeBlockSet> WITCH_HAZEL = smallTree("witch_hazel");
     public static final PlantType<SmallTreeBlockSet> WISTERIA = smallTree("wisteria");
 
@@ -432,48 +434,48 @@ public final class ViriPlants {
     public static final PlantType<LargeTreeBlockSet> BALD_CYPRESS = largeTree("bald_cypress");
     public static final PlantType<LargeTreeBlockSet> BAOBAB = largeTree("baobab");
     public static final PlantType<LargeTreeBlockSet> BEECH = largeTree("beech");
-    public static final PlantType<LargeTreeBlockSet> BLACK_OAK = largeTree("black_oak");
-    public static final PlantType<LargeTreeBlockSet> BLACK_PINE = largeTree("black_pine");
-    public static final PlantType<LargeTreeBlockSet> CACAO = largeTree("cacao");
-    public static final PlantType<LargeTreeBlockSet> CANDLENUT = largeTree("candlenut");
+    public static final PlantType<LargeTreeBlockSet> BLACK_OAK = largeTreeAcorn("black_oak");
+    public static final PlantType<LargeTreeBlockSet> BLACK_PINE = largeTreeCone("black_pine");
+    public static final PlantType<LargeTreeBlockSet> CACAO = largeTree("cacao"); // TODO: Unique "fruit"
+    public static final PlantType<LargeTreeBlockSet> CANDLENUT = largeTreeFruit("candlenut");
     public static final PlantType<BurntLeavesTreeBlockSet> COAST_REDWOOD = largeTree(
         "coast_redwood",
         BurntLeavesTreeBlockSet::new);
-    public static final PlantType<LargeTreeBlockSet> COCONUT_PALM = largeTree("coconut_palm");
+    public static final PlantType<LargeTreeBlockSet> COCONUT_PALM = largeTreeFruit("coconut_palm");
     public static final PlantType<LargeTreeBlockSet> COOLIBAH = largeTree("coolibah");
-    public static final PlantType<LargeTreeBlockSet> DAHURIAN_LARCH = largeTree("dahurian_larch");
+    public static final PlantType<LargeTreeBlockSet> DAHURIAN_LARCH = largeTreeCone("dahurian_larch");
     public static final PlantType<LargeTreeBlockSet> DRAGONS_BLOOD = largeTree("dragons_blood");
     public static final PlantType<LargeWoodBlockSet> DRIFTWOOD = wood("driftwood", LargeWoodBlockSet::new);
     public static final PlantType<LargeTreeBlockSet> EBONY = largeTree("ebony");
     public static final PlantType<BurntLeavesTreeBlockSet> GIANT_SEQUOIA = largeTree(
         "giant_sequoia",
         BurntLeavesTreeBlockSet::new);
-    public static final PlantType<LargeTreeBlockSet> GRAND_FIR = largeTree("grand_fir");
+    public static final PlantType<LargeTreeBlockSet> GRAND_FIR = largeTreeCone("grand_fir");
     public static final PlantType<LargeTreeBlockSet> HAWTHORN = largeTree("hawthorn");
     public static final PlantType<LargeTreeBlockSet> KANKAN = largeTree("kankan");
     public static final PlantType<LargeTreeBlockSet> KOA = largeTree("koa");
     public static final PlantType<LargeTreeBlockSet> MAHOGANY = largeTree("mahogany");
-    public static final PlantType<LargeTreeBlockSet> MEDITERRANEAN_CYPRESS = largeTree("mediterranean_cypress");
+    public static final PlantType<LargeTreeBlockSet> MEDITERRANEAN_CYPRESS = largeTreeCone("mediterranean_cypress");
     public static final PlantType<LargeTreeBlockSet> NAZARENO = largeTree("nazareno");
     public static final PlantType<LargeTreeBlockSet> PAPER_BIRCH = largeTree("paper_birch");
-    public static final PlantType<LargeTreeBlockSet> PEDUNCULATE_OAK = largeTree("pedunculate_oak");
+    public static final PlantType<LargeTreeBlockSet> PEDUNCULATE_OAK = largeTreeAcorn("pedunculate_oak");
     public static final PlantType<LargeTreeBlockSet> QUAKING_ASPEN = largeTree("quaking_aspen");
     public static final PlantType<LargeTreeBlockSet> RAINBOW_EUCALYPTUS = largeTree("rainbow_eucalyptus");
-    public static final PlantType<LargeTreeBlockSet> RED_ALDER = largeTree("red_alder");
+    public static final PlantType<LargeTreeBlockSet> RED_ALDER = largeTreeCone("red_alder");
     public static final PlantType<LargeTreeBlockSet> RED_GUM = largeTree("red_gum");
     public static final PlantType<LargeTreeBlockSet> RED_MAPLE = largeTree("red_maple");
-    public static final PlantType<LargeTreeBlockSet> RED_SPRUCE = largeTree("red_spruce");
-    public static final PlantType<LargeTreeBlockSet> ROWAN = largeTree("rowan");
+    public static final PlantType<LargeTreeBlockSet> RED_SPRUCE = largeTreeCone("red_spruce");
+    public static final PlantType<LargeTreeBlockSet> ROWAN = largeTreeFruit("rowan");
     public static final PlantType<PalmTreeBlockSet> ROYAL_PALM = largeTree("royal_palm", PalmTreeBlockSet::new);
     public static final PlantType<RubberTreeBlockSet> RUBBER = largeTree("rubber", RubberTreeBlockSet::new);
-    public static final PlantType<LargeTreeBlockSet> SCOTS_PINE = largeTree("scots_pine");
-    public static final PlantType<LargeTreeBlockSet> SIBERIAN_LARCH = largeTree("siberian_larch");
-    public static final PlantType<LargeTreeBlockSet> SIERRA_JUNIPER = largeTree("sierra_juniper");
+    public static final PlantType<LargeTreeBlockSet> SCOTS_PINE = largeTreeCone("scots_pine");
+    public static final PlantType<LargeTreeBlockSet> SIBERIAN_LARCH = largeTreeCone("siberian_larch");
+    public static final PlantType<LargeTreeBlockSet> SIERRA_JUNIPER = largeTreeFruit("sierra_juniper");
     public static final PlantType<LargeTreeBlockSet> SOUTHERN_MAGNOLIA = largeTree("southern_magnolia");
     public static final PlantType<LargeTreeBlockSet> SWEET_CHERRY = largeTree("sweet_cherry");
     public static final PlantType<LargeTreeBlockSet> SWEETGUM = largeTree("sweetgum");
-    public static final PlantType<LargeTreeBlockSet> TAMARACK = largeTree("tamarack");
-    public static final PlantType<LargeTreeBlockSet> TURKISH_PINE = largeTree("turkish_pine");
+    public static final PlantType<LargeTreeBlockSet> TAMARACK = largeTreeCone("tamarack");
+    public static final PlantType<LargeTreeBlockSet> TURKISH_PINE = largeTreeCone("turkish_pine");
     public static final PlantType<LargeTreeBlockSet> UMBRELLA_TREE = largeTree("umbrella_tree");
     public static final PlantType<WeepingWillowBlockSet> WEEPING_WILLOW = largeTree(
         "weeping_willow",
@@ -526,16 +528,55 @@ public final class ViriPlants {
         return woodSet(registryName, PlantCategory.SMALL_TREE, SmallTreeBlockSet::new);
     }
 
-    private static PlantType<SmallTreeBlockSet> smallTree(String registryName, int halfWidth, int faceHalfWidth,
+    private static PlantType<SmallTreeBlockSet> smallTreeAcorn(String registryName) {
+        return woodSet(registryName, PlantCategory.SMALL_TREE, SmallTreeBlockSet::acornBlockSet);
+    }
+
+    private static PlantType<SmallTreeBlockSet> smallTreeCone(String registryName) {
+        return woodSet(registryName, PlantCategory.SMALL_TREE, SmallTreeBlockSet::coneBlockSet);
+    }
+
+    private static PlantType<SmallTreeBlockSet> smallTreeFruit(String registryName) {
+        return woodSet(registryName, PlantCategory.SMALL_TREE, SmallTreeBlockSet::fruitBlockSet);
+    }
+
+    private static PlantType<SmallTreeBlockSet> smallTreeNut(String registryName) {
+        return woodSet(registryName, PlantCategory.SMALL_TREE, SmallTreeBlockSet::nutBlockSet);
+    }
+
+    private static PlantType<SmallTreeBlockSet> bambooTree(String registryName, int halfWidth, int faceHalfWidth,
         boolean doSidesConnect) {
         return woodSet(
             registryName,
             PlantCategory.SMALL_TREE,
-            name -> new SmallTreeBlockSet(name, halfWidth, faceHalfWidth, doSidesConnect));
+            name -> new SmallTreeBlockSet(
+                name,
+                halfWidth,
+                faceHalfWidth,
+                doSidesConnect,
+                "_seed",
+                BaseSeedling::new,
+                BaseSeed::new));
     }
 
     private static PlantType<LargeTreeBlockSet> largeTree(String registryName) {
-        return largeTree(registryName, LargeTreeBlockSet::new);
+        return largeTree(registryName, LargeTreeBlockSet::genericBlockSet);
+    }
+
+    private static PlantType<LargeTreeBlockSet> largeTreeAcorn(String registryName) {
+        return largeTree(registryName, LargeTreeBlockSet::acornBlockSet);
+    }
+
+    private static PlantType<LargeTreeBlockSet> largeTreeCone(String registryName) {
+        return largeTree(registryName, LargeTreeBlockSet::coneBlockSet);
+    }
+
+    private static PlantType<LargeTreeBlockSet> largeTreeFruit(String registryName) {
+        return largeTree(registryName, LargeTreeBlockSet::fruitBlockSet);
+    }
+
+    private static PlantType<LargeTreeBlockSet> largeTreeNut(String registryName) {
+        return largeTree(registryName, LargeTreeBlockSet::nutBlockSet);
     }
 
     private static <S extends LargeWoodBlockSet> PlantType<S> largeTree(String registryName,

@@ -44,13 +44,12 @@ public class LargeDeciduousTreeGen extends LargeTreeWorldGenBase {
         int leafCanopyWidth, int leafCanopyWidthVariance) {
         super(par1);
 
-        // Cast to a valid type and throw exception if blockSet could not be cast
-        if (blockSet instanceof LargeTreeBlockSet tree) {
-            this.leafBlock = tree.leaves;
-            this.trunkBlock = tree.log;
-        } else {
+        if (!(blockSet instanceof LargeTreeBlockSet largeTreeBlockSet))
             throw new IllegalArgumentException("Tree generation requires a tree block set");
-        }
+
+        this.leafBlock = largeTreeBlockSet.leaves;
+        this.trunkBlock = largeTreeBlockSet.log;
+
         this.baseTrunkHeight = baseTrunkHeight; // The base height for trees
         this.trunkHeightVariance = trunkHeightVariance; // The max extra height that a tree (via main trunk) can have
         this.trunkHeightPercent = trunkHeightPercent; // What percent of the total height the main trunk extends

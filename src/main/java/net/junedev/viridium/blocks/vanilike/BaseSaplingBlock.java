@@ -26,8 +26,8 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class BaseSaplingBlock extends BlockSapling implements IBlockScientificName {
 
-    private final String treeId;
-    private final WoodBlockSet blockSet;
+    protected final String treeId;
+    protected final WoodBlockSet blockSet;
     private final String leafVariant;
 
     public BaseSaplingBlock(String treeId, WoodBlockSet blockSet) {
@@ -79,7 +79,7 @@ public class BaseSaplingBlock extends BlockSapling implements IBlockScientificNa
             if (!canBlockStay(world, match.originX() + offset.x(), y, match.originZ() + offset.z())) return;
         }
 
-        WorldGenerator generator = TreeRegistry.createGenerator(treeId, blockSet, match.layout(), true);
+        WorldGenerator generator = TreeRegistry.createLargeGenerator(treeId, blockSet, match.layout(), true);
 
         // We store the blocks data and remove them for the generation check
         int[] metadata = new int[offsets.size()];
